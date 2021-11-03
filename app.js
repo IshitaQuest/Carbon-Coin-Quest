@@ -14,10 +14,10 @@ var fs = require('fs-extra');
 const routes = require('./routes/index.js');
 const probit = require('./routes/probit.js');
 
-// const mongoose = require("mongoose");
-// mongoose.connect("mongodb://localhost/FinanceBlockchain",
-//     { useUnifiedTopology: true },
-//     { useNewUrlParser: true });
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/FinanceBlockchain",
+    { useUnifiedTopology: true },
+    { useNewUrlParser: true });
 //new api
 const flash = require('express-flash');
 
