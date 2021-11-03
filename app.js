@@ -93,11 +93,11 @@ app.get('/', (req, res) => {
 // console.log('3009')
 // // Create an HTTP service.
 // http.createServer(app).listen(4000); 
-// // Create an HTTPS service identical to the HTTP service.
+// Create an HTTPS service identical to the HTTP service.
 // https.createServer(options, app).listen(443);
 
 
 // Set 'views' directory for any views 
 // being rendered res.render()
-const PORT = 450;
+const PORT = 443;
 app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
