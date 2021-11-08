@@ -15,12 +15,11 @@ const routes = require('./routes/index.js');
 const probit = require('./routes/probit.js');
 
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/FinanceBlockchain",
+mongoose.connect("mongodb://3.21.227.207/CarbonCoin",
     { useUnifiedTopology: true },
     { useNewUrlParser: true });
 //new api
 const flash = require('express-flash');
-
 
 app.use(session({
     secret: 'userdetails',
