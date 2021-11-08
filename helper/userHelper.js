@@ -1,7 +1,7 @@
 const moment = require('moment');
 const { Tokensettings } = require('../models/userModel')
 
-const addtokensettings = function () {
+const addtokensettings = async function () {
     let rates = {
         token_name: '$FBT',
         total_quantity: '10000',
@@ -15,7 +15,7 @@ const addtokensettings = function () {
         updated_at: '1',
     }
     let token = new Tokensettings(rates)
-    token.save();
+    await token.save();
     console.log(token)
 }
 
