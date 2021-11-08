@@ -15,7 +15,7 @@ const routes = require('./routes/index.js');
 const probit = require('./routes/probit.js');
 
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://3.21.227.207/CarbonCoin",
+mongoose.connect("mongodb://localhost/CarbonCoin",
     { useUnifiedTopology: true },
     { useNewUrlParser: true });
 //new api

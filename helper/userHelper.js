@@ -1,25 +1,25 @@
 const moment = require('moment');
 const { Tokensettings } = require('../models/userModel')
 
-const addtokensettings = async function () {
-    let rates = {
-        token_name: '$FBT',
-        total_quantity: '10000',
-        etherValue: '1',
-        btcValue: '1',
-        usdValue: '1',
-        xrpValue: '1',
-        ltcValue: '1',
-        dashValue: '1',
-        bnbValue: '1',
-        updated_at: '1',
-    }
-    let token = new Tokensettings(rates)
-    await token.save();
-    console.log(token)
-}
+// const addtokensettings = async function () {
+//     let rates = {
+//         token_name: '$FBT',
+//         total_quantity: '10000',
+//         etherValue: '1',
+//         btcValue: '1',
+//         usdValue: '1',
+//         xrpValue: '1',
+//         ltcValue: '1',
+//         dashValue: '1',
+//         bnbValue: '1',
+//         updated_at: '1',
+//     }
+//     let token = new Tokensettings(rates)
+//     await token.save();
+//     console.log(token)
+// }
 
-addtokensettings();
+// addtokensettings();
 
 function generateCode() {
     var string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
