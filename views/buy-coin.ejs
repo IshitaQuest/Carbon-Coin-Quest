@@ -221,7 +221,7 @@
                             <label>Buy*</label>
                             <div class="row align-items-center">
                                 <div class="col-md-5">
-                                    <input type="text" id="bidding" onchange="myChangeFunction(this)" placeholder="USD">
+                                    <input type="text" id="bidding" onchange="myChangeFunction(bidding)" placeholder="USD">
                                 </div>
                                 <div class="col-md-2 text-center">
                                     =
@@ -430,7 +430,7 @@
 
         function myChangeFunction(bidding) {
             var ethbiddings = document.getElementById('ethbidding');
-            ethbiddings.value = bidding.value
+            ethbiddings.value = (bidding.value)*0.0002111
         }
     </script>
     <script>
