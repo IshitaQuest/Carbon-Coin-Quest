@@ -537,7 +537,7 @@
 //     Userwallet: Userwallet,
 //     OrderDetails: OrderDetails,
 //     Tokensettings: Tokensettings
-
+    
 // };
 
 var mongoose = require('mongoose');
@@ -573,8 +573,8 @@ var RegistrationSchema = mongoose.Schema({
     email_verify: {
 
         type: String,
-        enum: ['pending', 'verified'],
-        default: 'pending'
+        enum:['pending','verified'],
+        default :'pending'
 
     },
     mobile_no: {
@@ -786,9 +786,6 @@ var Userwalletschema = mongoose.Schema({
     passphrase: {
         type: String
     },
-    src: {
-        type: String
-    },
     balance: {
         type: String,
         default: null
@@ -955,10 +952,10 @@ var OrderDeatailsSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User_registration'
     },
-    fbt_count: {
+    ebt_count: {
         type: String
     },
-    rate_per_fbt: {
+    rate_per_ebt: {
         type: String
     },
     total_amnt: {

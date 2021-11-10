@@ -24,7 +24,7 @@ const bscHelper = require("../helper/bscHelper")
 const ethHelper = require("../helper/ethHelper")
 const userServices = require("../services/userServices")
 const adminServices = require("../services/adminServices")
-const userController = require('../controllers/userControllers');
+const userController=require('../controllers/userControllers');
 
 
 
@@ -164,7 +164,7 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-routes.get('/admin-login', (req, res) => {
+routes.get('/admin-login',  (req, res) => {
   let fail = req.flash('fail');
   let success_logout = req.flash('success_logout');
   res.render('admin/admin-login/admin_login.ejs', { fail, success_logout });
@@ -184,7 +184,7 @@ routes.get('/admin-login', (req, res) => {
 //     user_type: 'admin'
 //   };
 
-
+  
 //     if (email == 'aashishporwal@questglt.org' && password == '123456') {
 //       console.log('Admin found')
 //        res.redirect('/main-dashboard');
@@ -202,11 +202,11 @@ routes.post('/submit-details', async (req, res) => {
   // const email = req.body.username;
   // const password = req.body.password;
 
-  const email = "financeblocks@gmail.com";
-  const password = "Finance@quest";
+  const email = "ebticoglt@gmail.com";
+  const password = "Quest@ebtico";
 
   let Admin = {
-    name: 'Finance Blocks',
+    name: 'Abu Bakar',
     email: req.body.email,
     password: req.body.password,
     user_type: 'admin'
@@ -235,13 +235,13 @@ routes.post('/submit-details', async (req, res) => {
       console.log(`${admin.name} logged in as a admin`);
       const secret = speakeasy.generateSecret({
         length: 10,
-        name: 'Finance_Blockchain_Admin',
-        issuer: 'Finance_Blockchain_Admin'
+        name: 'Abu_Bakar_Admin',
+        issuer: 'Abu_Bakar_Admin'
       });
       var url = speakeasy.otpauthURL({
         secret: secret.base32,
-        label: 'Finance_Blockchain_Admin',
-        issuer: 'Finance_Blockchain_Admin',
+        label: 'Abu_Bakar_Admin',
+        issuer: 'Abu_Bakar_Admin',
         encoding: 'base32'
       });
       QRCode.toDataURL(url, async (err, dataURL) => {
@@ -273,13 +273,13 @@ routes.get('/main-dashboard', middleware_check_login, async (req, res) => {
   let usersRegisteredThisMonth = await adminServices.usersRegisteredThisMonth()
   console.log(usersRegisteredThisMonth)
 
-  let totalFBTRewardsDestributed = await adminServices.totalFBTRewardsDestributed(total_users_s)
+  let totalEBTRewardsDestributed = await adminServices.totalEBTRewardsDestributed(total_users_s)
 
-  const FBT_bal = await ethHelper.coinBalanceETH(admin_wallet) //$FBT balance
-  console.log(`290-FBT`, FBT_bal)
+  const EBT_bal = await ethHelper.coinBalanceETH(admin_wallet) //$EBT balance
+  console.log(`290-ebt`, EBT_bal)
 
-  const fbtSold = await adminServices.FBTSold(FBT_bal)
-  console.log(`290-FBTSold`, fbtSold)
+  const ebtSold = await adminServices.EBTSold(EBT_bal)
+  console.log(`290-ebtSold`, ebtSold)
 
   const actual_balance = await ethHelper.balanceMainETH(admin_wallet) //ethereum balance
   console.log(`293-eth`, actual_balance)
@@ -295,13 +295,13 @@ routes.get('/main-dashboard', middleware_check_login, async (req, res) => {
   }
   else {
     res.render('admin/front-admin/main-dashboard.ejs', {
-      Name: req.session.user_name, session: req.session, profile_image: req.session.profile_image, total_orders_s: total_orders, FBT_balance: FBT_bal, ether_balance: actual_balance, main_rwn_vault: "0", total_users_s, fbtSold, totalFBTRewardsDestributed, usersRegisteredThisMonth
-    })
+      Name: req.session.user_name, session: req.session, profile_image: req.session.profile_image, total_orders_s: total_orders, EBT_balance: EBT_bal, ether_balance: actual_balance, main_rwn_vault: "0", total_users_s, ebtSold, totalEBTRewardsDestributed, usersRegisteredThisMonth
+    }) 
   }
 })
 
 
-routes.get('/my-profile', middleware_check_login, async (req, res) => {
+routes.get('/my-profile',middleware_check_login,  async (req, res) => {
 
   // console.log('Session Data',req.session)
   var id = req.session.user_main_id;
@@ -377,7 +377,7 @@ routes.post('/update_profile', middleware_check_login, (req, res) => {
 });
 
 
-routes.get('/change-password-front-admin', middleware_check_login, (req, res) => {
+routes.get('/change-password-front-admin',middleware_check_login,  (req, res) => {
   err_msg = req.flash('err_msg');
   success_msg = req.flash('success_msg');
   AdminInfo.findOne().then((succ) => {
@@ -465,7 +465,7 @@ router.get('/logout', async (req, res) => {
 
 
 
-routes.get('/user-list', middleware_check_login, (req, res) => {
+routes.get('/user-list',middleware_check_login,  (req, res) => {
   err_msg = req.flash('err_msg');
   success_msg = req.flash('success_msg');
   var day = moment(new Date()).format('MM/DD/YYYY');
@@ -496,7 +496,7 @@ routes.get('/user-list', middleware_check_login, (req, res) => {
 
 /******************************************************************************************/
 
-routes.post('/userListByDate', middleware_check_login, (req, res, next) => {
+routes.post('/userListByDate',middleware_check_login,  (req, res, next) => {
   // var newDate = req.body.getDate;
   var newMinDate = req.body.getMinDate;
   var newMaxDate = req.body.getMaxDate;
@@ -617,7 +617,7 @@ routes.get('/edit-user', middleware_check_login, (req, res) => {
 
 });
 
-routes.post('/update-password-user', middleware_check_login, (req, res) => {
+routes.post('/update-password-user',middleware_check_login, (req, res) => {
   var user_id = req.body.id.trim();
   var password = req.body.new_password.trim();
   var mykey = crypto.createCipher('aes-128-cbc', 'mypass');
@@ -641,13 +641,13 @@ routes.post('/update-password-user', middleware_check_login, (req, res) => {
         from: 'info.artwtoken@gmail.com',
         subject: 'Forgot Password',
 
-        text: 'Dear Customer,' + '\n\n' + 'New Password form FBT.\n\n' +
+        text: 'Dear Customer,' + '\n\n' + 'New Password form ebt.\n\n' +
           'Password: ' + password + '\n http://' + req.headers.host + '/' + '\n\n' +
 
           'We suggest you to please change your password after successfully logging in on the portal using the above password :\n\n' +
 
           'Here is the change password link: http://' + req.headers.host + '/Profile' + '\n\n' +
-          'Thanks and Regards,' + '\n' + '$FBT Team' + '\n\n',
+          'Thanks and Regards,' + '\n' + '$EBT Team' + '\n\n',
       };
       smtpTransport.sendMail(mailOptions, function (err) {
         console.log(err);
@@ -742,7 +742,7 @@ routes.get('/send-token', middleware_check_login, async (req, res) => {
 });
 
 
-routes.post('/submit-token', middleware_check_login, async (req, res, next) => {
+routes.post('/submit-token',middleware_check_login, async (req, res, next) => {
   var orderId = req.body.orderId.trim();
   var user_id = req.body.user_id.trim();
 
@@ -893,7 +893,7 @@ routes.post('/submit-token', middleware_check_login, async (req, res, next) => {
                                           payment_status: 'pending',
                                           created_at: created_at,
                                           status: 'active',
-                                          token_type: '$FBT',
+                                          token_type: '$EBT',
                                           transaction_type: 'Send'
 
                                         });
@@ -1217,7 +1217,7 @@ routes.get('/referral', middleware_check_login, (req, res, next) => {
                         payment_status: 'pending',
                         created_at: created_at,
                         status: 'active',
-                        token_type: '$FBT',
+                        token_type: '$EBT',
                         transaction_type: 'Send',
                         referred_to_name: bonusUser.name,
                         referred_to_email: bonusUser.email,
@@ -1321,9 +1321,9 @@ routes.get('/update-token', middleware_check_login, async (req, res) => {
   success_msg = req.flash('success_msg');
   await Tokensettings.findOne().then(async result => {
     console.log("result-------", result);
-    let fbt_bal = await ethHelper.coinBalanceETH(admin_wallet)
+    let ebt_bal = await ethHelper.coinBalanceETH(admin_wallet)
     res.render('admin/front-admin/update-token', {
-      err_msg, success_msg, layout: false, session: req.session, Name: req.session.user_name, profile_image: req.session.profile_image, result, actual_balance: fbt_bal
+      err_msg, success_msg, layout: false, session: req.session, Name: req.session.user_name, profile_image: req.session.profile_image, result, actual_balance: ebt_bal
     })
 
   })
@@ -1332,7 +1332,7 @@ routes.get('/update-token', middleware_check_login, async (req, res) => {
     })
 })
 
-routes.post('/update-token-details', middleware_check_login, (req, res) => {
+routes.post('/update-token-details',middleware_check_login, (req, res) => {
   console.log("req.body------------- ", req.body);
   var id = req.body.edit_id.trim();
   var token_name = req.body.token_name;
@@ -1583,7 +1583,7 @@ routes.post('/update_set_stake', middleware_check_login, (req, res) => {
 
 /********************************* Home Banner   ****************************/
 
-routes.get('/home-banner-details', middleware_check_login, (req, res) => {
+routes.get('/home-banner-details', middleware_check_login,(req, res) => {
 
   err_msg = req.flash('err_msg');
   success_msg = req.flash('success_msg');
@@ -1625,7 +1625,7 @@ routes.get('/add-new-banner', middleware_check_login, (req, res) => {
   });
 });
 
-routes.post('/add_banner', middleware_check_login, (req, res) => {
+routes.post('/add_banner',middleware_check_login, (req, res) => {
   const form = formidable({ multiples: true });
   form.parse(req, (err, fields, files) => {
     var imageFile = typeof files.banner_image !== "undefined" ? files.banner_image.name : "";
@@ -1737,7 +1737,7 @@ routes.post('/update_banner', middleware_check_login, (req, res) => {
 
 });
 
-routes.get('/delete-banner', middleware_check_login, (req, res) => {
+routes.get('/delete-banner',middleware_check_login, (req, res) => {
 
   var current_time = Date.now();
 
@@ -1769,7 +1769,7 @@ routes.get('/delete-banner', middleware_check_login, (req, res) => {
 
 // ***************************************************************************************//
 
-routes.get('/key-features', middleware_check_login, (req, res) => {
+routes.get('/key-features',middleware_check_login, (req, res) => {
   KeyFeaturesInfo.find({ deleted: '0' }).then((keyFeatures) => {
     res.render('admin/front-admin/key-features', { err_msg, success_msg, Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash(), keyFeatures })
   }, (err) => {
@@ -1780,7 +1780,7 @@ routes.get('/key-features', middleware_check_login, (req, res) => {
 })
 
 
-routes.get('/add-new-key-features', middleware_check_login, (req, res) => {
+routes.get('/add-new-key-features',middleware_check_login,  (req, res) => {
 
   res.render('admin/front-admin/add-new-key-features', { err_msg, success_msg, Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash() })
 })
@@ -1927,7 +1927,7 @@ routes.get('/delete-key-feature', middleware_check_login, (req, res) => {
 ///////////////////*******problem************//////////////////////////
 
 
-routes.get('/problem', middleware_check_login, (req, res) => {
+routes.get('/problem',middleware_check_login, (req, res) => {
   problemInfo.find({ deleted: '0' }).then((problemDetails) => {
     //console.log(problemDetails)
     res.render('admin/front-admin/problem', { err_msg, success_msg, Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash(), problemDetails })
@@ -2344,7 +2344,7 @@ routes.get('/delete-token-allocation', (req, res) => {
 
 ////////////****************ROADMAP*******************////////////
 
-routes.get('/roadmap', (req, res) => {
+routes.get('/roadmap',  (req, res) => {
   milestone.find({ deleted: '0' }).then((milestoneData) => {
 
     res.render('admin/front-admin/roadmap', { err_msg, success_msg, Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash(), milestoneData })
@@ -2437,7 +2437,7 @@ routes.get('/delete-milestone', (req, res) => {
 
 //////////////*************whitepaper*****************//////////////
 
-routes.get('/whitepaper', (req, res) => {
+routes.get('/whitepaper',  (req, res) => {
   whitepaperInfo.find({ deleted: '0' }).then((whitePaperData) => {
 
     res.render('admin/front-admin/whitepaper', { err_msg, success_msg, Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash(), whitePaperData })
@@ -2614,7 +2614,7 @@ routes.get('/delete-whitepaper', (req, res) => {
 })
 
 ///////////***************blogs ****************///////////////////
-routes.get('/blog-list', async (req, res) => {
+routes.get('/blog-list',async (req, res) => {
 
   let blogdetails = await blogInfo.find({ deleted: '0' })
 
@@ -2766,7 +2766,7 @@ routes.post('/edit-blog', middleware_check_login, (req, res) => {
 })
 
 /////////////************faq list       *************/////////////////
-routes.get('/faq-list', (req, res) => {
+routes.get('/faq-list',  (req, res) => {
 
   FAQ.find({ deleted: '0' }).then((questionDetails) => {
 
@@ -2784,7 +2784,7 @@ routes.get('/faq-list', (req, res) => {
 
 })
 
-routes.get('/add-new-question', (req, res) => {
+routes.get('/add-new-question',  (req, res) => {
 
   res.render('admin/front-admin/add-new-question', { err_msg, success_msg, Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash() })
 })
@@ -2986,7 +2986,7 @@ routes.post('/edit-terms-n-conditons', middleware_check_login, (req, res) => {
   })
 })
 
-routes.get('/delete-terms-n-conditons', middleware_check_login, (req, res) => {
+routes.get('/delete-terms-n-conditons',middleware_check_login, (req, res) => {
   console.log('In delete terms-n-conditons')
   id = req.query.id
   termsAndConditionInfo.findOne({ _id: id, deleted: '0' }).then(async (termsAndCondition) => {
@@ -3107,28 +3107,28 @@ routes.get('/cookie-policy', middleware_check_login, (req, res) => {
   res.render('admin/front-admin/cookie-policy', { err_msg, success_msg, Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash() })
 })
 
-routes.get('/referral-policy', middleware_check_login, (req, res) => {
+routes.get('/referral-policy', middleware_check_login,(req, res) => {
 
   res.render('admin/front-admin/referral-policy', { err_msg, success_msg, Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash() })
 })
 
-routes.get('/contact-list', middleware_check_login, (req, res) => {
+routes.get('/contact-list',middleware_check_login,  (req, res) => {
 
   res.render('admin/front-admin/contact-list', { err_msg, success_msg, Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash() })
 })
 
-routes.get('/basic-details', middleware_check_login, (req, res) => {
+routes.get('/basic-details',  middleware_check_login,(req, res) => {
 
   res.render('admin/front-admin/basic-details', { err_msg, success_msg, Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash() })
 })
 
 
-routes.get('/feedback-list', middleware_check_login, (req, res) => {
+routes.get('/feedback-list',middleware_check_login, (req, res) => {
 
   res.render('admin/front-admin/feedback-list', { err_msg, success_msg, Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash() })
 })
 
-routes.get('/order-history', middleware_check_login, (req, res) => {
+routes.get('/order-history',middleware_check_login,  (req, res) => {
   err_msg = req.flash('err_msg');
   success_msg = req.flash('success_msg');
   var day = moment(new Date()).format('MM/DD/YYYY');
@@ -3137,9 +3137,9 @@ routes.get('/order-history', middleware_check_login, (req, res) => {
   // Registration.find({ deleted: '0' }).sort({ _id: -1 }).lean().then(async (results) => {
   //   console.log("result======== ", results);
   OrderDetails.find({}).then(async (orderDetails) => {
-    if (orderDetails) {
-
-      res.render('admin/front-admin/order-history.ejs', { err_msg, success_msg, expressFlash: req.flash(), order_details: orderDetails, moment, session: req.session, user_id: req.session.user_id, fbt_count: req.session.fbt_count, rate_per_fbt: req.session.rate_per_fbt, total_amnt: req.session.total_amnt, transaction_Id: req.session.transaction_Id, sender_wallet_address: req.session.sender_wallet_address, eth_wallet_address: req.session.eth_wallet_address, image: req.session.image, payment_type: req.session.payment_type, payment_status: req.session.payment_status, created_at: req.session.created_at, });
+   if (orderDetails) {
+      
+      res.render('admin/front-admin/order-history.ejs', { err_msg, success_msg, expressFlash: req.flash(), order_details: orderDetails, moment, session: req.session, user_id: req.session.user_id, ebt_count: req.session.ebt_count, rate_per_ebt: req.session.rate_per_ebt, total_amnt: req.session.total_amnt, transaction_Id: req.session.transaction_Id, sender_wallet_address: req.session.sender_wallet_address, eth_wallet_address: req.session.eth_wallet_address, image: req.session.image , payment_type: req.session.payment_type,  payment_status: req.session.payment_status, created_at: req.session.created_at, });
     }
   }, (error) => {
     res.send('Something went wrong');
@@ -3155,18 +3155,18 @@ routes.get('/admin-referral-table', middleware_check_login, (req, res) => {
   res.render('admin/front-admin/admin-referral-table', { err_msg, success_msg, Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash() })
 })
 
-routes.get('/summary', middleware_check_login, (req, res) => {
+routes.get('/summary',middleware_check_login, (req, res) => {
 
   res.render('admin/front-admin/summary', { err_msg, success_msg, Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash() })
 })
 
-routes.get('/bonus-persent', middleware_check_login, (req, res) => {
+routes.get('/bonus-persent',middleware_check_login, (req, res) => {
 
   res.render('admin/front-admin/bonus-persent', { err_msg, success_msg, Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash() })
 })
 
 
-routes.get('/admin-transaction-table', middleware_check_login, (req, res) => {
+routes.get('/admin-transaction-table',middleware_check_login,  (req, res) => {
   err_msg = req.flash('err_msg');
   success_msg = req.flash('success_msg');
   var day = moment(new Date()).format('MM/DD/YYYY');
@@ -3176,9 +3176,9 @@ routes.get('/admin-transaction-table', middleware_check_login, (req, res) => {
   //   console.log("result======== ", results);
   Tokendetails.find({}).then(async (tokendetails) => {
     if (tokendetails) {
-
-      res.render('admin/front-admin/admin-transaction-table.ejs', { err_msg, success_msg, expressFlash: req.flash(), token_details: tokendetails, moment, session: req.session, user_id: req.session.user_id, wallet_id: req.session.wallet_id, sender_wallet_address: req.session.sender_wallet_address, receiver_wallet_address: req.session.receiver_wallet_address, hash: req.session.hash, amount: req.session.amount, payment_status: req.session.payment_status, token_type: req.session.token_type, block_id: req.session.block_id, transaction_type: req.session.transaction_type, referred_to_name: req.session.referred_to_name, created_at: req.session.created_at, });
-    }
+      
+      res.render('admin/front-admin/admin-transaction-table.ejs', { err_msg, success_msg, expressFlash: req.flash(), token_details: tokendetails, moment, session: req.session, user_id: req.session.user_id, wallet_id: req.session.wallet_id, sender_wallet_address: req.session.sender_wallet_address, receiver_wallet_address: req.session.receiver_wallet_address, hash: req.session.hash, amount: req.session.amount, payment_status: req.session.payment_status, token_type: req.session.token_type , block_id: req.session.block_id,  transaction_type: req.session.transaction_type, referred_to_name: req.session.referred_to_name, created_at: req.session.created_at, });
+      }
   }, (error) => {
     res.send('Something went wrong');
   }).catch((e) => {
@@ -3187,7 +3187,7 @@ routes.get('/admin-transaction-table', middleware_check_login, (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////
-routes.get('/site-info', middleware_check_login, (req, res) => {
+routes.get('/site-info',middleware_check_login,  (req, res) => {
 
   err_msg = req.flash('err_msg');
   success_msg = req.flash('success_msg');
@@ -3267,7 +3267,7 @@ routes.post('/update_siteinfo', middleware_check_login, (req, res) => {
 
 /******************************OUR PARTNER****************************************/
 
-routes.get('/partner-list', middleware_check_login, (req, res) => {
+routes.get('/partner-list',middleware_check_login, (req, res) => {
 
   err_msg = req.flash('err_msg');
   success_msg = req.flash('success_msg');
@@ -3289,7 +3289,7 @@ routes.get('/partner-list', middleware_check_login, (req, res) => {
   // });
 });
 
-routes.get('/add-new-partner', middleware_check_login, (req, res) => {
+routes.get('/add-new-partner',middleware_check_login, (req, res) => {
 
   res.render('admin/front-admin/add-new-partner.ejs', { Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash() });
 
@@ -3420,7 +3420,7 @@ routes.post('/update_partner', middleware_check_login, (req, res) => {
 
 });
 
-routes.get('/delete-partner', middleware_check_login, (req, res) => {
+routes.get('/delete-partner', middleware_check_login,  (req, res) => {
 
   var current_time = Date.now();
 
@@ -3456,7 +3456,7 @@ routes.get('/delete-partner', middleware_check_login, (req, res) => {
 
 
 
-routes.get('/our-team', middleware_check_login, (req, res) => {
+routes.get('/our-team', middleware_check_login,  (req, res) => {
 
   err_msg = req.flash('err_msg');
   success_msg = req.flash('success_msg');
@@ -3488,7 +3488,7 @@ routes.get('/add-new-member', middleware_check_login, (req, res) => {
 
 });
 
-routes.post('/add_member', middleware_check_login, (req, res) => {
+routes.post('/add_member', middleware_check_login,  (req, res) => {
   console.log("add member")
   const form = formidable({ multiples: true });
   form.parse(req, (err, fields, files) => {
@@ -3559,7 +3559,7 @@ routes.get('/edit-member', middleware_check_login, (req, res) => {
   });
 });
 
-routes.post('/update_member', middleware_check_login, (req, res) => {
+routes.post('/update_member',middleware_check_login, (req, res) => {
   const form = formidable({ multiples: true });
   form.parse(req, (err, fields, files) => {
     var member_id = fields.id;

@@ -1,1117 +1,1117 @@
 
 const moongoose = require('mongoose');
 
-var Schema = moongoose.Schema;
+var Schema  = moongoose.Schema;
 
 const validator = require('validator');
 
 
 /**How access and token works only we are perfoming just restructuring****/
 
-var UserSchema = new moongoose.Schema({
+var UserSchema =  new moongoose.Schema({
 
-	name: {
-		name: String
+	name:{
+		name:String
 	},
 
-	email: {
-		type: String,
-		required: true,
-		trim: true,
-		unique: true,
-		validate: {
+	email:{
+		type:String,
+		required:true,
+		trim:true,
+		unique:true,
+		validate:{
 
-			validator: validator.isEmail,
-			message: '{VALUE} Entered Invalid Email'
+			validator:validator.isEmail,
+			message:'{VALUE} Entered Invalid Email'
 		}
 
 	},
-	email_varify_status: {
+	email_varify_status:{
 
-		type: String
+		type:String
 
 	},
-	mobile_no: {
+	mobile_no:{
 
-		type: String,
-		default: null
+		type:String,
+		default:null
 	},
-	address: {
+	address:{
 
-		type: String,
-		default: null
+		type:String,
+		default:null
 	},
-	user_address: {
+	user_address:{
 
-		type: String,
-		default: null
+		type:String,
+		default:null
 	},
-	country: {
+	country:{
 
-		type: String,
-		default: null
+		type:String,
+		default:null
 	},
-	state: {
+	state:{
 
-		type: String,
-		default: null
+		type:String,
+		default:null
 	},
-	city: {
+	city:{
 
-		type: String,
-		default: null
+		type:String,
+		default:null
 	},
-	Password: {
-		type: String,
-		required: true
+	Password:{
+		type:String,
+		required:true
 	},
 	qr_secret: {
 
-		type: String,
+        type: String,
 
-	},
-	qr_status: {
+    },
+    qr_status: {
 
-		type: String,
+        type: String,
 
-	},
-	ref_code: {
+    },
+    ref_code: {
 
-		type: String,
+        type: String,
 
-	},
-	ref_from: {
+    },
+    ref_from: {
 
-		type: String,
+        type: String,
 
-	},
+    },
 
-	created_at: {
-		type: Date
-	},
-
+	created_at: { 
+					type: Date
+				},
+	
 	created_by: {
 
-		type: Number,
-		default: 0
+			type:Number,
+			default:0
 	},
 
-	deleted_at: {
-		type: Date,
-		default: null
-	},
-
+	deleted_at: { 
+					type: Date,
+					default: null 
+				},
+	
 	deleted_by: {
 
-		type: String,
-		default: null
+			type:String,
+			default: null 
 	},
 
 	updated_at: {
 
-		type: Date,
-		default: null
+			type: Date,
+			default: null
 	},
 
 	updated_by: {
 
-		type: String,
-		default: 0
+			type:String,
+			default:0
 	},
 
-	status: {
+	status:{
 
-		type: String,
+		type:String,
 		enum: ['active', 'inactive'],
-		default: 'active'
+		default:'active'
 
 	},
-	deleted: {
+	deleted:{
 
-		type: String,
-		enum: ['0', '1'],
-		default: '0'
+		 type:String,
+		 enum: ['0', '1'],
+		 default:'0'
 	},
-	image_name: {
+	image_name:{
 
-		type: String,
+		type:String,
 
 	},
-	tokens: [{
-		access: {
-			type: String,
-			required: true
-		},
-		token: {
+	tokens:[{
+			access:{
+				type: String,
+				required: true
+			},
+			token:{
 
-			type: String,
-			required: true
-		}
+				type: String,
+				required: true
+			}
 
-	}]
+		}]
 });
 
 
 
-var UserInfo = moongoose.model('user', UserSchema);
+var UserInfo =  moongoose.model('user',UserSchema);
 
 /************Token Setting*******/
 
-var TokenSchema = new moongoose.Schema({
+var TokenSchema =  new moongoose.Schema({
 
-	token_name: {
-		name: String,
+	token_name:{
+		name:String,
 	},
 
-	token_quantity: {
-		type: Number,
-		required: true
+	token_quantity:{
+		type:Number,
+		required:true
 	},
-	token_remaining_quantity: {
+	token_remaining_quantity:{
 
-		type: Number,
-		default: null
+		type:Number,
+		default:null
 	},
-	token_eather_value: {
+	token_eather_value:{
 
-		type: Number,
-		default: null
+		type:Number,
+		default:null
 	},
-	created_at: {
-		type: Date
-	},
-
+	created_at: { 
+					type: Date
+				},
+	
 	created_by: {
 
-		type: Number,
-		default: 0
+			type:Number,
+			default:0
 	},
 
-	deleted_at: {
-		type: Date,
-		default: null
-	},
-
+	deleted_at: { 
+					type: Date,
+					default: null 
+				},
+	
 	deleted_by: {
 
-		type: String,
-		default: null
+			type:String,
+			default: null 
 	},
 
 	updated_at: {
 
-		type: Date,
-		default: null
+			type: Date,
+			default: null
 	},
 
 	updated_by: {
 
-		type: String,
-		default: 0
+			type:String,
+			default:0
 	},
 
-	status: {
+	status:{
 
-		type: String,
+		type:String,
 		enum: ['active', 'inactive'],
-		default: 'active'
+		default:'active'
 
 	},
-	deleted: {
+	deleted:{
 
-		type: String,
-		enum: ['0', '1'],
-		default: '0'
+		 type:String,
+		 enum: ['0', '1'],
+		 default:'0'
 	},
-	tokens: [{
-		access: {
-			type: String,
-			required: true
-		},
-		token: {
+	tokens:[{
+			access:{
+				type: String,
+				required: true
+			},
+			token:{
 
-			type: String,
-			required: true
-		}
+				type: String,
+				required: true
+			}
 
-	}]
+		}]
 });
 
 
-var TokenInfo = moongoose.model('token_setting', TokenSchema);
+var TokenInfo =  moongoose.model('token_setting',TokenSchema);
 
 /*****Verification Details****/
 
-var VerificationSchema = new moongoose.Schema({
+var VerificationSchema =  new moongoose.Schema({
 
-	image: {
-		name: String,
+	image:{
+		name:String,
 	},
 
-	id_verify_status: {
-		type: String,
-		enum: ['Pending', 'Completed', 'Verified'],
-		default: 'Pending'
+	id_verify_status:{
+		type:String,
+		enum: ['Pending', 'Completed','Verified'],
+		default:'Pending'
 	},
+	
+	user_id:{ type: Schema.Types.ObjectId, ref: 'user' },
+	
+	user_status:{
 
-	user_id: { type: Schema.Types.ObjectId, ref: 'user' },
-
-	user_status: {
-
-		type: String,
+		type:String,
 		enum: ['Active', 'Inactive'],
-		default: 'Active'
+		default:'Active'
 	},
-	reason_of_rejection: {
-		type: String
+	reason_of_rejection:{
+		type:String
 	},
-	taking_status: {
-		type: String,
+	taking_status:{
+		type:String,
 		enum: ['0', '1'],
-		default: '0'
+		default:'0'
 	},
-	created_at: {
-		type: Date
-	},
-
+	created_at: { 
+					type: Date
+				},
+	
 	created_by: {
 
-		type: Number,
-		default: 0
+			type:Number,
+			default:0
 	},
 
-	deleted_at: {
-		type: Date,
-		default: null
-	},
-
+	deleted_at: { 
+					type: Date,
+					default: null 
+				},
+	
 	deleted_by: {
 
-		type: String,
-		default: null
+			type:String,
+			default: null 
 	},
 
 	updated_at: {
 
-		type: Date,
-		default: null
+			type: Date,
+			default: null
 	},
 
 	updated_by: {
 
-		type: String,
-		default: 0
+			type:String,
+			default:0
 	},
 
-	deleted: {
+	deleted:{
 
-		type: String,
-		enum: ['0', '1'],
-		default: '0'
+		 type:String,
+		 enum: ['0', '1'],
+		 default:'0'
 	},
-	tokens: [{
-		access: {
-			type: String,
-			required: true
-		},
-		token: {
+	tokens:[{
+			access:{
+				type: String,
+				required: true
+			},
+			token:{
 
-			type: String,
-			required: true
-		}
+				type: String,
+				required: true
+			}
 
-	}]
+		}]
 });
 
-var VeriInfo = moongoose.model('id_verification', VerificationSchema);
+var VeriInfo =  moongoose.model('id_verification',VerificationSchema);
 
 /****Ether Schema***/
 
-var EtherSchema = new moongoose.Schema({
+var EtherSchema =  new moongoose.Schema({
 
-	Tx_hash: {
-		type: String
+	Tx_hash:{
+		type:String
 	},
-	Amount: {
-		type: Number
+	Amount:{
+		type:Number
 	},
-	From: {
-		type: String
+	From:{
+		type:String
 	},
-	To: {
-		type: String
+	To:{
+		type:String
 	},
-	status: {
-		type: String
+	status:{
+		type:String
 	},
-	user_status: {
-		type: String,
+	user_status:{
+		type:String,
 		enum: ['Active', 'Inactive'],
-		default: 'Active'
+		default:'Active'
 	},
-	created_at: {
-		type: Date
-	},
-
+	created_at: { 
+					type: Date
+				},
+	
 	created_by: {
-
-		type: Number,
-		default: 0
+			
+			type:Number,
+			default:0
 	},
 
-	deleted_at: {
-		type: Date,
-		default: null
-	},
-
+	deleted_at: { 
+					type: Date,
+					default: null 
+				},
+	
 	deleted_by: {
 
-		type: String,
-		default: null
+			type:String,
+			default: null 
 	},
 
 	updated_at: {
 
-		type: Date,
-		default: null
+			type: Date,
+			default: null
 	},
 
 	updated_by: {
 
-		type: String,
-		default: 0
+			type:String,
+			default:0
 	},
 
-	deleted: {
+	deleted:{
 
-		type: String,
-		enum: ['0', '1'],
-		default: '0'
+		 type:String,
+		 enum: ['0', '1'],
+		 default:'0'
 	},
-	tokens: [{
-		access: {
-			type: String,
-			required: true
-		},
-		token: {
+	tokens:[{
+			access:{
+				type: String,
+				required: true
+			},
+			token:{
 
-			type: String,
-			required: true
-		}
+				type: String,
+				required: true
+			}
 
-	}]
+		}]
 });
 
-var EtherInfo = moongoose.model('eather_detail', EtherSchema);
+var EtherInfo =  moongoose.model('eather_detail',EtherSchema);
 
 /****ERC20 Gift Token****/
 
-var GiftSchema = new moongoose.Schema({
+var GiftSchema =  new moongoose.Schema({
 
-	Tx_hash: {
-		type: String
+	Tx_hash:{
+		type:String
 	},
-	Amount: {
-		type: Number
+	Amount:{
+		type:Number
 	},
-	From: {
-		type: String
+	From:{
+		type:String
 	},
-	To: {
-		type: String
+	To:{
+		type:String
 	},
-	status: {
-		type: String
+	status:{
+		type:String
 	},
-	user_status: {
-		type: String,
+	user_status:{
+		type:String,
 		enum: ['Active', 'Inactive'],
-		default: 'Active'
+		default:'Active'
 	},
-	created_at: {
-		type: Date
-	},
-
+	created_at: { 
+					type: Date
+				},
+	
 	created_by: {
-
-		type: Number,
-		default: 0
+			
+			type:Number,
+			default:0
 	},
 
-	deleted_at: {
-		type: Date,
-		default: null
-	},
-
+	deleted_at: { 
+					type: Date,
+					default: null 
+				},
+	
 	deleted_by: {
 
-		type: String,
-		default: null
+			type:String,
+			default: null 
 	},
 
 	updated_at: {
 
-		type: Date,
-		default: null
+			type: Date,
+			default: null
 	},
 
 	updated_by: {
 
-		type: String,
-		default: 0
+			type:String,
+			default:0
 	},
 
-	deleted: {
+	deleted:{
 
-		type: String,
-		enum: ['0', '1'],
-		default: '0'
+		 type:String,
+		 enum: ['0', '1'],
+		 default:'0'
 	},
-	tokens: [{
-		access: {
-			type: String,
-			required: true
-		},
-		token: {
+	tokens:[{
+			access:{
+				type: String,
+				required: true
+			},
+			token:{
 
-			type: String,
-			required: true
-		}
+				type: String,
+				required: true
+			}
 
-	}]
+		}]
 });
 
-var GiftInfo = moongoose.model('gift_token_detail', GiftSchema);
+var GiftInfo =  moongoose.model('gift_token_detail',GiftSchema);
 
 /********Contacts Schema********/
 
-var ContactSchema = new moongoose.Schema({
+var ContactSchema =  new moongoose.Schema({
 
-	name: {
-		type: String
+	name:{
+		type:String
 	},
-	message: {
-		type: String
+	message:{
+		type:String
 	},
-	email: {
-		type: String
+	email:{
+		type:String
 	},
-	user_status: {
-		type: String,
+	user_status:{
+		type:String,
 		enum: ['Active', 'Inactive'],
-		default: 'Active'
+		default:'Active'
 	},
-	created_at: {
-		type: Date
-	},
-
+	created_at: { 
+					type: Date
+				},
+	
 	created_by: {
-
-		type: Number,
-		default: 0
+			
+			type:Number,
+			default:0
 	},
 
-	deleted_at: {
-		type: Date,
-		default: null
-	},
-
+	deleted_at: { 
+					type: Date,
+					default: null 
+				},
+	
 	deleted_by: {
 
-		type: String,
-		default: null
+			type:String,
+			default: null 
 	},
 
 	updated_at: {
 
-		type: Date,
-		default: null
+			type: Date,
+			default: null
 	},
 
 	updated_by: {
 
-		type: String,
-		default: 0
+			type:String,
+			default:0
 	},
 
-	deleted: {
+	deleted:{
 
-		type: String,
-		enum: ['0', '1'],
-		default: '0'
+		 type:String,
+		 enum: ['0', '1'],
+		 default:'0'
 	},
-	tokens: [{
-		access: {
-			type: String,
-			required: true
-		},
-		token: {
+	tokens:[{
+			access:{
+				type: String,
+				required: true
+			},
+			token:{
 
-			type: String,
-			required: true
-		}
+				type: String,
+				required: true
+			}
 
-	}]
+		}]
 });
 
-var ContactInfo = moongoose.model('enquiry_contact', ContactSchema);
+var ContactInfo =  moongoose.model('enquiry_contact',ContactSchema);
 
 /********Newsletter Schema********/
 
-var NewsSchema = new moongoose.Schema({
+var NewsSchema =  new moongoose.Schema({
 
-	email: {
-		type: String
+	email:{
+		type:String
 	},
-	user_status: {
-		type: String,
+	user_status:{
+		type:String,
 		enum: ['Active', 'Inactive'],
-		default: 'Active'
+		default:'Active'
 	},
-	created_at: {
-		type: Date
-	},
-
+	created_at: { 
+					type: Date
+				},
+	
 	created_by: {
-
-		type: Number,
-		default: 0
+			
+			type:Number,
+			default:0
 	},
 
-	deleted_at: {
-		type: Date,
-		default: null
-	},
-
+	deleted_at: { 
+					type: Date,
+					default: null 
+				},
+	
 	deleted_by: {
 
-		type: String,
-		default: null
+			type:String,
+			default: null 
 	},
 
 	updated_at: {
 
-		type: Date,
-		default: null
+			type: Date,
+			default: null
 	},
 
 	updated_by: {
 
-		type: String,
-		default: 0
+			type:String,
+			default:0
 	},
 
-	deleted: {
+	deleted:{
 
-		type: String,
-		enum: ['0', '1'],
-		default: '0'
+		 type:String,
+		 enum: ['0', '1'],
+		 default:'0'
 	},
-	tokens: [{
-		access: {
-			type: String,
-			required: true
-		},
-		token: {
+	tokens:[{
+			access:{
+				type: String,
+				required: true
+			},
+			token:{
 
-			type: String,
-			required: true
-		}
+				type: String,
+				required: true
+			}
 
-	}]
+		}]
 });
 
-var NewsInfo = moongoose.model('newsletters', NewsSchema);
+var NewsInfo =  moongoose.model('newsletters',NewsSchema);
 
 /********Newsletter Schema********/
 
-var BasicSettingSchema = new moongoose.Schema({
+var BasicSettingSchema =  new moongoose.Schema({
 
-	token_issued: {
-		type: Number
+	token_issued:{
+		type:Number
 	},
-	hard_cap: {
-		type: String
+	hard_cap:{
+		type:String
 	},
-	soft_cap: {
-		type: String
+	soft_cap:{
+		type:String
 	},
-	total_sales_reached: {
-		type: String
+	total_sales_reached:{
+		type:String
 	},
-	exchange_rate: {
-		type: Number
+	exchange_rate:{
+		type:Number
 	},
-	total_token_supply: {
-		type: String
+	total_token_supply:{
+		type:String
 	},
-	token_name: {
-		type: String
+	token_name:{
+		type:String
 	},
-	gift_token_price: {
-		type: String
+	gift_token_price:{
+		type:String
 	},
-	token_symbol: {
-		type: String
+	token_symbol:{
+		type:String
 	},
-	project_protocol: {
-		type: String
+	project_protocol:{
+		type:String
 	},
-	worth_gift_token: {
-		type: Number
+	worth_gift_token:{
+		type:Number
 	},
-	user_status: {
-		type: String,
+	user_status:{
+		type:String,
 		enum: ['Active', 'Inactive'],
-		default: 'Active'
+		default:'Active'
 	},
-	start_date: {
-		type: Date
-	},
-	end_date: {
-		type: Date
-	},
-	created_at: {
-		type: Date
-	},
-
+	start_date: { 
+					type: Date
+				},
+	end_date:   { 
+					type: Date
+				},
+	created_at: { 
+					type: Date
+				},
+	
 	created_by: {
-
-		type: Number,
-		default: 0
+			
+			type:Number,
+			default:0
 	},
 
-	deleted_at: {
-		type: Date,
-		default: null
-	},
-
+	deleted_at: { 
+					type: Date,
+					default: null 
+				},
+	
 	deleted_by: {
 
-		type: String,
-		default: null
+			type:String,
+			default: null 
 	},
 
 	updated_at: {
 
-		type: Date,
-		default: null
+			type: Date,
+			default: null
 	},
 
 	updated_by: {
 
-		type: String,
-		default: 0
+			type:String,
+			default:0
 	},
 
-	deleted: {
+	deleted:{
 
-		type: String,
-		enum: ['0', '1'],
-		default: '0'
+		 type:String,
+		 enum: ['0', '1'],
+		 default:'0'
 	},
-	tokens: [{
-		access: {
-			type: String,
-			required: true
-		},
-		token: {
+	tokens:[{
+			access:{
+				type: String,
+				required: true
+			},
+			token:{
 
-			type: String,
-			required: true
-		}
+				type: String,
+				required: true
+			}
 
-	}]
+		}]
 });
 
-var BasictInfo = moongoose.model('basic_setting', BasicSettingSchema);
+var BasictInfo =  moongoose.model('basic_setting',BasicSettingSchema);
 
 /********Team Member Schema********/
 
-var TeamMemberSchema = new moongoose.Schema({
+var TeamMemberSchema =  new moongoose.Schema({
 
-	member_email: {
-		type: String
+	member_email:{
+		type:String
 	},
-	member_image: {
-		type: String
+	member_image:{
+		type:String
 	},
-	member_name: {
-		type: String
+	member_name:{
+		type:String
 	},
-	member_phone: {
-		type: String
+	member_phone:{
+		type:String
 	},
-	member_sub_title: {
-		type: String
+	member_sub_title:{
+		type:String
 	},
-	member_description: {
-		type: String
+	member_description:{
+		type:String
 	},
-	member_facebook: {
-		type: String
+	member_facebook:{
+		type:String
 	},
-	member_twitter: {
-		type: String
+	member_twitter:{
+		type:String
 	},
-	member_linkedin: {
-		type: String
+	member_linkedin:{
+		type:String
 	},
-	user_status: {
-		type: String,
+	user_status:{
+		type:String,
 		enum: ['Active', 'Inactive'],
-		default: 'Active'
+		default:'Active'
 	},
-	created_at: {
-		type: Date,
-		default: null
-	},
-
+	created_at: { 
+					type: Date,
+					default: null
+				},
+	
 	created_by: {
-
-		type: String,
-		default: 0
+			
+			type:String,
+			default:0
 	},
 
-	deleted_at: {
-		type: Date,
-		default: null
-	},
-
+	deleted_at: { 
+					type: Date,
+					default: null 
+				},
+	
 	deleted_by: {
 
-		type: String,
-		default: null
+			type:String,
+			default: null 
 	},
 
 	updated_at: {
 
-		type: Date,
-		default: null
+			type: Date,
+			default: null
 	},
 
 	updated_by: {
 
-		type: String,
-		default: 0
+			type:String,
+			default:0
 	},
 
-	deleted: {
+	deleted:{
 
-		type: String,
-		enum: ['0', '1'],
-		default: '0'
+		 type:String,
+		 enum: ['0', '1'],
+		 default:'0'
 	},
-	tokens: [{
-		access: {
-			type: String,
-			required: true
-		},
-		token: {
+	tokens:[{
+			access:{
+				type: String,
+				required: true
+			},
+			token:{
 
-			type: String,
-			required: true
-		}
+				type: String,
+				required: true
+			}
 
-	}]
+		}]
 });
 
-var TeamMemberInfo = moongoose.model('our_teams', TeamMemberSchema);
+var TeamMemberInfo =  moongoose.model('our_teams',TeamMemberSchema);
 
 /********News Schema********/
 
-var NewsDetailsSchema = new moongoose.Schema({
+var NewsDetailsSchema =  new moongoose.Schema({
 
-	news_title: {
-		type: String
+	news_title:{
+		type:String
 	},
-	news_desc: {
-		type: String
+	news_desc:{
+		type:String
 	},
-	news_image: {
-		type: String
+	news_image:{
+		type:String
 	},
-	news_status: {
-		type: String,
+	news_status:{
+		type:String,
 		enum: ['Active', 'Inactive'],
-		default: 'Active'
+		default:'Active'
 	},
-	created_at: {
-		type: Date,
-		default: null
-	},
-
+	created_at: { 
+					type: Date,
+					default: null
+				},
+	
 	created_by: {
-
-		type: String,
-		default: 0
+			
+			type:String,
+			default:0
 	},
 
-	deleted_at: {
-		type: Date,
-		default: null
-	},
-
+	deleted_at: { 
+					type: Date,
+					default: null 
+				},
+	
 	deleted_by: {
 
-		type: String,
-		default: null
+			type:String,
+			default: null 
 	},
 
 	updated_at: {
 
-		type: Date,
-		default: null
+			type: Date,
+			default: null
 	},
 
 	updated_by: {
 
-		type: String,
-		default: 0
+			type:String,
+			default:0
 	},
 
-	deleted: {
+	deleted:{
 
-		type: String,
-		enum: ['0', '1'],
-		default: '0'
+		 type:String,
+		 enum: ['0', '1'],
+		 default:'0'
 	},
-	tokens: [{
-		access: {
-			type: String,
-			required: true
-		},
-		token: {
+	tokens:[{
+			access:{
+				type: String,
+				required: true
+			},
+			token:{
 
-			type: String,
-			required: true
-		}
+				type: String,
+				required: true
+			}
 
-	}]
+		}]
 });
 
-var NewsDetailsInfo = moongoose.model('news_detail', NewsDetailsSchema);
+var NewsDetailsInfo =  moongoose.model('news_detail',NewsDetailsSchema);
 
 
 /*********Country Schema******/
 
-var CountrySchema = new moongoose.Schema({
+var CountrySchema =  new moongoose.Schema({
 
-	country_name: {
-
-		type: String
-
+	country_name:{
+		
+		type:String
+	
 	},
-	status: {
-		type: String,
+	status:{
+		type:String,
 		enum: ['Active', 'Inactive'],
-		default: 'Active'
+		default:'Active'
 	},
-	created_at: {
-		type: Date,
-		default: Date.now()
-	},
-
+	created_at: { 
+					type: Date,
+					default: Date.now()
+				},
+	
 	created_by: {
-
-		type: String,
-		default: 0
+			
+			type:String,
+			default:0
 	},
-	deleted_at: {
-		type: Date,
-		default: null
-	},
-
+	deleted_at: { 
+					type: Date,
+					default: null 
+				},
+	
 	deleted_by: {
 
-		type: String,
-		default: null
+			type:String,
+			default: null 
 	},
 
 	updated_at: {
 
-		type: Date,
-		default: null
+			type: Date,
+			default: null
 	},
 
 	updated_by: {
 
-		type: String,
-		default: 0
+			type:String,
+			default:0
 	},
 
-	deleted: {
+	deleted:{
 
-		type: String,
-		enum: ['0', '1'],
-		default: '0'
+		 type:String,
+		 enum: ['0', '1'],
+		 default:'0'
 	},
-	tokens: [{
-		access: {
-			type: String,
-			required: true
-		},
-		token: {
+	tokens:[{
+			access:{
+				type: String,
+				required: true
+			},
+			token:{
 
-			type: String,
-			required: true
-		}
+				type: String,
+				required: true
+			}
 
-	}]
+		}]
 });
 
-var CountryInfo = moongoose.model('countrie', CountrySchema);
+var CountryInfo =  moongoose.model('countrie',CountrySchema);
 
 /********State Info********/
 
-var StateSchema = new moongoose.Schema({
+var StateSchema =  new moongoose.Schema({
 
-	state_name: {
-
-		type: String
-
+	state_name:{
+		
+		type:String
+	
 	},
-	country_id: { type: Schema.Types.ObjectId, ref: 'countrie' },
+	country_id:{ type: Schema.Types.ObjectId, ref: 'countrie' },
 
-	status: {
-		type: String,
+	status:{
+		type:String,
 		enum: ['Active', 'Inactive'],
-		default: 'Active'
+		default:'Active'
 	},
-	created_at: {
-		type: Date,
-		default: Date.now()
-	},
-
+	created_at: { 
+					type: Date,
+					default: Date.now()
+				},
+	
 	created_by: {
-
-		type: String,
-		default: 0
+			
+			type:String,
+			default:0
 	},
-	deleted_at: {
-		type: Date,
-		default: null
-	},
-
+	deleted_at: { 
+					type: Date,
+					default: null 
+				},
+	
 	deleted_by: {
 
-		type: String,
-		default: null
+			type:String,
+			default: null 
 	},
 
 	updated_at: {
 
-		type: Date,
-		default: null
+			type: Date,
+			default: null
 	},
 
 	updated_by: {
 
-		type: String,
-		default: 0
+			type:String,
+			default:0
 	},
 
-	deleted: {
+	deleted:{
 
-		type: String,
-		enum: ['0', '1'],
-		default: '0'
+		 type:String,
+		 enum: ['0', '1'],
+		 default:'0'
 	},
-	tokens: [{
-		access: {
-			type: String,
-			required: true
-		},
-		token: {
+	tokens:[{
+			access:{
+				type: String,
+				required: true
+			},
+			token:{
 
-			type: String,
-			required: true
-		}
+				type: String,
+				required: true
+			}
 
-	}]
+		}]
 });
 
-var StateInfo = moongoose.model('state', StateSchema);
+var StateInfo =  moongoose.model('state',StateSchema);
 
 
 // for mail_configuration///
-var MailSchema = new moongoose.Schema({
+var MailSchema =  new moongoose.Schema({
 
-	user_name: {
-
-		type: String
-
+	user_name:{
+		
+		type:String
+	
 	},
-	userpass: {
-
-		type: String
-
+	userpass:{
+		
+		type:String
+	
 	},
-	user_status: {
-		type: String,
+	user_status:{
+		type:String,
 		enum: ['Active', 'Inactive'],
-		default: 'Active'
+		default:'Active'
 	},
 
-
-	created_at: {
-		type: Date,
-		default: Date.now()
-	},
-
+	
+	created_at: { 
+					type: Date,
+					default: Date.now()
+				},
+	
 	created_by: {
-
-		type: String,
-		default: 0
+			
+			type:String,
+			default:0
 	},
-	deleted_at: {
-		type: Date,
-		default: null
-	},
-
+	deleted_at: { 
+					type: Date,
+					default: null 
+				},
+	
 	deleted_by: {
 
-		type: String,
-		default: null
+			type:String,
+			default: null 
 	},
 
 	updated_at: {
 
-		type: Date,
-		default: null
+			type: Date,
+			default: null
 	},
 
 	updated_by: {
 
-		type: String,
-		default: 0
+			type:String,
+			default:0
 	},
 
-	deleted: {
+	deleted:{
 
-		type: String,
-		enum: ['0', '1'],
-		default: '0'
+		 type:String,
+		 enum: ['0', '1'],
+		 default:'0'
 	},
-
+	
 });
 
-var MailInfo = moongoose.model('mail_configuration', MailSchema);
+var MailInfo =  moongoose.model('mail_configuration',MailSchema);
 
 
 
 module.exports = {
-	UserInfo: UserInfo,
-	TokenInfo: TokenInfo,
-	VeriInfo: VeriInfo,
-	EtherInfo: EtherInfo,
-	GiftInfo: GiftInfo,
-	ContactInfo: ContactInfo,
-	NewsInfo: NewsInfo,
-	BasictInfo: BasictInfo,
-	TeamMemberInfo: TeamMemberInfo,
-	NewsDetailsInfo: NewsDetailsInfo,
-	CountryInfo: CountryInfo,
-	StateInfo: StateInfo,
-	MailInfo: MailInfo
+	UserInfo:UserInfo,
+	TokenInfo:TokenInfo,
+	VeriInfo:VeriInfo,
+	EtherInfo:EtherInfo,
+	GiftInfo:GiftInfo,
+	ContactInfo:ContactInfo,
+	NewsInfo:NewsInfo,
+	BasictInfo:BasictInfo,
+	TeamMemberInfo:TeamMemberInfo,
+	NewsDetailsInfo:NewsDetailsInfo,
+	CountryInfo:CountryInfo,
+	StateInfo:StateInfo,
+	MailInfo:MailInfo
 };

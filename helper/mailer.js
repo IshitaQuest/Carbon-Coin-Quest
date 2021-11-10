@@ -4,7 +4,7 @@ async function mail(to_mail, mail_subject, mail_content) {
 
     const mailOptions = {
         to: to_mail,
-        from: 'financeblocks@gmail.com',
+        from: 'ebticoglt@gmail.com',
         subject: mail_subject,
         html: mail_content
     };
@@ -20,24 +20,26 @@ async function mail(to_mail, mail_subject, mail_content) {
         service: 'gmail',
         host: 'smtp.gmail.com',
         port: 443,
-        secure: true,
+        secure:true,
         auth: {
-            user: 'financeblocks@gmail.com',
-            pass: 'Finance@quest'
+             user: 'ebticoglt@gmail.com',
+                pass: 'bitebitco'
+            // user: 'shanakhan@questglt.org',
+            // pass: 'MomDad@789'
         },
-        tls: {
+        tls:{
             // do not fail on invalid certs
-            rejectUnauthorized: false,
-        },
+             rejectUnauthorized: false,
+          },
     });
 
-
+    
     // const smtpTransport = nodemailer.createTransport(smtpTransport2({
     //     port: 465,
     //     // host: 'mail.ebtico.com',
     //     auth: {
-    //       user: 'financeblocks@gmail.com',
-    //       pass: 'Finance@quest'
+    //       user: 'ebticoglt@gmail.com',
+    //       pass: 'bitebitco'
     //     },
     //     tls: {
     //       rejectUnauthorized: false

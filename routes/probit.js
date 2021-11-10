@@ -18,17 +18,15 @@ ws.onopen = () => {
 };
 
 ws.onmessage = async (event) => {
-  let body_data = JSON.parse(event.data);
-  let token_val = await Tokensettings.findOne();
-  let updated_at = moment(new Date()).format('YYYY-MM-DD');
-  if (body_data.status == "ok" && body_data.ticker && body_data.ticker.last) {
-    await Tokensettings.updateOne({ '_id': token_val._id }, {
-      $set: {
-        'btcValue': Math.round((parseFloat(token_val.usdValue) * (1 / parseFloat(body_data.ticker.last))) * 1000000000) / 1000000000,
-        'updated_at': updated_at
-      }
-    });
-  }
+    let body_data = JSON.parse(event.data);
+    let token_val = await Tokensettings.findOne();
+    let updated_at = moment(new Date()).format('YYYY-MM-DD');    
+    if(body_data.status == "ok" && body_data.ticker && body_data.ticker.last ){
+        await Tokensettings.updateOne({'_id':token_val._id}, {$set: { 
+            'btcValue': Math.round((parseFloat(token_val.usdValue)*(1 / parseFloat(body_data.ticker.last)))*1000000000)/1000000000, 
+            'updated_at' : updated_at }
+        });
+    } 
 };
 
 /**************ETH - USDT***************/
@@ -36,28 +34,26 @@ ws.onmessage = async (event) => {
 const ws1 = new WebSocket('wss://api.probit.com/api/exchange/v1/ws');
 
 ws1.onopen = () => {
-  const msg = {
-    type: 'subscribe',
-    channel: 'marketdata',
-    interval: 500,
-    market_id: 'ETH-USDT',
-    filter: ['ticker']
+    const msg = {
+      type: 'subscribe',
+      channel: 'marketdata',
+      interval: 500,
+      market_id: 'ETH-USDT',
+      filter: ['ticker']
+    };
+    ws1.send(JSON.stringify(msg));
   };
-  ws1.send(JSON.stringify(msg));
-};
-
-ws1.onmessage = async (event) => {
-  let body_data = JSON.parse(event.data);
-  let token_val = await Tokensettings.findOne();
-  let updated_at = moment(new Date()).format('YYYY-MM-DD');
-  if (body_data.status == "ok" && body_data.ticker && body_data.ticker.last) {
-    await Tokensettings.updateOne({ '_id': token_val._id }, {
-      $set: {
-        'etherValue': Math.round((parseFloat(token_val.usdValue) * (1 / parseFloat(body_data.ticker.last))) * 1000000000) / 1000000000,
-        'updated_at': updated_at
-      }
-    });
-  }
+  
+  ws1.onmessage = async (event) => {
+    let body_data = JSON.parse(event.data);
+    let token_val = await Tokensettings.findOne();
+    let updated_at = moment(new Date()).format('YYYY-MM-DD');  
+    if( body_data.status == "ok" && body_data.ticker && body_data.ticker.last){
+        await Tokensettings.updateOne({'_id':token_val._id}, {$set: { 
+            'etherValue': Math.round((parseFloat(token_val.usdValue)*(1 / parseFloat(body_data.ticker.last)))*1000000000)/1000000000, 
+            'updated_at' : updated_at }
+        });
+    } 
 };
 
 
@@ -77,17 +73,15 @@ ws2.onopen = () => {
 };
 
 ws2.onmessage = async (event) => {
-  let body_data = JSON.parse(event.data);
-  let token_val = await Tokensettings.findOne();
-  let updated_at = moment(new Date()).format('YYYY-MM-DD');
-  if (body_data.status == "ok" && body_data.ticker && body_data.ticker.last) {
-    await Tokensettings.updateOne({ '_id': token_val._id }, {
-      $set: {
-        'xrpValue': Math.round((parseFloat(token_val.usdValue) * (1 / parseFloat(body_data.ticker.last))) * 1000000000) / 1000000000,
-        'updated_at': updated_at
-      }
-    });
-  }
+    let body_data = JSON.parse(event.data);
+    let token_val = await Tokensettings.findOne();
+    let updated_at = moment(new Date()).format('YYYY-MM-DD');    
+    if(body_data.status == "ok" && body_data.ticker && body_data.ticker.last ){
+        await Tokensettings.updateOne({'_id':token_val._id}, {$set: { 
+            'xrpValue': Math.round((parseFloat(token_val.usdValue)*(1 / parseFloat(body_data.ticker.last)))*1000000000)/1000000000, 
+            'updated_at' : updated_at }
+        });
+    }     
 };
 
 /**************LTC - USDT***************/
@@ -106,17 +100,15 @@ ws3.onopen = () => {
 };
 
 ws3.onmessage = async (event) => {
-  let body_data = JSON.parse(event.data);
-  let token_val = await Tokensettings.findOne();
-  let updated_at = moment(new Date()).format('YYYY-MM-DD');
-  if (body_data.status == "ok" && body_data.ticker && body_data.ticker.last) {
-    await Tokensettings.updateOne({ '_id': token_val._id }, {
-      $set: {
-        'ltcValue': Math.round((parseFloat(token_val.usdValue) * (1 / parseFloat(body_data.ticker.last))) * 1000000000) / 1000000000,
-        'updated_at': updated_at
-      }
-    });
-  }
+    let body_data = JSON.parse(event.data);
+    let token_val = await Tokensettings.findOne();
+    let updated_at = moment(new Date()).format('YYYY-MM-DD');    
+    if(body_data.status == "ok" && body_data.ticker && body_data.ticker.last ){
+        await Tokensettings.updateOne({'_id':token_val._id}, {$set: { 
+            'ltcValue': Math.round((parseFloat(token_val.usdValue)*(1 / parseFloat(body_data.ticker.last)))*1000000000)/1000000000, 
+            'updated_at' : updated_at }
+        });
+    }      
 };
 
 /**************DASH - USDT***************/
@@ -135,17 +127,15 @@ ws4.onopen = () => {
 };
 
 ws4.onmessage = async (event) => {
-  let body_data = JSON.parse(event.data);
-  let token_val = await Tokensettings.findOne();
-  let updated_at = moment(new Date()).format('YYYY-MM-DD');
-  if (body_data.status == "ok" && body_data.ticker && body_data.ticker.last) {
-    await Tokensettings.updateOne({ '_id': token_val._id }, {
-      $set: {
-        'dashValue': Math.round((parseFloat(token_val.usdValue) * (1 / parseFloat(body_data.ticker.last))) * 1000000000) / 1000000000,
-        'updated_at': updated_at
-      }
-    })
-  }
+    let body_data = JSON.parse(event.data);
+    let token_val = await Tokensettings.findOne();
+    let updated_at = moment(new Date()).format('YYYY-MM-DD');    
+    if(body_data.status == "ok" && body_data.ticker && body_data.ticker.last ){
+        await Tokensettings.updateOne({'_id':token_val._id}, {$set: { 
+            'dashValue': Math.round((parseFloat(token_val.usdValue)*(1 / parseFloat(body_data.ticker.last)))*1000000000)/1000000000, 
+            'updated_at' : updated_at }
+        })
+    }     
 };
 
 /**************BNB - USDT***************/
@@ -164,17 +154,15 @@ ws5.onopen = () => {
 };
 
 ws5.onmessage = async (event) => {
-  let body_data = JSON.parse(event.data);
-  let token_val = await Tokensettings.findOne();
-  let updated_at = moment(new Date()).format('YYYY-MM-DD');
-  if (body_data.status == "ok" && body_data.ticker && body_data.ticker.last) {
-    await Tokensettings.updateOne({ '_id': token_val._id }, {
-      $set: {
-        'bnbValue': Math.round((parseFloat(token_val.usdValue) * (1 / parseFloat(body_data.ticker.last))) * 1000000000) / 1000000000,
-        'updated_at': updated_at
-      }
-    })
-  }
+    let body_data = JSON.parse(event.data);
+    let token_val = await Tokensettings.findOne();
+    let updated_at = moment(new Date()).format('YYYY-MM-DD');    
+    if(body_data.status == "ok" && body_data.ticker && body_data.ticker.last ){
+        await Tokensettings.updateOne({'_id':token_val._id}, {$set: { 
+            'bnbValue': Math.round((parseFloat(token_val.usdValue)*(1 / parseFloat(body_data.ticker.last)))*1000000000)/1000000000, 
+            'updated_at' : updated_at }
+        })
+    }     
 };
 
 /**************DOGE - USDT***************/
@@ -193,17 +181,15 @@ ws6.onopen = () => {
 };
 
 ws6.onmessage = async (event) => {
-  let body_data = JSON.parse(event.data);
-  let token_val = await Tokensettings.findOne();
-  let updated_at = moment(new Date()).format('YYYY-MM-DD');
-  if (body_data.status == "ok" && body_data.ticker && body_data.ticker.last) {
-    await Tokensettings.updateOne({ '_id': token_val._id }, {
-      $set: {
-        'dogeValue': Math.round((parseFloat(token_val.usdValue) * (1 / parseFloat(body_data.ticker.last))) * 1000000000) / 1000000000,
-        'updated_at': updated_at
-      }
-    })
-  }
+    let body_data = JSON.parse(event.data);
+    let token_val = await Tokensettings.findOne();
+    let updated_at = moment(new Date()).format('YYYY-MM-DD');    
+    if(body_data.status == "ok" && body_data.ticker && body_data.ticker.last ){
+        await Tokensettings.updateOne({'_id':token_val._id}, {$set: { 
+            'dogeValue': Math.round((parseFloat(token_val.usdValue)*(1 / parseFloat(body_data.ticker.last)))*1000000000)/1000000000, 
+            'updated_at' : updated_at }
+        })
+    }     
 };
 
 /**************POLKA - USDT***************/
@@ -222,17 +208,15 @@ ws7.onopen = () => {
 };
 
 ws7.onmessage = async (event) => {
-  let body_data = JSON.parse(event.data);
-  let token_val = await Tokensettings.findOne();
-  let updated_at = moment(new Date()).format('YYYY-MM-DD');
-  if (body_data.status == "ok" && body_data.ticker && body_data.ticker.last) {
-    await Tokensettings.updateOne({ '_id': token_val._id }, {
-      $set: {
-        'polkaValue': Math.round((parseFloat(token_val.usdValue) * (1 / parseFloat(body_data.ticker.last))) * 1000000000) / 1000000000,
-        'updated_at': updated_at
-      }
-    })
-  }
+    let body_data = JSON.parse(event.data);
+    let token_val = await Tokensettings.findOne();
+    let updated_at = moment(new Date()).format('YYYY-MM-DD');    
+    if(body_data.status == "ok" && body_data.ticker && body_data.ticker.last ){
+        await Tokensettings.updateOne({'_id':token_val._id}, {$set: { 
+            'polkaValue': Math.round((parseFloat(token_val.usdValue)*(1 / parseFloat(body_data.ticker.last)))*1000000000)/1000000000, 
+            'updated_at' : updated_at }
+        })
+    }     
 };
 
 /**************TRON - USDT***************/
@@ -251,17 +235,15 @@ ws8.onopen = () => {
 };
 
 ws8.onmessage = async (event) => {
-  let body_data = JSON.parse(event.data);
-  let token_val = await Tokensettings.findOne();
-  let updated_at = moment(new Date()).format('YYYY-MM-DD');
-  if (body_data.status == "ok" && body_data.ticker && body_data.ticker.last) {
-    await Tokensettings.updateOne({ '_id': token_val._id }, {
-      $set: {
-        'tronValue': Math.round((parseFloat(token_val.usdValue) * (1 / parseFloat(body_data.ticker.last))) * 1000000000) / 1000000000,
-        'updated_at': updated_at
-      }
-    })
-  }
+    let body_data = JSON.parse(event.data);
+    let token_val = await Tokensettings.findOne();
+    let updated_at = moment(new Date()).format('YYYY-MM-DD');    
+    if(body_data.status == "ok" && body_data.ticker && body_data.ticker.last ){
+        await Tokensettings.updateOne({'_id':token_val._id}, {$set: { 
+            'tronValue': Math.round((parseFloat(token_val.usdValue)*(1 / parseFloat(body_data.ticker.last)))*1000000000)/1000000000, 
+            'updated_at' : updated_at }
+        })
+    }     
 };
 
 /**************XLM - USDT***************/
@@ -280,15 +262,13 @@ ws9.onopen = () => {
 };
 
 ws9.onmessage = async (event) => {
-  let body_data = JSON.parse(event.data);
-  let token_val = await Tokensettings.findOne();
-  let updated_at = moment(new Date()).format('YYYY-MM-DD');
-  if (body_data.status == "ok" && body_data.ticker && body_data.ticker.last) {
-    await Tokensettings.updateOne({ '_id': token_val._id }, {
-      $set: {
-        'xlmValue': Math.round((parseFloat(token_val.usdValue) * (1 / parseFloat(body_data.ticker.last))) * 1000000000) / 1000000000,
-        'updated_at': updated_at
-      }
-    })
-  }
+    let body_data = JSON.parse(event.data);
+    let token_val = await Tokensettings.findOne();
+    let updated_at = moment(new Date()).format('YYYY-MM-DD');    
+    if(body_data.status == "ok" && body_data.ticker && body_data.ticker.last ){
+        await Tokensettings.updateOne({'_id':token_val._id}, {$set: { 
+            'xlmValue': Math.round((parseFloat(token_val.usdValue)*(1 / parseFloat(body_data.ticker.last)))*1000000000)/1000000000, 
+            'updated_at' : updated_at }
+        })
+    }     
 };

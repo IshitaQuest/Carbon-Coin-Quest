@@ -7,258 +7,258 @@ const bcrypt = require('bcryptjs');
 /**How access and token works only we are perfoming just restructuring****/
 
 
-var TeamSchema = new moongoose.Schema({
+var TeamSchema =  new moongoose.Schema({
 
-    name: {
-        type: String,
-        required: true
+    name:{
+        type:String,
+        required:true
     },
-    content: {
-        type: String,
-        required: true
+    content:{
+        type:String,
+        required:true
     },
-    designation: {
-        type: String,
-        required: true
+    designation:{
+        type:String,
+        required:true
     },
-    linkedin_url: {
-        type: String,
-        required: true
+    linkedin_url:{
+        type:String,
+        required:true
     },
-    member_image: {
+    member_image:{
         type: String
     },
-    status: {
+    status:{
 
-        type: String,
+        type:String,
         enum: ['active', 'inactive'],
-        default: 'active'
+        default:'active'
 
-    },
+    },  
 
-    created_at: {
-        type: String,
-        default: Date.now
-    },
-
+    created_at: { 
+                    type: String,
+                    default: Date.now 
+                },
+    
     created_by: {
 
-        type: Number,
-        default: 0
+            type:Number,
+            default:0
     },
 
     updated_at: {
 
-        type: String,
-        default: null
+            type: String,
+            default: null
     },
     deleted_at: {
 
-        type: String,
-        default: null
+            type: String,
+            default: null
     },
 
     updated_by: {
 
-        type: String,
-        default: 0
+            type:String,
+            default:0
     },
-    deleted: {
+    deleted:{
 
-        type: String,
-        enum: ['0', '1'],
-        default: '0'
+         type:String,
+         enum: ['0', '1'],
+         default:'0'
     },
 });
 
 
 
 
-var Teaminfo = moongoose.model('tbl_teammember', TeamSchema);
+var Teaminfo =  moongoose.model('tbl_teammember',TeamSchema); 
 
 /*** Vision ****/
 
-var VisionSchema = new moongoose.Schema({
+var VisionSchema =  new moongoose.Schema({
 
-    title: {
-        type: String,
-        required: true
+    title:{
+        type:String,
+        required:true
     },
-    side_content: {
-        type: String,
-        required: true
+    side_content:{
+        type:String,
+        required:true
     },
-    main_content: {
-        type: String,
-        required: true
+    main_content:{
+        type:String,
+        required:true
     },
-
-    created_at: {
-        type: String,
-        default: Date.now
-    },
-
+    
+    created_at: { 
+                    type: String,
+                    default: Date.now 
+                },
+    
     created_by: {
 
-        type: Number,
-        default: 0
+            type:Number,
+            default:0
     },
 
     updated_at: {
 
-        type: String,
-        default: null
+            type: String,
+            default: null
     },
     deleted_at: {
 
-        type: String,
-        default: null
+            type: String,
+            default: null
     },
 
     updated_by: {
 
-        type: String,
-        default: 0
+            type:String,
+            default:0
     },
-    deleted: {
+    deleted:{
 
-        type: String,
-        enum: ['0', '1'],
-        default: '0'
+         type:String,
+         enum: ['0', '1'],
+         default:'0'
     },
 });
 
 
 
 
-var Visioninfo = moongoose.model('tbl_vision', VisionSchema);
+var Visioninfo =  moongoose.model('tbl_vision',VisionSchema); 
 
-/*** Vision end ****/
+/*** Vision end ****/ 
 
 /****** Product*****/
 
-var ProductDetailsSchema = new moongoose.Schema({
+var ProductDetailsSchema =  new moongoose.Schema({
 
-    product_name: {
-        type: String,
-        required: true
+    product_name:{
+        type:String,
+        required:true
     },
-    content: {
-        type: String,
-        required: true
+    content:{
+        type:String,
+        required:true
     },
-    product_video: {
-        type: String,
-        required: true
+    product_video:{
+        type:String,
+        required:true
     },
+   
+    status:{
 
-    status: {
-
-        type: String,
+        type:String,
         enum: ['active', 'inactive'],
-        default: 'active'
+        default:'active'
 
-    },
+    },  
 
-    created_at: {
-        type: String,
-        default: Date.now
-    },
-
+    created_at: { 
+                    type: String,
+                    default: Date.now 
+                },
+    
     created_by: {
 
-        type: Number,
-        default: 0
+            type:Number,
+            default:0
     },
 
     updated_at: {
 
-        type: String,
-        default: null
+            type: String,
+            default: null
     },
     deleted_at: {
 
-        type: String,
-        default: null
+            type: String,
+            default: null
     },
 
     updated_by: {
 
-        type: String,
-        default: 0
+            type:String,
+            default:0
     },
-    deleted: {
+    deleted:{
 
-        type: String,
-        enum: ['0', '1'],
-        default: '0'
+         type:String,
+         enum: ['0', '1'],
+         default:'0'
     },
 });
 
 
 
 
-var Productinfo = moongoose.model('tbl_product', ProductDetailsSchema);
-/****** Product*****/
+var Productinfo =  moongoose.model('tbl_product',ProductDetailsSchema);  
+/****** Product*****/ 
 
 
-var RoadMapSchema = new moongoose.Schema({
+var RoadMapSchema =  new moongoose.Schema({
 
-    duration: {
-        type: String,
-        required: true
+    duration:{
+        type:String,
+        required:true
     },
-    content: {
-        type: String,
-        required: true
+    content:{
+        type:String,
+        required:true
     },
+   
+    status:{
 
-    status: {
-
-        type: String,
+        type:String,
         enum: ['active', 'inactive'],
-        default: 'active'
+        default:'active'
 
-    },
+    },  
 
-    created_at: {
-        type: String,
-        default: Date.now
-    },
-
+    created_at: { 
+                    type: String,
+                    default: Date.now 
+                },
+    
     created_by: {
 
-        type: Number,
-        default: 0
+            type:Number,
+            default:0
     },
 
     updated_at: {
 
-        type: String,
-        default: null
+            type: String,
+            default: null
     },
     deleted_at: {
 
-        type: String,
-        default: null
+            type: String,
+            default: null
     },
 
     updated_by: {
 
-        type: String,
-        default: 0
+            type:String,
+            default:0
     },
-    deleted: {
+    deleted:{
 
-        type: String,
-        enum: ['0', '1'],
-        default: '0'
+         type:String,
+         enum: ['0', '1'],
+         default:'0'
     },
-    section: {
+    section:{
 
-        type: String,
-        enum: ['1', '2', '3', '4'],
-        default: '4'
+         type:String,
+         enum: ['1', '2', '3', '4'],
+         default:'4'
     },
 
 });
@@ -266,175 +266,175 @@ var RoadMapSchema = new moongoose.Schema({
 
 
 
-var RoadMapInfo = moongoose.model('tbl_roadmap', RoadMapSchema);
+var RoadMapInfo =  moongoose.model('tbl_roadmap',RoadMapSchema); 
 
 /***************/
 
-var GraphSchema = new moongoose.Schema({
+var GraphSchema =  new moongoose.Schema({
 
-    title: {
-        type: String,
-        required: true
+    title:{
+        type:String,
+        required:true
+    },   
+    image:{
+        type:String,
+        required:true
     },
-    image: {
-        type: String,
-        required: true
-    },
-
-    created_at: {
-        type: String,
-        default: Date.now
-    },
-
+     
+    created_at: { 
+                    type: String,
+                    default: Date.now 
+                },
+    
     created_by: {
 
-        type: Number,
-        default: 0
+            type:Number,
+            default:0
     },
 
     updated_at: {
 
-        type: String,
-        default: null
+            type: String,
+            default: null
     },
     deleted_at: {
 
-        type: String,
-        default: null
+            type: String,
+            default: null
     },
 
     updated_by: {
 
-        type: String,
-        default: 0
+            type:String,
+            default:0
     },
-    deleted: {
+    deleted:{
 
-        type: String,
-        enum: ['0', '1'],
-        default: '0'
+         type:String,
+         enum: ['0', '1'],
+         default:'0'
     },
 });
 
 
 
 
-var GraphInfo = moongoose.model('tbl_financial_graph', GraphSchema);
+var GraphInfo =  moongoose.model('tbl_financial_graph',GraphSchema);   
 
 
 /*******************/
 
-var TermsSchema = new moongoose.Schema({
+var TermsSchema =  new moongoose.Schema({
 
-    title: {
-        type: String,
-        required: true
+    title:{
+        type:String,
+        required:true
+    },   
+    content:{
+        type:String,
+        required:true
     },
-    content: {
-        type: String,
-        required: true
-    },
-
-    created_at: {
-        type: String,
-        default: Date.now
-    },
-
+     
+    created_at: { 
+                    type: String,
+                    default: Date.now 
+                },
+    
     created_by: {
 
-        type: Number,
-        default: 0
+            type:Number,
+            default:0
     },
 
     updated_at: {
 
-        type: String,
-        default: null
+            type: String,
+            default: null
     },
     deleted_at: {
 
-        type: String,
-        default: null
+            type: String,
+            default: null
     },
 
     updated_by: {
 
-        type: String,
-        default: 0
+            type:String,
+            default:0
     },
-    deleted: {
+    deleted:{
 
-        type: String,
-        enum: ['0', '1'],
-        default: '0'
+         type:String,
+         enum: ['0', '1'],
+         default:'0'
     },
 });
 
 
 
 
-var TermsInfo = moongoose.model('tbl_terms_conditions', TermsSchema);
+var TermsInfo =  moongoose.model('tbl_terms_conditions',TermsSchema); 
 
 /*******************/
 
-var PolicySchema = new moongoose.Schema({
+var PolicySchema =  new moongoose.Schema({
 
-    title: {
-        type: String,
-        required: true
+    title:{
+        type:String,
+        required:true
+    },   
+    content:{
+        type:String,
+        required:true
     },
-    content: {
-        type: String,
-        required: true
-    },
-
-    created_at: {
-        type: String,
-        default: Date.now
-    },
-
+     
+    created_at: { 
+                    type: String,
+                    default: Date.now 
+                },
+    
     created_by: {
 
-        type: Number,
-        default: 0
+            type:Number,
+            default:0
     },
 
     updated_at: {
 
-        type: String,
-        default: null
+            type: String,
+            default: null
     },
     deleted_at: {
 
-        type: String,
-        default: null
+            type: String,
+            default: null
     },
 
     updated_by: {
 
-        type: String,
-        default: 0
+            type:String,
+            default:0
     },
-    deleted: {
+    deleted:{
 
-        type: String,
-        enum: ['0', '1'],
-        default: '0'
+         type:String,
+         enum: ['0', '1'],
+         default:'0'
     },
 });
 
 
 
 
-var PolicyInfo = moongoose.model('tbl_privacy_policy', PolicySchema);
+var PolicyInfo =  moongoose.model('tbl_privacy_policy',PolicySchema);
 
 
 module.exports = {
-    TeamMember: Teaminfo,
-    Vision: Visioninfo,
-    ProductInfo: Productinfo,
-    RoadMapInfo: RoadMapInfo,
-    GraphInfo: GraphInfo,
-    TermsInfo: TermsInfo,
-    PolicyInfo: PolicyInfo
+    TeamMember:Teaminfo,
+    Vision:Visioninfo,
+    ProductInfo:Productinfo,
+    RoadMapInfo:RoadMapInfo,
+    GraphInfo:GraphInfo,
+    TermsInfo:TermsInfo,
+    PolicyInfo:PolicyInfo
 };

@@ -6,7 +6,7 @@ const admin = require('./admin');
 // const phone_apis = require('./android-ios');
 const { mail } = require('../helper/mailer');
 
-router.use(session({
+router.use(session({ 
   secret: 'admindetails',
   resave: false,
   saveUninitialized: true

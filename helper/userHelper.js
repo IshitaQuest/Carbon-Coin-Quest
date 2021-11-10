@@ -3,7 +3,7 @@ const { Tokensettings } = require('../models/userModel')
 
 const addtokensettings = async function () {
     let rates = {
-        token_name: '$FBT',
+        token_name: '$EBT',
         total_quantity: '10000',
         etherValue: '1',
         btcValue: '1',
@@ -33,19 +33,19 @@ function generateCode() {
 }
 
 function calculateDays(startDate, endDate) {
-    var start_date = moment(startDate, 'YYYY-MM-DD HH:mm:ss');
-    var end_date = moment(endDate, 'YYYY-MM-DD HH:mm:ss');
-    var duration = moment.duration(end_date.diff(start_date));
-    var days = duration.asDays();
-    return parseInt(days);
+   var start_date = moment(startDate, 'YYYY-MM-DD HH:mm:ss');
+   var end_date = moment(endDate, 'YYYY-MM-DD HH:mm:ss');
+   var duration = moment.duration(end_date.diff(start_date));
+   var days = duration.asDays();       
+   return parseInt(days);
 }
 
 function calculateHours(startDate, endDate) {
-    var start_date = moment(startDate, 'YYYY-MM-DD HH:mm:ss');
-    var end_date = moment(endDate, 'YYYY-MM-DD HH:mm:ss');
-    var duration = moment.duration(end_date.diff(start_date));
-    var days = duration.asHours();
-    return days;
+   var start_date = moment(startDate, 'YYYY-MM-DD HH:mm:ss');
+   var end_date = moment(endDate, 'YYYY-MM-DD HH:mm:ss');
+   var duration = moment.duration(end_date.diff(start_date));
+   var days = duration.asHours();       
+   return days;
 }
 
 module.exports = {
