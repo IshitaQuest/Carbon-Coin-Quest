@@ -73,7 +73,7 @@ select.form-control {
     font-weight: 400;
     text-align: justify;
     word-break: break-all;
-    background: #343434;
+    background: white;
 }
 .card-body .table td .edit-icons a {
     display: inline-block;

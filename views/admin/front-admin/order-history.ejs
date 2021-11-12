@@ -1,9 +1,32 @@
 <%- include('header') -%>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style type="text/css">
   td {
     max-width: 150px !important;
     overflow: hidden !important
+  }
+
+  table, th, td {
+  border: 1px solid white;
+}
+  
+  .vl {
+  border-left: 6px solid white;
+  height: 500px;
+  position: absolute;
+  left: 50%;
+  margin-left: -3px;
+  top: 0;
+}
+
+  .vl {
+  border-left: 6px solid white ;
+  height: 500px;
+}
+
+  .container {
+    background-color: white;
+    font-size: .12;
   }
 
   #example_wrapper .dataTables_filter {
@@ -40,54 +63,16 @@
                   <thead>
                     <tr>
                       <th width="3%">S. No.</th>
-                      <th width="10%">Order ID</th>
+                      <th width="10%">Transaction Hash</th>
+                      <th width="10%">User Wallet Address</th>
+                      <th width="10%">Admin Wallet Address</th>
                       <!-- <th width="10%">Email</th> -->
-                      <th width="8%">User Wallet Address</th>
-                      <th width="8%">Admin Wallet Address</th>
-                      <th width="10%">Tx Hash</th>
+                      <th width="10%">Gas Fee</th>
+                      <th width="10%">Value</th>
                       <!-- <th width="10%">Payment Method</th> -->
-                      <th width="5%">Total Ammount</th>
-                      <th width="5%">Currency Received</th>
-                      <th width="5%">CRBN sent</th>
-                      <th width="8%">Payment Status</th>
-                      <th width="8%">Order Status</th>
-                      <th width="8%">ScreenShot</th>
-                      <th width="8%">Date - Time</th>
                     </tr>
                   </thead>
-                  <tbody id="tbody">
-                    <% var i=1; if(order_details.length> 0){
-                      order_details.forEach(function(details){
-                      %>
-
-                      <tr>
-                        <td><%- i %></td>
-                        <td><%- details._id%></td>
-                        <!-- <td>John Doe</td> -->
-                        <td><a href="https://ropsten.etherscan.io/address/<%- details.sender_wallet_address%>" target="_blank"><%- details.sender_wallet_address%></a></td>
-                        <td><a href="https://ropsten.etherscan.io/address/<%- details.eth_wallet_address%>" target="_blank"><%- details.eth_wallet_address%></a></td>
-                        <td><a href="https://ropsten.etherscan.io/tx/<%- details.transaction_Id%>" target="_blank"><%- details.transaction_Id%></a></td>
-                        <!-- <td><%- details.payment_method%></td> -->
-                        <td><%- details.total_amnt%></td>
-                        <td><%- details.payment_type%></td>
-                        <td><%- details.ebt_count%></td>
-                        <td>
-                          <%if(details.payment_status=="pending" ){%>
-                            <P>Pending</P>
-                            <%}else if(details.payment_status=="Paid" ){%>
-                              <P>Paid</P>
-                              <%}else{%>
-                              <a href="/verifyorder?id=<%=details._id%>">Paid</a>
-                              <%}%>
-                            </td>
-                        <td><%- details.payment_status%></td>
-                        <td><%- details.image%></td>
-                        <td><%- details.created_at%></td>
-
-
-                      </tr>
-
-                      <% i++; }) } %>
+                  <tbody id="data">
 
                   </tbody>
                 </table>
@@ -96,15 +81,33 @@
   </div>
 </div>
 
-  <%- include('footer') -%>
+<script>
+  fetch("https://api-ropsten.etherscan.io/api?module=account&action=txlist&address=0xF24a24Ab64a29edd50ACC655f4dd78360888A83e&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=YourApiKeyToken").then(
+    res=>{
+      res.json().then(
+        data=>{
+          console.log(data);
+          data = data.result;
+          if(data.length > 0){
+            var temp = "";
+            
 
-  <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-  </script>
-  <script>
-$(document).ready( function () {
-  $('.table').DataTable();
-} );
+            data.forEach((u)=>{
+              temp +="<tr>";
+                temp +="<td>"+u.serialNumber+"</td>";
+              temp +="<td>"+u.hash+"</td>";
+              temp +="<td>"+u.from+"</td>";
+              temp +="<td>"+u.to+"</td>";
+              temp +="<td>"+u.gasPrice+"</td>";
+              temp +="<td>"+u.value+"</td>";
+                            temp +="</tr>";
+
+            })
+
+            document.getElementById("data").innerHTML= temp;
+          }
+        }
+      )
+    }
+  )
 </script>
