@@ -230,7 +230,7 @@ html {
       line-height: 24px;
   }
   .purple-btn-index {
-      background-color: #d5b44a  !important;
+      background-color: #2a2c5d  !important;
       display: inline-block;
       padding: 10px 25px;
       min-width: 100px;
@@ -456,8 +456,10 @@ html {
       padding: 5px 10px;
   }
   .login-form-box{
-  background-color: transparent;
-  padding: 10px 20px 5px;
+  background-color: #7bbe3f;
+  padding: 30px 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  border-radius: 10px;
   }
   .login-form-box h2 {
       font-weight: 700;
@@ -514,12 +516,12 @@ html {
       padding: 10px 60px;
   }
   .login-sec {
-      background-color: #343434;
+      background-color: #7bbe3f;
       padding-top: 10%;
       height: 100vh;
-      background-image: url(../images/bg-login.png);
-      background-size: contain;
-      background-position: top right 15%;
+      background-image: url(../images/banner-login.jpg);
+      background-size: cover;
+      background-position: center;
       background-repeat: no-repeat;
       display: flex;
       align-items: center;
