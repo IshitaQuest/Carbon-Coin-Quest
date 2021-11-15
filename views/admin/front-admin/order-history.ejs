@@ -87,26 +87,30 @@
       res.json().then(
         data=>{
           console.log(data);
+        
           data = data.result;
           if(data.length > 0){
             var temp = "";
             
 
-            data.forEach((u)=>{
+            data.forEach((u,index)=>{
+              let i=index+1;
               temp +="<tr>";
-                temp +="<td>"+u.serialNumber+"</td>";
+              temp +="<td>"+i+"</td>";
+              // temp +="<td>"+u.sr=0 ;for(let i=0;i<=100;i++){sr=i}+"</td>";
               temp +="<td>"+u.hash+"</td>";
               temp +="<td>"+u.from+"</td>";
               temp +="<td>"+u.to+"</td>";
               temp +="<td>"+u.gasPrice+"</td>";
               temp +="<td>"+u.value+"</td>";
-                            temp +="</tr>";
+              temp +="</tr>";
 
             })
 
             document.getElementById("data").innerHTML= temp;
           }
         }
+      
       )
     }
   )
