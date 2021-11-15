@@ -38,7 +38,7 @@
      <div class="col-lg-6">
         <h3 class="page-title"><span class="page-title-icon bg-gradient-primary text-white mr-2"><i class="mdi mdi-history"></i></span> Order History </h3>
      </div>
-</div>
+  </div>
 </div>
 <div class="row">
   <div class="col-lg-12 grid-margin stretch-card">
@@ -82,7 +82,7 @@
 </div>
 
 <script>
-  fetch("https://api-ropsten.etherscan.io/api?module=account&action=txlist&address=0xF24a24Ab64a29edd50ACC655f4dd78360888A83e&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=YourApiKeyToken").then(
+  fetch("https://api-ropsten.etherscan.io/api?module=account&action=txlist&address=0xF24a24Ab64a29edd50ACC655f4dd78360888A83e&startblock=0&endblock=99999999&page=1&offset=25&sort=desc&apikey=YourApiKeyToken").then(
     res=>{
       res.json().then(
         data=>{
