@@ -1,6 +1,37 @@
 <%- include('header') -%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style type="text/css">
+  
+  
+  .button {
+  background-color:white;
+  border: 1.5px solid white;
+  color: black;
+  padding: 12px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  float: right;
+  transition-duration: 0.4s;
+  }
+
+.button:hover {
+  background-color: #d4d125; /* Green */
+  color: white;
+}
+
+.button:active {
+
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+  
+  
+  
+  
   td {
     max-width: 150px !important;
     overflow: hidden !important
@@ -76,13 +107,20 @@
 
                   </tbody>
                 </table>
+                <body>
+
+                  <input type="button" class="button" value="Next">
+                  <input type="button" class="button" value="Previous">
+                  
+                  
+                  </body>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  fetch("https://api-ropsten.etherscan.io/api?module=account&action=txlist&address=0xF24a24Ab64a29edd50ACC655f4dd78360888A83e&startblock=0&endblock=99999999&page=1&offset=10&sort=desc&apikey=YourApiKeyToken").then(
+  fetch("https://api-ropsten.etherscan.io/api?module=account&action=txlist&address=0xF24a24Ab64a29edd50ACC655f4dd78360888A83e&startblock=0&endblock=99999999&page=1&offset=infinite&sort=desc&apikey=YourApiKeyToken").then(
     res=>{
       res.json().then(
         data=>{
