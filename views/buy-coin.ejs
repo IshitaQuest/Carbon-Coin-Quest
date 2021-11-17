@@ -164,97 +164,107 @@
     
     
     
+    
+
     <section class="contact-page-wrapper sec-pad buy-coin-sec">
         <div class="thm-container">
-          <form class="contact-form row">
-            <div class="row contact-form">
-                <div class="col-md-6">
-                    <div class="coin-select-box mb-3">
-                        <div>
-                            <img src="user_assets/img/eth-icon.png" class="img-coin" alt="Bitcoin Icon">
-                        </div>
-                        <div class="select-coin-box">
-                            <label>Coin</label>
-                            <select name="topic" class="selectpicker">
-                                <option value="ICO Audit">ETH</option>
-                                <option value="ICO Audit">BNB</option>
-                            </select>
-                        </div>
-                    </div>
-                     <div class="shadow-box step-box-list">
-                         <h6 class="hbg my-2 text-left">5 step guide</h6>
-                         <ol class="text-left four-step-list">
-                            <li>Calculate how much tokens you want to buy.</li>
-                            <li>Copy/Scan the displayed address</li>
-                            <li>Send your TRX to that address. You may send it right from your exchange.</li>
-                            <li>Upon transaction confirmation, please fill in your transaction details (Bitcoin Wallet address, Ethereum Wallet address and transaction ID) in the form. We need Ethereum wallet address so that we can transfer coins to you.</li>
-                            <li>Our team will verify the transaction and will send your tokens within 48 hours which will be reflected in your wallet.</li>
-                        </ol>
-                        
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="shadow-box">
-                        <label>Buy*</label>
-                        <div class="row align-items-center">
-                            <div class="col-md-5">
-                                <input type="text" placeholder="Token" >
-                            </div>
-                            <div class="col-md-2 text-center">
-                                =
-                            </div>
-                            <div class="col-md-5">
-                                <input type="text" placeholder="ETH">
-                            </div>
-                        </div>
-                        <div>
-                            <h4><b>1 TOKEN = 23 TRX</b></h4>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div>
-                                        <label>Client Wallet Address*</label>
-                                        <input type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div>
-                                        <label>Reference/Transaction ID</label>
-                                        <input type="text" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
+            <form class="contact-form row">
+                <div class="row contact-form">
+                    <div class="col-md-6">
+                        <div class="coin-select-box mb-3">
                             <div>
-                                <label>Upload Screenshot</label>
-                                <div class="input-group file-input">
-                                    <input type="text" class="form-control file-upload-text" disabled="" placeholder="select a file...">
-                                    <button type="button" class="btn btn-common light-green file-upload-btn upload-btn p-0">
-                                      Upload
-                                      <input type="file" class="file-upload" data-rule-required="true" data-msg-required="Please upload Payment Screenshot" name="transactionImage" id="file-input-1" style="width: 0;" placeholder="No File Selected">
-                                      <span class="input-group-btn">
-                                    </span></button>
-                                    
-                                  </div>
+                                <img src="user_assets/img/eth-icon.png" class="img-coin" alt="Bitcoin Icon">
                             </div>
-                             <div class="checkbox">
-                              <label>
-                                <input type="checkbox" value="">
-                                
-                                I agree with <a href="">terms and conditions</a> of Carbon Coin.
-                              </label>
+                            <div class="select-coin-box">
+                                <label>Karbun Coin</label>
+                                <select name="topic" class="selectpicker">
+                                    <option value="ICO Audit">ETH</option>
+                                    <!-- <option value="ICO Audit">BNB</option> -->
+                                </select>
                             </div>
-                            <div class="btn-block">
-                                <button type="submit" class="thm-btn yellow-bg-hvr">Submit</button>
+                        </div>
+                        <div class="shadow-box step-box-list">
+                            <h6 class="hbg my-2 text-left">5 step guide</h6>
+                            <ol class="text-left four-step-list">
+                                <li>Calculate how much Karbuns you want to buy.</li>
+                                <li>Copy/Scan the displayed address</li>
+                                <li>Send your ETH to that address. You may send it right from your exchange.</li>
+                                <li>Upon transaction confirmation, please fill in your transaction details (Karbun
+                                    Wallet address, Ethereum Wallet address and transaction ID) in the form. We need
+                                    Ethereum wallet address so that we can transfer Karbun coins to you.</li>
+                                <li>Our team will verify the transaction and will send your Karbun Karbuns within 48 hours
+                                    which will be reflected in your wallet.</li>
+                            </ol>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="shadow-box">
+                            <label>Buy*</label>
+                            <div class="row align-items-center">
+                                <div class="col-md-5">
+                                    <input type="text" id="bidding" onchange="myChangeFunction(bidding)" placeholder="USD">
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    =
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="text" id="ethbidding" placeholder="ETH" readonly>
+                                </div>
+                            </div>
+                            <div>
+                                <!-- <h4><b>1 USD = 23 TRX</b></h4> -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div>
+                                            <label>Client Wallet Address*</label>
+                                            <input type="text" placeholder="0xF24a24Ab64a29edd50ACC655f4dd78360888A83e"
+                                                readonly>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-6">
+                                        <div>
+                                            <label>Reference/Transaction ID</label>
+                                            <input type="text" placeholder="">
+                                        </div>
+                                    </div> -->
+                                </div>
+
+
+                                <!-- <div>
+                                    <label>Upload Screenshot</label>
+                                    <div class="input-group file-input">
+                                        <input type="text" class="form-control file-upload-text" disabled=""
+                                            placeholder="select a file...">
+                                        <button type="button"
+                                            class="btn btn-common light-green file-upload-btn upload-btn p-0">
+                                            Upload
+                                            <input type="file" class="file-upload" data-rule-required="true"
+                                                data-msg-required="Please upload Payment Screenshot"
+                                                name="transactionImage" id="file-input-1" style="width: 0;"
+                                                placeholder="No File Selected">
+                                            <span class="input-group-btn">
+                                            </span></button>
+
+                                    </div>
+                                </div> -->
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value=""> I agree with <a href="">terms and conditions</a> of Karbun.
+                                    </label>
+                                </div>
+                                <div class="btn-block">
+                                    <!-- <button type="submit" class="thm-btn yellow-bg-hvr">Submit</button> -->
+                                    <!-- <button class="enableEthereumButton btn">Enable Ethereum</button> -->
+                                    <button class="enableEthereumButton sendEthButton btn thm-btn yellow-bg-hvr">Send Eth</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </form>
         </div>
     </section>
-    
     <div class="footer-top page-section" id="contact-us">
         <div class="thm-container">
             <div class="row">
