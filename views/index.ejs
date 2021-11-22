@@ -14,6 +14,10 @@
 	<link rel="stylesheet" href="user_assets/css/responsive.css">
 
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
 
 <body class="active-preloader-ovh">
@@ -30,7 +34,7 @@
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed bitmex-icon-menu" data-toggle="collapse"
 						data-target=".main-navigation" aria-expanded="false"> </button>
-					<a class="navbar-brand" href="index.html">
+					<a class="navbar-brand" href="/">
 						<img src="user_assets/img/logo.png" style="height: 85px;">
 					</a>
 				</div>
@@ -41,13 +45,22 @@
 					<ul class="nav navbar-nav navigation-box navbar-right">
 						<li><a href="#about">About Karbun</a> </li>
 						<!--  <li><a href="#news">Karbun Partners</a> </li> -->
-						<li><a href="assets\Karbun-Coin-Whitepaper.pdf" target="_blank">Whitepaper</a> </li>
+						<li><a href="user_assets\Karbun-Coin-Whitepaper.pdf" target="_blank">Whitepaper</a> </li>
 						<li> <a href="#roadmap">Roadmap</a> </li>
 						<li><a href="#our-experts">Team </a></li>
 						<li> <a href="#contact-us">Contact Karbun</a> </li>
-						<a href="javascript:void(0)" onclick="getAccount()">
-							<img src="user_assets/img/meta-icon.png" width="70">
-						</a>
+						
+						<li class="for-dropbox"> 
+                        <a href="javascript:void(0);">Language<button class="sub-nav-toggler">  <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button></a> 
+                        <ul class="sub-menu">
+                            <li><a href="#">English</a></li>
+                            <li><a href="#">Spanish</a></li>
+                        </ul><!-- /.sub-menu -->
+                    </li>
+                    <li> <a href="javascript:void(0);" onclick="getAccount()">
+							<img src="user_assets/img/meta-icon.png" style="height: 35px; width: auto;">
+						</a></li>
+						
 					</ul>
 				</div><!-- /.navbar-collapse -->
 
@@ -177,11 +190,10 @@
 	<section class="feature-style-one sec-pad text-center video-sec-second">
 		<div class="thm-container">
 			<div class="row for-flex-row">
-				<div class="col-md-6 col-sm-6 col-xs-12">
+				<div class="col-md-8 col-md-offset-2">
 					<h4>Citizens of Earth are living on borrowed time. The age for "dialogue" is long-past. We are at a critical point for ACTION now!</h4>
-				</div>
-				<div class="col-md-6 col-sm-6 col-xs-12">
-					<iframe width="100%" height="380" src="https://www.youtube.com/embed/Fu3MIwF-LJw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				
+					<iframe width="100%" height="380" src="https://www.youtube.com/embed/cvup82ZU7pw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				</div>
 			</div>
 			
@@ -197,7 +209,34 @@
 			</div><!-- /.sec-title text-center -->
 			<div class="row">
 				<div class="col-md-12">
-				  <div class="white-box">
+					 <div class="row feature-slider">
+							  <div class="col-md-3 col-12">
+								  <div class="text-center inner-box-chalanges">
+									  <img src="user_assets/img/chalange1.jpg">
+									  <div class="title">Lack of comprehensive emission controls</div>
+								  </div>
+							  </div>
+							  <div class="col-md-3 col-12">
+								  <div class="text-center inner-box-chalanges">
+									  <img src="user_assets/img/chalange2.jpg">
+									  <div class="title">Heavy dependency on offset measures</div>
+								  </div>
+							  </div>
+							  <div class="col-md-3 col-12">
+								  <div class="text-center inner-box-chalanges">
+									  <img src="user_assets/img/chalange3.jpg">
+									  <div class="title">Inconsistent carbon credit valuations</div>
+								  </div>
+							  </div>
+							  <div class="col-md-3 col-12">
+								  <div class="text-center inner-box-chalanges">
+									  <img src="user_assets/img/chalange4.jpg">
+									  <div class="title">Incapable of universal adaptability</div>
+								  </div>
+							  </div>
+						  
+						  </div>
+				 <!--  <div class="white-box">
 					<div class="img-box">
 					  <img src="user_assets/img/BG@2x.png">
 					</div>
@@ -232,7 +271,7 @@
 						  </div>
 					  </div>
 				  </div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -261,31 +300,40 @@
 	</section><!-- /.about-style-one -->
 	
 	
-	<section class="fun-fact-style-one dark-bg sec-pad">
+	<section class="fun-fact-style-one  sec-pad">
 		<div class="thm-container">
 			<div class="sec-title text-center">
-				<h3 class="color-white mb-3">Karbun Partners</h3>
+				<h3 class="mb-3">Karbun Partners</h3>
 			</div><!-- /.sec-title text-center -->
 			<div class="row">
-				<div class="col-md-3 col-sm-6">
-					<div class="single-fun-fact-style-one text-center">
-						<img src="user_assets/img/feature1.png">
-					</div><!-- /.single-fun-fact-style-one text-center -->
-				</div><!-- /.col-md-3 -->
-				<div class="col-md-3 col-sm-6">
-					<div class="single-fun-fact-style-one text-center">
-						<img src="user_assets/img/feature2.png">
-					</div><!-- /.single-fun-fact-style-one text-center -->
-				</div><!-- /.col-md-3 -->
-				<div class="col-md-3 col-sm-6">
-					<div class="single-fun-fact-style-one text-center">
-						<img src="user_assets/img/feature3.png">
-					</div><!-- /.single-fun-fact-style-one text-center -->
-				</div><!-- /.col-md-3 -->
-				<div class="col-md-3 col-sm-6">
-					<div class="single-fun-fact-style-one text-center">
-						<img src="user_assets/img/feature4.png">
-					</div><!-- /.single-fun-fact-style-one text-center -->
+				<div class="col-md-12">
+					<ul class="partner-list">
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner1.png">
+							</div>
+						</li>
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner2.png">
+							</div>
+						</li>
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner3.png">
+							</div>
+						</li>
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner4.png">
+							</div>
+						</li>
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner5.jpg">
+							</div>
+						</li>
+					</ul>
 				</div><!-- /.col-md-3 -->
 			</div><!-- /.row -->
 		</div><!-- /.thm-container -->
@@ -369,6 +417,7 @@
 				<span>Karbun currency</span>
 				<h3>Start Investing In Karbun Coin</h3>
 				<p>Consider your investments in Karbun Coin (KRBN) to join the most amazing world of cryptocurrency and dig out the associated highest returns.</p>
+				<h4 class="color-white"><b><i>100% of the funds minus a 0.2% admin fee go to Green Projects as selected by the Advisory Board</i></b></h4>
 			</div><!-- /.sec-title -->
 			<form action="#" class="btc-calc-form row">
 				<div class="col-md-3">
@@ -376,12 +425,12 @@
 				</div><!-- /.col-md-3 -->
 				<div class="col-md-3">
 					<select class="selectpicker">
-						<option value="#">Karbund ( BTC )</option>
-						<option value="#">Karbund ( BTC )</option>
-						<option value="#">Karbund ( BTC )</option>
-						<option value="#">Karbund ( BTC )</option>
-						<option value="#">Karbund ( BTC )</option>
-						<option value="#">Karbund ( BTC )</option>
+						<option value="#">Karbun ( BTC )</option>
+						<option value="#">Karbun ( USDT)</option>
+						<option value="#">Karbun ( BNB )</option>
+						<option value="#">Karbun ( ETH )</option>
+						<option value="#">Karbun ( ZKT )</option>
+						<option value="#">Karbun ( BTC )</option>
 					</select>
 				</div><!-- /.col-md-3 -->
 				<div class="col-md-3">
@@ -397,9 +446,85 @@
 						<option value="#">US Dollars</option>
 					</select>
 				</div><!-- /.col-md-3 -->
+				<div class="col-md-12 text-center">
+					<button class="thm-btn yellow-bg-hvr greent-ntn">Donate Now</button>
+				</div>
 			</form><!-- /.btc-calc-form -->
 		</div><!-- /.thm-container -->
 	</section><!-- /.btc-calculator -->
+
+
+
+	<section class="sec-pad sec-pie">
+    <div class="thm-container">
+		<div class="sec-title text-center">
+				<span>Coin Distribution</span>
+				<h3>Tokenomics</h3>
+			</div><!-- /.sec-title text-center -->
+        <div class="row align-item-center mt-5">
+             <div class="col-md-6">
+               <div>
+                 <img src="https://samkoin.com/public/images/other/tocan-allocation-img-new.png" class="img-responsive">
+               </div>
+             </div>
+            <div class="col-md-6">
+               <div class="right-side-table">
+                   <table class="table">
+                      <thead>
+                        <tr>
+                          <th width="60%">Description</th>
+                          <th width="40%">In Million</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Total Supply</td>
+                          <td>1,000,000,000 tokens</td>
+                        </tr>
+                        <tr>
+                          <td>Private Sale</td>
+                          <td>20,000,000 tokens</td>
+                        </tr>
+                        <tr>
+                          <td>ICO</td>
+                          <td>30,000,000 tokens</td>
+                        </tr>
+                        <tr>
+                          <td>IEO or Venture raise</td>
+                          <td>50,000,000 tokens</td>
+                        </tr>
+                        <tr>
+                          <td>Public Exchange Listing</td>
+                          <td>300,000,000 tokens</td>
+                        </tr>
+                        <tr>
+                          <td>Partners</td>
+                          <td>100,000,000 tokens</td>
+                        </tr>
+                        <tr>
+                          <td>Staking, DeFi & Investment Protocol(All swaps and mining rewards)</td>
+                          <td>200,000,000 tokens</td>
+                        </tr>
+                        <tr>
+                          <td>Management Team</td>
+                          <td>100,000,000 tokens</td>
+                        </tr>
+                        <tr>
+                          <td>R&D</td>
+                          <td>50,000,000 tokens</td>
+                        </tr>
+                        <tr>
+                          <td>Reserve</td>
+                          <td>150,000,000 tokens</td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+               </div> 
+            </div>
+        </div>
+    </div>
+</section>
 	
 	
 	
@@ -410,14 +535,25 @@
 				<span>check our process</span>
 				<h3>How Karbun Works</h3>
 			</div><!-- /.sec-title text-center -->
-			<p>In this project, different stakeholders involved are “Generators” of carbon credit (i.e., wind farms, tree-planting operations, CO2 sequestration projects, etc.) and “Consumers” of carbon credit (i.e., carbon emitters or polluters of any kind such as the energy industry) as well as other stakeholders such as regulators, concerned citizens, and validators. “Validators” are an essential part of this ecosystem. They are accredited, globally distributed, technically competent consultants who are incentivized to parameterize appropriately and onboard projects to an open architecture marketplace that matches interested parties generating and retiring carbon credits.
-			</p> 
-			<div class="img-box">
-				<img src="user_assets/img/how-it-works.jpg">			
+			<div class="row text-justify">
+				<div class="col-md-4">
+					<p style="margin-top: 60px;">In this project, different stakeholders involved are “Generators” of carbon credits (i.e., wind farms, tree-planting operations, CO2 sequestration projects, etc.) and “Consumers” of carbon credit (i.e., carbon emitters or polluters of any kind such as the energy industry) as well as other stakeholders such as regulators, concerned citizens, and validators. “Validators” are an essential part of this ecosystem. They are accredited, globally distributed, technically competent consultants who are incentivized to parameterize appropriately and onboard projects to an open architecture marketplace that matches interested parties generating and retiring carbon credits.
+			        </p> 
+			       
+				</div>
+				<div class="col-md-8">
+					<div class="img-box">
+						<img src="user_assets/img/how-it-works.jpg" class="img-responsive">			
+					</div>
+				</div>
+				<div class="col-md-12">
+					 <p>We will onboard Karbun to the platform as a stable coin at USD18, equivalent to 1 Tonne of Carbon credits currently in USA. Karbun will be distributed to carbon credit generators after formal validation of their projects. Buyers and sellers of Karbun will use a decentralized exchange platform (DeX) created within the Karbun Ecosystem. This DeX will be utilized to swap Karbun against ETH/BTC/BNB/ZKT. The liquidity providers in the Exchange platform will earn 0.25% of the transaction fees and 0.05% of the fees will go to the platform wallet.
+                     The emitters will buy NFT based certificates (approved by Generator and Government Regulator) against Karbun Coin, KBN. The generator will receive KBN. The platform deducts a transaction charge for enabling the transaction. The generator can swap KBN anytime on the DeX as per above.</p>
+				</div>
 			</div>
-			<p>We will onboard Karbun to the platform as a stable coin at 18$ which is 1 Tonne of Carbon credits currently in the US. Karbun will be  distributed to carbon credit generators after proper validation of their projects. Buyers and sellers of Karbun will use a decentralized exchange platform (DeX) that will be created within the Karbun Ecosystem.  This Dex will be utilized to swap Karbun against Eth/Btc/BnB/ZKT. The liquidity providers in the Exchange platform will be earning 0.25% of the transaction fees and 0.05% of the fees will go to the platform wallet.<br>
-
-				The emitters will buy NFT based certificates (approved by Generator and Government validator) against Karbun Coin. The generator will receive this Karbun coin and the platform will deduct a transaction charge for enabling the transaction. The generator can swap the Karbun Coin anytime at the Decentralized Exchange discussed above.</p>
+			
+			
+			
 				
 		</div>
 	</section><!-- /.how-it-works -->
@@ -432,6 +568,47 @@
 			<div class="row">
 				<div class="col-md-12">
 					<img src="user_assets/img/roadmap.jpg">
+				</div><!-- /.col-md-4 -->
+			</div><!-- /.row -->
+		</div><!-- /.thm-container -->
+	</section><!-- /.how-it-works -->
+
+
+
+	<section class="benefit-sec sec-pad">
+		<div class="thm-container">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="benefit-points">
+						<div class="inner">
+                            <h3><span class="num">01</span> Purchase KBN Coins</h3>
+                            <p>Coming Soon...!</p>
+                        </div>
+					</div>
+				</div><!-- /.col-md-4 -->
+				<div class="col-md-3">
+					<div class="benefit-points">
+						<div class="inner">
+                            <h3><span class="num">02</span> DeFi. Receive your Certificates from Carbon offsets. Use our Liquidity pool and earn staking rewards</h3>
+                            <p>Coming Soon...!</p>
+                        </div>
+					</div>
+				</div><!-- /.col-md-4 -->
+				<div class="col-md-3">
+					<div class="benefit-points">
+						<div class="inner">
+                            <h3><span class="num">03</span> Impact Investing. Invest and earn</h3>
+                            <p>Coming Soon...!</p>
+                        </div>
+					</div>
+				</div><!-- /.col-md-4 -->
+				<div class="col-md-3">
+					<div class="benefit-points">
+						<div class="inner">
+                            <h3><span class="num">04</span> Carbon Trading platforms to trade carbon credits and surplus credits</h3>
+                            <p>Coming Soon...!</p>
+                        </div>
+					</div>
 				</div><!-- /.col-md-4 -->
 			</div><!-- /.row -->
 		</div><!-- /.thm-container -->
@@ -452,14 +629,14 @@
 						<div class="item">
 							<div class="single-team-style-one hvr-float-shadow">
 								<div class="img-box">
-									<img src="user_assets/img/John.jpg" alt="Awesome Image"/>
+									<img src="user_assets/img/John.jpeg" alt="Awesome Image"/>
 								</div><!-- /.img-box -->
 								<div class="text-box text-center">
 									<h3>Mr. John Sajadi</h3>
 									<span>Founder</span>
-									<p>Mr. John Sajadi is a highly distinguished IT specialist with more than 20 years
+									<!-- <p>Mr. John Sajadi is a highly distinguished IT specialist with more than 20 years
 									of extensive expertise up his sleeve ranging from Software Development life
-									cycle..</p>
+									cycle..</p> -->
 									<div class="social">
 										<a href="#" class="fa fa-twitter"></a><!--
 										--><a href="#" class="fa fa-facebook"></a><!--
@@ -477,7 +654,7 @@
 								<div class="text-box text-center">
 									<h3>Mr. Steve Dew </h3>
 									<span>Karbun Commercial Operations</span>
-									<p>Mr. Dew is firmly of the belief that our future generations will look back at this moment in time and be grateful for the actions we take today...</p>
+									<!-- <p>Mr. Dew is firmly of the belief that our future generations will look back at this moment in time and be grateful for the actions we take today...</p> -->
 									<div class="social">
 										<a href="#" class="fa fa-twitter"></a><!--
 										--><a href="#" class="fa fa-facebook"></a><!--
@@ -495,9 +672,9 @@
 								<div class="text-box text-center">
 									<h3>Mr. David Charles Evans </h3>
 									<span>Director-Marketing</span>
-									<p>David Evans is responsible for managing New Forests Timber
+									<!-- <p>David Evans is responsible for managing New Forests Timber
 									Products, which was established to bring marketing services to
-									New Forests...</p>
+									New Forests...</p> -->
 									<div class="social">
 										<a href="#" class="fa fa-twitter"></a><!--
 										--><a href="#" class="fa fa-facebook"></a><!--
@@ -515,7 +692,7 @@
 								<div class="text-box text-center">
 									<h3>Mr. Alok Agrawal</h3>
 									<span>CTO</span>
-									<p>Alok Agrawal has over 15 years of Experience in Software Technology. He has won numerous accolades and honors in his career for his service in the industry...</p>
+									<!-- <p>Alok Agrawal has over 15 years of Experience in Software Technology. He has won numerous accolades and honors in his career for his service in the industry...</p> -->
 									<div class="social">
 										<a href="#" class="fa fa-twitter"></a><!--
 										--><a href="#" class="fa fa-facebook"></a><!--
@@ -534,9 +711,9 @@
 								<div class="text-box text-center">
 									<h3>Mr. Nikesh Lalchandani</h3>
 									<span>IT & Finance Head</span>
-									<p>Nikesh Lalchandani has rich experience of over 11 years in the
+									<!-- <p>Nikesh Lalchandani has rich experience of over 11 years in the
 									Commonwealth Bank of Australia as Head of Payments Architec -
-									ture..</p>
+									ture..</p> -->
 									<div class="social">
 										<a href="#" class="fa fa-twitter"></a><!--
 										--><a href="#" class="fa fa-facebook"></a><!--
@@ -551,13 +728,13 @@
 						<div class="item">
 							<div class="single-team-style-one hvr-float-shadow">
 								<div class="img-box">
-									<img src="user_assets/img/wouter.png" alt="Awesome Image"/>
+									<img src="user_assets/img/wouter.jpeg" alt="Awesome Image"/>
 								</div><!-- /.img-box -->
 								<div class="text-box text-center">
 									<h3>Mr. Wouter Raasveldt</h3>
-									<span>-</span>
-									<p>Mr. Wouter Raasveldt is a firm believer that we are in essence benevolent people who are environmentally
-										conscience and are truly concerned about taking care of the Earth.</p>
+									<span>Venture Capital Specialist</span>
+									<!-- <p>Mr. Wouter Raasveldt is a firm believer that we are in essence benevolent people who are environmentally
+										conscience and are truly concerned about taking care of the Earth.</p> -->
 									<div class="social">
 										<a href="#" class="fa fa-twitter"></a><!--
 										--><a href="#" class="fa fa-facebook"></a><!--
@@ -580,9 +757,10 @@
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<div class="single-footer-top add-box">
 						<div>
-							<p><i class="bitmex-icon-envelope"></i><span>Email: </span>info@karbuncoins.com</p>
+							<p><i class="bitmex-icon-envelope"></i><span>Email: </span>sales@karbun.io<br>
+								support@karbun.io</p>
 							<br>
-							<p><i class="bitmex-icon-phone-call"></i><span>Call: </span>0000 0000 000</p>
+							<p><i class="bitmex-icon-phone-call"></i><span>Call: </span>+61415898818</p>
 							<br>
 							<p><i class="bitmex-icon-placeholder"></i><span>Web: </span>www.karbuncoins.com</p>
 						</div>
@@ -689,7 +867,7 @@
 			dots: false,
 			infinite: true,
 			speed: 500,
-			slidesToShow: 3,
+			slidesToShow: 5,
 			slidesToScroll: 1,
 			autoplay: true,
 			autoplaySpeed: 3000,

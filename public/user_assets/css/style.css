@@ -64,7 +64,8 @@
 * 2. miscelnious styles 
 ***************************/
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+font-family: 'Source Sans Pro', sans-serif;
   color: #717171;
   font-size: 16px;
   line-height: 30px;
@@ -311,7 +312,7 @@ body.active-preloader-ovh {
 .header-navigation .thm-container {
   max-width: 100%;
   background: #fff;
-  padding: 10px 50px;
+  padding: 0px 50px;
   position: relative;
 }
 .header-navigation .thm-container .navbar-header {
@@ -398,23 +399,23 @@ body.active-preloader-ovh {
   display: none;
 }
 .header-navigation ul.navigation-box > li > ul.sub-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 100000;
-  float: left;
-  min-width: 270px;
-  padding: 0px 0px;
-  text-align: left;
-  list-style: none;
-  background-color: #fff;
-  background-clip: padding-box;
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transition: opacity .4s ease, visibility .4s ease;
-  transition: opacity .4s ease, visibility .4s ease;
-  -webkit-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-          box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 100000;
+    float: left;
+    min-width: 160px;
+    padding: 0px 0px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity .4s ease, visibility .4s ease;
+    transition: opacity .4s ease, visibility .4s ease;
+    -webkit-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 }
 .header-navigation ul.navigation-box > li > ul.sub-menu.right-align {
   left: auto;
@@ -429,16 +430,16 @@ body.active-preloader-ovh {
   position: relative;
 }
 .header-navigation ul.navigation-box > li > ul.sub-menu > li > a {
-  font-size: 16px;
-  color: #717171;
-  font-weight: 500;
-  padding: 11.5px 0;
-  display: block;
-  line-height: 26px;
-  padding-left: 40px;
-  white-space: nowrap;
-  -webkit-transition: all .4s ease;
-  transition: all .4s ease;
+    font-size: 16px;
+    color: #717171;
+    font-weight: 500;
+    padding: 8px 0;
+    display: block;
+    line-height: 20px;
+    padding-left: 15px;
+    white-space: nowrap;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
 }
 .header-navigation ul.navigation-box > li > .sub-menu li:hover > a {
   background: #F1F1F1;
@@ -505,6 +506,9 @@ body.active-preloader-ovh {
 .header-navigation.stricky-fixed ul.navigation-box > li {
   padding-top: 30px;
   padding-bottom: 30px;
+}
+.header-navigation ul.navigation-box > li.for-dropbox > a {
+    padding: 3px 20px 3px 10px !important;
 }
 
 .header.header-home-two {
@@ -2025,7 +2029,7 @@ height: 82vh;
   margin-bottom: 20px;
 }
 
-.how-it-works .row [class*=col-md-] {
+/*.how-it-works .row [class*=col-md-] {
   position: relative;
 }
 .how-it-works .row [class*=col-md-] + [class*=col-md-]:before {
@@ -2037,7 +2041,7 @@ height: 82vh;
   top: 70px;
   left: -95px;
   background: transparent url(../img/arrow-1-1.png) center center no-repeat;
-}
+}*/
 
 /************************** 
 * 13. charts styles 
@@ -2066,8 +2070,9 @@ height: 82vh;
   padding-bottom: 60px;
 }
 .team-style-one .single-team-style-one {
-  margin-bottom: 60px;
-  display: block;
+    margin-bottom: 60px;
+    display: block;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 .team-style-one .single-team-style-one .img-box {
   position: relative;
@@ -2097,30 +2102,36 @@ height: 82vh;
     width: 100%;
     -webkit-transition: all .4s ease;
     transition: all .4s ease;
-    max-height: 350px;
+    max-height: 215px;
     object-fit: contain;
      border: 1px solid #0f3923; 
     background-color: #0f3923;
 }
 .team-style-one .single-team-style-one .text-box {
-  padding-top: 30px;
-  border: 2px solid #F1F1F1;
+  padding:15px;
+  padding-top: 10px;
+  border: 1px solid #F1F1F1;
   border-top: 0;
-  padding-bottom: 30px;
+  padding-bottom:10px;
+  min-height: 157px;
+
 }
 .team-style-one .single-team-style-one .text-box h3,
 .team-style-one .single-team-style-one .text-box p {
   margin: 0;
 }
 .team-style-one .single-team-style-one .text-box h3 {
-  color: #171717;
-  font-size: 20px;
+    color: #0f3923;
+    font-size: 18px;
+    min-height: 40px;
+    font-weight: 600;
 }
 .team-style-one .single-team-style-one .text-box span {
-  color: #383838;
-  font-size: 14px;
-  line-height: 1em;
-  display: inline-block;
+    min-height: 50px;
+    color: #383838;
+    font-size: 14px;
+    line-height: 20px;
+    display: inline-block;
 }
 .team-style-one .single-team-style-one .text-box p {
   line-height: 28px;
@@ -4134,7 +4145,7 @@ padding: 10px;
     width: 40px;
     position: absolute;
     left: -25px;
-    top: 44%;
+    top: 30%;
     background-color: transparent;
     border: none !important;
     outline: none !important;
@@ -4158,7 +4169,7 @@ padding: 10px;
     width: 40px;
     position: absolute;
     right: -25px;
-    top: 44%;
+    top: 30%;
     background-color: transparent;
      border: none !important;
     outline: none !important;
@@ -4258,25 +4269,26 @@ padding: 10px;
     color: #222222;
     font-weight:800;
 }
-.for-flex-row{
+/*.for-flex-row{
   display: flex;
   align-items: stretch;
   flex-wrap: wrap;
-}
+}*/
 .feature-style-one .for-flex-row h4 {
     line-height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 97.5%;
+    /* height: 97.5%; */
     padding: 0;
     color: #fff;
     margin: 0;
-    color: #FCBF10;
+    color: #0f3923;
     font-size: 28px;
     font-weight: 700;
     text-shadow: 1px 1px rgba(255,255,255,0.5);
     animation: zoom-in-zoom-out 2s ease infinite;
+    margin-bottom: 30px;
 }
 @keyframes zoom-in-zoom-out {
   0% {
@@ -4290,15 +4302,16 @@ padding: 10px;
   }
 }
 .feature-style-one .for-flex-row iframe{
-     
+     border-radius: 10px;
     line-height: 0;
+    border: 5px solid #FCBF10;
 }
 .video-sec-second.feature-style-one {
    /* background-image: url(../img/banner-carbon.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;*/
-    background-color: #0F3923;
+    background-color:transparent;
     padding: 60px 0 !important;
     position: relative;
     border-top: 10px solid #fff;
@@ -4353,4 +4366,122 @@ padding: 10px;
 .about-style-one {
     text-align: center;
         padding: 40px 0;}
+}
+
+.inner-box-chalanges {
+    background-color: #e8fbf1;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+    border-radius: 10px;
+    border: 2px solid rgb(15, 57, 35);
+    position: relative;
+    min-height: 180px;
+    padding: 80px 20px 0;
+    margin: 60px 0 10px;
+}
+.inner-box-chalanges .title {
+    font-size: 22px;
+    font-weight: 600;
+}
+.inner-box-chalanges img {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: -45px;
+    background-color: #fcbf10;
+}
+.partner-list{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.partner-list li{
+  list-style: none;
+}
+.partner-list li .single-fun-fact-style-one img {
+    margin-top: 30px;
+    background-color: rgba(255,255,255,0.8);
+    height: 90px;
+    width: 200px;
+    object-fit: contain;
+    padding: 20px 10px;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+    border: 2px solid #fcbf10;
+}
+.blog-style-one {
+    padding-bottom: 60px;
+    padding-top: 0;
+}
+.greent-ntn{
+  margin: 50px 0 0;
+  background-color: #000 !important;
+  color: #fff !important;
+}
+.right-side-table {
+    border-radius: 15px;
+    border: 3px solid #FCBF10;
+}
+.right-side-table .table {
+    margin-bottom: 0;
+}
+.right-side-table .table th {
+    border-top: none;
+    border-bottom: 1px solid #FCBF10;
+    font-size: 16px;
+    padding: 5px 10px;
+}
+.right-side-table .table td {
+    border-bottom: 1px solid #FCBF10;
+    font-size: 16px;
+    padding: 5px 10px;
+}
+.sec-pie .mt-5{
+  margin-top: 60px;
+}
+.sec-pie{
+  padding-bottom: 0;
+  padding-top: 80px;
+}
+.benefit-points {
+    padding: 15px  15px;
+    width: 100%;
+}
+.benefit-points .inner {
+    transition: all 0.2s ease 0s;
+    background-color: rgb(15, 57, 35);
+    padding: 15px !important;
+    min-height: 270px;
+    border-radius: 10px;
+}
+
+.benefit-points .inner h3 {
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 600;
+    margin: 0 0 10px;
+    position: relative;
+    color: #fff;
+    min-height: 200px;
+}
+.benefit-points .inner h3 span {
+    position: relative;
+    display: block;
+    top: 0;
+    left: 0;
+    margin-bottom: 10px;
+
+}
+.benefit-points .inner h3  span {
+    font-size: 52px;
+    font-weight: bold;
+    color: rgb(252, 191, 16);
+    padding-bottom: 20px;
+    padding-top: 5px;
+}
+.benefit-points .inner p{
+  color: #fff;
+}
+.benefit-sec{
+  padding: 60px 0 0;
 }
