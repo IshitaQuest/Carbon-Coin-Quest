@@ -4485,3 +4485,44 @@ padding: 10px;
 .benefit-sec{
   padding: 60px 0 0;
 }
+
+@media (max-width: 768px){
+
+.single-fun-fact-style-one {
+    margin-bottom: 0px;
+}
+.header-navigation .thm-container .navbar-header .navbar-brand > img {
+    width: auto !important;
+}
+.header-navigation .thm-container .navbar-brand {
+    padding: 10px 0;
+}
+.feature-style-one .for-flex-row h4 {
+    line-height: 28px;
+    font-size: 20px;
+}
+.sec-pad.sec-market {
+    padding: 30px 0px 30px;
+}
+.video-sec-second.feature-style-one {
+    padding: 60px 0px 0 !important;
+}
+.sec-pad {
+    padding: 30px 0px;
+}
+.sec-title {
+    margin-bottom: 15px;
+}
+.single-fun-fact-style-one {
+    margin-bottom: 10px;
+}
+.partner-list li .single-fun-fact-style-one img {
+    margin-top: 10px;
+}
+.single-footer-widget {
+    margin-bottom: 0;
+}
+footer.site-footer {
+    padding: 40px 0px 0;
+}
+}
