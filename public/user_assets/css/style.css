@@ -4335,9 +4335,11 @@ padding: 10px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(255,255,255,1);
     background-blend-mode: multiply;
+    position: relative;
 }
+
 .sec-pad.sec-market {
     padding: 60px 0 120px;
 }
@@ -4489,6 +4491,29 @@ padding: 10px;
 }
 .benefit-sec{
   padding: 60px 0 0;
+}
+
+.how-it-works.sec-pad{
+padding-top: 60px;
+}
+.team-style-one {
+    padding-bottom: 0px;
+    padding-top: 60px;
+}
+.fun-fact-style-one.sec-pad{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.sec-pie {
+    padding-bottom: 60px;
+    padding-top: 80px;
+}
+.blog-style-one {
+    padding-bottom: 0px;
+    padding-top: 60px;
+}
+.benefit-sec {
+    padding: 0px 0 60px;
 }
 
 @media (max-width: 768px){
@@ -4725,5 +4750,16 @@ footer.site-footer {
 }
 .sec-pie .mt-5 {
     margin-top: 0px !important;
+}
+.how-it-works.sec-pad.page-section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.sec-pad.blog-style-one.page-section {
+    padding: 20px 0 !important;
+}
+.benefit-sec {
+    padding-bottom: 20px !important;
+    padding-top: 0;
 }
 }
