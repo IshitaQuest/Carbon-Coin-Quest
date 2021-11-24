@@ -1946,25 +1946,25 @@ height: 82vh;
   outline: none;
   width: 100%;
   height: 53px;
-  background: #199f59;
+  background: #e8fbf1;
   font-size: 14px;
   padding-left: 30px;
 }
 .btc-calculator .thm-container .btc-calc-form input::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: #fff;
+  color: #000;
 }
 .btc-calculator .thm-container .btc-calc-form input::-moz-placeholder {
   /* Firefox 19+ */
-  color: #fff;
+  color: #000;
 }
 .btc-calculator .thm-container .btc-calc-form input:-ms-input-placeholder {
   /* IE 10+ */
-  color: #fff;
+  color: #000;
 }
 .btc-calculator .thm-container .btc-calc-form input:-moz-placeholder {
   /* Firefox 18- */
-  color: #fff;
+  color: #000;
 }
 .btc-calculator .thm-container .btc-calc-form .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
   width: 100%;
@@ -1972,8 +1972,8 @@ height: 82vh;
 .btc-calculator .thm-container .btc-calc-form .bootstrap-select > .dropdown-toggle {
   padding: 16.5px 0;
   padding-left: 30px;
-  color: #fff;
-  background: #199f59;
+  color: #000;
+  background: #e8fbf1;
   border-radius: 0;
   border: none;
   outline: none;
