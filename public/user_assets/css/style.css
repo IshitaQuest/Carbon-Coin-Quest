@@ -4468,10 +4468,11 @@ background: linear-gradient(135deg, #388855 0%,#7bb38c 37%,#b9d9c1 52%,#b9d9c1 5
 }
 .benefit-points .inner {
     transition: all 0.2s ease 0s;
-    background-color: #388855;
+    background-color: #e8fbf1;
     padding: 15px !important;
     min-height: 270px;
     border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .benefit-points .inner h3 {
@@ -4480,7 +4481,7 @@ background: linear-gradient(135deg, #388855 0%,#7bb38c 37%,#b9d9c1 52%,#b9d9c1 5
     font-weight: 600;
     margin: 0 0 10px;
     position: relative;
-    color: #fff;
+    color: #000;
     min-height: 200px;
 }
 .benefit-points .inner h3 span {
@@ -4499,7 +4500,7 @@ background: linear-gradient(135deg, #388855 0%,#7bb38c 37%,#b9d9c1 52%,#b9d9c1 5
     padding-top: 5px;
 }
 .benefit-points .inner p{
-  color: #fff;
+  color: #000;
 }
 .benefit-sec{
   padding: 60px 0 0;
