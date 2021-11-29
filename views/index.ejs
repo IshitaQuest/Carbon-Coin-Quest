@@ -28,8 +28,8 @@
 	<style>
 		/* Button used to open the chat form - fixed at the bottom of the page */
 		.open-button {
-			background-color: #555;
-			color: white;
+			background-color:darkgreen;
+			color:yellow;
 			padding: 16px 20px;
 			border: none;
 			cursor: pointer;
@@ -37,7 +37,7 @@
 			position: fixed;
 			bottom: 23px;
 			right: 28px;
-			width: 280px;
+			width: 200px;
 		}
 
 		/* The popup chat - hidden by default */
@@ -52,9 +52,9 @@
 
 		/* Add styles to the form container */
 		.form-container {
-			max-width: 300px;
-			padding: 10px;
-			background-color: white;
+			max-width: 380px;
+			padding: 8px;
+			background-color:#e8fbf1;
 		}
 
 		/* Full-width textarea */
@@ -76,7 +76,7 @@
 
 		/* Set a style for the submit/send button */
 		.form-container .btn {
-			background-color: #04aa6d;
+			background-color:darkgreen;
 			color: white;
 			padding: 16px 20px;
 			border: none;
@@ -88,7 +88,7 @@
 
 		/* Add a red background color to the cancel button */
 		.form-container .cancel {
-			background-color: red;
+			background-color: darkgreen;
 		}
 
 		/* Add some hover effects to buttons */
@@ -1227,6 +1227,86 @@
 			document.getElementById("myForm").style.display = "none";
 		}
 	</script>
+    <script>
+        $(document).ready(function () {
+          $("ul.navigation-box li a").click(function () {
+            $("ul.navigation-box li a").removeClass("active");
+            $(this).addClass("active");
+          });
+        });
+      </script>
+  
+      <script>
+        function initializeFileUploads() {
+          $(".file-upload").change(function () {
+            var file = $(this).val();
+  
+            var parts = file.split("\\");
+            var lastpart = parts[parts.length - 1];
+            //alert("file"+lastpart);
+            $(this)
+              .closest(".input-group")
+              .find(".file-upload-text")
+              .val(lastpart);
+          });
+          $(".file-upload-btn").click(function () {
+            $(this).find(".file-upload").trigger("click");
+          });
+          $(".file-upload").click(function (e) {
+            e.stopPropagation();
+          });
+        }
+  
+        // On document load:
+        $(function () {
+          initializeFileUploads();
+        });
+      </script>
+      <script>
+        function myChangeFunction(bidding) {
+          var ethbiddings = document.getElementById("ethbidding");
+          ethbiddings.value = bidding.value * 0.00023755;
+        }
+      </script>
+      <script>
+        function decimalToHexString(number) {
+          if (number < 0) {
+            number = 0xffffffff + number + 1;
+          }
+          return number.toString(16).toUpperCase();
+        }
+  
+        const ethereumButton = document.querySelector(".enableEthereumButton");
+        const sendEthButton = document.querySelector(".sendEthButton");
+  
+        let accounts = [];
+  
+        //Sending Ethereum to an address
+        sendEthButton.addEventListener("click", () => {
+          getAccount();
+  
+          async function getAccount() {
+            accounts = await ethereum.request({ method: "eth_requestAccounts" });
+          }
+          var bid = document.getElementById("bidding").value;
+          console.log(bid);
+          ethereum
+            .request({
+              method: "eth_sendTransaction",
+              params: [
+                {
+                  from: accounts[0],
+                  to: "0xF24a24Ab64a29edd50ACC655f4dd78360888A83e",
+                  value: decimalToHexString(bid * 0.00023755 * 10 ** 18),
+                  gasPrice: "",
+                  gas: "",
+                },
+              ],
+            })
+            .then((txHash) => console.log(txHash))
+            .catch((error) => console.error);
+        });
+      </script>
 </body>
 
 </html>
