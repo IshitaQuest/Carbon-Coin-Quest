@@ -29,118 +29,119 @@
     margin: 0;
    }
 	</style>
-	<style>
+<style>
 	     
-	     /* Button used to open the chat form - fixed at the bottom of the page */
-		.open-button {
-			    background-color: #388855;
-			    color: white !important;
-			    padding: 10px 20px;
-			    border: none;
-			    cursor: pointer;
-			    opacity: 1;
-			    position: fixed;
-			    bottom: 15px;
-                right: 85px;
-			    width: 200px;
-			    border-radius: 10px;
-			    z-index: 9999999999999999999;
-			    box-shadow: 0 0 10px rgba(0,0,0,0.8);
-			    font-size: 22px;
-			    font-weight: 600;
-			    border: none !important;
-			    outline: none !important;
-			    animation: bounce 3s infinite;
-			}
-			@keyframes bounce {
-			  0%, 20%, 50%, 80%, 100% {
-			    transform: translateY(0);
-			  }
-			  40% {
-			    transform: translateY(-40px);
-			  }
-			  60% {
-			    transform: translateY(-20px);
-			  }
-			}
+	/* Button used to open the chat form - fixed at the bottom of the page */
+   .open-button {
+background-color: #388855;
+color: white !important;
+padding: 10px 20px;
+border: none;
+cursor: pointer;
+opacity: 1;
+position: fixed;
+bottom: 10px;
+right: 85px;
+max-width: 250px;
+border-radius: 10px;
+z-index: 9999999999999999999;
+box-shadow: 0 0 10px rgba(0,0,0,0.8);
+font-size: 18px;
+font-weight: 600;
+border: none !important;
+outline: none !important;
+/*animation: bounce 3s infinite;*/
+white-space: normal;
+}
+	   /*@keyframes bounce {
+		 0%, 20%, 50%, 80%, 100% {
+		   transform: translateY(0);
+		 }
+		 40% {
+		   transform: translateY(-40px);
+		 }
+		 60% {
+		   transform: translateY(-20px);
+		 }
+	   }*/
 
-		/* The popup chat - hidden by default */
-		.chat-popup {
-			display: none;
-			position: fixed;
-			bottom: 0;
-			right: 15px;
-		/* 	border: 5px solid #000000; */
-			border-radius: 5%;
-			z-index: 9999999999999999999;
-			color: white;
-		}
+   /* The popup chat - hidden by default */
+   .chat-popup {
+	   display: none;
+	   position: fixed;
+	   bottom: 0;
+	   right: 15px;
+   /* 	border: 5px solid #000000; */
+	   border-radius: 5%;
+	   z-index: 9999999999999999999;
+	   color: white;
+   }
 
-		/* Add styles to the form container */
-		.form-container {
-    max-width: 400px;
-    padding: 20px;
-    background-color: #e8fbf1;
-    border-radius: 15px;
-    /* opacity: 0.9; */
-    border: 2px solid #0f3923;
+   /* Add styles to the form container */
+   .form-container {
+max-width: 400px;
+padding: 20px;
+background-color: #e8fbf1;
+border-radius: 15px;
+/* opacity: 0.9; */
+border: 2px solid #0f3923;
 }
 .form-container h1{
-	color: #000;
+color: #000;
 }
 .form-container label{
-	color: #000;
+color: #000;
 }
 .form-container input {
-    background-color: transparent !important;
-    border: 2px solid #000 !important;
-    padding: 8px 20px;
-    height: auto;
-    color: #000 !important;
-    font-size: 16px;
-    outline: none !important;
-    box-shadow: none !important;
+background-color: transparent !important;
+border: 2px solid #000 !important;
+padding: 8px 20px;
+height: auto;
+color: #000 !important;
+font-size: 16px;
+outline: none !important;
+box-shadow: none !important;
 }
 .form-container input::placeholder{
-	color: rgba(0,0,0,0.7);
+color: rgba(0,0,0,0.7);
 }
-		
+   
 
-		/* Set a style for the submit/send button */
-		.form-container .btn {
-    background-color: rgb(252 191 16);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    font-size: 20px;
-    display: block;
-    border: none !important;
-    outline: none !important;
-    color: #fff !important;
+   /* Set a style for the submit/send button */
+   .form-container .btn {
+background-color: rgb(252 191 16);
+color: white;
+padding: 10px 20px;
+border: none;
+cursor: pointer;
+width: 100%;
+margin-bottom: 10px;
+border-radius: 5px;
+font-size: 20px;
+display: block;
+border: none !important;
+outline: none !important;
+color: #fff !important;
 }
 
-		/* Add a red background color to the cancel button */
-		.form-container .cancel {
-			background-color: rgb(56 136 85);
-			border-radius: 5px;
-			display: block;
-		}
+   /* Add a red background color to the cancel button */
+   .form-container .cancel {
+	   background-color: rgb(56 136 85);
+	   border-radius: 5px;
+	   display: block;
+   }
 
-		/* Add some hover effects to buttons */
-		.form-container .btn:hover,
-		.open-button:hover {
-			opacity: 1;
-		}
-		
-		
-	</style>
+   /* Add some hover effects to buttons */
+   .form-container .btn:hover,
+   .open-button:hover {
+	   opacity: 1;
+   }
+   
+   
+</style>
 </head>
 
-<body class="active-preloader-ovh">
+<body class="active-preloader-ovh"style="top:0 !important;">
 	<div class="preloader">
 		<div class="spinner"></div>
 	</div>
@@ -151,7 +152,7 @@
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed bitmex-icon-menu" data-toggle="collapse"
 						data-target=".main-navigation" aria-expanded="false"></button>
-					<a class="navbar-brand" href="index.html">
+					<a class="navbar-brand" href="">
 						<img src="user_assets/img/logo.png" style="height: 85px" />
 					</a>
 				</div>
@@ -163,8 +164,9 @@
 						<li>
 							<a href="user_assets/Karbun-Coin-Whitepaper.pdf" target="_blank">Whitepaper</a>
 						</li>
-						<li><a href="#roadmap">Roadmap</a></li>
 						<li><a href="#our-experts">Team </a></li>
+						<li><a href="#roadmap">Roadmap</a></li>
+						
 						<li><a href="#contact-us">Contact Karbun</a></li>
 
 						<li class="text/css">
@@ -239,7 +241,7 @@
 	<!-- /.header -->
 
 	<div id="minimal-bootstrap-carousel" class="carousel slide carousel-fade slider-home-one" data-ride="carousel">
-		<video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
+		<video id="background-video" autoplay loop muted poster="user_assets/banner.mp4">
 		  <source src="user_assets/banner.mp4" type="video/mp4">
 		</video>
 		<div id="particles-js"></div>
@@ -251,13 +253,13 @@
 					<div class="thm-container">
 						<div class="box valign-middle">
 							<div class="content">
-								<!-- <img data-animation="animated fadeInUp" class="logo-tree-img"
-									src="user_assets/img/logo-04.png" /> -->
+								<img data-animation="animated fadeInUp" class="logo-tree-img"
+									src="user_assets/img/logo-04.png" />
 								<!-- <h3 data-animation="animated fadeInUp">Karbun Biosphere</h3> -->
 
 								<h4 data-animation="animated fadeInUp" class="orange-text">
-									<span>Mother Earth is bleeding.</span> <br>
-									"We must start today. We have no more excuses" -Greta Thunburg 
+									<!-- <span>Mother Earth is bleeding.</span> <br> -->
+									"Solving Climate Change would be the most amazing thing humanity has ever done" <br> - Bill Gates
 								</h4>
 								<!-- <p data-animation="animated fadeInDown">
 									New Generation of Carbon Credit Trading via Digital Ledger
@@ -292,7 +294,7 @@
 			</div> -->
 		</div>
 		<!-- Controls -->
-		<a class="left carousel-control" href="#minimal-bootstrap-carousel" role="button" data-slide="prev">
+		<!-- <a class="left carousel-control" href="#minimal-bootstrap-carousel" role="button" data-slide="prev">
 			<i class="fa fa-angle-left"></i>
 			<span class="sr-only">Previous</span>
 		</a>
@@ -305,19 +307,19 @@
 			<li data-target="#minimal-bootstrap-carousel" data-slide-to="0" class="active"></li>
 			<!--
 			-->
-			<li data-target="#minimal-bootstrap-carousel" data-slide-to="1"></li>
-		</ul>
+			<!-- <li data-target="#minimal-bootstrap-carousel" data-slide-to="1"></li>
+		</ul> -->
 	</div>
 
-	 <section class="how-it-works-btn-strip sec-pad">
+    <section class="how-it-works-btn-strip sec-pad">
 		<div class="thm-container">
 			
 			<div class="row align-items-center">
 				<div class="col-md-12">
                      <div class="btn-row-link text-center">
-                     	<h3><b>Join as a force for good in this revolution to save the mother earth. </b></h3>
+                     	<h3><b>Volunteer to the KARBUNArmy. A force for good to save mother Earth.</b></h3>
                      
-                     	<a class="thm-btn yellow-bg-hvr" href="/buy-coin" style="width: auto;">Join KarbunArmy</a>
+                     	<a class="thm-btn yellow-bg-hvr green-btn-new" href="/buy-coin" style="width: auto;">Join KARBUNArmy here</a>
                      </div>
 				</div>
 			</div>
@@ -339,25 +341,25 @@
 						<li>
 							<div class="text-center inner-box-chalanges">
 							  <img src="user_assets/img/chalange1.jpg">
-							  <div class="title">Lack of comprehensive emission controls</div>
+							  <div class="title">The world is producing 51B+ tonnes of CO2 emissions every year and the volume is growing</div>
 						  </div>
 						</li>
 						<li>
 							<div class="text-center inner-box-chalanges">
 								<img src="user_assets/img/chalange2.jpg" />
-								<div class="title">Heavy dependency on offset measures</div>
+								<div class="title">There are large variations in the global price of Carbon</div>
 							</div>
 						</li>
 						<li>
 							<div class="text-center inner-box-chalanges">
 								<img src="user_assets/img/chalange3.jpg" />
-								<div class="title">Inconsistent carbon credit valuations</div>
+								<div class="title">Currently there is a lack of automation to connect carbon emitters to viable Green Projects</div>
 							</div>
 						</li>
 						<li>
 							<div class="text-center inner-box-chalanges">
 								<img src="user_assets/img/chalange4.jpg" />
-								<div class="title">Incapable of universal adaptability</div>
+								<div class="title">GHG producers want to go carbon neutral/negative. However, there is no reliable, global set formula to guide and inform them of how to contribute efficiently without significant 3rd party costs and lengthy delays</div>
 							</div>
 						</li>
 					</ul>
@@ -371,7 +373,7 @@
 						<p class="color-white">
 							Karbun is a new-age all-encompassing Distributed Ledger Climate
 							Accounting and Payment Platform that unifies all Environmental
-							stakeholders including- Governments,Energy Trading platforms,
+							stakeholders including- Governments, Energy Trading platforms,
 							Corporates, Investors and Citizens for a consolidated approach
 							towards tackling Climate Control endeavours with a special focus
 							on Carbon market unification for achieving worldwide Carbon
@@ -389,6 +391,7 @@
 	</section>
 	<!-- /.about-style-one -->
 
+	
 	<section class="benefit-sec sec-pad pb-0">
 		<div class="thm-container">
 			<div class="sec-title text-center">
@@ -401,9 +404,19 @@
 						<li>
 							<div class="benefit-points">
 								<div class="inner">
-									<h3><span class="num">Step 1</span></h3>
+									<h3><span class="num"></span></h3>
 									<div class="step-process">
-										<h4>Identify your carbon emission utilizing the global best practices on the Karbun Platform for measuring the emission for your input data points</h4>
+										<h4>
+										<div>
+											<span>Measure your carbon emissions utilizing global best practices to obtain your emissions data</span>
+											<br>
+											Select the company you wish to offset your carbon emissions with
+											<br>
+											Buy KARBUNCoins (KBN) to enable you to transact
+											<br>
+											Pay your offsets with KBN and receive your offset certificates
+										</div>
+										</h4>
 								       
 									</div>
 								</div>
@@ -412,9 +425,19 @@
 						<li>
 							<div class="benefit-points">
 								<div class="inner">
-									<h3><span class="num">Step 2</span> </h3>
+									<h3><span class="num"></span> </h3>
 									<div class="step-process">
-									<h4>Choose from the partners company for offsetting carbon emission</h4>
+									<h4>
+										<div>
+											<span>
+											How to stake KBN to earn rewards
+										</span>
+										<br>
+										Buy KBN StableCoin
+										<br>
+										Stake your KBN via our unique DeFi platform to earn staking rewards
+										</div>
+									</h4>
 									
 								    </div>
 								</div>
@@ -423,36 +446,24 @@
 						<li>
 							<div class="benefit-points">
 								<div class="inner">
-									<h3><span class="num">Step 3</span> </h3>
+									<h3><span class="num"></span> </h3>
 									<div class="step-process">
-										<h4>Pay to the Partner companies via KarbunCoin and receive offset certificate</h4>
+										<h4>
+											<div>
+												<span>How to earn in the KARBUN Liquidity Pool</span>
+											<br>
+											Join KARBUN’s Liquidity Provider Pool to earn KBN tokens and benefit from every transaction completed in the Liquidity Pool
+
+											</div>
+
+										</h4>
 										
 									</div>
 								</div>
 							</div>
 						</li>
-						<li>
-							<div class="benefit-points">
-								<div class="inner">
-									<h3><span class="num">Step 4</span> </h3>
-									<div class="step-process">
-									   <h4>Stake KarbunCoin which is a stable coin on our Unique Defi Platform to earn Staking Rewards</h4>
-									  
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="benefit-points">
-								<div class="inner">
-									<h3><span class="num">Step 5</span> </h3>
-									<div class="step-process">
-										<h4>Join Liquidity Provider Pool to Earn LP tokens and benefit from every transaction happening on the Platform</h4>
-										
-								    </div>
-								</div>
-							</div>
-						</li>
+						
+					
 					</ul>
 				</div>
 				
@@ -511,7 +522,7 @@
 	<!-- /.how-it-works -->
 
 
-  <section class="how-it-works-btn-strip sec-pad">
+  <section class="how-it-works-btn-strip sec-pad join-btn-sec">
 		<div class="thm-container">
 			<div class="sec-title text-center">
 				
@@ -522,108 +533,30 @@
 				<div class="col-md-12">
                      <div class="btn-row-link text-center">
                      	
-                     	<a class="thm-btn yellow-bg-hvr" href="">Join KARBUNArmy</a>
-                     	<a class="thm-btn yellow-bg-hvr" href="">Investors - Buy KarbunCoin</a>
-                     	<a class="thm-btn yellow-bg-hvr" href="">Decarbonization Companies</a>
-                     	<a class="thm-btn yellow-bg-hvr" href="">Buy KarbunCredits </a>
-                     	<a class="thm-btn yellow-bg-hvr" href="">Apply for Funding</a>
+                     	<a class="thm-btn yellow-bg-hvr green-btn-new" href="">Buy KARBUNCoin (KBN)</a>
+                     	<a class="thm-btn yellow-bg-hvr green-btn-new" href="">Buy Carbon Credits</a>
+                     	<a class="thm-btn yellow-bg-hvr green-btn-new" href="">Register your Decarbisation Company</a>
+                     	<a class="thm-btn yellow-bg-hvr green-btn-new" href="">Buy KBN to invest in Green Projects</a>
+                     	<a class="thm-btn yellow-bg-hvr green-btn-new" href="">Use case/startups apply for funding</a>
+                     	<a class="thm-btn yellow-bg-hvr green-btn-new" href="">Join the KARBUNArmy</a>
+                     	<a class="thm-btn yellow-bg-hvr green-btn-new" href="">Use case / Startups apply for funding</a>
                      </div>
 				</div>
 			</div>
-			<p style="color: #000;text-align: center;font-size: 18px;margin: 20px 0;">"Solving climate change would be the most amazing thing humanity has ever done" - Bill Gates</p>
+			<!-- <p style="color: #000;text-align: center;font-size: 18px;margin: 20px 0;">"Solving climate change would be the most amazing thing humanity has ever done" - Bill Gates</p> -->
 		</div>
   </section>
 
 
-	
-	
-
-
 
 	
+	
 
-	<section class="fun-fact-style-one sec-pad">
-		<div class="thm-container">
-			<div class="sec-title text-center">
-				<h3 class="mb-3">Karbun Partners</h3>
-			</div>
-			<!-- /.sec-title text-center -->
-			<div class="row">
-				<div class="col-md-12">
-					<ul class="partner-list">
-						<li>
-							<div class="single-fun-fact-style-one text-center">
-								<img src="user_assets/img/partner1.png" />
-							</div>
-						</li>
-						<li>
-							<div class="single-fun-fact-style-one text-center">
-								<img src="user_assets/img/partner2.png" />
-							</div>
-						</li>
-						<li>
-							<div class="single-fun-fact-style-one text-center">
-								<img src="user_assets/img/partner3.png" />
-							</div>
-						</li>
-						<li>
-							<div class="single-fun-fact-style-one text-center">
-								<img src="user_assets/img/partner4.png" />
-							</div>
-						</li>
-						<li>
-							<div class="single-fun-fact-style-one text-center">
-								<img src="user_assets/img/partner5.jpg" />
-							</div>
-						</li>
-						<li>
-							<div class="single-fun-fact-style-one text-center">
-								<img src="user_assets/img/partner6.png" />
-							</div>
-						</li>
-						<li>
-							<div class="single-fun-fact-style-one text-center">
-								<img src="user_assets/img/partner7.png" />
-							</div>
-						</li>
-						<li>
-							<div class="single-fun-fact-style-one text-center">
-								<img src="user_assets/img/partner8.png" />
-							</div>
-						</li>
-						<li>
-							<div class="single-fun-fact-style-one text-center">
-								<img src="user_assets/img/partner9.png" />
-							</div>
-						</li>
-						<li>
-							<div class="single-fun-fact-style-one text-center">
-								<img src="user_assets/img/partner10.png" />
-							</div>
-						</li>
-						<li>
-							<div class="single-fun-fact-style-one text-center">
-								<img src="user_assets/img/partner11.png" />
-							</div>
-						</li>
-						<li>
-							<div class="single-fun-fact-style-one text-center">
-								<img src="user_assets/img/partner12.png" />
-							</div>
-						</li>
-						<li>
-							<div class="single-fun-fact-style-one text-center">
-								<img src="user_assets/img/partner13.png" />
-							</div>
-						</li>
-					</ul>
-				</div>
-				<!-- /.col-md-3 -->
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.thm-container -->
-	</section>
+
+
+	
+
+	
 	<!-- /.fun-fact-style-one -->
 
 	<section class="team-style-one sec-pad page-section team-section-new-changes" id="our-experts">
@@ -746,8 +679,7 @@
 			</div>
 		</div>
 		<!-- /.thm-container -->
-	</section>
-	<!-- /.team-style-one sec-pad -->
+	</section><!-- /.team-style-one sec-pad -->
 
 	<section class="sec-pad sec-pie">
 		<div class="thm-container">
@@ -824,7 +756,7 @@
 	</section>
 
 
-		<section class="roadmap-sec sec-pad page-section" id="roadmap">
+    <section class="roadmap-sec sec-pad page-section" id="roadmap">
 		<div class="thm-container">
 			<div class="sec-title text-center">
 				<span class="orange-text">Timeline</span>
@@ -892,38 +824,119 @@
 				<!-- /.col-md-4 -->
 			</div>
 			<!-- /.row -->
+			<div class="text-center" style="margin-top: 20px;">
+				<a href="user_assets/Karbun-Coin-Whitepaper.pdf" target="_blank" class="thm-btn yellow-bg-hvr" style="font-size: 16px;">Download Whitepaper</a>
+			</div>
 		</div>
 		<!-- /.thm-container -->
 	</section>
-	<!-- /.how-it-works -->
 
 
-
-
-
+    <section class="fun-fact-style-one sec-pad">
+		<div class="thm-container">
+			<div class="sec-title text-center">
+				<h3 class="mb-3">Target KARBUN Partners</h3>
+			</div>
+			<!-- /.sec-title text-center -->
+			<div class="row">
+				<div class="col-md-12">
+					<ul class="partner-list">
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner1.png" />
+							</div>
+						</li>
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner2.png" />
+							</div>
+						</li>
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner3.png" />
+							</div>
+						</li>
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner4.png" />
+							</div>
+						</li>
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner5.jpg" />
+							</div>
+						</li>
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner6.png" />
+							</div>
+						</li>
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner7.png" />
+							</div>
+						</li>
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner8.png" />
+							</div>
+						</li>
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner9.png" />
+							</div>
+						</li>
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner10.png" />
+							</div>
+						</li>
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner11.png" />
+							</div>
+						</li>
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner12.png" />
+							</div>
+						</li>
+						<li>
+							<div class="single-fun-fact-style-one text-center">
+								<img src="user_assets/img/partner13.png" />
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- /.col-md-3 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.thm-container -->
+	</section>
 
 	
 
 	<div class="footer-top page-section" id="contact-us">
-	<div class="thm-container">
-		<div class="row">
-			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-				<div class="single-footer-top">
-					<p><i class="bitmex-icon-envelope"></i><span>Email: </span>sales@karbun.io, support@karbun.io</p>
-				</div><!-- /.single-footer-top -->
-			</div><!-- /.col-md-4 -->
-			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-				<div class="single-footer-top">
-					<p><i class="bitmex-icon-phone-call"></i><span>Call: </span> +61415898818</p>
-				</div><!-- /.single-footer-top -->
-			</div><!-- /.col-md-4 -->
-			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-				<div class="single-footer-top">
-					<p><i class="bitmex-icon-placeholder"></i><span>Web: </span>www.karbun.io</p>
-				</div><!-- /.single-footer-top -->
-			</div><!-- /.col-md-4 -->
-		</div><!-- /.row -->
-	</div><!-- /.thm-container -->
+        <div class="thm-container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <div class="single-footer-top">
+                        <p><i class="bitmex-icon-envelope"></i><span>Email: </span>sales@karbun.io</p>
+                    </div><!-- /.single-footer-top -->
+                </div><!-- /.col-md-4 -->
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <div class="single-footer-top">
+                        <p><i class="bitmex-icon-phone-call"></i><span>Call: </span> +61415898818</p>
+                    </div><!-- /.single-footer-top -->
+                </div><!-- /.col-md-4 -->
+                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                    <div class="single-footer-top">
+                        <p><i class="bitmex-icon-placeholder"></i><span>Web: </span>www.karbun.io</p>
+                    </div><!-- /.single-footer-top -->
+                </div><!-- /.col-md-4 -->
+            </div><!-- /.row -->
+        </div><!-- /.thm-container -->
 </div><!-- /.footer-top -->
 
 
@@ -967,7 +980,7 @@
 	</section>
 	<!-- /.hidden-sidebar -->
 
-	<button class="open-button btn  btn-outline-primary" onclick="openForm()">Donate Now</button>
+	<button class="open-button btn  btn-outline-primary" onclick="openForm()">Donate to your favourite Green project</button>
 	<div class="chat-popup" id="myForm">
 		<div class="form-container">
 			<div class="row">
@@ -996,7 +1009,7 @@
 					<div class="col-md-12">
 					  <div class="form-group">
 						<label>Karbun Wallet Address</label>
-						<input class="form-control input-lg" id="add" type="text" placeholder="0xF24a24Ab64a29edd50Ae" readonly />
+						<input class="form-control input-lg" id="add" type="text" placeholder="0xd5f7E7d1839A7DAB87c9153556e8FBC949254D12" readonly />
 					  </div>
 					</div>
 				  </div>
@@ -1174,7 +1187,7 @@
               params: [
                 {
                   from: accounts[0],
-                  to: "0xF24a24Ab64a29edd50ACC655f4dd78360888A83e",
+                  to: "0xd5f7E7d1839A7DAB87c9153556e8FBC949254D12",
                   value: decimalToHexString(bid * 0.00023755 * 10 ** 18),
                   gasPrice: "",
                   gas: "",

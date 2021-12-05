@@ -598,10 +598,11 @@ body.active-preloader-ovh {
 }
 
 #minimal-bootstrap-carousel .carousel-caption .thm-container .box .content {
-      margin: 0 auto;
+    margin: 0 auto;
     display: block;
-    max-width: 65%;
+    max-width: 50%;
     text-align: center;
+    padding-top: 20vh;
 }
 
 #minimal-bootstrap-carousel .carousel-control {
@@ -752,16 +753,13 @@ body.active-preloader-ovh {
 background-size: cover;
 background-repeat: no-repeat;
 background-position: center;*/
-background: #388855; /* Old browsers */
-background: -moz-linear-gradient(-45deg, #388855 0%, #7bb38c 37%, #b9d9c1 52%, #b9d9c1 52%, #7bb38c 65%, #388855 99%); /* FF3.6-15 */
-background: -webkit-linear-gradient(-45deg, #388855 0%,#7bb38c 37%,#b9d9c1 52%,#b9d9c1 52%,#7bb38c 65%,#388855 99%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(135deg, #388855 0%,#7bb38c 37%,#b9d9c1 52%,#b9d9c1 52%,#7bb38c 65%,#388855 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background-color: #000 !important;
 height: 85vh;
 
 }
 #background-video {
-  width: 100vw;
-  height: 100vh;
+  width: 40vw;
+  height: 40vh;
   object-fit: cover;
   position: absolute;
   left: 0;
@@ -769,6 +767,7 @@ height: 85vh;
   top: 0;
   bottom: 0;
   z-index: -1;
+  margin: 7% auto;
 }
 
 .slider-home-one #particles-js {
@@ -800,10 +799,10 @@ height: 85vh;
   animation-delay: .5s;
 }
 .slider-home-one .content h4 {
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 600;
     text-shadow: rgb(0, 0, 0) 1px 1px;
-    margin-top: 55vh;
+    margin-top: 85px;
 }
 .slider-home-one .content h4 span {
     font-size: 46px;
@@ -4448,10 +4447,7 @@ background: linear-gradient(135deg, #388855 0%,#7bb38c 37%,#b9d9c1 52%,#b9d9c1 5
 }
 
 .inner-box-chalanges {
-    background-color: rgb(232, 251, 241);
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
-    border-radius: 10px;
-    border: 2px solid rgb(15, 57, 35);
+    
     position: relative;
     padding: 15px;
     margin: 20px 0px 10px;
@@ -4478,13 +4474,13 @@ background: linear-gradient(135deg, #388855 0%,#7bb38c 37%,#b9d9c1 52%,#b9d9c1 5
 }
 .partner-list li {
     list-style: none;
-    width: 20%;
+    width: 14.2%;
 }
 .partner-list li .single-fun-fact-style-one img {
     margin-top: 30px;
     background-color: rgba(255,255,255,0.8);
-    height: 90px;
-    width: 200px;
+    height: 80px;
+    width: 160px;
     object-fit: contain;
     padding: 20px 10px;
     border-radius: 3px;
@@ -4529,14 +4525,15 @@ background: linear-gradient(135deg, #388855 0%,#7bb38c 37%,#b9d9c1 52%,#b9d9c1 5
     padding: 15px  15px;
     width: 100%;
 }
-.benefit-list{
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0;
+.benefit-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    justify-content: center;
 }
-.benefit-list li{
-  width: 20%;
-  list-style: none;
+.benefit-list li {
+    width: 33%;
+    list-style: none;
 }
 /*.benefit-points .inner {
     transition: all 0.2s ease 0s;
@@ -4563,6 +4560,7 @@ background: linear-gradient(135deg, #388855 0%,#7bb38c 37%,#b9d9c1 52%,#b9d9c1 5
     padding: 10px;
     margin-right: 25px;
     position: relative;
+    min-height: 46px;
 }
 .benefit-points .inner h3 span::after {
     content: "";
@@ -4588,7 +4586,7 @@ background: linear-gradient(135deg, #388855 0%,#7bb38c 37%,#b9d9c1 52%,#b9d9c1 5
 }
 .benefit-points .inner .step-process {
     background-color: #388855;
-    padding: 20px;
+    padding: 0px 15px;
     border: 3px solid #fcbf10;
     position: relative;
 }
@@ -4607,9 +4605,17 @@ background: linear-gradient(135deg, #388855 0%,#7bb38c 37%,#b9d9c1 52%,#b9d9c1 5
 .benefit-points .inner .step-process h4 {
     font-weight: 600;
     font-size: 15px;
-    min-height: 140px;
+    min-height: 230px;
     line-height: 20px;
-    color: #fff;
+    color: rgb(255, 255, 255);
+}
+.benefit-points .inner .step-process h4 span {
+    display: block;
+    font-size: 20px;
+    color: rgb(252, 191, 16);
+    margin-bottom: 0px;
+    min-height: 75px;
+    line-height: 26px;
 }
 /*.benefit-points .inner h3 span {
     position: absolute;
@@ -4655,7 +4661,7 @@ background: linear-gradient(135deg, #388855 0%,#7bb38c 37%,#b9d9c1 52%,#b9d9c1 5
     content: "";
     position: absolute;
     background: rgb(232 251 241);
-    height: 60%;
+    height: 80%;
     width: 100%;
     top: 0px;
 }
@@ -4965,21 +4971,25 @@ footer.site-footer {
     flex-wrap: wrap;
     padding: 0;
     margin-top: 30px;
+    background-color: rgb(232, 251, 241);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+    border-radius: 10px;
+    border: 2px solid rgb(15, 57, 35);
 }
-.chalanges-list li{
-  list-style: none;
-  width: 50%;
+.chalanges-list li {
+    list-style: none;
+    width: 100%;
 }
 .chalanges-list .inner-box-chalanges {
-    padding: 10px;
-    margin: 10px;
+    padding: 0;
+    margin: 8px 10px;
 }
 .chalanges-list .inner-box-chalanges img {
-    height: 70px;
+    height: 50px;
     border-radius: 50%;
 }
 .chalanges-list .inner-box-chalanges .title {
-    font-size: 16px;
+    font-size: 15px;
     line-height: 22px;
 }
 .team-section-new-changes.team-style-one{
@@ -5067,7 +5077,7 @@ footer.site-footer {
     flex-wrap: wrap;
 }
 .road-map-list li {
-    background-color: #FFE391;
+    background-color: #FBBE14;
     width: 33%;
     list-style: none;
     padding: 10px;
@@ -5076,8 +5086,8 @@ footer.site-footer {
     text-align: center;
     border-radius: 50%;
     padding: 20px 30px;
-    max-width: 290px;
-    height: 290px;
+    max-width: 275px;
+    height: 275px;
     position: relative;
 }
 .road-map-list li::after {
@@ -5106,36 +5116,44 @@ footer.site-footer {
 }
 .road-map-list li h4 {
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
     color: #0f3923;
     margin-bottom: 10px;
 }
 .road-map-list li h6 {
     display: inline-block;
-    background-color: #E8FBF1;
+    background-color: #0f3923;
     padding: 7px 15px;
     font-size: 14px;
     font-weight: 700;
-    color: #0f3923;
+    color: rgb(251, 190, 20);
     min-width: 120px;
     margin: 0px 0 5px;
 }
 .road-map-list li p {
     line-height: 18px;
-    font-size: 14px;
+    font-size: 12px;
     color: #0f3923;
-    font-weight: 600;
+    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100px;
 }
 .road-map-list li:nth-child(even){
-background-color: #E8FBF1;
+background-color: #0f3923;
 }
-.road-map-list li:nth-child(even) h6{
-  background-color: #FFE391;
+.road-map-list li:nth-child(2n) h6 {
+    background-color: rgb(251, 190, 20);
+    color: #0f3923;
 }
+.road-map-list li:nth-child(even) h4 {
+    color: #fff;
+}
+.road-map-list li:nth-child(even) p {
+    color: #fff;
+}
+
 .road-map-list li:last-child::after,
 .road-map-list li:last-child::before{
   content: none;
@@ -5146,13 +5164,23 @@ background-color: #E8FBF1;
     padding: 20px 0;
 }
 .how-it-works-btn-strip .btn-row-link a {
-    width: 15%;
+    display: inline-flex;
+    width: 21%;
     margin: 0 20px;
     text-align: center;
     font-size: 16px;
     border-radius: 10px;
     line-height: 20px;
+    min-height: auto;
+    margin: 10px 20px;
+    align-items: center;
+    justify-content: center;
 }
+.how-it-works-btn-strip.join-btn-sec .btn-row-link a{
+	min-height: 65px;
+}
+
+
 .how-it-works-btn-strip .btn-row-link h3 {
     margin-bottom: 30px;
     font-weight: 600;
@@ -5161,6 +5189,15 @@ background-color: #E8FBF1;
     font-size: 32px;
     max-width: 800px;
     margin: 0 auto 20px;
+}
+.green-btn-new{
+	background-color: #388855 !important;
+    color: white !important;
+    padding: 10px 20px;
+    transition: all ease-in-out .5s;
+}
+.green-btn-new:hover{
+	transform:scale(1.1);
 }
 
 
@@ -5281,6 +5318,80 @@ background-color: #E8FBF1;
 .benefit-points .inner .step-process::after{
   content: none;
 }
-
+#background-video {
+    width: 70vw;
+    height: 40vh;
+}
+.slider-home-one .content h4 {
+    font-size: 18px;
+    margin-top: 18vh;
+}
+#minimal-bootstrap-carousel .carousel-caption .thm-container .box .content {
+    padding-top: 1px;
+}
+.how-it-works-btn-strip .btn-row-link h3 {
+    font-size: 16px;
+    max-width: 100%;
+    margin: 0px auto 10px;
+}
+.about-style-one .about-style-one-content h3 {
+    font-size: 22px;
+}
+.chalanges-list .inner-box-chalanges .title {
+    font-size: 12px;
+    line-height: 16px;
+}
+.about-style-one .about-style-one-content p {
+    font-size: 12px;
+    line-height: 20px;
+}
+.benefit-sec .sec-title {
+    margin-bottom: 10px;
+}
+.benefit-points .inner .step-process h4 {
+    font-weight: 500;
+    font-size: 12px;
+    min-height: auto;
+    line-height: 18px;
+}
+.sec-pad {
+    padding: 20px 0px;
+}
+.open-button {
+    padding: 10px 10px;
+    max-width: 210px;
+}
+.benefit-points .inner h3 span {
+    min-height: 30px;
+    width: 90%;
+}
+.benefit-points .inner h3 span::before {
+    border-top: 15px solid transparent;
+    border-left: 15px solid rgb(232, 251, 241);
+    border-bottom: 15px solid transparent;
+}
+.benefit-points .inner h3 span::after {
+    border-top: 15px solid transparent;
+    border-left: 15px solid rgb(252, 191, 16);
+    border-bottom: 15px solid transparent;
+    right: -15px;
+}
+.benefit-points .inner .step-process h4 span {
+    min-height: auto;
+    font-size: 16px;
+    line-height: 20px;
+}
+.benefit-sec.sec-pad.pb-0{
+padding-bottom: 0 !important;
+}
+.how-it-works-btn-strip.join-btn-sec .btn-row-link a {
+    min-height: auto;
+    font-weight: 500 !important;
+}
+.partner-list li .single-fun-fact-style-one img {
+    height: 55px;
+    width: 100%;
+    padding: 15px;
+}
 }
 
