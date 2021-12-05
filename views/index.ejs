@@ -22,123 +22,123 @@
 		rel="stylesheet" />
 	<style>
 		#google_translate_element {
-    color: #fcbf10;
-    background-color: transparent;
+			color: #fcbf10;
+			background-color: transparent;
     border: none;
     padding: 0;
     margin: 0;
-   }
+		}
 	</style>
-<style>
+	<style>
 	     
-	/* Button used to open the chat form - fixed at the bottom of the page */
-   .open-button {
-background-color: #388855;
-color: white !important;
-padding: 10px 20px;
-border: none;
-cursor: pointer;
-opacity: 1;
-position: fixed;
-bottom: 10px;
-right: 85px;
-max-width: 250px;
-border-radius: 10px;
-z-index: 9999999999999999999;
-box-shadow: 0 0 10px rgba(0,0,0,0.8);
-font-size: 18px;
-font-weight: 600;
-border: none !important;
-outline: none !important;
-/*animation: bounce 3s infinite;*/
-white-space: normal;
+	     /* Button used to open the chat form - fixed at the bottom of the page */
+		.open-button {
+    background-color: #388855;
+    color: white !important;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 1;
+    position: fixed;
+    bottom: 10px;
+    right: 85px;
+    max-width: 250px;
+    border-radius: 10px;
+    z-index: 9999999999999999999;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    font-size: 18px;
+    font-weight: 600;
+    border: none !important;
+    outline: none !important;
+    /*animation: bounce 3s infinite;*/
+    white-space: normal;
 }
-	   /*@keyframes bounce {
-		 0%, 20%, 50%, 80%, 100% {
-		   transform: translateY(0);
-		 }
-		 40% {
-		   transform: translateY(-40px);
-		 }
-		 60% {
-		   transform: translateY(-20px);
-		 }
-	   }*/
+			/*@keyframes bounce {
+			  0%, 20%, 50%, 80%, 100% {
+			    transform: translateY(0);
+			  }
+			  40% {
+			    transform: translateY(-40px);
+			  }
+			  60% {
+			    transform: translateY(-20px);
+			  }
+			}*/
 
-   /* The popup chat - hidden by default */
-   .chat-popup {
-	   display: none;
-	   position: fixed;
-	   bottom: 0;
-	   right: 15px;
-   /* 	border: 5px solid #000000; */
-	   border-radius: 5%;
-	   z-index: 9999999999999999999;
-	   color: white;
-   }
+		/* The popup chat - hidden by default */
+		.chat-popup {
+			display: none;
+			position: fixed;
+			bottom: 0;
+			right: 15px;
+		/* 	border: 5px solid #000000; */
+			border-radius: 5%;
+			z-index: 9999999999999999999;
+			color: white;
+		}
 
-   /* Add styles to the form container */
-   .form-container {
-max-width: 400px;
-padding: 20px;
-background-color: #e8fbf1;
-border-radius: 15px;
-/* opacity: 0.9; */
-border: 2px solid #0f3923;
+		/* Add styles to the form container */
+		.form-container {
+    max-width: 400px;
+    padding: 20px;
+    background-color: #e8fbf1;
+    border-radius: 15px;
+    /* opacity: 0.9; */
+    border: 2px solid #0f3923;
 }
 .form-container h1{
-color: #000;
+	color: #000;
 }
 .form-container label{
-color: #000;
+	color: #000;
 }
 .form-container input {
-background-color: transparent !important;
-border: 2px solid #000 !important;
-padding: 8px 20px;
-height: auto;
-color: #000 !important;
-font-size: 16px;
-outline: none !important;
-box-shadow: none !important;
+    background-color: transparent !important;
+    border: 2px solid #000 !important;
+    padding: 8px 20px;
+    height: auto;
+    color: #000 !important;
+    font-size: 16px;
+    outline: none !important;
+    box-shadow: none !important;
 }
 .form-container input::placeholder{
-color: rgba(0,0,0,0.7);
+	color: rgba(0,0,0,0.7);
 }
-   
+		
 
-   /* Set a style for the submit/send button */
-   .form-container .btn {
-background-color: rgb(252 191 16);
-color: white;
-padding: 10px 20px;
-border: none;
-cursor: pointer;
-width: 100%;
-margin-bottom: 10px;
-border-radius: 5px;
-font-size: 20px;
-display: block;
-border: none !important;
-outline: none !important;
-color: #fff !important;
+		/* Set a style for the submit/send button */
+		.form-container .btn {
+    background-color: rgb(252 191 16);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+    display: block;
+    border: none !important;
+    outline: none !important;
+    color: #fff !important;
 }
 
-   /* Add a red background color to the cancel button */
-   .form-container .cancel {
-	   background-color: rgb(56 136 85);
-	   border-radius: 5px;
-	   display: block;
-   }
+		/* Add a red background color to the cancel button */
+		.form-container .cancel {
+			background-color: rgb(56 136 85);
+			border-radius: 5px;
+			display: block;
+		}
 
-   /* Add some hover effects to buttons */
-   .form-container .btn:hover,
-   .open-button:hover {
-	   opacity: 1;
-   }
-   
-   
-</style>
+		/* Add some hover effects to buttons */
+		.form-container .btn:hover,
+		.open-button:hover {
+			opacity: 1;
+		}
+		
+		
+	</style>
 </head>
 
 <body class="active-preloader-ovh"style="top:0 !important;">
@@ -171,6 +171,7 @@ color: #fff !important;
 
 						<li class="text/css">
 							<button id="google_translate_element"></button>
+
 							<div id='google_translate_element'></div>
                         <script>
                             function googleTranslateElementInit() {
@@ -226,7 +227,7 @@ color: #fff !important;
 							
 						 </li>
 						
-						 <li>
+						<li>
 							<a href="javascript:void(0);" onclick="getAccount()">
 								<img src="user_assets/img/meta-icon.png" style="height: 35px; width: auto" />
 							</a>
@@ -294,7 +295,7 @@ color: #fff !important;
 			</div> -->
 		</div>
 		<!-- Controls -->
-		<!-- <a class="left carousel-control" href="#minimal-bootstrap-carousel" role="button" data-slide="prev">
+	<!-- 	<a class="left carousel-control" href="#minimal-bootstrap-carousel" role="button" data-slide="prev">
 			<i class="fa fa-angle-left"></i>
 			<span class="sr-only">Previous</span>
 		</a>
@@ -305,13 +306,12 @@ color: #fff !important;
 
 		<ul class="carousel-indicators list-inline custom-navigation">
 			<li data-target="#minimal-bootstrap-carousel" data-slide-to="0" class="active"></li>
-			<!--
-			-->
-			<!-- <li data-target="#minimal-bootstrap-carousel" data-slide-to="1"></li>
+			
+			<li data-target="#minimal-bootstrap-carousel" data-slide-to="1"></li>
 		</ul> -->
 	</div>
 
-    <section class="how-it-works-btn-strip sec-pad">
+	 <section class="how-it-works-btn-strip sec-pad">
 		<div class="thm-container">
 			
 			<div class="row align-items-center">
@@ -391,7 +391,6 @@ color: #fff !important;
 	</section>
 	<!-- /.about-style-one -->
 
-	
 	<section class="benefit-sec sec-pad pb-0">
 		<div class="thm-container">
 			<div class="sec-title text-center">
@@ -533,13 +532,13 @@ color: #fff !important;
 				<div class="col-md-12">
                      <div class="btn-row-link text-center">
                      	
-                     	<a class="thm-btn yellow-bg-hvr green-btn-new" href="">Buy KARBUNCoin (KBN)</a>
-                     	<a class="thm-btn yellow-bg-hvr green-btn-new" href="">Buy Carbon Credits</a>
-                     	<a class="thm-btn yellow-bg-hvr green-btn-new" href="">Register your Decarbisation Company</a>
-                     	<a class="thm-btn yellow-bg-hvr green-btn-new" href="">Buy KBN to invest in Green Projects</a>
-                     	<a class="thm-btn yellow-bg-hvr green-btn-new" href="">Use case/startups apply for funding</a>
-                     	<a class="thm-btn yellow-bg-hvr green-btn-new" href="">Join the KARBUNArmy</a>
-                     	<a class="thm-btn yellow-bg-hvr green-btn-new" href="">Use case / Startups apply for funding</a>
+                     	<a data-toggle="modal" data-target=".coming-modal-Modal" class="thm-btn yellow-bg-hvr green-btn-new" href="">Buy KARBUNCoin (KBN)</a>
+                     	<a data-toggle="modal" data-target=".coming-modal-Modal" class="thm-btn yellow-bg-hvr green-btn-new" href="">Buy Carbon Credits</a>
+                     	<a data-toggle="modal" data-target=".coming-modal-Modal" class="thm-btn yellow-bg-hvr green-btn-new" href="">Register your Decarbisation Company</a>
+                     	<a data-toggle="modal" data-target=".coming-modal-Modal" class="thm-btn yellow-bg-hvr green-btn-new" href="">Buy KBN to invest in Green Projects</a>
+                     	<a data-toggle="modal" data-target=".coming-modal-Modal" class="thm-btn yellow-bg-hvr green-btn-new" href="">Use case/startups apply for funding</a>
+                     	<a data-toggle="modal" data-target=".coming-modal-Modal" class="thm-btn yellow-bg-hvr green-btn-new" href="">Join the KARBUNArmy</a>
+                     	<a data-toggle="modal" data-target=".coming-modal-Modal" class="thm-btn yellow-bg-hvr green-btn-new" href="">Use case / Startups apply for funding</a>
                      </div>
 				</div>
 			</div>
@@ -548,7 +547,6 @@ color: #fff !important;
   </section>
 
 
-
 	
 	
 
@@ -557,7 +555,6 @@ color: #fff !important;
 	
 
 	
-	<!-- /.fun-fact-style-one -->
 
 	<section class="team-style-one sec-pad page-section team-section-new-changes" id="our-experts">
 		<div class="thm-container">
@@ -679,7 +676,8 @@ color: #fff !important;
 			</div>
 		</div>
 		<!-- /.thm-container -->
-	</section><!-- /.team-style-one sec-pad -->
+	</section>
+	<!-- /.team-style-one sec-pad -->
 
 	<section class="sec-pad sec-pie">
 		<div class="thm-container">
@@ -756,7 +754,7 @@ color: #fff !important;
 	</section>
 
 
-    <section class="roadmap-sec sec-pad page-section" id="roadmap">
+		<section class="roadmap-sec sec-pad page-section" id="roadmap">
 		<div class="thm-container">
 			<div class="sec-title text-center">
 				<span class="orange-text">Timeline</span>
@@ -830,9 +828,10 @@ color: #fff !important;
 		</div>
 		<!-- /.thm-container -->
 	</section>
+	<!-- /.how-it-works -->
 
 
-    <section class="fun-fact-style-one sec-pad">
+<section class="fun-fact-style-one sec-pad">
 		<div class="thm-container">
 			<div class="sec-title text-center">
 				<h3 class="mb-3">Target KARBUN Partners</h3>
@@ -914,29 +913,32 @@ color: #fff !important;
 		</div>
 		<!-- /.thm-container -->
 	</section>
+	<!-- /.fun-fact-style-one -->
+
+
 
 	
 
 	<div class="footer-top page-section" id="contact-us">
-        <div class="thm-container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                    <div class="single-footer-top">
-                        <p><i class="bitmex-icon-envelope"></i><span>Email: </span>sales@karbun.io</p>
-                    </div><!-- /.single-footer-top -->
-                </div><!-- /.col-md-4 -->
-                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                    <div class="single-footer-top">
-                        <p><i class="bitmex-icon-phone-call"></i><span>Call: </span> +61415898818</p>
-                    </div><!-- /.single-footer-top -->
-                </div><!-- /.col-md-4 -->
-                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                    <div class="single-footer-top">
-                        <p><i class="bitmex-icon-placeholder"></i><span>Web: </span>www.karbun.io</p>
-                    </div><!-- /.single-footer-top -->
-                </div><!-- /.col-md-4 -->
-            </div><!-- /.row -->
-        </div><!-- /.thm-container -->
+	<div class="thm-container">
+		<div class="row">
+			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+				<div class="single-footer-top">
+					<p><i class="bitmex-icon-envelope"></i><span>Email: </span>sales@karbun.io</p>
+				</div><!-- /.single-footer-top -->
+			</div><!-- /.col-md-4 -->
+			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+				<div class="single-footer-top">
+					<p><i class="bitmex-icon-phone-call"></i><span>Call: </span> +61415898818</p>
+				</div><!-- /.single-footer-top -->
+			</div><!-- /.col-md-4 -->
+			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+				<div class="single-footer-top">
+					<p><i class="bitmex-icon-placeholder"></i><span>Web: </span>www.karbun.io</p>
+				</div><!-- /.single-footer-top -->
+			</div><!-- /.col-md-4 -->
+		</div><!-- /.row -->
+	</div><!-- /.thm-container -->
 </div><!-- /.footer-top -->
 
 
@@ -987,39 +989,38 @@ color: #fff !important;
 				<div class="col-md-12">
 					<h1 id="donate" class="text-center text-uppercase"><b>Donate</b></h1>
 					<div class="">
-						<label>Buy :-</label>
-						
-					  <div class="row">
-						  <div class="col-md-6">
-							  <div class="form-group">
-								  <input class="form-control" type="text" id="bidding" onchange="myChangeFunction(bidding)" placeholder="USD"/>
-							  </div>
-						  </div>
-						  <div class="col-md-6">
-							  <div class="form-group">
-								  <input class="form-control" type="text" id="ethbidding" placeholder="ETH" readonly />
-							  </div>
-						   
-						  </div>
-					  </div>
-				 </div>
-			  
+				  		<label>Buy :-</label>
+				  		
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<input class="form-control" type="text" id="bidding" onchange="myChangeFunction(bidding)" placeholder="USD"/>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<input class="form-control" type="text" id="ethbidding" placeholder="ETH" readonly />
+								</div>
+							 
+							</div>
+					    </div>
+				   </div>
+				
 					
-				 <div class="row">
-					<div class="col-md-12">
-					  <div class="form-group">
-						<label>Karbun Wallet Address</label>
+					<div class="row">
+					  <div class="col-md-12">
+						<div class="form-group">
+						  <label>Karbun Wallet Address</label>
 						<input class="form-control input-lg" id="add" type="text" placeholder="0xd5f7E7d1839A7DAB87c9153556e8FBC949254D12" readonly />
+						</div>
 					  </div>
 					</div>
-				  </div>
-				  
 					<div class="btn-block">
 					  <!-- <button type="submit" class="thm-btn yellow-bg-hvr">Submit</button> -->
 					  <!-- <button class="enableEthereumButton btn">Enable Ethereum</button> -->
 					  <button class="enableEthereumButton sendEthButton btn thm-btn yellow-bg-hvr" id="grad2">Send Eth</button>
-						<button type="btn" class="btn cancel" onclick="closeForm()" id="grad1">Close</button></div>
-				  </div>
+					  <button type="btn" class="btn cancel" onclick="closeForm()" id="grad1">Close</button>
+					</div>
 				  </div>
 				
 			 
@@ -1028,6 +1029,26 @@ color: #fff !important;
 
 		</div>
 	</div>
+
+
+<!-- Modal -->
+<div class="modal fade comming-soon-popup coming-modal-Modal"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div>
+        	<h2>Coming Soon....!!!</h2>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+</div>
+
 
 	<div class="scroll-to-top scroll-to-target" data-target="html">
 		<i class="fa fa-angle-up"></i>

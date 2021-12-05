@@ -5199,6 +5199,47 @@ background-color: #0f3923;
 .green-btn-new:hover{
 	transform:scale(1.1);
 }
+.comming-soon-popup{
+
+}
+.comming-soon-popup .modal-dialog {
+    margin: 15% auto;
+      background-color:   #0f3923;
+    border-radius: 15px;
+    border: none;
+}
+.comming-soon-popup .modal-dialog .modal-content{
+	border-radius: 15px;
+}
+.comming-soon-popup .modal-dialog .modal-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(15, 57, 35);
+    border-radius: 12px;
+}
+.comming-soon-popup .modal-dialog .modal-body h2 {
+    font-size: 40px;
+    font-weight: 600;
+    color: #e8fbf1;
+    padding: 20px 0;
+}
+.comming-soon-popup .modal-dialog .modal-body .close{
+	position: absolute;
+	right: 3px;
+	top: 3px;
+	border: 2px solid #e8fbf1;
+	height: 30px;
+	width: 30px;
+	opacity: 1;
+	border-radius: 7px;
+	color: #0f3923;
+	background-color: #e8fbf1;
+}
+.modal.fade.comming-soon-popup.in {
+    background-color: rgba(255,255,255,0.5);
+}
 
 
 @media (max-width: 1200px){
@@ -5392,6 +5433,15 @@ padding-bottom: 0 !important;
     height: 55px;
     width: 100%;
     padding: 15px;
+}
+.comming-soon-popup .modal-dialog .modal-body h2 {
+    font-size: 28px;
+}
+.comming-soon-popup .modal-dialog {
+    max-width: 90%;
+}
+.comming-soon-popup .modal-dialog {
+    margin: 50% auto;
 }
 }
 
