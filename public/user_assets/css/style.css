@@ -5445,3 +5445,156 @@ padding-bottom: 0 !important;
 }
 }
 
+
+
+/*video gif add sec*/
+.outer-glob-box{
+  position: relative;
+}
+.outer-glob-box .logo-outer-img {
+    width: 100%;
+    max-width: 380px;
+    opacity: 0.6;
+}
+.outer-glob-box .logo-tree-img {
+    position: absolute;
+    z-index: 100;
+    left: 0px;
+    right: 0px;
+    margin: 0px auto;
+    top: 30%;
+    height: 150px !important;
+    width: 150px !important;
+}
+#minimal-bootstrap-carousel .carousel-caption .thm-container .box .content {
+    padding-top: 0;
+}
+.slider-home-one .content h4 {
+    margin-top: 0;
+}
+.benefit-inner-list {
+    padding-left: 20px;
+}
+.benefit-inner-list li {
+    width: 100%;
+    list-style: initial;
+}
+.whitepaper-form{
+
+}
+.comming-soon-popup .modal-dialog .modal-body .whitepaper-form h2 {
+    font-size: 26px;
+}
+.comming-soon-popup .modal-dialog .modal-body .whitepaper-form label {
+    color: #fff;
+    display: block;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 600;
+}
+.comming-soon-popup .modal-dialog .modal-body .whitepaper-form .form-control {
+    background-color: #e8fbf1;
+    border: none;
+    height: auto;
+    padding: 13px;
+    font-size: 16px;
+}
+
+
+
+@media (max-width: 920px){
+
+.outer-glob-box .logo-outer-img {
+    max-width: 310px;
+}
+.outer-glob-box .logo-tree-img {
+    top: 32%;
+    height: 105px !important;
+    width: 105px !important;
+}
+.slider-home-one .content h4 {
+    font-size: 14px;
+}
+.open-button {
+    padding: 5px 20px !important;
+    bottom: 5px !important;
+    right: 0 !important;
+    max-width: 190px !important;
+    font-size: 16px !important;
+}
+.slider-home-one .content h4 {
+    font-size: 18px;
+}
+.for-mobile-show {
+    display: inline-block !important;
+    float: right;
+    padding: 10px 0px 10px 10px;
+}
+.xs-hide{
+	display: none !important;
+}
+.header-navigation .thm-container .navbar-header .navbar-brand {
+    float: right !important;
+    padding: 10px 0;
+}
+.header-navigation .thm-container .navbar-header .navbar-brand > img {
+    height: 55px !important;
+}
+.for-mobile-show {
+    display: inline-block !important;
+    float: right;
+    padding: 15px 0px 15px 10px;
+}
+}
+@media (max-width: 768px){
+
+.outer-glob-box .logo-outer-img {
+    max-width: 260px;
+}
+.outer-glob-box .logo-tree-img {
+    top: 30%;
+    height: 105px !important;
+    width: 105px !important;
+}
+.slider-home-one .content h4 {
+    font-size: 14px;
+}
+.open-button {
+    padding: 5px 5px !important;
+    bottom: 5px !important;
+    right: 0 !important;
+    max-width: 130px !important;
+    font-size: 12px !important;
+}
+.scroll-to-top{
+	display:none !important;
+}
+.hvr-float-shadow:active, .hvr-float-shadow:focus, .hvr-float-shadow:hover {
+    -webkit-transform: none !important;
+    transform: none !important;
+}
+.road-map-list {
+    display: none;
+}
+.roadmap-mobile{
+	display: block !important;
+}
+.comming-soon-popup .modal-dialog {
+    margin: 25% auto;
+}
+.comming-soon-popup .modal-dialog .modal-body .whitepaper-form h2 {
+    font-size: 16px;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+}
+.comming-soon-popup .modal-dialog .modal-body .whitepaper-form .form-control {
+    padding: 10px 10px;
+    font-size: 14px;
+}
+.comming-soon-popup .modal-dialog .modal-body .whitepaper-form label {
+    font-size: 12px;
+}
+.thm-btn.yellow-bg-hvr {
+    margin-top: 15px;
+}
+}
