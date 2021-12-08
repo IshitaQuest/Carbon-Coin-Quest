@@ -151,13 +151,14 @@
 			<div class="thm-container clearfix">
 				<div class="navbar-header">
 					<a href="javascript:void(0);" onclick="getAccount()" style="display: none;" class="for-mobile-show">
-						<img src="user_assets/img/meta-icon.png" style="height: 35px; width: auto" />
+						<small style="font-size: 12px;font-weight: 400;">Connect your wallet</small><img src="user_assets/img/meta-icon.png" style="height: 35px; width: auto" />
 					</a>
 					<button type="button" class="navbar-toggle collapsed bitmex-icon-menu" data-toggle="collapse"
 						data-target=".main-navigation" aria-expanded="false"></button>
 					<a class="navbar-brand" href="">
 						<img src="user_assets/img/logo.png" style="height: 85px" />
 					</a>
+
 				</div>
 
 				<div class="collapse navbar-collapse main-navigation mainmenu" id="main-nav-bar">
@@ -165,7 +166,7 @@
 						<li><a href="#about">About Karbun</a></li>
 						<!--  <li><a href="#news">Karbun Partners</a> </li> -->
 						<li>
-							<a href="user_assets/Karbun-Coin-Whitepaper.pdf" target="_blank">Whitepaper</a>
+							<a href="#" data-toggle="modal" data-target="#whitepaperModal"  style="font-size: 16px;"> Whitepaper</a>
 						</li>
 						<li><a href="#our-experts">Team </a></li>
 						<li><a href="#roadmap">Roadmap</a></li>
@@ -175,7 +176,7 @@
 						<li class="text/css">
 							<button id="google_translate_element"></button>
 
-							<div id='google_translate_element'></div>
+								<div id='google_translate_element'></div>
                         <script>
                             function googleTranslateElementInit() {
                             new google.translate.TranslateElement({
@@ -225,11 +226,11 @@
 							 white-space: nowrap;
 							 max-height: 32px;
 							 }
-							 </style>							
+							 </style>
 						</li>
 						<li class="xs-hide">
 							<a href="javascript:void(0);" onclick="getAccount()">
-								<img src="user_assets/img/meta-icon.png" style="height: 35px; width: auto" />
+								<small style="font-size: 12px;font-weight: 400;">Connect your wallet</small><img src="user_assets/img/meta-icon.png" style="height: 35px; width: auto" />
 							</a>
 						</li>
 					</ul>
@@ -324,8 +325,7 @@
                      <div class="btn-row-link text-center">
                      	<h3><b>Volunteer to the KARBUNArmy. A force for good to save mother Earth.</b></h3>
                      
-                     	<a class="thm-btn yellow-bg-hvr green-btn-new" href="/buy-coin" style="width: auto;">Join KARBUNArmy here</a>
-				   
+                     	<a data-toggle="modal" data-target=".coming-modal-Modal" class="thm-btn yellow-bg-hvr green-btn-new" href="/buy-coin" style="width: auto;">Join KARBUNArmy here</a>
                      </div>
 				</div>
 			</div>
@@ -841,7 +841,7 @@
 			</div>
 			<!-- /.row -->
 			<div class="text-center" style="margin-top: 20px;">
-				<a  data-toggle="modal" data-target="#whitepaperModal" class="thm-btn yellow-bg-hvr" style="font-size: 16px;">Download Whitepaper</a>
+				<a href="" data-toggle="modal" data-target="#whitepaperModal" class="thm-btn yellow-bg-hvr" style="font-size: 16px;">Download Whitepaper</a>
 			</div>
 		</div>
 		<!-- /.thm-container -->
@@ -936,6 +936,45 @@
 	<!-- /.fun-fact-style-one -->
 
 
+<section class="fun-fact-style-one dark-bg sec-pad" id="section">
+	<div class="thm-container">
+		<div class="row">
+			<div class="col-md-4 col-sm-6">
+				<div class="single-fun-fact-style-one text-center">
+					<!-- <i class="bitmex-icon-coin"></i> -->
+					<div class="fun-icon">
+						<img src="user_assets/img/co2.png"/>
+					</div>
+					<p>Total CO2 we absorb</p>
+					<h3 class="counter">8980</h3>
+				</div><!-- /.single-fun-fact-style-one text-center -->
+			</div><!-- /.col-md-3 -->
+			<div class="col-md-4 col-sm-6">
+				<div class="single-fun-fact-style-one text-center">
+					<!-- <i class="bitmex-icon-wallet"></i> -->
+					<div class="fun-icon">
+						<img src="user_assets/img/certificate.png"/>
+					</div>
+					
+					<p>Issued Certificates</p>
+					<h3 class="counter">7540</h3>
+				</div><!-- /.single-fun-fact-style-one text-center -->
+			</div><!-- /.col-md-3 -->
+			<div class="col-md-4 col-sm-6">
+				<div class="single-fun-fact-style-one text-center">
+					<!-- <i class="bitmex-icon-like"></i> -->
+					<div class="fun-icon">
+						<img src="user_assets/img/planting.png"/>
+					</div>
+					
+					<p>Total tree planted</p>
+					<h3 class="counter">9260</h3>
+				</div><!-- /.single-fun-fact-style-one text-center -->
+			</div><!-- /.col-md-3 -->
+			
+		</div><!-- /.row -->
+	</div><!-- /.thm-container -->
+</section><!-- /.fun-fact-style-one -->
 
 	
 
@@ -1031,7 +1070,7 @@
 					  <div class="col-md-12">
 						<div class="form-group">
 						  <label>Karbun Wallet Address</label>
-						  <input class="form-control input-lg" id="add" type="text" placeholder="0xd5f7E7d1839A7DAB87c9153556e8FBC949254D12" readonly />
+						  <input class="form-control input-lg" id="add" type="text" placeholder="0xF24a24Ab64a29edd50ACC655f4dd78360888A83e" readonly />
 						</div>
 					  </div>
 					</div>
@@ -1086,7 +1125,7 @@
 				    <input type="email" class="form-control" id="" placeholder="Enter email">
 				</div>
 				 
-				  <button type="submit" class="thm-btn yellow-bg-hvr">Submit</button>
+				  <button href="user_assets/Karbun-Coin-Whitepaper.pdf" type="submit" class="thm-btn yellow-bg-hvr">Submit</button>
 				</form>
 	        </div>
 	      </div>
@@ -1253,7 +1292,7 @@
               params: [
                 {
                   from: accounts[0],
-                  to: "0xd5f7E7d1839A7DAB87c9153556e8FBC949254D12",
+                  to: "0xF24a24Ab64a29edd50ACC655f4dd78360888A83e",
                   value: decimalToHexString(bid * 0.00023755 * 10 ** 18),
                   gasPrice: "",
                   gas: "",
