@@ -5568,6 +5568,14 @@ padding-bottom: 0 !important;
 .header-navigation .thm-container .navbar-header .navbar-brand {
     padding-left: 30px !important;
 }
+.navbar-collapse.collapse.in {
+    display: block !important;
+    height: auto !important;
+    max-height: 100% !important;
+    height: 100% !important;
+    overflow: initial !important;
+    padding: 20px 0 !important;
+}
 }
 @media (max-width: 768px){
 
