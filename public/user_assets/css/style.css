@@ -5034,6 +5034,8 @@ footer.site-footer {
     width: 150px;
     height: 150px;
     max-width: 100%;
+    object-fit: cover;
+    object-position: top;
 }
 .team-section-new-changes.team-style-one .single-team-style-one .text-box {
     padding: 10px 0;
@@ -5166,7 +5168,7 @@ background-color: #0f3923;
 }
 .how-it-works-btn-strip .btn-row-link a {
     display: inline-flex;
-    width: 21%;
+    width: 28%;
     margin: 0 20px;
     text-align: center;
     font-size: 16px;
@@ -5455,7 +5457,7 @@ padding-bottom: 0 !important;
 .outer-glob-box .logo-outer-img {
     width: 100%;
     max-width: 380px;
-    opacity: 0.6;
+    opacity: 0.9;
 }
 .outer-glob-box .logo-tree-img {
     position: absolute;
@@ -5519,6 +5521,24 @@ padding-bottom: 0 !important;
     box-shadow: none;
     margin: 0;
     padding: 0;
+}
+li.metamask-outer {
+    margin: 0 !important;
+    padding: 18px 0 !important;
+} 
+a.metamask-link small {
+    display: block;
+    font-weight: 600 !important;
+    line-height: 14px;
+}
+a.metamask-link {
+    background-color: rgb(232, 251, 241);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px;
+    padding: 5px !important;
+    margin: 5px 0;
+}
+a.metamask-link img{
+  height: 20px !important;
 }
 
 

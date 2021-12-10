@@ -166,14 +166,15 @@
               href="javascript:void(0);"
               onclick="BuyEth()"
               style="display: none"
-              class="for-mobile-show"
+              class="for-mobile-show metamask-link"
             >
-              <small style="font-size: 12px; font-weight: 400"
-                >Connect your wallet</small
-              ><img
+             <img
                 src="user_assets/img/meta-icon.png"
                 style="height: 35px; width: auto"
               />
+               <small style="font-size: 12px; font-weight: 400"
+                >Connect your wallet</small
+              >
             </a>
             <button
               type="button"
@@ -268,14 +269,15 @@
                   }
                 </style>
               </li>
-              <li class="xs-hide">
-                <a href="javascript:void(0);" onclick="BuyEth()">
-                  <small style="font-size: 12px; font-weight: 400"
-                    >Connect your wallet</small
-                  ><img
+              <li class="xs-hide metamask-outer">
+                <a class="metamask-link" href="javascript:void(0);" onclick="BuyEth()">
+                  <img
                     src="user_assets/img/meta-icon.png"
                     style="height: 35px; width: auto"
                   />
+                  <small style="font-size: 12px; font-weight: 400"
+                    >Connect your wallet</small
+                  >
                 </a>
               </li>
             </ul>
@@ -409,7 +411,7 @@
                 <img src="user_assets/img/planting.png" />
               </div>
 
-              <p>Total tree planted</p>
+              <p>Total trees planted</p>
               <h3 class="counter">9260</h3>
             </div>
             <!-- /.single-fun-fact-style-one text-center -->
@@ -711,13 +713,7 @@
                 href=""
                 >Join the KARBUNArmy</a
               >
-              <a
-                data-toggle="modal"
-                data-target=".coming-modal-Modal"
-                class="thm-btn yellow-bg-hvr green-btn-new"
-                href=""
-                >Use case / Startups apply for funding</a
-              >
+              
             </div>
           </div>
         </div>
@@ -991,8 +987,7 @@
               <img
                 src="user_assets/img/rodmap-mobile.png"
                 style="display: none"
-                class="img-responsive roadmap-mobile"
-              />
+                class="img-responsive roadmap-mobile"/>
             </div>
             <!-- <img src="user_assets/img/roadmap.jpg" /> -->
           </div>
@@ -1306,11 +1301,12 @@
               <h2>
                 Please enter your email address to download the whitepaper.
               </h2>
-              <form method="" action="user_assets/Karbun-Coin-Whitepaper.pdf">
+              <form method="POST" action="subscribe">
                 <div class="form-group">
                   <label>Email address</label>
                   <input
                     type="email"
+                    name="email"
                     class="form-control"
                     id=""
                     placeholder="Enter email"

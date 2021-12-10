@@ -707,6 +707,28 @@ var RegistrationSchema = mongoose.Schema({
     //     }]
 });
 
+var whitepaperSchema = mongoose.Schema({
+
+    
+    
+    email: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true,
+        validate: {
+
+            validator: validator.isEmail,
+            message: '{VALUE} Entered Invalid Email'
+        }
+
+    },
+   
+});
+var whitepaperregister = mongoose.model('whitepaper_registration', whitepaperSchema);
+
+
+
 /**********UserwalletSchema**********/
 var Userwalletschema = mongoose.Schema({
 
@@ -771,6 +793,9 @@ var RefCodeschema = mongoose.Schema({
         ref: 'User_registration'
     }
 })
+
+
+
 
 var RefCode = mongoose.model('RefCode', RefCodeschema);
 
@@ -1088,6 +1113,7 @@ var ContactInfo = mongoose.model('contact', contactSchema);
 
 module.exports = {
     Registration: Registration,
+    whitepaperregister: whitepaperregister,
     RefCode: RefCode,
     Tokendetails: Tokendetails,
     Importwallet: Importwallet,

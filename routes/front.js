@@ -12,7 +12,9 @@ const blockchainServices = require("../services/blockchainServices");
 const { calculateHours } = require('../helper/userHelper');
 const { mail } = require('../helper/mailer');
 
-const { Registration, Userwallet, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ, ContactInfo } = require('../models/userModel');
+
+
+const { Registration, whitepaperregister,Userwallet, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ, ContactInfo } = require('../models/userModel');
 
 var isUser = auth.isUser;
 
@@ -22,6 +24,27 @@ router.use(userControllers.sessionHeader);
 router.get('/', userControllers.landingPage);
 
 router.get('/sendMail',userControllers.sendMail);
+
+router.post("/subscribe", async (req, res) => {
+  let email = req.body.email;
+ 
+  const subscriber= new whitepaperregister({
+    email: email,
+
+  });
+  const user =  await whitepaperregister.findOne({
+    email: req.body.email,
+  })
+  
+  if (user){
+    res.redirect("/user_assets/Karbun-Coin-Whitepaper.pdf");
+
+  }else{
+  await subscriber.save();
+  res.redirect("/user_assets/Karbun-Coin-Whitepaper.pdf");
+  }
+});
+
 
 // router.get('/login', userControllers.loginPage);
 
