@@ -799,7 +799,7 @@ height: 85vh;
   animation-delay: .5s;
 }
 .slider-home-one .content h4 {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 600;
     text-shadow: rgb(0, 0, 0) 1px 1px;
     margin-top: 85px;
@@ -4483,7 +4483,7 @@ background: linear-gradient(135deg, #388855 0%,#7bb38c 37%,#b9d9c1 52%,#b9d9c1 5
     height: 80px;
     width: 160px;
     object-fit: contain;
-    padding: 20px 10px;
+    padding: 10px 10px;
     border-radius: 3px;
     box-shadow: 0 0 10px rgb(0 0 0 / 20%);
     border: 2px solid #fcbf10;
@@ -5178,7 +5178,20 @@ background-color: #0f3923;
     margin: 10px 20px;
     align-items: center;
     justify-content: center;
+    box-shadow: 8px 8px 3px rgb(176 212 185);
 }
+
+.green-btn-shadow{
+  box-shadow: 8px 8px 3px rgb(176 212 185) !important;
+}
+.thm-btn.yellow-bg-hvr {
+    margin-top: 30px;
+    font-size: 16px !important;
+    border-radius: 10px;
+    padding: 10px 20px !important;
+    box-shadow: 8px 8px 2px rgb(175 141 44);
+}
+
 .how-it-works-btn-strip.join-btn-sec .btn-row-link a{
 	min-height: 65px;
 }
@@ -5465,9 +5478,9 @@ padding-bottom: 0 !important;
     left: 0px;
     right: 0px;
     margin: 0px auto;
-    top: 35%;
-    height: 110px !important;
-    width: 110px !important;
+    top: 38%;
+    height: 100px !important;
+    width: 100px !important;
 }
 #minimal-bootstrap-carousel .carousel-caption .thm-container .box .content {
     padding-top: 0;
@@ -5540,7 +5553,9 @@ a.metamask-link {
 a.metamask-link img{
   height: 20px !important;
 }
-
+.footer-bottom {
+    padding: 20px 0 95px;
+}
 
 @media (max-width: 920px){
 

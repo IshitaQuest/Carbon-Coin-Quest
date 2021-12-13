@@ -144,6 +144,22 @@
     .header-navigation .thm-container .navbar-header .navbar-brand > img {margin-left: auto;margin-right: auto;}
     .navbar-default .navbar-toggle {margin: 0;float: none;position: absolute;top:50%;transform: translateY(-50%);border: none;outline: none;font-size: 25px;color: #fff;}
     .navbar-default .navbar-collapse {background-color: #181818;}
+    .fun-fact-style-one .single-fun-fact-style-one .fun-icon {
+        border: 1px dashed #fff;
+        height: 50px;
+        width: 50px;
+        padding: 10px;
+    }
+    .fun-fact-style-one .single-fun-fact-style-one p {
+    font-size: 8px;
+    line-height: 10px;
+}
+.fun-fact-style-one .single-fun-fact-style-one h3 {
+    font-size: 12px;
+}
+.footer-bottom {
+    padding: 20px 0px 50px;
+}
 }
 
 @media (max-width: 1024px) {
@@ -168,6 +184,7 @@
     .timeline-style-one .tab-title-list ul li + li {margin-left: 73.5px;}
     .about-style-two img.pull-left {max-width: none;}
     .banner-style-four {background-position: center center;}
+    .header-navigation .thm-container .navbar-header .navbar-brand > img {margin-left:50%;margin-right: 50%;}
 }
 
 @media (max-width: 800px) {
