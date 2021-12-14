@@ -5442,8 +5442,12 @@ background-color: #0f3923;
 padding-bottom: 0 !important;
 }
 .how-it-works-btn-strip.join-btn-sec .btn-row-link a {
-    min-height: auto;
-    font-weight: 500 !important;
+  min-height: auto;
+  font-weight: 500 !important;
+  max-width: 65%;
+  font-size: 14px !important;
+  line-height: 18px;
+
 }
 .partner-list li .single-fun-fact-style-one img {
     height: 55px;
