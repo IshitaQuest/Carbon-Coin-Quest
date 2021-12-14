@@ -76,14 +76,14 @@
                 <table class="table" id="example">
                   <thead>
                     <tr>
-                      <th width="5%">S. No.</th>
-                      <th width="15%">Name</th>
-                      <th width="8%">Profile</th>
+                      <th width="1%">S. No.</th>
+                      <!-- <th width="15%">Name</th>
+                      <th width="8%">Profile</th> -->
                       <th width="15%">Email</th>
-                      <th width="25%">Wallet Address</th>
+                      <!-- <th width="25%">Wallet Address</th>
                       <th width="10%">Status</th>
                       <th width="12%">Change Password</th>
-                      <th width="20%">Created At</th>
+                      <th width="20%">Created At</th> -->
                     </tr>
                   </thead>
                   <tbody id="tbody">
@@ -96,7 +96,7 @@
                           <%- i %>
                         </td>
 
-                        <td>
+                        <!-- <td>
                           <%- details.name%>
                         </td>
                         <%if(details.profile_image){%>
@@ -105,12 +105,12 @@
                           <%}else{%>
                             <td><img src="admin_assets/images/faces-clipart/pic-1.png"
                                 style="width: 50px;height: 50px;"></td>
-                            <%}%>
+                            <%}%> -->
                               <td>
                                 <%- details.email%>
                               </td>
 
-                              <td>
+                              <!-- <td>
                                 <%- details.wallet_address%>
                               </td>
 
@@ -125,7 +125,7 @@
                               <td><a href="/edit-user?id=<%=details.email%>">Change Password</a></td>
                               <td>
                                 <%- details.created_at%>
-                              </td>
+                              </td> -->
 
 
                       </tr>

@@ -33,7 +33,7 @@ const userController=require('../controllers/userControllers');
 // const {Userwallet,Importwallet,Tokendetails} = require('../model/schema/wallet');
 const { TeamMember } = require('../models/team_info');
 const { BannerInfo, GetInTouch, PartnerInfo, MediaCoverage, KeyFeaturesInfo, milestone, problemInfo, blogInfo, whitepaperInfo, solutionInfo, tokenAllocation, termsAndConditionInfo, privacyPolicyInfo } = require('../models/home_content');
-let { Registration, Userwallet, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ, ContactInfo } = require('../models/userModel');
+let { Registration,whitepaperregister, Userwallet, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ, ContactInfo } = require('../models/userModel');
 let { VAULT, MVAULT } = require('../models/vault');
 let { VaultRate } = require('../models/vault_admin');
 const { AdminInfo } = require('../models/admin');
@@ -465,27 +465,45 @@ router.get('/logout', async (req, res) => {
 
 
 
+// routes.get('/user-list',middleware_check_login,  (req, res) => {
+//   err_msg = req.flash('err_msg');
+//   success_msg = req.flash('success_msg');
+//   var day = moment(new Date()).format('MM/DD/YYYY');
+//   // Registration.find({ deleted: '0', created_at: { $gte: day + ', 00:00:00 AM', $lte: day + ', 12:59:59 PM' } }).sort({ _id: -1 }).lean().then(async (results) => {
+//   //   console.log('448-results', results)
+//   Registration.find({ deleted: '0' }).sort({ _id: -1 }).lean().then(async (results) => {
+//     console.log("result======== ", results);
+//     for (var j = 0; j < results.length; j++) {
+//       var allWalets = [];
+//       var wallets = await Userwallet.find({ user_id: results[j]._id, deleted: '0' });
+//       // console.log(wallets);
+//       wallets.forEach(wallet => {
+//         allWalets.push(wallet.wallet_address);
+//       })
+//       var userWallet = allWalets.join(',');
+//       results[j].wallet_address = userWallet;
+//     }
+//     if (results) {
+//       console.log('462-results', results)
+//       res.render('admin/front-admin/user-list.ejs', { err_msg, success_msg, expressFlash: req.flash(), user_details: results, moment, session: req.session, Name: req.session.user_name, profile_image: req.session.profile_image });
+//     }
+//   }, (error) => {
+//     res.send('Something went wrong');
+//   }).catch((e) => {
+//     res.send(e);
+//   });
+// });
+
 routes.get('/user-list',middleware_check_login,  (req, res) => {
   err_msg = req.flash('err_msg');
   success_msg = req.flash('success_msg');
-  var day = moment(new Date()).format('MM/DD/YYYY');
-  // Registration.find({ deleted: '0', created_at: { $gte: day + ', 00:00:00 AM', $lte: day + ', 12:59:59 PM' } }).sort({ _id: -1 }).lean().then(async (results) => {
-  //   console.log('448-results', results)
-  Registration.find({ deleted: '0' }).sort({ _id: -1 }).lean().then(async (results) => {
-    console.log("result======== ", results);
-    for (var j = 0; j < results.length; j++) {
-      var allWalets = [];
-      var wallets = await Userwallet.find({ user_id: results[j]._id, deleted: '0' });
-      // console.log(wallets);
-      wallets.forEach(wallet => {
-        allWalets.push(wallet.wallet_address);
-      })
-      var userWallet = allWalets.join(',');
-      results[j].wallet_address = userWallet;
-    }
+  
+  whitepaperregister.find().then(async (results) => {
+    console.log("whitepaper ", results);
+
     if (results) {
       console.log('462-results', results)
-      res.render('admin/front-admin/user-list.ejs', { err_msg, success_msg, expressFlash: req.flash(), user_details: results, moment, session: req.session, Name: req.session.user_name, profile_image: req.session.profile_image });
+      res.render('admin/front-admin/user-list.ejs', { err_msg, success_msg, user_details: results});
     }
   }, (error) => {
     res.send('Something went wrong');
@@ -493,6 +511,8 @@ routes.get('/user-list',middleware_check_login,  (req, res) => {
     res.send(e);
   });
 });
+
+
 
 /******************************************************************************************/
 
