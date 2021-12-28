@@ -13,6 +13,8 @@ const cookieParser = require('cookie-parser');
 var fs = require('fs-extra');
 const routes = require('./routes/index.js');
 // const probit = require('./routes/probit.js');
+var dir = path.join(__dirname, 'public/admin_assets/uploads/whitepaper/');
+app.use(express.static(dir));
 
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/AbuBakr",

@@ -8,17 +8,29 @@
        <div class="col-lg-6">
          <div class="text-right">
            <div>
-             <a href="add-new-question.ejs" class="btn btn-common bg-gradient-primary">Add new Questions</a>
+             <a href="/add-new-question" class="btn btn-common bg-gradient-primary">Add new Questions</a>
            </div>
          </div>
        </div>
   </div>
+  <% if(err_msg!=undefined && err_msg !='' ){ %>
+    <div class="alert alert-danger text-center  flash_msg " id="error_msg">
+      <%= err_msg %>
+       </div>
+     
+    <% }%>
+     <% if(success_msg!=undefined && success_msg !='' ){ %>
+      <div class="alert alert-success text-center  flash_msg "id="success_message">
+      <%= success_msg %>
+     </div>
+    <% }%>
   </div>
   <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body table-responsive">
           <table class="table">
+            
             <thead>
               <tr>
                 <th width="10%">S. No.</th>
@@ -28,23 +40,30 @@
                 <th width="10%">Action</th>
               </tr>
             </thead>
+            
             <tbody>
+              <% var count =1%>
+            <% questionDetails.forEach(function(row){%>
               <tr>
-                <td>1</td>
+                <td><%=count %></td>
+                <% count++%>
                
-                <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</td>
-                <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</td>
-                <td>Active</td>
+                <td><%=row.question%></td>
+                <td><%=row.answer%></td>
+                <td><%=row.status%></td>
                  <td>
                   <div class="edit-icons">
                    
-                    <a href="edit-faq.ejs" data-toggle="tooltip" data-placement="top" title="Edit"><i class="mdi mdi-pencil"></i></a>
-                    <a href="" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-close"></i></a>
+                    <a href="/edit-faq" onclick="location.href=this.href+'?_id='+ `<%=row._id %>`;
+                      return false" data-toggle="tooltip" data-placement="top" title="Edit"><i class="mdi mdi-pencil"></i></a>
+                    <a href="/edit-faq" onclick="location.href=this.href+'?_id='+ `<%=row._id %>`;
+                      return false" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-close"></i></a>
                   </div>
                 </td>
               </tr>
 
-               
+               <%})%>
+
             </tbody>
           </table>
         </div>

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const moment = require('moment');
 const auth = require('../config/auth');
+const fs = require('fs');
 const web3 = require('web3');
 const crypto = require('crypto');
 const Tx = require('ethereumjs-tx');
@@ -14,7 +15,7 @@ const { mail } = require('../helper/mailer');
 
 
 
-const { Registration, whitepaperregister,Userwallet, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ, ContactInfo } = require('../models/userModel');
+const { Registration,Userwallet, whitepaperregister, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ, ContactInfo } = require('../models/userModel');
 
 var isUser = auth.isUser;
 
@@ -24,7 +25,6 @@ router.use(userControllers.sessionHeader);
 router.get('/', userControllers.landingPage);
 
 router.get('/sendMail',userControllers.sendMail);
-
 router.post("/subscribe", async (req, res) => {
   let email = req.body.email;
  
@@ -44,8 +44,6 @@ router.post("/subscribe", async (req, res) => {
   res.redirect("/user_assets/Karbun-Coin-Whitepaper.pdf");
   }
 });
-
-
 // router.get('/login', userControllers.loginPage);
 
 router.get('/logout', userControllers.logout);
@@ -290,7 +288,62 @@ router.post('/submit-change-pass', isUser, function (req, res) {
 
 router.post('/forgot-pass', userControllers.submitForgot);
 
+router.post("/whitepaper", async (req, res) => {
+  
+  let email = req.body.email;
+ 
+  const subscriber= new whitepaperregister({
+    email: email,
 
+  });
+  const user =  await whitepaperregister.findOne({
+    email: req.body.email,
+  })
+  
+  if (user){
+    console.log("Already Exist User");
+  // alert("Thank You!", "your transaction is successfully submitted.", "success");
+
+  }else{
+  await subscriber.save();
+  console.log("New User is registered successfully");
+  // alert("Thank You!", "your transaction is successfully submitted.", "success");
+  }
+
+  try{
+    await fs.readFile('whitepaper.txt', function(err, data) {
+       console.log(data)
+      //  data.toString();
+       res.redirect("/"+data.toString())
+    });
+  }catch(err){
+    console.log(err);
+  }
+});
+
+router.post("/subscribe", async (req, res) => {
+  let email = req.body.email;
+ 
+  const subscriber= new whitepaperregister({
+    email: email,
+
+  });
+  const user =  await whitepaperregister.findOne({
+    email: req.body.email,
+  })
+  
+  if (user){
+    console.log("Already Exist User");
+  // alert("Thank You!", "your transaction is successfully submitted.", "success");
+
+  }else{
+  await subscriber.save();
+  console.log("New User is registered successfully");
+  // alert("Thank You!", "your transaction is successfully submitted.", "success");
+  }
+  res.redirect("/");
+
+});
 
 // router.post('/signup', userControllers.submitUser);
 
@@ -366,7 +419,7 @@ router.get('/transaction-table', isUser, function (req, res) {
 });
 
 //***************** get Send-rowan **************//
-// router.get('/send-EBT', isUser, async function (req, res) {
+// router.get('/send-ico', isUser, async function (req, res) {
 //   let err_msg = req.flash('err_msg');
 //   let success_msg = req.flash('success_msg');
 //   let walletid = req.query.walletid;
@@ -400,7 +453,7 @@ router.get('/transaction-table', isUser, function (req, res) {
 //         value = 1 / usdValue;
 //       }
 //       value = Math.round(value * 100) / 100;
-//       res.render('/send-EBT', { err_msg, success_msg, walletdetails, layout: false, session: req.session, coinbalance, type, walletid, value, usdValue, etherValue, bnbValue });
+//       res.render('/send-ico', { err_msg, success_msg, walletdetails, layout: false, session: req.session, coinbalance, type, walletid, value, usdValue, etherValue, bnbValue });
 //     }
 //     else {
 //       console.log("somethig went wrong with login status")
@@ -460,8 +513,8 @@ router.get('/transaction-table', isUser, function (req, res) {
 //   success = req.flash('success_msg');
 //   var user_id = req.session.re_us_id;
 //   Tokensettings.findOne().then(btcresult => {
-//     var ebt = btcresult.etherValue;
-//     var tebt=ebt*0.0000000065;
+//     var ico = btcresult.etherValue;
+//     var tico=ico*0.0000000065;
 //     Importwallet.findOne({ 'user_id': user_id, 'login_status': 'login' }, function (err, loginwallet) {
 //       if (err) {
 //         console.log("Something went wrong");
@@ -472,7 +525,7 @@ router.get('/transaction-table', isUser, function (req, res) {
 //             if (err) { console.log("Something went wrong"); }
 //             else {
 //               var wallet_address = result.wallet_address;
-//               res.render('buy-coin', { error, success, wallet_address, user_id, ebt,tebt });
+//               res.render('buy-coin', { error, success, wallet_address, user_id, ico,tico });
 //             }
 //           })
 //         }
@@ -497,6 +550,42 @@ router.get("/buy-coin", function (req, res) {
   
 });
 
+
+
+
+router.get("/faq", function (req, res) {
+  // var error ="";
+  // var success = "";
+  error = req.flash("err_msg");
+  success = req.flash("success_msg");
+  // var user_id = req.session.re_us_id;
+
+                  // var wallet_address = result.wallet_address;
+                  res.render("faq", {
+                    error,
+                    success,
+                    
+                  });
+  
+});
+
+
+
+router.get("/terms", function (req, res) {
+  // var error ="";
+  // var success = "";
+  error = req.flash("err_msg");
+  success = req.flash("success_msg");
+  // var user_id = req.session.re_us_id;
+
+                  // var wallet_address = result.wallet_address;
+                  res.render("terms", {
+                    error,
+                    success,
+                    
+                  });
+  
+});
 
 
 router.post('/ETH', isUser, async function (req, res) {

@@ -33,7 +33,7 @@ const userController=require('../controllers/userControllers');
 // const {Userwallet,Importwallet,Tokendetails} = require('../model/schema/wallet');
 const { TeamMember } = require('../models/team_info');
 const { BannerInfo, GetInTouch, PartnerInfo, MediaCoverage, KeyFeaturesInfo, milestone, problemInfo, blogInfo, whitepaperInfo, solutionInfo, tokenAllocation, termsAndConditionInfo, privacyPolicyInfo } = require('../models/home_content');
-let { Registration,whitepaperregister, Userwallet, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ, ContactInfo } = require('../models/userModel');
+let { Registration, whitepaperregister,Userwallet, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ, ContactInfo } = require('../models/userModel');
 let { VAULT, MVAULT } = require('../models/vault');
 let { VaultRate } = require('../models/vault_admin');
 const { AdminInfo } = require('../models/admin');
@@ -120,6 +120,16 @@ var storage_admin = multer.diskStorage({
     cb(null, Date.now() + '.jpg')
   }
 });
+var whitepaperStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/admin_assets/uploads/whitepaper')
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now()+file.originalname);
+  }
+});
+
+var whitePaperUpload = multer({storage:whitepaperStorage});
 
 // var upload_admin = multer({storage: storage_admin});
 
@@ -462,38 +472,6 @@ router.get('/logout', async (req, res) => {
 
 //   res.redirect('/admin-login');
 // });
-
-
-
-// routes.get('/user-list',middleware_check_login,  (req, res) => {
-//   err_msg = req.flash('err_msg');
-//   success_msg = req.flash('success_msg');
-//   var day = moment(new Date()).format('MM/DD/YYYY');
-//   // Registration.find({ deleted: '0', created_at: { $gte: day + ', 00:00:00 AM', $lte: day + ', 12:59:59 PM' } }).sort({ _id: -1 }).lean().then(async (results) => {
-//   //   console.log('448-results', results)
-//   Registration.find({ deleted: '0' }).sort({ _id: -1 }).lean().then(async (results) => {
-//     console.log("result======== ", results);
-//     for (var j = 0; j < results.length; j++) {
-//       var allWalets = [];
-//       var wallets = await Userwallet.find({ user_id: results[j]._id, deleted: '0' });
-//       // console.log(wallets);
-//       wallets.forEach(wallet => {
-//         allWalets.push(wallet.wallet_address);
-//       })
-//       var userWallet = allWalets.join(',');
-//       results[j].wallet_address = userWallet;
-//     }
-//     if (results) {
-//       console.log('462-results', results)
-//       res.render('admin/front-admin/user-list.ejs', { err_msg, success_msg, expressFlash: req.flash(), user_details: results, moment, session: req.session, Name: req.session.user_name, profile_image: req.session.profile_image });
-//     }
-//   }, (error) => {
-//     res.send('Something went wrong');
-//   }).catch((e) => {
-//     res.send(e);
-//   });
-// });
-
 routes.get('/user-list',middleware_check_login,  (req, res) => {
   err_msg = req.flash('err_msg');
   success_msg = req.flash('success_msg');
@@ -513,6 +491,34 @@ routes.get('/user-list',middleware_check_login,  (req, res) => {
 });
 
 
+routes.get('/user-list',middleware_check_login,  (req, res) => {
+  err_msg = req.flash('err_msg');
+  success_msg = req.flash('success_msg');
+  var day = moment(new Date()).format('MM/DD/YYYY');
+  // Registration.find({ deleted: '0', created_at: { $gte: day + ', 00:00:00 AM', $lte: day + ', 12:59:59 PM' } }).sort({ _id: -1 }).lean().then(async (results) => {
+  //   console.log('448-results', results)
+  Registration.find({ deleted: '0' }).sort({ _id: -1 }).lean().then(async (results) => {
+    console.log("result======== ", results);
+    for (var j = 0; j < results.length; j++) {
+      var allWalets = [];
+      var wallets = await Userwallet.find({ user_id: results[j]._id, deleted: '0' });
+      // console.log(wallets);
+      wallets.forEach(wallet => {
+        allWalets.push(wallet.wallet_address);
+      })
+      var userWallet = allWalets.join(',');
+      results[j].wallet_address = userWallet;
+    }
+    if (results) {
+      console.log('462-results', results)
+      res.render('admin/front-admin/user-list.ejs', { err_msg, success_msg, expressFlash: req.flash(), user_details: results, moment, session: req.session, Name: req.session.user_name, profile_image: req.session.profile_image });
+    }
+  }, (error) => {
+    res.send('Something went wrong');
+  }).catch((e) => {
+    res.send(e);
+  });
+});
 
 /******************************************************************************************/
 
@@ -609,6 +615,30 @@ routes.get('/deactiveUser', adminServices.deactivateUser)
 routes.get('/activeUser', adminServices.activateUser)
 
 routes.get('/verifyorder', adminServices.VerifyOrder)
+routes.post("/upload-whitepaper",whitePaperUpload.single("file"),async (req,res)=>{
+  try{
+    fs.writeFile('whitepaper.txt',req.file.filename, function (err) {
+      if (err){
+        res.send({error:true,data:err});
+      }else{
+        res.redirect("/whitepaper")
+      }
+      
+    });
+  }catch(err){
+    console.log(err);
+  }
+})
+
+routes.get("/get-whitepaper",async (req,res)=>{
+  try{
+    fs.readFile('whitepaper.txt', function(err, data) {
+      res.send({error:false,data:data.toString()});
+    });
+  }catch(err){
+    res.send({error:true,data:err});
+  }
+})
 
 
 routes.get('/edit-user', middleware_check_login, (req, res) => {
@@ -2785,18 +2815,26 @@ routes.post('/edit-blog', middleware_check_login, (req, res) => {
   })
 })
 
-/////////////************faq list       *************/////////////////
+/////////////************faq list  *************/////////////////
 routes.get('/faq-list',  (req, res) => {
 
   FAQ.find({ deleted: '0' }).then((questionDetails) => {
 
-    res.render('admin/front-admin/faq-list', { err_msg, success_msg, Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash(), questionDetails })
+    console.log(questionDetails);
+
+    res.render('admin/front-admin/faq-list', { 
+      err_msg, success_msg, 
+      Name: req.session.user_name, 
+      // profile_image: req.session.profile_image, 
+      session: req.session, 
+      expressFlash: req.flash(), 
+      questionDetails })
 
   }, (err) => {
 
     res.send('Some thing went wrong try again.');
 
-  }).catch((e) => {
+  }).catch((err) => {
 
     res.send('Some thing went wrong try again.');
 
@@ -2804,35 +2842,48 @@ routes.get('/faq-list',  (req, res) => {
 
 })
 
+
+
 routes.get('/add-new-question',  (req, res) => {
 
-  res.render('admin/front-admin/add-new-question', { err_msg, success_msg, Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash() })
+  res.render('admin/front-admin/add-new-question', { 
+    err_msg, 
+    success_msg, 
+    Name: req.session.user_name, 
+    profile_image: req.session.profile_image, 
+    session: req.session, 
+    expressFlash: req.flash() })
 })
 
+// This is updated by Hariom Jaiswal
 routes.post('/add-new-question', middleware_check_login, (req, res) => {
 
 
-  const form = formidable({ multiples: true });
-  form.parse(req, (err, fields, files) => {
-    var imageFile = typeof files.banner_image !== "undefined" ? files.banner_image.name : "";
-    if (imageFile != "") {
-      banner_image = imageFile;
+  // const form = formidable({ multiples: true });
+    var question = req.body.question;
+    var status = req.body.status;
+    var answer = req.body.editor1;
+    
+  // form.parse(req, (err, fields, files) => {
+  //   var imageFile = typeof files.banner_image !== "undefined" ? files.banner_image.name : "";
+  //   if (imageFile != "") {
+  //     banner_image = imageFile;
 
-      if (imageFile != "") {
-        var imgpath = 'public/home/FAQ/' + imageFile;
-        let testFile = fs.readFileSync(files.banner_image.path);
-        let testBuffer = new Buffer(testFile);
-        fs.writeFile(imgpath, testBuffer, function (err) {
-          if (err) return console.log(err);
-        });
-      }
-    } else {
-      banner_image = "";
-    }
+  //     if (imageFile != "") {
+  //       var imgpath = 'public/home/FAQ/' + imageFile;
+  //       let testFile = fs.readFileSync(files.banner_image.path);
+  //       let testBuffer = new Buffer(testFile);
+  //       fs.writeFile(imgpath, testBuffer, function (err) {
+  //         if (err) return console.log(err);
+  //       });
+  //     }
+  //   } else {
+  //     banner_image = "";
+  //   }
 
-    var question = fields.question;
-    var answer = fields.editor1;
-    var status = fields.status;
+  //   var question = fields.question;
+  //   var answer = fields.editor1;
+  //   var status = fields.status;
     var created_at = Date.now();
 
     var question = new FAQ({
@@ -2847,7 +2898,7 @@ routes.post('/add-new-question', middleware_check_login, (req, res) => {
       .catch(err => {
         console.log(err);
       })
-  });
+  // });
 
 })
 
@@ -2855,7 +2906,12 @@ routes.get('/edit-question', middleware_check_login, (req, res) => {
   let id = req.query.id;
   FAQ.findOne({ _id: id, deleted: '0' }).then((question) => {
     console.log('question', question);
-    res.render('admin/front-admin/edit-question.ejs', { Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash(), question });
+    res.render('admin/front-admin/edit-question.ejs', {
+       Name: req.session.user_name, 
+       profile_image: req.session.profile_image, 
+       session: req.session, 
+       expressFlash: req.flash(), 
+       question });
 
   }, (err) => {
 
@@ -2935,13 +2991,11 @@ routes.get('/add-terms-n-conditons', middleware_check_login, (req, res) => {
 
 
 routes.post('/add-terms-n-conditons', middleware_check_login, (req, res) => {
-  const form = formidable({ multiples: true });
-  form.parse(req, (err, fields, files) => {
-
-    var title = fields.title;
-    var content = fields.editor1;
-    var status = fields.status;
+  var title = req.body.title;
+    var status = req.body.status;
+    var content = req.body.editor1;
     var created_at = Date.now();
+    let id = req.query.id;
 
     var termsAndCondition = new termsAndConditionInfo({
       title: title, content: content, status: status, created_at: created_at,
@@ -2956,7 +3010,36 @@ routes.post('/add-terms-n-conditons', middleware_check_login, (req, res) => {
         console.log(err);
       })
   });
-})
+
+
+// routes.post('/add-terms-n-conditons', middleware_check_login, (req, res) => {
+ 
+//     var title = req.body.title;
+//     var status = req.body.status;
+//     var content = req.body.editor1;
+//     var updated_at = Date.now();
+//     let id = req.query.id;
+
+//     termsAndConditionInfo.updateOne({ _id: id }, {
+//       $set: {
+//         title: title,
+//         content:editor1,
+//         status: status,
+//         updated_at: updated_at,
+//       }
+//     }, { upsert: true }, function (err) {
+//       if (err) {
+
+//         req.flash('err_msg', 'Something went wrong.');
+//         res.redirect('/terms-n-conditons');
+//       }
+//       else {
+//         req.flash('success_msg', 'termsAndCondition added successfully.');
+//         res.redirect('/terms-n-conditons');
+//       }
+//     })
+//   // })
+// })
 
 routes.get('/edit-terms-n-conditons', middleware_check_login, (req, res) => {
   let id = req.query.id;
@@ -2989,7 +3072,7 @@ routes.post('/edit-terms-n-conditons', middleware_check_login, (req, res) => {
     termsAndConditionInfo.updateOne({ _id: id }, {
       $set: {
         title: title,
-        content: content,
+        content: editor1,
         status: status,
         updated_at: updated_at,
       }
@@ -3665,6 +3748,56 @@ routes.get('/delete-team-member', middleware_check_login, (req, res) => {
   });
 
 });
+
+// ',?
+routes.get('/edit-faq', middleware_check_login, async (req, res) => {
+  let id = req.query.id;
+  try {
+    let faqData = await FAQ.findOne({_id:id})
+    res.render('admin/front-admin/edit-faq',{
+      faqData
+
+    })
+
+  }catch(err){
+    throw err
+  }
+  
+
+})
+
+routes.post('/edit-faq', middleware_check_login, (req, res) => {
+  // const form = formidable({ multiples: true });
+  // form.parse(req, (err, fields, files) => {
+    // var question = fields.question;
+    // var answer = fields.editor1;
+    // var status = fields.status;
+    var question = req.body.question;
+    var status = req.body.status;
+    var answer = req.body.answer;
+    var updated_at = Date.now();
+    let id = req.query.id;
+
+    FAQ.updateOne({ _id: id }, {
+      $set: {
+        question: question,
+        answer: answer,
+        status: status,
+        updated_at: updated_at,
+      }
+    }, { upsert: true }, function (err) {
+      if (err) {
+
+        req.flash('err_msg', 'Something went wrong.');
+        res.redirect('/faq-list');
+      }
+      else {
+        req.flash('success_msg', 'Question updated successfully.');
+        res.redirect('/faq-list');
+      }
+    })
+  // })
+})
 
 
 
