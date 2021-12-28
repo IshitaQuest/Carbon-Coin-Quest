@@ -1,0 +1,155 @@
+<%- include('header') -%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style type="text/css">
+  
+  
+  .button {
+  background-color:white;
+  border: 1.5px solid white;
+  color: black;
+  padding: 12px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  float: right;
+  transition-duration: 0.4s;
+  }
+
+.button:hover {
+  background-color: #d4d125; /* Green */
+  color: white;
+}
+
+.button:active {
+
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+  
+  
+  
+  
+  td {
+    max-width: 150px !important;
+    overflow: hidden !important
+  }
+
+  table, th, td {
+  border: 1px solid white;
+}
+  
+  .vl {
+  border-left: 6px solid white;
+  height: 500px;
+  position: absolute;
+  left: 50%;
+  margin-left: -3px;
+  top: 0;
+}
+
+  .vl {
+  border-left: 6px solid white ;
+  height: 500px;
+}
+
+  .container {
+    background-color: white;
+    font-size: .12;
+  }
+
+  #example_wrapper .dataTables_filter {
+    display: none !important;
+  }
+</style>
+<div class="heading-row mb-20">
+  <div class="row align-item-center">
+     <div class="col-lg-6">
+        <h3 class="page-title"><span class="page-title-icon bg-gradient-primary text-white mr-2"><i class="mdi mdi-history"></i></span> Order History </h3>
+     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 grid-margin stretch-card">
+
+    <div class="card">
+      <div class="card-header">
+      </div>
+
+
+      <div class="card-body table-responsive">
+        <%if(err_msg !="" ){%>
+          <span style="color: red; ">
+            <%= err_msg%>
+          </span>
+          <%}%>
+            <%if(success_msg !="" ){%>
+              <span style="color: #099441; ">
+                <%=success_msg%>
+              </span>
+              <%}%>
+                <table class="table" id="example">
+                  <thead>
+                    <tr>
+                      <th width="3%">S. No.</th>
+                      <th width="10%">Transaction Hash</th>
+                      <th width="10%">User Wallet Address</th>
+                      <th width="10%">Admin Wallet Address</th>
+                      <!-- <th width="10%">Email</th> -->
+                      <th width="10%">Gas Fee</th>
+                      <th width="10%">Value</th>
+                      <!-- <th width="10%">Payment Method</th> -->
+                    </tr>
+                  </thead>
+                  <tbody id="data">
+
+                  </tbody>
+                </table>
+                <!-- <body>
+
+                  <input type="button" class="button" value="Next">
+                  <input type="button" class="button" value="Previous">
+                  
+                  
+                  </body> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  fetch("https://api-ropsten.etherscan.io/api?module=account&action=txlist&address=0xF24a24Ab64a29edd50ACC655f4dd78360888A83e&startblock=0&endblock=99999999&page=1&offset=infinite&sort=desc&apikey=YourApiKeyToken").then(
+    res=>{
+      res.json().then(
+        data=>{
+          console.log(data);
+        
+          data = data.result;
+          if(data.length > 0){
+            var temp = "";
+            
+
+            data.forEach((u,index)=>{
+              let i=index+1;
+              temp +="<tr>";
+              temp +="<td>"+i+"</td>";
+              // temp +="<td>"+u.sr=0 ;for(let i=0;i<=100;i++){sr=i}+"</td>";
+              temp +="<td>"+u.hash+"</td>";
+              temp +="<td>"+u.from+"</td>";
+              temp +="<td>"+u.to+"</td>";
+              temp +="<td>"+u.gasPrice+"</td>";
+              temp +="<td>"+u.value+"</td>";
+              temp +="</tr>";
+
+            })
+
+            document.getElementById("data").innerHTML= temp;
+          }
+        }
+      
+      )
+    }
+  )
+</script>
