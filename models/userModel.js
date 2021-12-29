@@ -1111,6 +1111,8 @@ var contactSchema = mongoose.Schema({
 
 var ContactInfo = mongoose.model('contact', contactSchema);
 
+
+
 module.exports = {
     Registration: Registration,
     whitepaperregister: whitepaperregister,

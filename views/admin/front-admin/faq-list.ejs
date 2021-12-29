@@ -56,10 +56,11 @@
                    
                     <a href="/edit-faq" onclick="location.href=this.href+'?_id='+ `<%=row._id %>`;
                       return false" data-toggle="tooltip" data-placement="top" title="Edit"><i class="mdi mdi-pencil"></i></a>
-                    <a href="/edit-faq" onclick="location.href=this.href+'?_id='+ `<%=row._id %>`;
+                    <a href="/delete-faq" onclick="location.href=this.href+'?_id='+ `<%=row._id %>`;
                       return false" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-close"></i></a>
+              
                   </div>
-                </td>
+                  </td>
               </tr>
 
                <%})%>
@@ -77,4 +78,9 @@
 $(document).ready( function () {
   $('.table').DataTable();
 } );
+</script>
+<script>
+  function deleteData(){
+    
+  }
 </script>

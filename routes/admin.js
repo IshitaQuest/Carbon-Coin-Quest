@@ -17,6 +17,7 @@ const routes = require('express').Router();
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const admin_wallet = '0xF24a24Ab64a29edd50ACC655f4dd78360888A83e';
+
 var mkdirp = require('mkdirp');
 const bcrypt = require('bcryptjs');
 const { middleware_check_login, check_user_login } = require('../middleware/login_middleware');
@@ -33,7 +34,7 @@ const userController=require('../controllers/userControllers');
 // const {Userwallet,Importwallet,Tokendetails} = require('../model/schema/wallet');
 const { TeamMember } = require('../models/team_info');
 const { BannerInfo, GetInTouch, PartnerInfo, MediaCoverage, KeyFeaturesInfo, milestone, problemInfo, blogInfo, whitepaperInfo, solutionInfo, tokenAllocation, termsAndConditionInfo, privacyPolicyInfo } = require('../models/home_content');
-let { Registration, whitepaperregister,Userwallet, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ, terms,ContactInfo } = require('../models/userModel');
+let { Registration, whitepaperregister,Userwallet, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ, termsinfo,ContactInfo } = require('../models/userModel');
 let { VAULT, MVAULT } = require('../models/vault');
 let { VaultRate } = require('../models/vault_admin');
 const { AdminInfo } = require('../models/admin');
@@ -3739,17 +3740,25 @@ routes.get('/edit-faq', middleware_check_login, async (req, res) => {
 
 })
 
-routes.post('/edit-faq', middleware_check_login, (req, res) => {
-  // const form = formidable({ multiples: true });
-  // form.parse(req, (err, fields, files) => {
-    // var question = fields.question;
-    // var answer = fields.editor1;
-    // var status = fields.status;
+routes.get('/delete-faq', middleware_check_login, (req, res) => {
+  let id = req.query._id;
+  
+  FAQ.findOne({ _id: id, deleted: '0' }).then(async (faq) => {
+    // faq.deleted = '1'
+    await faq.delete()
+    // await faq.save()
+    res.redirect('/faq-list')
+  })
+
+})
+
+routes.post('/edit-faqs', middleware_check_login, (req, res) => {
+
+    var id=req.body.id;
     var question = req.body.question;
     var status = req.body.status;
-    var answer = req.body.answer;
+    var answer = req.body.editor1;
     var updated_at = Date.now();
-    let id = req.query.id;
 
     FAQ.updateOne({ _id: id }, {
       $set: {

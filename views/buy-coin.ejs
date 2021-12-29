@@ -303,20 +303,20 @@
     
                       </div>
                   </div> -->
+                 
                   <div class="checkbox">
-                      <label>
-                          <input type="checkbox" value="">
-    
-                          I agree with <a href="">terms and conditions</a> of Carbon.
-                      </label>
+                    <label>
+                        <input type="checkbox" id="check" onclick="enable()"  class="group-required">
+
+                        I agree with <a href="/terms"> terms and conditions</a> of Karbun.
+                    </label>
+                </div>
+                 
+                    <div class="btn-block">
+                      <!-- <button type="submit" class="thm-btn yellow-bg-hvr">Submit</button> -->
+                      <!-- <button class="enableEthereumButton btn">Enable Ethereum</button> -->
+                      <button disabled="true" id ="btn" type="submit" class="enableEthereumButton sendEthButton btn thm-btn yellow-bg-hvr">Buy Eth</button>
                   </div>
-                  <div class="btn-block">
-                   <!--  <button type="submit" class="thm-btn yellow-bg-hvr">Submit</button> 
-                    <button class="enableEthereumButton btn">Enable Ethereum</button> 
-                     <button class="enableEthereumButton sendEthButton btn thm-btn yellow-bg-hvr">Send
-                        Eth</button> -->
-                     <button class="btn thm-btn yellow-bg-hvr" onclick="BuyEth()">Buy Eth</button>
-                    </div>
               </div>
               </div>
               </div>
@@ -475,7 +475,18 @@
           });
       });
   </script>
-
+<script>
+  function enable(){
+      var check=document.getElementById("check");
+      var btn = document.getElementById("btn");
+      if(check.checked){
+          btn.removeAttribute("disabled");
+      }
+      else{
+          btn.disabled="true";
+      }
+  }
+</script>
   <script>
       function initializeFileUploads() {
           $('.file-upload').change(function () {

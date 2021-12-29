@@ -12,10 +12,9 @@ const blockchainController = require('../controllers/blockchainController');
 const blockchainServices = require("../services/blockchainServices");
 const { calculateHours } = require('../helper/userHelper');
 const { mail } = require('../helper/mailer');
+const { BannerInfo, GetInTouch, PartnerInfo, MediaCoverage, KeyFeaturesInfo, milestone, problemInfo, blogInfo, whitepaperInfo, solutionInfo, tokenAllocation, termsAndConditionInfo, privacyPolicyInfo } = require('../models/home_content');
 
-
-
-const { Registration,Userwallet, whitepaperregister, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ, ContactInfo } = require('../models/userModel');
+const { Registration, Userwallet,whitepaperregister, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ,ContactInfo } = require('../models/userModel');
 
 var isUser = auth.isUser;
 
@@ -44,6 +43,7 @@ router.post("/subscribe", async (req, res) => {
   res.redirect("/user_assets/Karbun-Coin-Whitepaper.pdf");
   }
 });
+
 // router.get('/login', userControllers.loginPage);
 
 router.get('/logout', userControllers.logout);
@@ -312,9 +312,8 @@ router.post("/whitepaper", async (req, res) => {
 
   try{
     await fs.readFile('whitepaper.txt', function(err, data) {
-       console.log(data)
-      //  data.toString();
-       res.redirect("/"+data.toString())
+      console.log(data)
+      res.redirect("/"+data.toString())
     });
   }catch(err){
     console.log(err);
@@ -559,14 +558,19 @@ router.get("/faq", function (req, res) {
   error = req.flash("err_msg");
   success = req.flash("success_msg");
   // var user_id = req.session.re_us_id;
-
-                  // var wallet_address = result.wallet_address;
-                  res.render("faq", {
-                    error,
-                    success,
-                    
-                  });
   
+
+  FAQ.find({ deleted: '0' }).then((questionDetails) => {
+    res.render("faq", {
+      err_msg:error,
+      success_msg:success,
+      questionDetails:questionDetails,
+    }).catch(err=>{
+      console.log(err);
+    })
+
+  })
+                  // var wallet_address = result.wallet_address;
 });
 
 
@@ -579,13 +583,18 @@ router.get("/terms", function (req, res) {
   // var user_id = req.session.re_us_id;
 
                   // var wallet_address = result.wallet_address;
-                  res.render("terms", {
-                    error,
-                    success,
-                    
-                  });
+   termsAndConditionInfo.find({}).then((TitleDetails) => {
+    res.render("terms", {
+      err_msg:error,
+      success_msg:success,
+      TitleDetails:TitleDetails,
+    }).catch(err=>{
+      console.log(err);
+    })
+
+  })
+})
   
-});
 
 
 router.post('/ETH', isUser, async function (req, res) {
