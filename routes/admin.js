@@ -33,7 +33,7 @@ const userController=require('../controllers/userControllers');
 // const {Userwallet,Importwallet,Tokendetails} = require('../model/schema/wallet');
 const { TeamMember } = require('../models/team_info');
 const { BannerInfo, GetInTouch, PartnerInfo, MediaCoverage, KeyFeaturesInfo, milestone, problemInfo, blogInfo, whitepaperInfo, solutionInfo, tokenAllocation, termsAndConditionInfo, privacyPolicyInfo } = require('../models/home_content');
-let { Registration, whitepaperregister,Userwallet, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ, ContactInfo } = require('../models/userModel');
+let { Registration, whitepaperregister,Userwallet, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ, terms,ContactInfo } = require('../models/userModel');
 let { VAULT, MVAULT } = require('../models/vault');
 let { VaultRate } = require('../models/vault_admin');
 const { AdminInfo } = require('../models/admin');
@@ -2820,8 +2820,6 @@ routes.get('/faq-list',  (req, res) => {
 
   FAQ.find({ deleted: '0' }).then((questionDetails) => {
 
-    console.log(questionDetails);
-
     res.render('admin/front-admin/faq-list', { 
       err_msg, success_msg, 
       Name: req.session.user_name, 
@@ -2991,11 +2989,13 @@ routes.get('/add-terms-n-conditons', middleware_check_login, (req, res) => {
 
 
 routes.post('/add-terms-n-conditons', middleware_check_login, (req, res) => {
-  var title = req.body.title;
-    var status = req.body.status;
+  // const form = formidable({ multiples: true });
+  // form.parse(req, (err, fields, files) => {
+
+    var title = req.body.title;
     var content = req.body.editor1;
+    var status = req.body.status;
     var created_at = Date.now();
-    let id = req.query.id;
 
     var termsAndCondition = new termsAndConditionInfo({
       title: title, content: content, status: status, created_at: created_at,
@@ -3009,37 +3009,7 @@ routes.post('/add-terms-n-conditons', middleware_check_login, (req, res) => {
       .catch(err => {
         console.log(err);
       })
-  });
-
-
-// routes.post('/add-terms-n-conditons', middleware_check_login, (req, res) => {
- 
-//     var title = req.body.title;
-//     var status = req.body.status;
-//     var content = req.body.editor1;
-//     var updated_at = Date.now();
-//     let id = req.query.id;
-
-//     termsAndConditionInfo.updateOne({ _id: id }, {
-//       $set: {
-//         title: title,
-//         content:editor1,
-//         status: status,
-//         updated_at: updated_at,
-//       }
-//     }, { upsert: true }, function (err) {
-//       if (err) {
-
-//         req.flash('err_msg', 'Something went wrong.');
-//         res.redirect('/terms-n-conditons');
-//       }
-//       else {
-//         req.flash('success_msg', 'termsAndCondition added successfully.');
-//         res.redirect('/terms-n-conditons');
-//       }
-//     })
-//   // })
-// })
+  })
 
 routes.get('/edit-terms-n-conditons', middleware_check_login, (req, res) => {
   let id = req.query.id;
@@ -3593,8 +3563,8 @@ routes.get('/add-new-member', middleware_check_login, (req, res) => {
 
 routes.post('/add_member', middleware_check_login,  (req, res) => {
   console.log("add member")
-  const form = formidable({ multiples: true });
-  form.parse(req, (err, fields, files) => {
+  // const form = formidable({ multiples: true });
+  // form.parse(req, (err, fields, files) => {
     if (files != null && files != undefined && files != '') {
       var imageFile = typeof files.member_image !== "undefined" ? files.member_image.name : "";
     } else {
@@ -3616,12 +3586,12 @@ routes.post('/add_member', middleware_check_login,  (req, res) => {
       member_image = "";
     }
 
-    var name = fields.name;
-    var designation = fields.designation;
-    var content = fields.content;
-    var linkedin_url = fields.linkedin_url;
+    var name = req.body.name;
+    var designation = req.body.designation;
+    var content = req.body.content;
+    var linkedin_url = req.body.linkedin_url;
     var member_image = member_image;
-    var status = fields.status;
+    var status = req.body.status;
     var created_at = Date.now();
 
 
@@ -3641,7 +3611,7 @@ routes.post('/add_member', middleware_check_login,  (req, res) => {
         console.log(err);
       })
   })
-});
+
 
 routes.get('/edit-member', middleware_check_login, (req, res) => {
 
@@ -3751,9 +3721,12 @@ routes.get('/delete-team-member', middleware_check_login, (req, res) => {
 
 // ',?
 routes.get('/edit-faq', middleware_check_login, async (req, res) => {
-  let id = req.query.id;
+  let id = req.query._id;
+  console.log("id......",id)
   try {
     let faqData = await FAQ.findOne({_id:id})
+    
+    console.log("helloooooo",faqData)
     res.render('admin/front-admin/edit-faq',{
       faqData
 
@@ -3798,7 +3771,6 @@ routes.post('/edit-faq', middleware_check_login, (req, res) => {
     })
   // })
 })
-
 
 
 
