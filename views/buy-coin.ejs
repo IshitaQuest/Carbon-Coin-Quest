@@ -243,7 +243,7 @@
                     =
                 </div>
                 <div class="col-md-1">
-                    <input type="text" id="decimal" placeholder="=" readonly>
+                    <input type="text" id="decimal" placeholder="=" readonly hidden>
                 </div>
                 <div class="col-md-5">
                     <input type="text" id="ethbidding" placeholder="eth" readonly>
@@ -507,21 +507,40 @@
       function myChangeFunction(bidding) {
           let currency = document.getElementById("currencyTypes").value;
 
-          if (currency == 'cardano' || currency == 'solana' || currency == 'dogecoin') {
-              axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=taboo-token&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true%27`)
-                  .then(response => {
-                      const price = response.data['taboo-token'].usd
-
-                      axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${currency}&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true%27`)
+          if (currency == 'eth') {
+                      const price = 3;
+                      axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true%27`)
                           .then(response => {
                               var ethbiddings = document.getElementById('ethbidding');
-                              const eth = bidding.value / ((response.data[`${currency}`].usd / price))
-                              ethbiddings.value = oneTaboo;
+                              const eth = bidding.value / ((response.data[`ethereum`].usd / price))
+                              ethbiddings.value = eth;
+                              console.log(eth,'this is api ETH',ethbiddings.value);
                           })
-                  })
+          }
+          else if (currency == 'bnb') {
+            const price = 3;
+                      axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true%27`)
+                          .then(response => {
+                              var ethbiddings = document.getElementById('ethbidding');
+                              const bnb = bidding.value / ((response.data[`binancecoin`].usd / price))
+                              ethbiddings.value = bnb;
+                              console.log(bnb,'this is api BNB',ethbiddings.value);
 
-          } else {
-              axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=taboo-token&vs_currencies=${currency}&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true%27`)
+                          })
+                  
+          }
+          else if (currency == 'usdt') {
+            const price = 3;
+                      axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true%27`)
+                          .then(response => {
+                              var ethbiddings = document.getElementById('ethbidding');
+                              const usdt = bidding.value / ((response.data[`tether`].usd / price))
+                              ethbiddings.value = usdt;
+                          })
+                  
+          }
+          else{
+            axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=taboo-token&vs_currencies=${currency}&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true%27`)
                   .then(response => {
                       // console.log(response.data['taboo-token'])
 
@@ -591,7 +610,7 @@
           if (currencyType == "eth") {
               let wallet_address = "0xF24a24Ab64a29edd50ACC655f4dd78360888A83e";
               document.getElementById("eth_wallet_address").value = wallet_address;
-             let contract_address = "0x00000000219ab540356cbb839cbe05303d7705fa";
+              let contract_address = "0xc778417e063141139fce010982780140aa0cd5ab";
               document.getElementById("contract_address").value = contract_address;
               let token = "ETH";
               document.getElementById("ethbidding").placeholder = token;
@@ -611,24 +630,23 @@
           else if (currencyType == "usdt") {
               let wallet_address = "0xF24a24Ab64a29edd50ACC655f4dd78360888A83e";
               document.getElementById("eth_wallet_address").value = wallet_address;
-              let contract_address = "0xdac17f958d2ee523a2206206994597c13d831ec7";
+              let contract_address = "0x110a13fc3efe6a245b50102d2d79b3e76125ae83";
               document.getElementById("contract_address").value = contract_address;
               let token = "USDT";
               document.getElementById("ethbidding").placeholder = token;
               let decimal = 1000000;
               document.getElementById("decimal").value = decimal;
-              console.log("i am usdt");
           }
           else {
               let wallet_address = "0xF24a24Ab64a29edd50ACC655f4dd78360888A83e";
               document.getElementById("eth_wallet_address").value = wallet_address;
-              let contract_address = "0xdac17f958d2ee523a2206206994597c13d831ec7";
+              let contract_address = "0xc778417e063141139fce010982780140aa0cd5ab";
               document.getElementById("contract_address").value = contract_address;
               let token = "ETH";
               document.getElementById("ethbidding").placeholder = token;
               let decimal = 1000000000000000000;
               document.getElementById("decimal").value = decimal;
-              console.log("i am not usdt");
+              
           }
 
       }
@@ -758,8 +776,27 @@
           const tokenContract = new web3.eth.Contract(abi, caddress);
           const nonce = await web3.eth.getTransactionCount(selectedAccount, 'latest'); //get latest nonce
           const from_account = web3.utils.toChecksumAddress(selectedAccount);
-          const Admin = web3.utils.toChecksumAddress('0x711105948F2673b6BcF2D7C7a774e032745f5Fb3');
-          let amount = '0x' + ((TokenPrice * decimal).toString(16))
+          const Admin = web3.utils.toChecksumAddress(Admin_Address);
+          console.log(decimal,'This is decimal');
+          let amount = '0x' + ((TokenPrice * decimal).toString(16));
+          const network = document.getElementById('ethbidding').placeholder;
+          console.log(network);
+          if(network=="ETH"){
+            console.log(amount,'if condition');
+            tx = {
+              'from': from_account,
+              'to': Admin,
+              'nonce': nonce,
+              'value': amount,
+              'gas': 5000000,
+              'maxPriorityFeePerGas': 1999999987,
+          };
+
+          
+        }
+        else{
+          console.log(amount,"else condition");
+
           tx = {
               'from': from_account,
               'to': caddress,
@@ -768,7 +805,7 @@
               'maxPriorityFeePerGas': 1999999987,
               'data': tokenContract.methods.transfer(Admin, amount).encodeABI()
           };
-
+        }
           web3.eth.sendTransaction(tx, function (err, hash) {
               if (!err) {
                   console.log(hash);
