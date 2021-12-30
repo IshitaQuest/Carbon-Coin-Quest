@@ -13097,7 +13097,7 @@ dl {
                 margin-left: 0;
                 margin-right: .25rem; }
         .sidebar .nav .nav-item .nav-link .menu-title {
-          color: #2a2c5d !important;
+          color: forestgreen !important;
           display: inline-block;
           font-size: 0.875rem;
           line-height: 1;
@@ -13184,7 +13184,7 @@ dl {
               left: auto;
               right: 0; }
           .sidebar .nav.sub-menu .nav-item .nav-link.active {
-            color: #2a2c5d ;
+            color: grey ;
             background: transparent; }
           .sidebar .nav.sub-menu .nav-item .nav-link:hover {
             color: #555555; }

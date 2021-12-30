@@ -12,19 +12,20 @@
            </div>
          </div>
        </div>
+       <% if(err_msg!=undefined && err_msg !='' ){ %>
+        <div class="alert alert-danger text-center  flash_msg " id="error_msg">
+          <%= err_msg %>
+           </div>
+         
+        <% }%>
+         <% if(success_msg!=undefined && success_msg !='' ){ %>
+          <div class="alert alert-success text-center  flash_msg "id="success_message">
+          <%= success_msg %>
+         </div>
+        <% }%>
+    </div>
   </div>
-  <% if(err_msg!=undefined && err_msg !='' ){ %>
-    <div class="alert alert-danger text-center  flash_msg " id="error_msg">
-      <%= err_msg %>
-       </div>
-     
-    <% }%>
-     <% if(success_msg!=undefined && success_msg !='' ){ %>
-      <div class="alert alert-success text-center  flash_msg "id="success_message">
-      <%= success_msg %>
-     </div>
-    <% }%>
-  </div>
+  
   <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
       <div class="card">

@@ -2891,7 +2891,7 @@ routes.post('/add-new-question', middleware_check_login, (req, res) => {
 
     question.save().then(result => {
       console.log('data added', result);
-      req.flash('success_msg', 'Question added successfully.');
+      req.flash('success_msg', 'Data added successfully.');
       res.redirect('/faq-list');
     })
       .catch(err => {
@@ -3562,36 +3562,36 @@ routes.get('/add-new-member', middleware_check_login, (req, res) => {
 
 });
 
-routes.post('/add_member', middleware_check_login,  (req, res) => {
+routes.post('/add-new-member', middleware_check_login,  (req, res) => {
   console.log("add member")
   // const form = formidable({ multiples: true });
   // form.parse(req, (err, fields, files) => {
-    if (files != null && files != undefined && files != '') {
-      var imageFile = typeof files.member_image !== "undefined" ? files.member_image.name : "";
-    } else {
-      var imageFile = '';
-    }
+    // if (files != null && files != undefined && files != '') {
+    //   var imageFile = typeof files.member_image !== "undefined" ? files.member_image.name : "";
+    // } else {
+    //   var imageFile = '';
+    // }
 
-    if (imageFile != "") {
-      member_image = imageFile;
+    // if (imageFile != "") {
+    //   member_image = imageFile;
 
-      if (imageFile != "") {
-        var imgpath = 'public/home/team/' + imageFile;
-        let testFile = fs.readFileSync(files.member_image.path);
-        let testBuffer = new Buffer(testFile);
-        fs.writeFile(imgpath, testBuffer, function (err) {
-          if (err) return console.log(err);
-        });
-      }
-    } else {
-      member_image = "";
-    }
+    //   if (imageFile != "") {
+    //     var imgpath = 'public/home/team/' + imageFile;
+    //     let testFile = fs.readFileSync(files.member_image.path);
+    //     let testBuffer = new Buffer(testFile);
+    //     fs.writeFile(imgpath, testBuffer, function (err) {
+    //       if (err) return console.log(err);
+    //     });
+    //   }
+    // } else {
+    //   member_image = "";
+    // }
 
     var name = req.body.name;
     var designation = req.body.designation;
-    var content = req.body.content;
-    var linkedin_url = req.body.linkedin_url;
-    var member_image = member_image;
+    var content = req.body.editor1;
+    var linkedin_url = req.body.linkedin;
+    // var member_image = member_image;
     var status = req.body.status;
     var created_at = Date.now();
 
@@ -3600,12 +3600,12 @@ routes.post('/add_member', middleware_check_login,  (req, res) => {
 
 
     var TeamData = new TeamMember({
-      name: name, designation: designation, content: content, linkedin_url: linkedin_url, member_image: member_image, status: status, created_at: created_at
+      name: name, designation: designation, content: content, linkedin_url: linkedin_url, status: status, created_at: created_at
     });
 
     TeamData.save().then(result => {
       console.log(result)
-      req.flash('success_msg', 'Member added successfully.');
+      req.flash('success_msg', 'Data added successfully.');
       res.redirect('/our-team');
     })
       .catch(err => {
@@ -3614,59 +3614,114 @@ routes.post('/add_member', middleware_check_login,  (req, res) => {
   })
 
 
-routes.get('/edit-member', middleware_check_login, (req, res) => {
+// routes.get('/edit-member', middleware_check_login, (req, res) => {
 
-  var member_id = req.query.id;
+//   var member_id = req.query.id;
 
-  TeamMember.findOne({ _id: member_id, deleted: '0' }).then((MemberDetail) => {
+//   TeamMember.findOne({ _id: member_id, deleted: '0' }).then((TeamData) => {
 
-    res.render('admin/front-admin/edit-member.ejs', { Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash(), MemberDetail });
+//     res.render('admin/front-admin/edit-member.ejs', { Name: req.session.user_name, profile_image: req.session.profile_image, session: req.session, expressFlash: req.flash(), TeamData });
 
-  }, (err) => {
+//   }, (err) => {
 
-    res.send('Some thing went wrong try again.');
+//     res.send('Some thing went wrong try again.');
 
-  }).catch((e) => {
+//   }).catch((e) => {
 
-    res.send('Some thing went wrong try again.');
+//     res.send('Some thing went wrong try again.');
 
-  });
-});
+//   });
+// });
 
-routes.post('/update_member',middleware_check_login, (req, res) => {
+routes.get('/edit-member', middleware_check_login, async (req, res) => {
+  let id = req.query._id;
+  console.log("id......",id)
+  try {
+    let TeamData = await TeamMember.findOne({_id:id})
+    
+    console.log("helloooooo",TeamData)
+    res.render('admin/front-admin/edit-member',{
+      TeamData
+
+    })
+
+  }catch(err){
+    throw err
+  }
+  
+
+})
+
+// routes.post('/update_member',middleware_check_login, (req, res) => {
+//   const form = formidable({ multiples: true });
+//   form.parse(req, (err, fields, files) => {
+//     var member_id = fields.id;
+
+//     if (files != null && files != undefined && files != '') {
+//       var imageFile = typeof files.member_image !== "undefined" ? files.member_image.name : "";
+//     } else {
+//       var imageFile = '';
+//     }
+
+//     if (imageFile != "") {
+//       member_image = imageFile;
+//       if (imageFile != "") {
+//         var imgpath = 'public/home/team/' + imageFile;
+//         let testFile = fs.readFileSync(files.member_image.path);
+//         let testBuffer = new Buffer(testFile);
+//         fs.writeFile(imgpath, testBuffer, function (err) {
+//           if (err) return console.log(err);
+//         });
+//       }
+//     } else {
+//       member_image = fields.old_image;
+//     }
+
+//     var name = fields.name;
+//     var designation = fields.designation;
+//     var content = fields.content;
+//     var linkedin_url = fields.linkedin_url;
+//     var member_image = member_image;
+//     var status = fields.status;
+//     var updated_at = Date.now();
+
+//     TeamMember.update({ _id: member_id }, {
+//       $set: {
+//         name: name,
+//         designation: designation,
+//         content: content,
+//         member_image: member_image,
+//         linkedin_url: linkedin_url,
+//         status: status,
+//         updated_at: updated_at,
+//       }
+//     }, { upsert: true }, function (err) {
+//       if (err) {
+
+//         req.flash('err_msg', 'Something went wrong.');
+//         res.redirect('/our-team');
+//       }
+//       else {
+//         req.flash('success_msg', 'Member updated successfully.');
+//         res.redirect('/our-team');
+//       }
+//     })
+//   })
+// });
+
+routes.post('/edit-member', middleware_check_login, (req, res) => {
   const form = formidable({ multiples: true });
   form.parse(req, (err, fields, files) => {
-    var member_id = fields.id;
-
-    if (files != null && files != undefined && files != '') {
-      var imageFile = typeof files.member_image !== "undefined" ? files.member_image.name : "";
-    } else {
-      var imageFile = '';
-    }
-
-    if (imageFile != "") {
-      member_image = imageFile;
-      if (imageFile != "") {
-        var imgpath = 'public/home/team/' + imageFile;
-        let testFile = fs.readFileSync(files.member_image.path);
-        let testBuffer = new Buffer(testFile);
-        fs.writeFile(imgpath, testBuffer, function (err) {
-          if (err) return console.log(err);
-        });
-      }
-    } else {
-      member_image = fields.old_image;
-    }
-
-    var name = fields.name;
+     var name = fields.name;
     var designation = fields.designation;
     var content = fields.content;
     var linkedin_url = fields.linkedin_url;
     var member_image = member_image;
     var status = fields.status;
     var updated_at = Date.now();
-
-    TeamMember.update({ _id: member_id }, {
+    
+    let id = req.query.id;
+    TeamMember.updateOne({ _id: id }, {
       $set: {
         name: name,
         designation: designation,
@@ -3688,37 +3743,49 @@ routes.post('/update_member',middleware_check_login, (req, res) => {
       }
     })
   })
-});
+})
 
-routes.get('/delete-team-member', middleware_check_login, (req, res) => {
+routes.get('/delete-member', middleware_check_login, (req, res) => {
+  let id = req.query._id;
+  
+  TeamMember.findOne({ _id: id, deleted: '0' }).then(async (faq) => {
+    // faq.deleted = '1'
+    await faq.delete()
+    // await faq.save()
+    res.redirect('/our-team')
+  })
 
-  var current_time = Date.now();
+})
 
-  var id = req.query.id;
+// routes.get('/delete-team-member', middleware_check_login, (req, res) => {
 
-  TeamMember.findByIdAndUpdate(id, { $set: { deleted: '1', updated_at: current_time } }, { new: true }).then((success) => {
+//   var current_time = Date.now();
 
-    if (success) {
+//   var id = req.query.id;
 
-      req.flash('success_msg', 'Member deleted successfully.');
+//   TeamMember.findByIdAndUpdate(id, { $set: { deleted: '1', updated_at: current_time } }, { new: true }).then((success) => {
 
-      res.redirect('/our-team');
-    }
+//     if (success) {
 
-  }, (error) => {
+//       req.flash('success_msg', 'Member deleted successfully.');
 
-    req.flash('err_msg', 'Something went wrong try again.');
+//       res.redirect('/our-team');
+//     }
 
-    res.redirect('/our-team');
+//   }, (error) => {
 
-  }).catch((e) => {
+//     req.flash('err_msg', 'Something went wrong try again.');
 
-    req.flash('err_msg', 'Something went wrong try again.');
+//     res.redirect('/our-team');
 
-    res.redirect('/our-team');
-  });
+//   }).catch((e) => {
 
-});
+//     req.flash('err_msg', 'Something went wrong try again.');
+
+//     res.redirect('/our-team');
+//   });
+
+// });
 
 // ',?
 routes.get('/edit-faq', middleware_check_login, async (req, res) => {

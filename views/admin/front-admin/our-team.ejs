@@ -12,8 +12,20 @@
            </div>
          </div>
        </div>
+       <% if(err_msg!=undefined && err_msg !='' ){ %>
+        <div class="alert alert-danger text-center  flash_msg " id="error_msg">
+          <%= err_msg %>
+        </div>
+         
+        <% }%>
+         <% if(success_msg!=undefined && success_msg !='' ){ %>
+        <div class="alert alert-success text-center  flash_msg "id="success_message">
+          <%= success_msg %>
+        </div>
+        <% }%>
     
-  </div>
+      
+    </div>
   </div>
   <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
@@ -27,138 +39,39 @@
                 <th width="16%">Name</th>
                 <th width="17%">Designation</th>
                 <th width="30%">Status</th>
-                <!-- <th width="10%">Linked In URL</th> -->
-                <!-- <th width="10%">Status</th> -->
-                <!-- <th width="10%">Action</th> -->
+                <th width="10%">Linked In URL</th>
+                <th width="10%">content</th>
+                <th width="10%">Action</th>
               </tr>
             </thead>
             <tbody>
+              <% var count =1%>
+            <% TeamData.forEach(function(row){%>
               <tr>
-                <td>1</td>
-                <td>
-                  <div class="normal-img">
-                    <img src="user_assets/img/John.jpeg">
-                  </div>
-                </td>
-                <td>John Sajadi</td>
-                <td>Founder</td>
-                <!-- <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry....</td> -->
-                <!-- <td>https://www.linkedin.com/in/halamrose/</td> -->
-                <td>Active</td>
+                <td><%=count %></td>
+                <% count++%>
+                <td><%=row.memberimage%></td>
+                <td><%=row.name%></td>
+                <td><%=row.designation%></td>
+                <td><%=row.status%></td>
+                <td><%=row.linkedin_url%></td>
+                <td><%=row.content%></td>
+
+
                  <td>
-                  <!-- <div class="edit-icons">
+                  <div class="edit-icons">
                    
-                    <a href="edit-member.ejs" data-toggle="tooltip" data-placement="top" title="Edit"><i class="mdi mdi-pencil"></i></a>
-                    <a href="" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-close"></i></a>
-                  </div> -->
-                </td>
+                    <a href="/edit-member" onclick="location.href=this.href+'?_id='+ `<%=row._id %>`;
+                      return false" data-toggle="tooltip" data-placement="top" title="Edit"><i class="mdi mdi-pencil"></i></a>
+                    <a href="/delete-member" onclick="location.href=this.href+'?_id='+ `<%=row._id %>`;
+                      return false" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-close"></i></a>
+              
+                  </div>
+                  </td>
               </tr>
 
-                <tr>
-                <td>2</td>
-                <td>
-                  <div class="normal-img">
-                    <img src="user_assets/img/wouter.jpeg">
-                  </div>
-                </td>
-                 <td>Wauter Raasveldt</td>
-                <td>Venture Capital Specialist</td>
-                <!-- <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry....</td> -->
-                <!-- <td>https://www.linkedin.com/in/simon-ludlam-ba281229/?originalSubdomain=uk</td> -->
-               
-                <td>Active</td>
-                 <td>
-                  <!-- <div class="edit-icons">
-                   
-                    <a href="edit-member.ejs" data-toggle="tooltip" data-placement="top" title="Edit"><i class="mdi mdi-pencil"></i></a>
-                    <a href="" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-close"></i></a>
-                  </div> -->
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>
-                  <div class="normal-img">
-                    <img src="user_assets/img/David.jpg">
-                  </div>
-                </td>
-                 <td>David Evans</td>
-                <td>Director-Marketing</td>
-                <!-- <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry....</td> -->
-                <!-- <td>https://www.linkedin.com/in/simon-ludlam-ba281229/?originalSubdomain=uk</td> -->
-               
-                <td>Active</td>
-                 <td>
-                  <!-- <div class="edit-icons">
-                   
-                    <a href="edit-member.ejs" data-toggle="tooltip" data-placement="top" title="Edit"><i class="mdi mdi-pencil"></i></a>
-                    <a href="" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-close"></i></a>
-                  </div> -->
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>
-                  <div class="normal-img">
-                    <img src="user_assets/img/Steve.jpg">
-                  </div>
-                </td>
-                 <td>Steve Dew</td>
-                <td>Karbun Commercial Operations</td>
-                <!-- <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry....</td> -->
-                <!-- <td>https://www.linkedin.com/in/simon-ludlam-ba281229/?originalSubdomain=uk</td> -->
-               
-                <td>Active</td>
-                 <td>
-                  <!-- <div class="edit-icons">
-                   
-                    <a href="edit-member.ejs" data-toggle="tooltip" data-placement="top" title="Edit"><i class="mdi mdi-pencil"></i></a>
-                    <a href="" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-close"></i></a>
-                  </div> -->
-                </td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>
-                  <div class="normal-img">
-                    <img src="user_assets/img/nikesh.jpg">
-                  </div>
-                </td>
-                 <td>Nikesh Lalchandani</td>
-                <td>IT & Finance Head</td>
-                <!-- <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry....</td> -->
-                <!-- <td>https://www.linkedin.com/in/simon-ludlam-ba281229/?originalSubdomain=uk</td> -->
-               
-                <td>Active</td>
-                 <td>
-                  <!-- <div class="edit-icons">
-                   
-                    <a href="edit-member.ejs" data-toggle="tooltip" data-placement="top" title="Edit"><i class="mdi mdi-pencil"></i></a>
-                    <a href="" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-close"></i></a>
-                  </div> -->
-                </td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>
-                  <div class="normal-img">
-                    <img src="user_assets/img/alok.png">
-                  </div>
-                </td>
-                 <td>Alok Agrawal</td>
-                <td>CTO</td>
-                <!-- <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry....</td> -->
-                <!-- <td>https://www.linkedin.com/in/simon-ludlam-ba281229/?originalSubdomain=uk</td> -->
-               
-                <td>Active</td>
-                 <td>
-                  <!-- <div class="edit-icons">
-                   
-                    <a href="edit-member.ejs" data-toggle="tooltip" data-placement="top" title="Edit"><i class="mdi mdi-pencil"></i></a>
-                    <a href="" data-toggle="tooltip" data-placement="top" title="Delete"><i class="mdi mdi-close"></i></a>
-                  </div> -->
-                </td>
-              </tr>
+               <%})%>
+
             </tbody>
           </table>
         </div>

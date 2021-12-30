@@ -8,7 +8,7 @@
         <div class="col-lg-6">
          <div class="text-right">
            <div>
-             <a href="our-team.ejs" class="btn btn-common bg-gradient-primary">Go Back</a>
+             <a href="/our-team" class="btn btn-common bg-gradient-primary">Go Back</a>
            </div>
          </div>
        </div>
@@ -22,6 +22,8 @@
                <div class="col-md-12">
                  <div>
                    <div class="profile-form mt-20">
+                    <form method="POST" action="/edit-member" type="update">
+
                       <div class="row">
                         <div class="col-md-4">
                              <div class="form-group">
@@ -52,13 +54,13 @@
                               <div class="col-md-4">
                                  <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" class="form-control" value="HALAM ROSE">
+                                    <input type="text" name="name" class="form-control" value="<%=TeamData.name%>">
                                   </div>
                               </div>
                               <div class="col-md-4">
                                  <div class="form-group">
                                     <label>Designation</label>
-                                    <input type="text" class="form-control" value="Director">
+                                    <input type="text" name="designation" class="form-control" value="<%=TeamData.designation%>">
                                   </div>
                               </div>
                             
@@ -76,7 +78,7 @@
                               <div class="col-md-12">
                                  <div class="form-group">
                                     <label>Linked In URL</label>
-                                    <input type="text" class="form-control" value="https://www.linkedin.com/in/halamrose/">
+                                    <input type="text" name="linkedin_url" class="form-control" value="<%=TeamData.linkedin_url%>">
                                   </div>
                               </div>
                             </div>
@@ -84,7 +86,7 @@
                               <div class="col-md-12">
                                   <div class="form-group">
                                     <label>Service Content</label>
-                                    <textarea class="form-control" name="editor1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</textarea>
+                                    <textarea class="form-control" name="content" ><%=TeamData.content%></textarea>
                                   </div>
                               </div>
                             </div>
@@ -93,19 +95,16 @@
                         </div>
                        
                       </div>
-                    
-                      
-                     
-                     
-                  
                       <div class="popup-btn text-center">
-                        <a href="" class="btn btn-common bg-gradient-primary">Update</a>
+                        <button class="btn btn-common bg-gradient-primary" type="submit">Update</button>
+                        
                         <a href="" class="btn btn-common bg-gradient-primary">Cancel</a>
                       </div>
                       
-               
-
+                  </form>
+                      
                    </div>
+                  
                  </div>
                </div>
              </div>
