@@ -3721,6 +3721,10 @@ routes.post('/edit-member', middleware_check_login, (req, res) => {
     var updated_at = Date.now();
     
     let id = req.query.id;
+    console.log(id)
+    console.log(name)
+    console.log("edit-member")
+
     TeamMember.updateOne({ _id: id }, {
       $set: {
         name: name,
@@ -3738,7 +3742,7 @@ routes.post('/edit-member', middleware_check_login, (req, res) => {
         res.redirect('/our-team');
       }
       else {
-        req.flash('success_msg', 'Member updated successfully.');
+        req.flash('success_msg', );
         res.redirect('/our-team');
       }
     })

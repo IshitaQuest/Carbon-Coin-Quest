@@ -281,7 +281,7 @@
           <div class="col-md-6">
             <div class="coin-select-box mb-3">
               <div>
-                <img src="user_assets/img/eth-icon.png" class="img-coin" alt="Bitcoin Icon" />
+                <img src="user_assets/img/logo.png" class="img-coin" alt="Bitcoin Icon" />
               </div>
               <div class="select-coin-box">
                 <label>Karbun Coin</label>
@@ -565,6 +565,25 @@
       });
     });
   </script>
+
+<script>
+	jQuery(function($) {
+  $('a[href*="#"]:not([href="#"])').click(function() {
+      var target = $(this.hash);
+        $('html,body').stop().animate({
+          scrollTop: target.offset().top - 100
+        }, 'linear');   
+  });    
+    if (location.hash){
+    var id = $(location.hash);
+    }
+    $(window).on('load', function() {
+    if (location.hash){
+        $('html,body').animate({scrollTop: id.offset().top -100}, 'linear')
+    };
+    });
+});
+</script>
 
   <script>
     function initializeFileUploads() {
