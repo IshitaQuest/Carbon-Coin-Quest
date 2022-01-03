@@ -3710,17 +3710,17 @@ routes.get('/edit-member', middleware_check_login, async (req, res) => {
 // });
 
 routes.post('/edit-member', middleware_check_login, (req, res) => {
-  const form = formidable({ multiples: true });
-  form.parse(req, (err, fields, files) => {
-     var name = fields.name;
-    var designation = fields.designation;
-    var content = fields.content;
-    var linkedin_url = fields.linkedin_url;
-    var member_image = member_image;
-    var status = fields.status;
+  // const form = formidable({ multiples: true });
+  // form.parse(req, (err, fields, files) => {
+     var name = req.body.name;
+    var designation = req.body.designation;
+    var content = req.body.content;
+    var linkedin_url = req.body.linkedin;
+    // var member_image = member_image;
+    var status = req.body.status;
     var updated_at = Date.now();
     
-    let id = req.query.id;
+    let id = req.body.id;
     console.log(id)
     console.log(name)
     console.log("edit-member")
@@ -3730,7 +3730,7 @@ routes.post('/edit-member', middleware_check_login, (req, res) => {
         name: name,
         designation: designation,
         content: content,
-        member_image: member_image,
+        // member_image: member_image,
         linkedin_url: linkedin_url,
         status: status,
         updated_at: updated_at,
@@ -3747,7 +3747,7 @@ routes.post('/edit-member', middleware_check_login, (req, res) => {
       }
     })
   })
-})
+
 
 routes.get('/delete-member', middleware_check_login, (req, res) => {
   let id = req.query._id;

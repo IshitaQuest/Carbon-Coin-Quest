@@ -55,6 +55,8 @@
                                  <div class="form-group">
                                     <label>Name</label>
                                     <input type="text" name="name" class="form-control" value="<%=TeamData.name%>">
+                                    <input type="text" name="id" class="form-control" value="<%=TeamData._id%>"hidden>
+
                                   </div>
                               </div>
                               <div class="col-md-4">
@@ -68,7 +70,7 @@
                                 <div class="form-group">
                                   <label>Status</label>
                                    <div class="box">
-                                     <select class="form-control">
+                                     <select class="form-control" name="status">
                                       <option>Active</option>
                                       <option>Inactive</option>
                                     </select>
@@ -78,7 +80,7 @@
                               <div class="col-md-12">
                                  <div class="form-group">
                                     <label>Linked In URL</label>
-                                    <input type="text" name="linkedin_url" class="form-control" value="<%=TeamData.linkedin_url%>">
+                                    <input type="text" name="linkedin" class="form-control" value="<%=TeamData.linkedin_url%>">
                                   </div>
                               </div>
                             </div>
