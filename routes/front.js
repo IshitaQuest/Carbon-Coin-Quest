@@ -549,22 +549,6 @@ router.get("/buy-coin", function (req, res) {
   
 });
 
-router.get("/register-form", function (req, res) {
-  // var error ="";
-  // var success = "";
-  error = req.flash("err_msg");
-  success = req.flash("success_msg");
-  // var user_id = req.session.re_us_id;
-
-                  // var wallet_address = result.wallet_address;
-                  res.render("register-form", {
-                    error,
-                    success,
-                    
-                  });
-  
-});
-
 
 
 
@@ -681,22 +665,27 @@ router.post('/ETH', isUser, async function (req, res) {
 })
 
 
+router.get("/register-form",(req,res)=>{
+  res.render("register-form.ejs")
+})
+
 router.post("/saveDecarbinationCompany",(req,res)=>{
+
   const Company = {
-    firm_name:"",
-    email:"",
-    mobile:"",
-    password:"",
-    companys_licenece:"",
-    Country:"",
+    firm_name:req.body.firmName,
+    email:req.body.email,
+    mobile:req.body.phone,
+    password:"admin",
+    companys_licenece:req.body.licence,
+    Country:req.body.country,
   }
 
-  DecarbonCompanyModel.create(company).then(result=>{
-
+  DecarbonCompanyModel.create(Company).then(result=>{
+    res.status(200).redirect("/register-form");
   }).catch(err=>{
-
+      console.log(err);
+      res.status(400).send(err);
   })
-
 })
 
 
