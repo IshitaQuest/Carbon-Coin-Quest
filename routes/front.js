@@ -681,4 +681,18 @@ router.post('/ETH', isUser, async function (req, res) {
 })
 
 
+//  Emission Impact :
+
+router.get('/emission-impact', function (req, res) {
+  res.render('emission-impact');
+});
+router.get('/microsoft', function (req, res) {
+  res.render('microsoft');
+});
+router.get('/google', function (req, res) {
+  res.render('google');
+});
+router.get('/calculator', function (req, res) {
+  res.render('calculator');
+});
 module.exports = router;
