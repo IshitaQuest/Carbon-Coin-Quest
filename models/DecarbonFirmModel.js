@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 
 var DecarbisationSchema = new moongoose.Schema({
 
-    company_name: {
+    firm_name: {
         type: String,
         required: true
     },
@@ -36,21 +36,6 @@ var DecarbisationSchema = new moongoose.Schema({
         default:null
 
     },
-
-    quotation:{
-        type:Number,
-        default:0,
-    },
-
-    totalArea:{
-        type:Number,
-        default:0,
-    },
-
-    ApproxCapacity:{
-        type:Number,
-        default:0,
-    },
     password: {
         type: String,
         required: true
@@ -62,30 +47,37 @@ var DecarbisationSchema = new moongoose.Schema({
     },
 
     created_by: {
+
         type: Number,
         default: 0
     },
 
     updated_at: {
+
         type: String,
         default: null
     },
 
     updated_by: {
+
         type: String,
         default: 0
     },
 
-    companys_licence:{
+    companys_licenece:{
         type:String,
         required:true,
     },
+    country:{
+        type:String,
+        requied:true,
+    },
+    status: {
 
-    status:{
         type: String,
         default: 'active'
-    },
 
+    },
     tokens: [{
         access: {
 
@@ -99,6 +91,6 @@ var DecarbisationSchema = new moongoose.Schema({
     }]
 });
 
-var Decarbisation = moongoose.model('DecarbisationCompany', DecarbisationSchema);
+var Decarbisation = moongoose.model('DecarbisationFirm', DecarbisationSchema);
 
 module.exports =  Decarbisation ;

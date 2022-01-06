@@ -320,49 +320,47 @@
       <h3>Registration Form</h3>
       
     </div><!-- /.sec-title -->
-    <form action="/buy-coin" class="btc-calc-form row">
+    <form method="POST" action="/saveDecarbonCompany" class="btc-calc-form row">
       <div class="col-md-6">
         <label>Company Name</label>
-        <input type="text" placeholder="Company Name" />
+        <input type="text" name="companyName" placeholder="Company Name" />
       </div><!-- /.col-md-3 -->
        <div class="col-md-6">
         <label>Company's License</label>
-        <input type="text" placeholder="Company's License" />
+        <input type="text" name="licence" placeholder="Company's License" />
       </div><!-- /.col-md-3 -->
        <div class="col-md-6">
         <label>Quotation Per/Thousand Trees</label>
-        <input type="text" placeholder="Enter Value" />
+        <input type="text" name="quotation" placeholder="Enter Value" />
       </div><!-- /.col-md-3 -->
        <div class="col-md-6">
         <label>Total Area of Land To Grow Trees</label>
-        <input type="text" placeholder="Total Area" />
+        <input type="text" name="totalArea" placeholder="Total Area" />
       </div><!-- /.col-md-3 -->
        <div class="col-md-6">
         <label>Approx Tree Plantation Capacity</label>
-        <input type="text" placeholder="Approx Capacity" />
+        <input type="text" name="approxCap" placeholder="Approx Capacity" />
       </div><!-- /.col-md-3 -->
       <div class="col-md-6">
         <label>Email</label>
-        <input type="text" placeholder="Email Address" />
+        <input type="text" name="email" placeholder="Email Address" />
       </div><!-- /.col-md-3 -->
       <div class="col-md-6">
         <label>Password</label>
-        <input type="text" placeholder="Password" />
+        <input type="text" name="pwd" placeholder="Password" />
       </div><!-- /.col-md-3 -->
       <div class="col-md-6">
         <label>Confirm Password</label>
-        <input type="text" placeholder="Password" />
+        <input type="text" name="cnfpwd" placeholder="Confirm Password" />
       </div><!-- /.col-md-3 -->
       
       <div class="col-md-12 text-center">
-         <button class="thm-btn yellow-bg-hvr submit-btn">Submit</button>
+         <input type="submit" class="thm-btn yellow-bg-hvr submit-btn"></input>
       </div>
      
     </form><!-- /.btc-calc-form -->
   </div><!-- /.thm-container -->
 </section><!-- /.btc-calculator -->
-
-    
 
 
     <div class="footer-top page-section" id="contact-us">
