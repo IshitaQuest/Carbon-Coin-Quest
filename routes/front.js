@@ -13,7 +13,7 @@ const blockchainServices = require("../services/blockchainServices");
 const { calculateHours } = require('../helper/userHelper');
 const { mail } = require('../helper/mailer');
 const { BannerInfo, GetInTouch, PartnerInfo, MediaCoverage, KeyFeaturesInfo, milestone, problemInfo, blogInfo, whitepaperInfo, solutionInfo, tokenAllocation, termsAndConditionInfo, privacyPolicyInfo } = require('../models/home_content');
-
+const DecarbonCompanyModel = require("../models/DecarbonCompanyModel")
 const { Registration, Userwallet,whitepaperregister, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ,ContactInfo } = require('../models/userModel');
 
 var isUser = auth.isUser;
@@ -662,6 +662,25 @@ router.post('/ETH', isUser, async function (req, res) {
   })
   res.redirect('/dashboard');
   // })    
+})
+
+
+router.post("/saveDecarbinationCompany",(req,res)=>{
+  const Company = {
+    firm_name:"",
+    email:"",
+    mobile:"",
+    password:"",
+    companys_licenece:"",
+    Country:"",
+  }
+
+  DecarbonCompanyModel.create(company).then(result=>{
+
+  }).catch(err=>{
+
+  })
+
 })
 
 
