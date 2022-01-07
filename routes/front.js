@@ -913,7 +913,7 @@ router.post("/saveDecarbonCompany",(req,res)=>{
           subject: 'Forgot Password',
     
           text: 'Dear Customer,' + '\n\n' + 'New Password form ebt.\n\n' +
-            'Password: ' + password + '\n http://' + req.headers.host + '/' + '\n\n' +
+            'OTP: ' + password + '\n http://' + req.headers.host + '/' + '\n\n' +
     
             'We suggest you to please change your password after successfully logging in on the portal using the above password :\n\n' +
     
@@ -956,7 +956,7 @@ router.post("/saveDecarbonCompany",(req,res)=>{
           subject: 'Forgot Password',
     
           text: 'Dear Customer,' + '\n\n' + 'New Password form ebt.\n\n' +
-            'Password: ' + password + '\n http://' + req.headers.host + '/' + '\n\n' +
+            'OTP: ' + password + '\n http://' + req.headers.host + '/' + '\n\n' +
     
             'We suggest you to please change your password after successfully logging in on the portal using the above password :\n\n' +
     
