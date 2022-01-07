@@ -398,6 +398,8 @@ router.post("/subscribe", async (req, res) => {
 
 });
 
+
+
 // router.post('/signup', userControllers.submitUser);
 
 //***************** post login **************//

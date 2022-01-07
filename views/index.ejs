@@ -701,18 +701,28 @@
                 href="/buy-coin"
                 >Buy KARBUNCoin (KBN)</a
               >
-              <a
+              <!-- <a
                 data-toggle="modal"
                 class="thm-btn yellow-bg-hvr green-btn-new"
                 href="/register-tree-form"
-                >Register your Decarbisation Company</a
-              >
-              <a
+                >Register your Decarbisation Company</a> -->
+                <a
+                  href="#"
+                  data-toggle="modal"
+                class="thm-btn yellow-bg-hvr green-btn-new"
+                data-target="#registertreeModal" 
+                  style="font-size: 16px" >Are You Decarbisation Company</a>
+                  <a
+                  href="#"
+                  data-toggle="modal"
+                class="thm-btn yellow-bg-hvr green-btn-new"
+                data-target="#registerModal" 
+                  style="font-size: 16px" >Buy Carbon Credits</a>
+              <!-- <a
                 data-toggle="modal"
                 class="thm-btn yellow-bg-hvr green-btn-new"
-                href="/register-form"
-                >Buy Carbon Credits</a
-              >
+                data-target="#registerModal" 
+                >Buy Carbon Credits</a> -->
               <a
                 data-toggle="modal"
                 data-target=".coming-modal-Modal"
@@ -1340,8 +1350,7 @@
       tabindex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
+      aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-body">
@@ -1377,8 +1386,7 @@
               type="button"
               class="close"
               data-dismiss="modal"
-              aria-label="Close"
-            >
+              aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
             <div class="whitepaper-form">
@@ -1411,10 +1419,75 @@
         </div>
       </div>
     </div>
+    <!-- Modal -->
+    <div
+      class="modal fade comming-soon-popup coming-modal-Modal"
+      id="registertreeModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="">
+              <h2>
+                LOGIN
+              </h2>
+              <form method="POST" action="">
+                <div class="form-group">
+                  <label style="color:white">Email address</label>
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter email"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label  style="color:white">Password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter password"
+                    required
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  class="thm-btn yellow-bg-hvr">Login
+                </button>
+                <br>
+                <a
+                data-toggle="modal"
+                class="thm-btn yellow-bg-hvr green-btn-new"
+                href="/register-tree-form"
+                >Register your Decarbisation Company</a>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
      <!-- Modal -->
      <div
-     class="modal fade comming-soon-popup"
-     id="whiteCarbonCalculator"
+     class="modal fade comming-soon-popup coming-modal-Modal"
+     id="registerModal"
      tabindex="-1"
      role="dialog"
      aria-labelledby="exampleModalLabel"
@@ -1427,40 +1500,117 @@
              type="button"
              class="close"
              data-dismiss="modal"
-             aria-label="Close"
-           >
+             aria-label="Close">
              <span aria-hidden="true">&times;</span>
            </button>
-           <div class="whitepaper-form">
+           <div class="">
              <h2>
-               Please enter your Website URL to calculate Carbon Emission.
+               LOGIN
              </h2>
-             <form method="POST" action="emission-pass">
+             <form method="POST" action="">
                <div class="form-group">
-                 <label>Enter Website URL</label>
+                 <label style="color:white">Email address</label>
                  <input
-                   type="url"
-                   name="url"
+                   type="email"
+                   name="email"
                    class="form-control"
                    id=""
-                   placeholder="Enter URL"
+                   placeholder="Enter email"
+                   required
+                 />
+               </div>
+               <div class="form-group">
+                 <label  style="color:white">Password</label>
+                 <input
+                   type="password"
+                   name="password"
+                   class="form-control"
+                   id=""
+                   placeholder="Enter password"
                    required
                  />
                </div>
 
                <button
-                 
                  type="submit"
-                 class="thm-btn yellow-bg-hvr"
-               >
-                 Submit
+                 class="thm-btn yellow-bg-hvr">Login
                </button>
+               <br>
+               <a
+               data-toggle="modal"
+               class="thm-btn yellow-bg-hvr green-btn-new"
+               href="/register-form" style="width:300px"
+               >Register your credits</a>
+
              </form>
            </div>
          </div>
        </div>
      </div>
    </div>
+     <!-- <div
+     class="modal fade comming-soon-popup coming-modal-Modal"
+     id="registerModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true"
+   >
+     <div class="modal-dialog" role="document">
+       <div class="modal-content">
+         <div class="modal-body">
+           <button
+             type="button"
+             class="close"
+             data-dismiss="modal"
+             aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+           <div class="">
+             <h2>
+               LOGIN
+             </h2>
+             <form method="POST" action="">
+               <div class="form-group">
+                 <label style="color:white">Email address</label>
+                 <input
+                   type="email"
+                   name="email"
+                   class="form-control"
+                   id=""
+                   placeholder="Enter email"
+                   required
+                 />
+               </div>
+               <div class="form-group">
+                 <label  style="color:white">Password</label>
+                 <input
+                   type="password"
+                   name="password"
+                   class="form-control"
+                   id=""
+                   placeholder="Enter password"
+                   required
+                 />
+               </div>
+
+               <button
+                 type="submit"
+                 class="thm-btn yellow-bg-hvr">Login
+               </button>
+               <br>
+               <a
+               data-toggle="modal"
+               class="thm-btn yellow-bg-hvr green-btn-new"
+               href="/register-form"
+               >Buy Credits </a>
+
+             </form>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div> -->
     <!-- href="user_assets/Karbun-Coin-Whitepaper.pdf" -->
     <div class="scroll-to-top scroll-to-target" data-target="html">
       <i class="fa fa-angle-up"></i>
