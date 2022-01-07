@@ -13,9 +13,9 @@ const blockchainServices = require("../services/blockchainServices");
 const { calculateHours } = require('../helper/userHelper');
 const { mail } = require('../helper/mailer');
 const { BannerInfo, GetInTouch, PartnerInfo, MediaCoverage, KeyFeaturesInfo, milestone, problemInfo, blogInfo, whitepaperInfo, solutionInfo, tokenAllocation, termsAndConditionInfo, privacyPolicyInfo } = require('../models/home_content');
-const DecarbonFirmModel = require("../models/DecarbonFirmModel")
+
 const { Registration, Userwallet,whitepaperregister, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ,ContactInfo } = require('../models/userModel');
-const DecarbonCompanyModel = require("../models/DecarbonCompanyModel");
+
 var isUser = auth.isUser;
 
 //************ to get user data on header using session **********//
@@ -549,6 +549,22 @@ router.get("/buy-coin", function (req, res) {
   
 });
 
+router.get("/register-form", function (req, res) {
+  // var error ="";
+  // var success = "";
+  error = req.flash("err_msg");
+  success = req.flash("success_msg");
+  // var user_id = req.session.re_us_id;
+
+                  // var wallet_address = result.wallet_address;
+                  res.render("register-form", {
+                    error,
+                    success,
+                    
+                  });
+  
+});
+
 
 router.get("/register-tree-form", function (req, res) {
   // var error ="";
@@ -680,57 +696,18 @@ router.post('/ETH', isUser, async function (req, res) {
 })
 
 
-router.get("/register-form",(req,res)=>{
-  res.render("register-form.ejs")
-})
+//  Emission Impact :
 
-router.post("/saveDecarbinationCompany",(req,res)=>{
-
-  if(req.body.pwd == req.body.cnfpwd){
-    const Firm = {
-      firm_name:req.body.firmName,
-      email:req.body.email,
-      mobile:req.body.phone,
-      password:req.body.pwd,
-      companys_licenece:req.body.licence,
-      Country:req.body.country,
-    }
-    DecarbonFirmModel.create(Firm).then(result=>{
-      res.status(200).render("register-form.ejs",{success_msg:"Registeration Confirmed"});
-    }).catch(err=>{
-        console.log(err);
-        res.status(400).render("register-form.ejs",{err_msg:err.toString()});
-    })
-  }else{
-    res.status(200).render("register-form.ejs",{err_msg:"Password and Confirm Password is Not Same"});
-  }
-})
-
-router.post("/saveDecarbonCompany",(req,res)=>{
-  console.log(req.body)
-    const Company = {
-    company_name: req.body.companyName,
-    email:req.body.email,
-    mobile:req.body.phone,
-    quotation:req.body.quotation,
-    totalArea:req.body.totalArea,
-    ApproxCapacity:req.body.approxCap,
-    password:req.body.pwd,
-    companys_licence:req.body.licence
-    }
-    if(req.body.cnfpwd == req.body.pwd){
-      DecarbonCompanyModel.create(Company).then(result=>{
-        console.log(result)
-        res.render("register-tree-form",{success_msg:"Company Registered"});
-      }).catch(err=>{
-        console.log(err);
-        res.render("register-tree-form",{err_msg:err.toString()});
-      })
-    }else{
-      console.log("not same")
-      res.render("register-tree-form",{err_msg:"Confirm Password and Password are Not Same"});
-    }
-})
-
-
+router.get('/emission-impact', function (req, res) {
+  res.render('emission-impact');
+});
+router.get('/microsoft', function (req, res) {
+  res.render('microsoft');
+});
+router.get('/google', function (req, res) {
+  res.render('google');
+});
+router.get('/calculator', function (req, res) {
+  res.render('calculator');
+});
 module.exports = router;
