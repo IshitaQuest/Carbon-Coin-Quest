@@ -213,6 +213,14 @@
 
               <li><a href="#contact-us">Contact Karbun</a></li>
               <li><a href="/terms">T&C</a></li>
+              <li><a
+                href="#"
+                data-toggle="modal"
+                data-target="#whiteCarbonCalculator"
+                style="font-size: 16px" >Emission_Impact</a>
+            </li>
+              <!-- <li><a href="/emission-impact">Emission Impact</a></li> -->
+
 
               <li class="text/css">
                 <button id="google_translate_element"></button>
@@ -1403,6 +1411,56 @@
         </div>
       </div>
     </div>
+     <!-- Modal -->
+     <div
+     class="modal fade comming-soon-popup"
+     id="whiteCarbonCalculator"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true"
+   >
+     <div class="modal-dialog" role="document">
+       <div class="modal-content">
+         <div class="modal-body">
+           <button
+             type="button"
+             class="close"
+             data-dismiss="modal"
+             aria-label="Close"
+           >
+             <span aria-hidden="true">&times;</span>
+           </button>
+           <div class="whitepaper-form">
+             <h2>
+               Please enter your Website URL to calculate Carbon Emission.
+             </h2>
+             <form method="POST" action="emission-pass">
+               <div class="form-group">
+                 <label>Enter Website URL</label>
+                 <input
+                   type="url"
+                   name="url"
+                   class="form-control"
+                   id=""
+                   placeholder="Enter URL"
+                   required
+                 />
+               </div>
+
+               <button
+                 
+                 type="submit"
+                 class="thm-btn yellow-bg-hvr"
+               >
+                 Submit
+               </button>
+             </form>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
     <!-- href="user_assets/Karbun-Coin-Whitepaper.pdf" -->
     <div class="scroll-to-top scroll-to-target" data-target="html">
       <i class="fa fa-angle-up"></i>
