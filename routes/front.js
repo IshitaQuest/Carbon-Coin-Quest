@@ -949,7 +949,7 @@ router.post("/saveDecarbonCompany",(req,res)=>{
           if(err){
             res.send(err);
           }else{
-            res.send("OTP Send")
+            res.redirect("/otp-firm?email="+result.email)
           }
         });
        }
@@ -992,7 +992,7 @@ router.post("/saveDecarbonCompany",(req,res)=>{
           if(err){
             res.send(err);
           }else{
-            res.send("OTP Send")
+            res.redirect("/otp-company?email="+result.email);
           }
         });
        }
@@ -1006,6 +1006,9 @@ router.post("/saveDecarbonCompany",(req,res)=>{
 
 
  router.post("/confirmOtpFirm",async (req,res)=>{
+
+  if(req.body.password ==  req.body.confirm_password)
+
   try{
     let result = await DecarbonFirmModel.findOne({email:req.body.email});
     if(result!=null){
