@@ -72,7 +72,10 @@ var DecarbisationSchema = new moongoose.Schema({
         type: String,
         default: null
     },
-
+    otp:{
+        type:String,
+        default:null,
+    },
     updated_by: {
         type: String,
         default: 0

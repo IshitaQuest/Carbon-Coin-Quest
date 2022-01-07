@@ -4,6 +4,7 @@ const session = require('express-session');
 const moment = require('moment');
 const auth = require('../config/auth');
 const fs = require('fs');
+const nodemailer = require('nodemailer');
 const web3 = require('web3');
 const crypto = require('crypto');
 const Tx = require('ethereumjs-tx');
@@ -830,6 +831,92 @@ router.post("/saveDecarbonCompany",(req,res)=>{
     res.render("register-tree-form",{err_msg:err.message});
   })
 
+ })
+
+ router.post("/sendOtpFirm",(req,res)=>{
+  var four_digit_otp = Math.floor(1000 + Math.random() * 9000);
+  const password = four_digit_otp;
+  DecarbonFirmModel.findOne({email:req.body.email}).then(async function(result){
+    if(result!=null){
+       let response = await DecarbonFirmModel.updateOne({_id:result._id},{$set:{otp:password}});
+       if(response!=null){
+        var smtpTransport = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: 'prashantbarge@questglt.org',
+            pass: 'gopalthegame',
+          }
+        });
+        const mailOptions = {
+          to: req.body.email,
+          from: 'prashantbarge@questglt.org',
+          subject: 'Forgot Password',
+    
+          text: 'Dear Customer,' + '\n\n' + 'New Password form ebt.\n\n' +
+            'Password: ' + password + '\n http://' + req.headers.host + '/' + '\n\n' +
+    
+            'We suggest you to please change your password after successfully logging in on the portal using the above password :\n\n' +
+    
+            'Here is the change password link: http://' + req.headers.host + '/Profile' + '\n\n' +
+            'Thanks and Regards,' + '\n' + '$EBT Team' + '\n\n',
+        };
+        smtpTransport.sendMail(mailOptions, function (err) {
+          if(err){
+            res.send(err);
+          }else{
+            res.send("OTP Send")
+          }
+        });
+       }
+    }else{
+      res.send("Counld Not send OTP");
+    }
+  }).catch(err=>{
+    res.send(err);
+  })
+ })
+
+ router.post("/sendOtpCompany",(req,res)=>{
+  var four_digit_otp = Math.floor(1000 + Math.random() * 9000);
+  const password = four_digit_otp;
+  DecarbonCompanyModel.findOne({email:req.body.email}).then(async function(result){
+    if(result!=null){
+       let response = await DecarbonFirmModel.updateOne({_id:result._id},{$set:{otp:password}});
+       if(response!=null){
+        var smtpTransport = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: 'prashantbarge@questglt.org',
+            pass: 'gopalthegame',
+          }
+        });
+        const mailOptions = {
+          to: req.body.email,
+          from: 'prashantbarge@questglt.org',
+          subject: 'Forgot Password',
+    
+          text: 'Dear Customer,' + '\n\n' + 'New Password form ebt.\n\n' +
+            'Password: ' + password + '\n http://' + req.headers.host + '/' + '\n\n' +
+    
+            'We suggest you to please change your password after successfully logging in on the portal using the above password :\n\n' +
+    
+            'Here is the change password link: http://' + req.headers.host + '/Profile' + '\n\n' +
+            'Thanks and Regards,' + '\n' + '$EBT Team' + '\n\n',
+        };
+        smtpTransport.sendMail(mailOptions, function (err) {
+          if(err){
+            res.send(err);
+          }else{
+            res.send("OTP Send")
+          }
+        });
+       }
+    }else{
+      res.send("Counld Not send OTP");
+    }
+  }).catch(err=>{
+    res.send(err);
+  })
  })
 
 
