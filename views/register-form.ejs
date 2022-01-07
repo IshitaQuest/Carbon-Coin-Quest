@@ -293,35 +293,35 @@
     <form method="POST" action="/saveDecarbinationCompany" class="btc-calc-form row">
       <div class="col-md-6">
         <label>Firms Name</label>
-        <input type="text" name="firmName" placeholder="Firms Name" />
+        <input type="text" name="firmName" placeholder="Firms Name" required />
       </div><!-- /.col-md-3 -->
        <div class="col-md-6">
         <label>Company's License</label>
-        <input type="text" name="licence" placeholder="Company's License" />
+        <input type="text" name="licence" placeholder="Company's License"  required/>
       </div><!-- /.col-md-3 -->
        <div class="col-md-6">
         <label>Carbon Emmision Per/Year</label>
-        <input type="text" name="year" placeholder="Enter Year" />
+        <input type="text" name="year" placeholder="Enter Year" required />
       </div><!-- /.col-md-3 -->
        <div class="col-md-6">
         <label>Contact Details</label>
-        <input type="text" name="phone" placeholder="Phone Number" />
+        <input type="text" name="phone" placeholder="Phone Number" required />
       </div><!-- /.col-md-3 -->
        <div class="col-md-6">
         <label>Email</label>
-        <input type="email" name="email" placeholder="Email Address" />
+        <input type="email" name="email" placeholder="Email Address" required />
       </div><!-- /.col-md-3 -->
       <div class="col-md-6">
         <label>Password</label>
-        <input type="text" name="pwd" placeholder="Password" />
+        <input type="password" name="pwd" placeholder="Password" />
       </div><!-- /.col-md-3 -->
       <div class="col-md-6">
         <label>Confirm Password</label>
-        <input type="text" name="cnfpwd" placeholder="Password" />
+        <input type="password" name="cnfpwd" placeholder="Password" required/>
       </div><!-- /.col-md-3 -->
       <div class="col-md-6">
         <label>Country</label>
-        <select name="country" class="selectpicker">
+        <select name="country" class="selectpicker" required>
           <option value="#">Country</option>
           <option value="#">Country 1</option>
           <option value="#">Country 2</option>
