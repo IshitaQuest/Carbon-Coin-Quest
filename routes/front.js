@@ -620,7 +620,7 @@ router.get("/register-form", function (req, res) {
                   });
   
 });
-router.get("/dashboardlog", function (req, res) {
+router.get("/dashboardCompany", function (req, res) {
   // var error ="";
   // var success = "";
   error = req.flash("err_msg");
@@ -628,7 +628,7 @@ router.get("/dashboardlog", function (req, res) {
   // var user_id = req.session.re_us_id;
 
                   // var wallet_address = result.wallet_address;
-                  res.render("dashboardlog", {
+                  res.render("dashboardCompany", {
                     error,
                     success,
                     
@@ -650,7 +650,21 @@ router.get("/dashboardfirm", function (req, res) {
                   });
   
 });
+router.get("/forgot-pass", function (req, res) {
+  // var error ="";
+  // var success = "";
+  error = req.flash("err_msg");
+  success = req.flash("success_msg");
+  // var user_id = req.session.re_us_id;
 
+                  // var wallet_address = result.wallet_address;
+                  res.render("forgot-pass", {
+                    error,
+                    success,
+                    
+                  });
+  
+});
 
 router.get("/register-tree-form", function (req, res) {
   // var error ="";
