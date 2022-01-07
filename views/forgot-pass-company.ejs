@@ -264,7 +264,70 @@
     </nav>
   </header>
   <!-- /.header -->
-  <p>hy</p>
+  <section class="client-login verify">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="dash-logo">
+            <img src="assets/images/logos/logo-sm.png">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+        <!-- <div class="row">
+          <div class="col-md-6 offset-md-3">
+             <div class="white-box text-center">
+            <div class="user-ath-box">
+              <h4 style="color: #000;">Please enter the OTP to verify your account.</h4>
+  
+              <p style="color: #000;" class="mb-3">An One Time Password sent to your e-mail address</p>
+              <% if(err_msg!=undefined){ %>
+                  <span class="error_validate flash_msg"><%= err_msg %></span>
+                <% }%>
+                <% if(success_msg!=undefined){ %>
+                  <span class="succ_flash_msg" style="color: green;"><%= success_msg %></span>
+                <% }%>
+              <form id="login_form" action="verify-account" method="POST">
+  
+                  <div class="input-item">
+                      <input type="text" class="form-control input-bordered" placeholder="Enter OTP" name='otp' id='otp' data-rule-required="true"  data-msg-required="Please enter OTP.">
+                  </div>
+                  <div class="gaps"></div>
+                  <div class="d-flex justify-content-center mt-3 align-items-center">
+                      <button type="submit" class="btn btn-sign" id="submit_verify_account">Submit</button>
+                  </div>
+              </form>
+          </div>
+          </div>
+        </div>
+        </div> -->
+      
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <div class="white-box text-center">
+              <div class="user-ath-box">
+  
+                  <h4 style="color: #000;">Forgot Password</h4>
+                  <form method="POST" action="/sendOtpCompany">
+                      
+                  <div class="form-group">
+                      <input name="email" type="email" class="form-control" placeholder="yourmail@gmail.com">
+                    </div>
+                    <div class="text-center"> 
+                      <button type="submit" id="submit_login" class="btn btn-sign">Submit</button>
+                    </div>
+                  </form>
+              </div>
+              
+              </div>
+              <div class="log-foo text-center">
+                <p>Don't have an account. <a href="/signup">Signup</a></p>
+            </div>
+          </div>
+      </div>
+      </div>
+  </section>
 
   
   <div class="footer-top page-section" id="contact-us">
