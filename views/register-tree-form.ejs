@@ -355,7 +355,7 @@
       </div><!-- /.col-md-3 -->
       <div class="col-md-6">
         <label>Contact No.</label>
-        <input type="text" placeholder="Number" />
+        <input type="text" name="phone" placeholder="Number" />
       </div><!-- /.col-md-3 -->
 
       
@@ -475,7 +475,11 @@
     <script src="user_assets/js/Chart.min.js"></script>
     <script src="user_assets/js/chart-config.js"></script>
     <script src="user_assets/js/custom.js"></script>
-
+    <script>
+      if(success_msg!=null){
+        alert(success_msg);
+      }
+    </script>
     <script>
       $(document).ready(function () {
         $("ul.navigation-box li a").click(function () {

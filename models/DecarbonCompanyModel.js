@@ -46,7 +46,9 @@ var DecarbisationSchema = new moongoose.Schema({
         type:Number,
         default:0,
     },
-
+    phone:{
+        type:String,
+    },
     ApproxCapacity:{
         type:Number,
         default:0,

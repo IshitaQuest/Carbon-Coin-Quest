@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const session = require('express-session');
 const moment = require('moment');
 const auth = require('../config/auth');
 const fs = require('fs');
@@ -14,8 +15,12 @@ const blockchainServices = require("../services/blockchainServices");
 const { calculateHours } = require('../helper/userHelper');
 const { mail } = require('../helper/mailer');
 const { BannerInfo, GetInTouch, PartnerInfo, MediaCoverage, KeyFeaturesInfo, milestone, problemInfo, blogInfo, whitepaperInfo, solutionInfo, tokenAllocation, termsAndConditionInfo, privacyPolicyInfo } = require('../models/home_content');
-
+const routes = require('express').Router();
 const { Registration, Userwallet,whitepaperregister, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ,ContactInfo } = require('../models/userModel');
+
+const DecarbonCompanyModel = require("../models/DecarbonCompanyModel")
+const DecarbonFirmModel = require("../models/DecarbonFirmModel");
+
 
 var isUser = auth.isUser;
 
@@ -133,6 +138,12 @@ router.get('/change-password', isUser, function (req, res) {
     res.render('change-password', { err_msg, success_msg, layout: false, session: req.session, })
   }
 });
+
+routes.use(session({
+  secret: 'admindetails',
+  resave: false,
+  saveUninitialized: true
+}));
 
 //***************** get profile **************//
 router.get('/profile', isUser, function (req, res) {
@@ -769,7 +780,8 @@ router.post("/saveDecarbonCompany",(req,res)=>{
     totalArea:req.body.totalArea,
     ApproxCapacity:req.body.approxCap,
     password:req.body.pwd,
-    companys_licence:req.body.licence
+    companys_licence:req.body.licence,
+    phone:req.body.phone,
     }
     if(req.body.cnfpwd == req.body.pwd){
       DecarbonCompanyModel.create(Company).then(result=>{
@@ -784,6 +796,41 @@ router.post("/saveDecarbonCompany",(req,res)=>{
       res.render("register-tree-form",{err_msg:"Confirm Password and Password are Not Same"});
     }
 })
+
+
+ router.post("/firmlogin",(req,res)=>{
+
+  DecarbonFirmModel.findOne({email:req.body.email,password:req.body.password}).then(result=>{
+    if(result==null){
+        res.render("register-form.ejs",{err_msg:"Inncorrect Username or PassWord"});
+    }else{
+      req.session.user = result;
+      req.session.save(()=>{
+        res.redirect("/");
+      })
+    }
+  }).catch(err=>{
+    res.render("register-form.ejs",{err_msg:err.message});
+  })
+ });
+
+ router.post("/decarbinationCompanyLogin",(req,res)=>{
+
+  DecarbonCompanyModel.findOne({email:req.body.email,password:req.body.password}).then(result=>{
+    if(result==null){
+        res.render("register-tree-form",{err_msg:"Inncorrect Username or PassWord"});
+    }else{
+      req.session.user = result;
+      req.session.save(()=>{
+        res.redirect("/");
+      })
+      
+    }
+  }).catch(err=>{
+    res.render("register-tree-form",{err_msg:err.message});
+  })
+
+ })
 
 
 //  Emission Impact :
