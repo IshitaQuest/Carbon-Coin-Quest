@@ -607,6 +607,21 @@ router.get("/register-form", function (req, res) {
                   });
   
 });
+router.get("/dashboardlog", function (req, res) {
+  // var error ="";
+  // var success = "";
+  error = req.flash("err_msg");
+  success = req.flash("success_msg");
+  // var user_id = req.session.re_us_id;
+
+                  // var wallet_address = result.wallet_address;
+                  res.render("dashboardlog", {
+                    error,
+                    success,
+                    
+                  });
+  
+});
 
 
 router.get("/register-tree-form", function (req, res) {
@@ -738,6 +753,9 @@ router.post('/ETH', isUser, async function (req, res) {
   // })    
 })
 
+router.get('/dashboard', function (req, res) {
+  res.render('dashboard');
+});
 
 //  Emission Impact :
 
