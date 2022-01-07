@@ -793,7 +793,7 @@ router.post("/saveDecarbinationCompany",(req,res)=>{
       Country:req.body.country,
     }
     DecarbonFirmModel.create(Firm).then(result=>{
-      res.redirect("/",{success_msg:"Company Registered"});
+      res.redirect("/");
     }).catch(err=>{
         console.log(err);
         res.status(400).render("register-form.ejs",{err_msg:err.toString()});
@@ -819,7 +819,7 @@ router.post("/saveDecarbonCompany",(req,res)=>{
     if(req.body.cnfpwd == req.body.pwd){
       DecarbonCompanyModel.create(Company).then(result=>{
         console.log(result)
-        res.redirect("/",{success_msg:"Company Registered"});
+        res.redirect("/");
       }).catch(err=>{
         console.log(err);
         res.render("register-tree-form",{err_msg:err.toString()});
