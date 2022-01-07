@@ -651,16 +651,16 @@ router.get("/dashboardfirm", function (req, res) {
   
 });
 router.get("/forgot-pass-firm", function (req, res) {
-  var error ="";
-  var success = "";
-  error = req.flash("err_msg");
-  success = req.flash("success_msg");
+  // var error ="";
+  // var success = "";
+  var err = req.flash("err_msg");
+  var succes = req.flash("success_msg");
   // var user_id = req.session.re_us_id;
 
                   // var wallet_address = result.wallet_address;
                   res.render("forgot-pass-firm", {
-                    error,
-                    success,
+                    err,
+                    succes,
                     
                   });
   
@@ -668,8 +668,8 @@ router.get("/forgot-pass-firm", function (req, res) {
 router.get("/forgot-pass-company", function (req, res) {
   // var error ="";
   // var success = "";
-  error = req.flash("err_msg");
-  success = req.flash("success_msg");
+  var error = req.flash("err_msg");
+  var success = req.flash("success_msg");
   // var user_id = req.session.re_us_id;
 
                   // var wallet_address = result.wallet_address;

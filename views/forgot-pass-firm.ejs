@@ -268,40 +268,13 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">
-          <div class="dash-logo">
+          <!-- <div class="dash-logo">
             <img src="assets/images/logos/logo-sm.png">
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
     <div class="container">
-        <!-- <div class="row">
-          <div class="col-md-6 offset-md-3">
-             <div class="white-box text-center">
-            <div class="user-ath-box">
-              <h4 style="color: #000;">Please enter the OTP to verify your account.</h4>
-  
-              <p style="color: #000;" class="mb-3">An One Time Password sent to your e-mail address</p>
-              <% if(err_msg!=undefined){ %>
-                  <span class="error_validate flash_msg"><%= err_msg %></span>
-                <% }%>
-                <% if(success_msg!=undefined){ %>
-                  <span class="succ_flash_msg" style="color: green;"><%= success_msg %></span>
-                <% }%>
-              <form id="login_form" action="verify-account" method="POST">
-  
-                  <div class="input-item">
-                      <input type="text" class="form-control input-bordered" placeholder="Enter OTP" name='otp' id='otp' data-rule-required="true"  data-msg-required="Please enter OTP.">
-                  </div>
-                  <div class="gaps"></div>
-                  <div class="d-flex justify-content-center mt-3 align-items-center">
-                      <button type="submit" class="btn btn-sign" id="submit_verify_account">Submit</button>
-                  </div>
-              </form>
-          </div>
-          </div>
-        </div>
-        </div> -->
       
         <div class="row">
           <div class="col-md-6 offset-md-3">
@@ -310,11 +283,11 @@
   
                   <h4 style="color: #000;">Forgot Password</h4>
                   <form method="POST" action="/sendOtpFirm">
-                      <% if(err_msg!=undefined){ %>
-                          <span class="error_validate flash_msg"><%= err_msg %></span>
+                      <% if(err!=undefined){ %>
+                          <span class="error_validate flash_msg"><%= err%></span>
                       <% }%>
-                      <% if(success_msg!=undefined){ %>
-                          <span class="succ_flash_msg" style="color: green;"><%= success_msg %></span>
+                      <% if(succes!=undefined){ %>
+                          <span class="succ_flash_msg" style="color: green;"><%= succes %></span>
                       <% }%>
                   <div class="form-group">
                       <input name="email" type="email" class="form-control" placeholder="yourmail@gmail.com">
@@ -335,116 +308,7 @@
   </section>
 
   
-  <div class="footer-top page-section" id="contact-us">
-    <div class="thm-container">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-          <div class="single-footer-top">
-            <p>
-              <i class="bitmex-icon-envelope"></i><span class="primary">Email: </span>sales@karbun.io ,
-              support@karbun.io
-            </p>
-          </div>
-          <!-- /.single-footer-top -->
-        </div>
-        <!-- /.col-md-4 -->
-        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-          <div class="single-footer-top">
-            <p>
-              <i class="bitmex-icon-phone-call"></i><span>Call: </span>+61415898818
-            </p>
-          </div>
-          <!-- /.single-footer-top -->
-        </div>
-        <!-- /.col-md-4 -->
-        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-          <div class="single-footer-top">
-            <p>
-              <i class="bitmex-icon-placeholder"></i><span>Web: </span>www.karbun.io
-            </p>
-          </div>
-          <!-- /.single-footer-top -->
-        </div>
-        <!-- /.col-md-4 -->
-      </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.thm-container -->
-  </div>
-  <!-- /.footer-top -->
-
-  <footer class="site-footer">
-    <div class="thm-container">
-      <div class="row masonary-layout">
-        <div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-2 col-sm-offset-2">
-          <div class="single-footer-widget text-center">
-            <div class="title">
-              <h3>Subscribe</h3>
-            </div>
-            <!-- /.title -->
-            <form action="inc/mailchimp/subscribe.php" class="subscribe-form">
-              <input type="text" placeholder="Email Address" />
-              <button type="submit" class="fa fa-telegram" style="font-size: 20px"></button>
-            </form>
-            <!-- /.subscribe-form -->
-            <ul class="links-list">
-              <li class="current"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#news">News</a></li>
-              <li><a href="#Calculator">Calculator</a></li>
-              <li><a href="#how-it-works">How It Works</a></li>
-              <li><a href="#our-experts">Our Experts</a></li>
-              <li><a href="#contact-us">Contact Us</a></li>
-            </ul>
-          </div>
-          <!-- /.single-footer-widget -->
-        </div>
-        <!-- /.col-md-3 -->
-      </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.thm-container -->
-  </footer>
-  <!-- /.site-footer -->
-
-  <div class="footer-bottom">
-    <div class="thm-container clearfix">
-      <div class="pull-left copy-text">
-        <p>&copy; 2021 Carboncoin.com All copy rights are reserved.</p>
-      </div>
-      <!-- /.pull-left copy-text -->
-      <div class="social pull-right">
-        <a href="#" class="fa fa-twitter"></a>
-        <!--
-                --><a href="#" class="fa fa-facebook"></a>
-        <!--
-                --><a href="#" class="fa fa-youtube-play"></a>
-        <!--
-                --><a href="#" class="fa fa-pinterest"></a>
-      </div>
-      <!-- /.social -->
-    </div>
-    <!-- /.thm-container -->
-  </div>
-  <!-- /.footer-bottom -->
-
-  <section class="hidden-sidebar side-navigation">
-    <a href="#" class="close-button side-navigation-close-btn fa fa-times"></a><!-- /.close-button -->
-    <div class="sidebar-content">
-      <div class="social">
-        <a href="#" class="fa fa-twitter"></a>
-        <!--
-                --><a href="#" class="fa fa-facebook"></a>
-        <!--
-                --><a href="#" class="fa fa-youtube-play"></a>
-        <!--
-                --><a href="#" class="fa fa-pinterest"></a>
-      </div>
-      <!-- /.social -->
-    </div>
-    <!-- /.sidebar-content -->
-  </section>
-  <!-- /.hidden-sidebar -->
+ 
 
   <div class="scroll-to-top scroll-to-target" data-target="html">
     <i class="fa fa-angle-up"></i>

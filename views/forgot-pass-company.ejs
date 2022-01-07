@@ -275,34 +275,7 @@
       </div>
     </div>
     <div class="container">
-        <!-- <div class="row">
-          <div class="col-md-6 offset-md-3">
-             <div class="white-box text-center">
-            <div class="user-ath-box">
-              <h4 style="color: #000;">Please enter the OTP to verify your account.</h4>
-  
-              <p style="color: #000;" class="mb-3">An One Time Password sent to your e-mail address</p>
-              <% if(err_msg!=undefined){ %>
-                  <span class="error_validate flash_msg"><%= err_msg %></span>
-                <% }%>
-                <% if(success_msg!=undefined){ %>
-                  <span class="succ_flash_msg" style="color: green;"><%= success_msg %></span>
-                <% }%>
-              <form id="login_form" action="verify-account" method="POST">
-  
-                  <div class="input-item">
-                      <input type="text" class="form-control input-bordered" placeholder="Enter OTP" name='otp' id='otp' data-rule-required="true"  data-msg-required="Please enter OTP.">
-                  </div>
-                  <div class="gaps"></div>
-                  <div class="d-flex justify-content-center mt-3 align-items-center">
-                      <button type="submit" class="btn btn-sign" id="submit_verify_account">Submit</button>
-                  </div>
-              </form>
-          </div>
-          </div>
-        </div>
-        </div> -->
-      
+        
         <div class="row">
           <div class="col-md-6 offset-md-3">
             <div class="white-box text-center">
@@ -310,7 +283,12 @@
   
                   <h4 style="color: #000;">Forgot Password</h4>
                   <form method="POST" action="/sendOtpCompany">
-                      
+                      <% if(error!=undefined){ %>
+                          <span class="error_validate flash_msg"><%= error %></span>
+                      <% }%>
+                      <% if(success!=undefined){ %>
+                          <span class="succ_flash_msg" style="color: green;"><%= success %></span>
+                      <% }%>
                   <div class="form-group">
                       <input name="email" type="email" class="form-control" placeholder="yourmail@gmail.com">
                     </div>
@@ -328,6 +306,7 @@
       </div>
       </div>
   </section>
+  
 
   
   <div class="footer-top page-section" id="contact-us">
