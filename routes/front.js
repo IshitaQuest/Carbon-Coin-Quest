@@ -7,6 +7,7 @@ const web3 = require('web3');
 const crypto = require('crypto');
 const Tx = require('ethereumjs-tx');
 const userServices = require("../services/userServices");
+const whiteKarbun = require("website-carbon-calculator");
 const userControllers = require('../controllers/userControllers');
 const blockchainController = require('../controllers/blockchainController');
 const blockchainServices = require("../services/blockchainServices");
@@ -318,6 +319,47 @@ router.post("/whitepaper", async (req, res) => {
   }catch(err){
     console.log(err);
   }
+});
+
+router.post('/emission-pass', async(req,res)=> {
+  try {
+    let url = req.body.url;
+    const websiteCarbonCalculator = new whiteKarbun.WebsiteCarbonCalculator({pagespeedApiKey: 'AIzaSyDkHzzRj6A7XFjrOrk2qufDRSVw3bOAln4'});
+    const result = await websiteCarbonCalculator.calculateByURL(url);
+    console.log("This is result", result);
+    console.log("This is the url of the website u entered : ", result.url);
+    console.log("This is the amount of bytes transferred", result.bytesTransferred);
+    console.log("This is ", result.isGreenHost);
+    console.log("This is something else", result.co2PerPageview);
+    const byteTransferred = result.bytesTransferred;
+    const GreenHost = result.isGreenHost;
+    const co2perPage = result.co2PerPageview;
+
+
+    err_msg = req.flash('err_msg');
+    success_msg = req.flash('success_msg');
+    res.render('emission-impact', { err_msg, success_msg, byteTransferred, GreenHost, co2perPage});
+    res.redirect('/emission-impact');
+
+
+
+  
+    // {
+    //   url: 'http://www.facebook.com',
+    //   bytesTransferred: 123456,
+    //   isGreenHost: true,
+    //   co2PerPageview: 0.1234567,
+    // }
+  
+  } catch(error) {
+    console.log("error");
+    // if(error instanceof whiteKarbun.WebsiteCarbonCalculatorError){
+    //   console.warn(error.message);
+
+    // }
+    // Do something else...
+  }
+  
 });
 
 router.post("/subscribe", async (req, res) => {
