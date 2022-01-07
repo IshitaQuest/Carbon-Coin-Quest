@@ -712,11 +712,17 @@
                 class="thm-btn yellow-bg-hvr green-btn-new"
                 data-target="#registertreeModal" 
                   style="font-size: 16px" >Are You Decarbisation Company</a>
-              <a
+                  <a
+                  href="#"
+                  data-toggle="modal"
+                class="thm-btn yellow-bg-hvr green-btn-new"
+                data-target="#registerModal" 
+                  style="font-size: 16px" >Buy Carbon Credits</a>
+              <!-- <a
                 data-toggle="modal"
                 class="thm-btn yellow-bg-hvr green-btn-new"
                 data-target="#registerModal" 
-                >Buy Carbon Credits</a>
+                >Buy Carbon Credits</a> -->
               <a
                 data-toggle="modal"
                 data-target=".coming-modal-Modal"
@@ -1415,7 +1421,7 @@
     </div>
     <!-- Modal -->
     <div
-      class="modal fade comming-soon-popup"
+      class="modal fade comming-soon-popup coming-modal-Modal"
       id="registertreeModal"
       tabindex="-1"
       role="dialog"
@@ -1480,7 +1486,70 @@
 
      <!-- Modal -->
      <div
-     class="modal fade comming-soon-popup"
+     class="modal fade comming-soon-popup coming-modal-Modal"
+     id="registerModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true"
+   >
+     <div class="modal-dialog" role="document">
+       <div class="modal-content">
+         <div class="modal-body">
+           <button
+             type="button"
+             class="close"
+             data-dismiss="modal"
+             aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+           <div class="">
+             <h2>
+               LOGIN
+             </h2>
+             <form method="POST" action="">
+               <div class="form-group">
+                 <label style="color:white">Email address</label>
+                 <input
+                   type="email"
+                   name="email"
+                   class="form-control"
+                   id=""
+                   placeholder="Enter email"
+                   required
+                 />
+               </div>
+               <div class="form-group">
+                 <label  style="color:white">Password</label>
+                 <input
+                   type="password"
+                   name="password"
+                   class="form-control"
+                   id=""
+                   placeholder="Enter password"
+                   required
+                 />
+               </div>
+
+               <button
+                 type="submit"
+                 class="thm-btn yellow-bg-hvr">Login
+               </button>
+               <br>
+               <a
+               data-toggle="modal"
+               class="thm-btn yellow-bg-hvr green-btn-new"
+               href="/register-form" style="width:300px"
+               >Register your credits</a>
+
+             </form>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+     <!-- <div
+     class="modal fade comming-soon-popup coming-modal-Modal"
      id="registerModal"
      tabindex="-1"
      role="dialog"
@@ -1534,14 +1603,14 @@
                data-toggle="modal"
                class="thm-btn yellow-bg-hvr green-btn-new"
                href="/register-form"
-               >Buy Credits</a>
+               >Buy Credits </a>
 
              </form>
            </div>
          </div>
        </div>
      </div>
-   </div>
+   </div> -->
     <!-- href="user_assets/Karbun-Coin-Whitepaper.pdf" -->
     <div class="scroll-to-top scroll-to-target" data-target="html">
       <i class="fa fa-angle-up"></i>
