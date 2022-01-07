@@ -709,7 +709,7 @@ router.get("/otp-company", function (req, res) {
                     error,
                     success,
  });
-                  
+});
 router.get("/otp-firm", function (req, res) {
   // var error ="";
   // var success = "";
@@ -722,7 +722,7 @@ router.get("/otp-firm", function (req, res) {
                     error,
                     success,
 });
-
+});
 router.get("/faq", function (req, res) {
   // var error ="";
   // var success = "";
