@@ -793,7 +793,7 @@ router.post("/saveDecarbinationCompany",(req,res)=>{
       Country:req.body.country,
     }
     DecarbonFirmModel.create(Firm).then(result=>{
-      res.status(200).render("register-form.ejs",{success_msg:"Registeration Confirmed"});
+      res.redirect("/",{success_msg:"Company Registered"});
     }).catch(err=>{
         console.log(err);
         res.status(400).render("register-form.ejs",{err_msg:err.toString()});
@@ -819,7 +819,7 @@ router.post("/saveDecarbonCompany",(req,res)=>{
     if(req.body.cnfpwd == req.body.pwd){
       DecarbonCompanyModel.create(Company).then(result=>{
         console.log(result)
-        res.render("register-tree-form",{success_msg:"Company Registered"});
+        res.redirect("/",{success_msg:"Company Registered"});
       }).catch(err=>{
         console.log(err);
         res.render("register-tree-form",{err_msg:err.toString()});
@@ -839,7 +839,7 @@ router.post("/saveDecarbonCompany",(req,res)=>{
     }else{
       req.session.user = result;
       req.session.save(()=>{
-        res.redirect("/");
+        res.render("dashboardfirm");
       })
     }
   }).catch(err=>{
@@ -855,9 +855,8 @@ router.post("/saveDecarbonCompany",(req,res)=>{
     }else{
       req.session.user = result;
       req.session.save(()=>{
-        res.redirect("/");
+        res.render("dashboardCompany");
       })
-      
     }
   }).catch(err=>{
     res.render("register-tree-form",{err_msg:err.message});
