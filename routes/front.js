@@ -951,6 +951,43 @@ router.post("/saveDecarbonCompany",(req,res)=>{
  })
 
 
+ router.post("/confirmOtpFirm",async (req,res)=>{
+  try{
+    let result = await DecarbonFirmModel.findOne({email:req.body.email});
+    if(result!=null){
+      if(result.otp == req.body.otp && result.otp!=null ){
+          let response = await DecarbonFirmModel.updateOne({_id:result._id},{$set:{password:req.body.password}});
+          if(response != null){
+            res.redirect("/");
+          }
+      }else{
+        res.send("OTP NOT VERIFIED");
+      }
+    }
+  }catch(err){
+    res.send(err);
+  }
+ })
+
+ router.post("/confirmOtpCompany",async (req,res)=>{
+  try{
+    let result = await DecarbonCompanyModel.findOne({email:req.body.email});
+    if(result!=null){
+      if(result.otp == req.body.otp && result.otp!=null ){
+          let response = await DecarbonCompanyModel.updateOne({_id:result._id},{$set:{password:req.body.password}});
+          if(response != null){
+            res.redirect("/");
+          }
+      }else{
+        res.send("OTP NOT VERIFIED");
+      }
+    }
+  }catch(err){
+    res.send(err);
+  }
+  })
+
+
 
 //  Emission Impact :
 
