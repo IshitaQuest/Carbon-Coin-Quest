@@ -1095,7 +1095,7 @@ router.get("/logout",(req,res)=>{
   res.redirect("/");
 })
 
-router.get("/profile-user",isLoggedIn,function (req, res) {
+router.get("/profile-user-firm",isCompanyLoggedIn,function (req, res) {
   // var error ="";
   // var success = "";
   error = req.flash("err_msg");
@@ -1103,13 +1103,61 @@ router.get("/profile-user",isLoggedIn,function (req, res) {
   // var user_id = req.session.re_us_id;
 
                   // var wallet_address = result.wallet_address;
-                  res.render("profile-user", {
+                  res.render("profile_update_firm", {
                     user:req.session.user,
                     error:null,
                     success:null,
                   });
   
 });
+
+
+router.get("/profile-user-company",isFirmLoggedIn,function (req, res) {
+  // var error ="";
+  // var success = "";
+  error = req.flash("err_msg");
+  success = req.flash("success_msg");
+  // var user_id = req.session.re_us_id;
+
+                  // var wallet_address = result.wallet_address;
+                  res.render("profile_update_company", {
+                    user:req.session.user,
+                    error:null,
+                    success:null,
+                  });
+  
+});
+
+router.post("/updateFirm",(req,res)=>{
+  const update =  {
+    firm_name:req.body.name,
+    mobile:req.body.mob
+  }
+  DecarbonFirmModel.updateOne({email:req.body.email},{$set:update},{$upsert:true,$new:true}).then(async (result)=>{
+    let result1 = await DecarbonFirmModel.findOne({email:req.body.email});
+    req.session.user = result1;
+    res.redirect("/profile-user-firm")
+  }).catch(err=>{
+    console.log(err);
+  })
+})
+
+
+router.post("/updateCompany",(req,res)=>{
+  console.log("i am working")
+  const update =  {
+    company_name:req.body.name,
+    mobile:req.body.mob
+  }
+  DecarbonCompanyModel.updateOne({email:req.body.email},{$set:update},{$upsert:true,$new:true}).then(async (result)=>{
+    let result1 = await DecarbonCompanyModel.findOne({email:req.body.email});
+    req.session.user = result1;
+    res.redirect("/profile-user-company")
+  }).catch(err=>{
+    console.log(err);
+  })
+})
+
 //  Emission Impact :
 
 router.get('/emission-impact', function (req, res) {
