@@ -241,7 +241,7 @@ h3.page-title {
                       <!-- <span class="success_validate flash_msg" style="color:green"></span>
                      
                       <span class="error_validate flash_msg" style="color:red"></span> -->
-                     
+                  
                       <form method="POST" action="" id="">
                         <div class="dashboard-box">
                            <div class=" ">
@@ -249,13 +249,13 @@ h3.page-title {
                                 <div class="col-md-6">
                                   <div class="form-group text-left">
                                     <label>Full Name</label>
-                                     <input class="form-control" value="" name="name" type="text" placeholder="" >
+                                     <input class="form-control" name="name" type="text" value=<%=user.firm_name%> >
                                   </div>
                                 </div>
                                 <div class="col-md-6">
                                   <div class="form-group text-left">
                                     <label>Email ID</label>
-                                     <input class="form-control" type="email" name="email" value="" placeholder="" readonly>
+                                     <input class="form-control" type="email" name="email"value=<%=user.email%> placeholder="" readonly>
                                   </div>
                                 </div>
                                
@@ -264,7 +264,7 @@ h3.page-title {
                                  <div class="col-md-6">
                                   <div class="form-group text-left">
                                     <label>Mobile Number</label>
-                                     <input class="form-control" name="mob" value="" type="text" placeholder="">
+                                     <input class="form-control" name="mob" value=<%=user.mobile%> type="text" placeholder="">
                                   </div>
                                 </div> 
                                

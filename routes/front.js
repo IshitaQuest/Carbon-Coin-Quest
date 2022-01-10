@@ -719,8 +719,7 @@ router.get("/otp-firm", function (req, res) {
 
                   // var wallet_address = result.wallet_address;
                   res.render("otp-firm", {
-                    error,
-                    success,
+                    error: null,success:null,
 });
 });
 router.get("/faq", function (req, res) {
@@ -744,21 +743,7 @@ router.get("/faq", function (req, res) {
                   // var wallet_address = result.wallet_address;
 });
 
-router.get("/profile-user", function (req, res) {
-  // var error ="";
-  // var success = "";
-  error = req.flash("err_msg");
-  success = req.flash("success_msg");
-  // var user_id = req.session.re_us_id;
 
-                  // var wallet_address = result.wallet_address;
-                  res.render("profile-user", {
-                    error,
-                    success,
-                    
-                  });
-  
-});
 
 router.get("/terms", function (req, res) {
   // var error ="";
@@ -898,16 +883,57 @@ router.post("/saveDecarbonCompany",(req,res)=>{
     }
 })
 
+var isLoggedIn = function(req,res,next){
+  if((req.session.user==undefined || req.session.user==null)){
+    res.redirect("/");
+  }
+  next();
+}
+
+var isCompanyLoggedIn = function(req,res,next){
+  if((req.session.user==undefined || req.session.user==null)){
+    res.redirect("/");
+  }else{
+    if(req.session.type=="FIRM"){
+      next();
+    }else{
+      res.redirect("/");
+    }
+  
+  }
+}
+
+var isFirmLoggedIn = function(req,res,next){
+  if((req.session.user==undefined|| req.session.user==null)){
+    res.redirect("/");
+  }else{
+    if(req.session.type=="COMPANY"){
+      next();
+    }else{
+      res.redirect("/");
+    }
+  }
+ 
+}
+
+router.get("/firm-dashboard",isCompanyLoggedIn,(req,res)=>{
+  res.render("dashboardfirm",{error:null,success:null,user:req.session.user});
+})
+
+router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
+  res.render("dashboardCompany",{sucess:null,error:null,user:req.session.user});
+})
+
 
  router.post("/firmlogin",(req,res)=>{
-
   DecarbonFirmModel.findOne({email:req.body.email,password:req.body.password}).then(result=>{
     if(result==null){
         res.render("register-form.ejs",{err_msg:"Inncorrect Username or PassWord"});
     }else{
       req.session.user = result;
+      req.session.type="FIRM";
       req.session.save(()=>{
-        res.render("dashboardfirm");
+        res.redirect("/firm-dashboard");
       })
     }
   }).catch(err=>{
@@ -916,14 +942,14 @@ router.post("/saveDecarbonCompany",(req,res)=>{
  });
 
  router.post("/decarbinationCompanyLogin",(req,res)=>{
-
   DecarbonCompanyModel.findOne({email:req.body.email,password:req.body.password}).then(result=>{
     if(result==null){
         res.render("register-tree-form",{err_msg:"Inncorrect Username or PassWord"});
     }else{
       req.session.user = result;
+      req.session.type = "COMPANY";
       req.session.save(()=>{
-        res.render("dashboardCompany");
+        res.redirect("/company-dashboard",);
       })
     }
   }).catch(err=>{
@@ -952,7 +978,7 @@ router.post("/saveDecarbonCompany",(req,res)=>{
           subject: 'Forgot Password',
     
           text: 'Dear Customer,' + '\n\n' + 'New Password form ebt.\n\n' +
-            'Password: ' + password + '\n http://' + req.headers.host + '/' + '\n\n' +
+            'OTP: ' + password + '\n http://' + req.headers.host + '/' + '\n\n' +
     
             'We suggest you to please change your password after successfully logging in on the portal using the above password :\n\n' +
     
@@ -963,12 +989,12 @@ router.post("/saveDecarbonCompany",(req,res)=>{
           if(err){
             res.send(err);
           }else{
-            res.send("OTP Send")
+            res.redirect("/otp-firm?email="+result.email)
           }
         });
        }
     }else{
-      res.send("Counld Not send OTP");
+      res.render("otp-firm",{error:"OTP NOT SENT",success:null});
     }
   }).catch(err=>{
     res.send(err);
@@ -995,7 +1021,7 @@ router.post("/saveDecarbonCompany",(req,res)=>{
           subject: 'Forgot Password',
     
           text: 'Dear Customer,' + '\n\n' + 'New Password form ebt.\n\n' +
-            'Password: ' + password + '\n http://' + req.headers.host + '/' + '\n\n' +
+            'OTP: ' + password + '\n http://' + req.headers.host + '/' + '\n\n' +
     
             'We suggest you to please change your password after successfully logging in on the portal using the above password :\n\n' +
     
@@ -1006,12 +1032,12 @@ router.post("/saveDecarbonCompany",(req,res)=>{
           if(err){
             res.send(err);
           }else{
-            res.send("OTP Send")
+            res.redirect("/otp-company?email="+result.email);
           }
         });
        }
     }else{
-      res.send("Counld Not send OTP");
+      res.render("otp-company",{error:"OTP NOT SENT",success:null});
     }
   }).catch(err=>{
     res.send(err);
@@ -1020,6 +1046,8 @@ router.post("/saveDecarbonCompany",(req,res)=>{
 
 
  router.post("/confirmOtpFirm",async (req,res)=>{
+
+  if(req.body.password ==  req.body.confirm_password){
   try{
     let result = await DecarbonFirmModel.findOne({email:req.body.email});
     if(result!=null){
@@ -1029,15 +1057,19 @@ router.post("/saveDecarbonCompany",(req,res)=>{
             res.redirect("/");
           }
       }else{
-        res.send("OTP NOT VERIFIED");
+        res.render("otp-firm",{error:"OTP NOT VERIFIED"});
       }
     }
   }catch(err){
     res.send(err);
   }
+}else{
+  res.render("otp-firm",{error:"PASSWORD IS INCORRECT"});
+}
  })
 
  router.post("/confirmOtpCompany",async (req,res)=>{
+   if(req.body.password ==  req.body.confirm_password){
   try{
     let result = await DecarbonCompanyModel.findOne({email:req.body.email});
     if(result!=null){
@@ -1047,16 +1079,37 @@ router.post("/saveDecarbonCompany",(req,res)=>{
             res.redirect("/");
           }
       }else{
-        res.send("OTP NOT VERIFIED");
+        res.render("otp-company",{err:"OTP NOT VERIFIED",success:null});
       }
     }
   }catch(err){
-    res.send(err);
+    res.render("otp-company",{err:err,success:null});
   }
+}else{
+  res.render("otp-company",{err:"PASSWORD IS INCORRECT",success:null});
+}
   })
 
+router.get("/logout",(req,res)=>{
+  req.session.user = null;
+  res.redirect("/");
+})
 
+router.get("/profile-user",isLoggedIn,function (req, res) {
+  // var error ="";
+  // var success = "";
+  error = req.flash("err_msg");
+  success = req.flash("success_msg");
+  // var user_id = req.session.re_us_id;
 
+                  // var wallet_address = result.wallet_address;
+                  res.render("profile-user", {
+                    user:req.session.user,
+                    error:null,
+                    success:null,
+                  });
+  
+});
 //  Emission Impact :
 
 router.get('/emission-impact', function (req, res) {

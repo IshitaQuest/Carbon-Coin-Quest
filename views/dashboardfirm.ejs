@@ -264,7 +264,13 @@
     </nav>
   </header>
   <!-- /.header -->
-  <p>hy</p>
+ <% if(user!=null){%>
+    <%= user.active%>
+    <%= user.status %>
+    <%= user.firm_name%>
+    <%= user.email%>
+ <%}%>
+
 
   
   <div class="footer-top page-section" id="contact-us">
