@@ -1052,7 +1052,7 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
     let result = await DecarbonFirmModel.findOne({email:req.body.email});
     if(result!=null){
       if(result.otp == req.body.otp && result.otp!=null ){
-          let response = await DecarbonFirmModel.updateOne({_id:result._id},{$set:{password:req.body.password}});
+          let response = await DecarbonFirmModel.updateOne({_id:result._id},{$set:{password:req.body.password,otp:null}});
           if(response != null){
             res.redirect("/");
           }
@@ -1074,7 +1074,7 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
     let result = await DecarbonCompanyModel.findOne({email:req.body.email});
     if(result!=null){
       if(result.otp == req.body.otp && result.otp!=null ){
-          let response = await DecarbonCompanyModel.updateOne({_id:result._id},{$set:{password:req.body.password}});
+          let response = await DecarbonCompanyModel.updateOne({_id:result._id},{$set:{password:req.body.password,otp:null}});
           console.log(response)
           if(response != null){
             res.redirect("/");
