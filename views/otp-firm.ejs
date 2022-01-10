@@ -10,7 +10,12 @@
 
 
 <body>
-    
+  <% if(error!=null){%>
+    <div>error</div>
+  <%}%>
+  <% if(success!=null){%>
+    <div>success</div>
+  <%}%>
     <form method="POST" action="/confirmOtpFirm">
       <div class="form-group">
         <input id="emailInput" name="email" type="text" class="form-control" value="">Email
@@ -31,7 +36,7 @@
     </form>
 </body>
 <script>
-  let params = (new URL(document.location)).searchParams;
+   let params = (new URL(document.location)).searchParams;
    let email = params.get("email");
    console.log(email);
    let element = document.getElementById("emailInput").setAttribute("value",email);
