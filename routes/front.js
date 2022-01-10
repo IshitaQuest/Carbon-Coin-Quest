@@ -1006,7 +1006,7 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
   const password = four_digit_otp;
   DecarbonCompanyModel.findOne({email:req.body.email}).then(async function(result){
     if(result!=null){
-       let response = await DecarbonFirmModel.updateOne({_id:result._id},{$set:{otp:password}});
+       let response = await DecarbonCompanyModel.updateOne({_id:result._id},{$set:{otp:password}});
        if(response!=null){
         var smtpTransport = nodemailer.createTransport({
           service: 'gmail',
@@ -1032,12 +1032,12 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
           if(err){
             res.send(err);
           }else{
-            res.redirect("/otp-company?email="+result.email);
+            res.redirect("/otp-company?email="+result.email)
           }
         });
        }
     }else{
-      res.render("otp-company",{error:"OTP NOT SENT",success:null});
+      res.render("otp-firm",{error:"OTP NOT SENT",success:null});
     }
   }).catch(err=>{
     res.send(err);
@@ -1075,6 +1075,7 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
     if(result!=null){
       if(result.otp == req.body.otp && result.otp!=null ){
           let response = await DecarbonCompanyModel.updateOne({_id:result._id},{$set:{password:req.body.password}});
+          console.log(response)
           if(response != null){
             res.redirect("/");
           }
