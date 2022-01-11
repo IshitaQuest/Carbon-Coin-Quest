@@ -5,6 +5,7 @@ const multer = require('multer');
 var crypto = require('crypto');
 const request = require('request');
 const auth = require('../config/auth');
+const Transaction = require("../models/transactionModel");
 // var async = require('async');
 const fs = require('fs');
 var speakeasy = require('speakeasy');
@@ -174,6 +175,8 @@ var transporter = nodemailer.createTransport({
     pass: 'Quest0106',
   }
 });
+
+
 
 routes.get('/admin-login',  (req, res) => {
   let fail = req.flash('fail');
@@ -3852,6 +3855,27 @@ routes.post('/edit-faqs', middleware_check_login, (req, res) => {
   // })
 })
 
+
+routes.post("/saveTransaction",(req,res)=>{
+    Transaction.create({trasactionHash:req.body.transaction}).then(result=>{
+      res.send({res:result,status:true});
+    }).catch(err=>{
+      res.send({res:err,status:false})
+    })
+})
+
+
+routes.post("/checkTransaction",(req,res)=>{
+  Transaction.findOne({ trasactionHash:req.body.transaction}).then(result=>{
+    if(result==null){
+      res.send({res:result,status:false});
+    }else{
+      res.send({res:result,status:true});
+    }
+  }).catch(err=>{
+    res.send({err:err,status:false});
+  })
+})
 
 
 module.exports = routes;

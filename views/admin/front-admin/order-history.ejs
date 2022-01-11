@@ -1,5 +1,25 @@
 <%- include('header') -%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+	async function checkStatus(user){
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "/checkTransaction");
+		xhr.setRequestHeader("Accept", "application/json");
+		xhr.setRequestHeader("Content-Type", "application/json");
+		$.ajax({
+		type: "POST",
+		url: "/CheckTransaction",
+		data: `{
+			"transaction": ${user.hash},
+		}`,
+  		success: function (result) {
+		  return result.status;
+		},
+  	dataType: "json"
+	});
+	}
+</script>
 <style type="text/css">
   
   
@@ -102,6 +122,8 @@
                         <th width="8%">Value</th>
                         <th width="7%">COINS</th>
                         <th width="7%">Account</th>
+						<th width="7%">Status</th>
+						
 
 
                         <!-- <th width="10%">Payment Method</th> -->
@@ -136,7 +158,7 @@
               var temp = "";
 
 
-              data.forEach((u, index) => {
+              data.forEach(async (u, index) => {
                 let i = index + 1;
                 temp += "<tr>";
                 temp += "<td>" + i + "</td>";
@@ -148,6 +170,7 @@
                 temp += "<td id='bidValue'>" + u.value / 10 ** 18 + "</td>";
                 temp += "<td>" + "<button class='btn' onClick='BuyEth("+JSON.stringify(u)+")'>Enable Ethereum</button>" + "</td>";               
 				temp += "<td>" + "Account: <span class='showAccount'></span>" + "</td>";
+				temp += "<td>"+ await checkStatus(u) +"<td>"
                 temp += "</tr>";                                                              temp += "</tr>";
 			})
 
@@ -159,6 +182,8 @@
       }
     )
   </script>
+
+
 
   <script src="user_assets/js/jquery.js"></script>
 
@@ -251,7 +276,7 @@
     const userWallet = document.getElementById("userAcc").innerHTML;
 
     // Web3modal instance
-    let web3Modal
+  
 
     // Chosen wallet provider given by the dialog window
     let provider;
@@ -264,8 +289,13 @@
     /**
      * Setup the orchestra
      */
-    function init() {
 
+     window.onload = function(){
+       console.log(init());
+     };
+
+
+	 async function init() {
       console.log("Initializing example");
       console.log("WalletConnectProvider is", WalletConnectProvider);
       // console.log("Fortmatic is", Fortmatic);
@@ -278,78 +308,81 @@
           package: WalletConnectProvider,
           options: {
             rpc: {
-              3: 'https://ropsten.infura.io/v3/dc6e11412ff54869b4bb3ce77550d55a',
+              3: 'http://18.222.179.166:8501',
             },
             network: 'ropsten',
-            chainId: 3,
+            chainId: 1221,
             // infuraId: "bnb1a5cae5d9hp0we9cx9v02n9hvmt94nnuguv0fav",
           },
         },
       };
 
-      web3Modal = new Web3Modal({
+       let web3Modal = await  new Web3Modal({
         cacheProvider: false, // optional
         providerOptions, // required
       });
 
+      return web3Modal;
+
     }
 
-    function BuyEth() {
-      startBuy()
-    }
-    async function startBuy() {
-
-      // console.log("Opening a dialog", web3Modal);
-      try {
-        provider = await web3Modal.connect();
-      } catch (e) {
-        console.log("Could not get a wallet connection", e);
-        return;
-      }
-
-      // Subscribe to accounts change
-      provider.on("accountsChanged", (accounts) => {
-        BuyToken();
-      });
-
-      // Subscribe to chainId change
-      provider.on("chainChanged", (chainId) => {
-        //BuyContent();
-        BuyToken();
-      });
-
-      await resetAccountDataAll();
-    }
-    init()
-
-    async function resetAccountDataAll() {
-      await BuyToken(provider);
+	async function BuyEth(user) {
+      console.log(user);
+      web3Modal = await init();
+      startBuy(user,web3Modal);
     }
 
-    async function BuyToken() {
+
+	async function startBuy(user,web3Modal) {
+
+      
+// console.log("Opening a dialog", web3Modal);
+try {
+  let provider = await web3Modal.connect();
+  console.log(provider)
+
+  provider.on("accountsChanged", (accounts) => {
+		window.alert("Account has Changed");
+	});
+  provider.on("chainChanged", (chainId) => {
+	 window.alert("Imperial Blockchain is Only Supported");
+  });
+  
+  await resetAccountDataAll(user,provider); 
+
+} catch (e) {
+  console.log("Could not get a wallet connection", e);
+  return;
+}
+
+// Subscribe to accounts change
+
+
+// Subscribe to chainId change
+
+}
+async function resetAccountDataAll(user,provider) {
+      await BuyToken(user,provider);
+    }
+
+    async function BuyToken(user,provider) {
       // Get a Web3 instance for the wallet
       // const web3 = new Web3(provider);
       let web3 = new Web3(Web3.givenProvider);
 
       const chainId = await web3.eth.getChainId();
-      const accounts = await web3.eth.getAccounts();
+      const selectedAccount = await ethereum.selectedAddress;
 
       // console.log("Got accounts", accounts);
-      selectedAccount = accounts[0];
 
-      // Go through all accounts and get their ETH balance
-      const rowResolvers = accounts.map(async (address) => {
-        const balance = await web3.eth.getBalance(address);
-      });
+      // Go through all accounts and get their ETH balanc
 
 
-      // until data for all accounts is loaded
-      await Promise.all(rowResolvers);
+    
 
       // const contract_address = "0x543b11deb5b018a50fbffdf9a12b44fefbb0a676";
       const contract_address = "0xe57eaE0D21827d599226c2cc06f8257af847Aa41";
 
-      const biddingValue = (document.getElementById("bidValue").innerHTML);
 
 
       // const contract_address = '0x1BE28AdF4ee250CBC9c6c80f9cAaC378085a440F';
@@ -813,56 +846,60 @@
 				"type": "function"
 			}
 		];    
-    
       const caddress = web3.utils.toChecksumAddress(contract_address);
       const Admin_Address = "0xe5aBDDb1d34d2F2fb15941966FDeE818Bcc72386";
       const TokenPrice = "1334";
       const decimal = "1000000000000000000";
       const tokenContract = new web3.eth.Contract(abi, caddress);
-      const nonce = await web3.eth.getTransactionCount(selectedAccount, 'latest'); //get latest nonce
-      const from_account = web3.utils.toChecksumAddress(selectedAccount);
-      const Admin = web3.utils.toChecksumAddress(userWallet);
-      let amount = '0x' + ((TokenPrice * decimal*biddingValue).toString(16))
-      tx = {
-        'from': from_account,
-        'to': caddress,
-        'nonce': nonce,
-        'data': tokenContract.methods.transfer(Admin, amount).encodeABI()
-      };
+    //   const nonce = await web3.eth.getTransactionCount(selectedAccount, 'latest'); //get latest nonce
+    //   const from_account = web3.utils.toChecksumAddress(selectedAccount);
+    //   const Admin = web3.utils.toChecksumAddress(user.from);
+    //   let amount = '0x' + ((TokenPrice * decimal*biddingValue).toString(16))
+    //   tx = {
+    //     'from': from_account,
+    //     'to': caddress,
+    //     'nonce': nonce,
+    //     'data': tokenContract.methods.transfer(Admin, amount).encodeABI()
+    //   };
 
-      web3.eth.sendTransaction(tx, function (err, hash) {
-        if (!err) {
-          console.log(hash);
+		tokenContract.methods.transferFrom(selectedAccount,user.from,user.value).send({
+			from:selectedAccount,
+		})
+	  console.log(tokenContract);
 
-          $.ajax({
-            dataType: "json",
-            type: 'post',
-            url: '/users/save-order',
-            data: {
-              tx_id: hash,
-              address: selectedAccount,
-              // qty: document.getElementById("copies").value,
-              amount: TokenPrice,
-              fees: fees,
-              //         currency: currency,
-              //         currencyRate: currencyRate
-            },
-            success: function (data) {
+    //   web3.eth.sendTransaction(tx, function (err, hash) {
+    //     if (!err) {
+    //       console.log(hash);
 
-              console.log(data);
+    //     //   $.ajax({
+    //     //     dataType: "json",
+    //     //     type: 'post',
+    //     //     url: '/users/save-order',
+    //     //     data: {
+    //     //       tx_id: hash,
+    //     //       address: selectedAccount,
+    //     //       // qty: document.getElementById("copies").value,
+    //     //       amount: TokenPrice,
+    //     //       fees: fees,
+    //     //       //         currency: currency,
+    //     //       //         currencyRate: currencyRate
+    //     //     },
+    //     //     success: function (data) {
 
-              window.location.href = "/transfer-nft?hash=" + hash;
+    //     //       console.log(data);
+
+    //     //       window.location.href = "/transfer-nft?hash=" + hash;
 
 
-              //location.reload();
-            }
-          });
+    //     //       //location.reload();
+    //     //     }
+    //     //   });
 
-        }
-        else {
-          console.log(err);
-        }
-      });
+    //     }
+    //     else {
+    //       console.log(err);
+    //     }
+    //   });
 
 
     }
