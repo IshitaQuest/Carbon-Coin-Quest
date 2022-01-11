@@ -6,7 +6,7 @@ var transactionSchema = mongoose.Schema({
    trasactionHash:String,
    status:{
        type:String,
-       default:"Not Delivered"
+       default:"Delivered"
         }
 });
 

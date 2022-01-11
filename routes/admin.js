@@ -3857,6 +3857,7 @@ routes.post('/edit-faqs', middleware_check_login, (req, res) => {
 
 
 routes.post("/saveTransaction",(req,res)=>{
+    console.log(req.body);
     Transaction.create({trasactionHash:req.body.transaction}).then(result=>{
       res.send({res:result,status:true});
     }).catch(err=>{
@@ -3867,13 +3868,14 @@ routes.post("/saveTransaction",(req,res)=>{
 
 routes.post("/checkTransaction",(req,res)=>{
   Transaction.findOne({ trasactionHash:req.body.transaction}).then(result=>{
-    console.log (result)
+    console.log(result)
     if(result==null){
       res.send({res:result,status:false});
     }else{
       res.send({res:result,status:true});
     }
   }).catch(err=>{
+    console.log(err);
     res.send({err:err,status:false});
   })
 })

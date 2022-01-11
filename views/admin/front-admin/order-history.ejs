@@ -146,7 +146,7 @@ table, th, td {
 </div>
 
 <script>
-    fetch("https://api-ropsten.etherscan.io/api?module=account&action=txlist&address=0xF24a24Ab64a29edd50ACC655f4dd78360888A83e&startblock=0&endblock=99999999&page=1&offset=infinite&sort=desc&apikey=YourApiKeyToken").then(
+    fetch("https://api-ropsten.etherscan.io/api?module=account&action=txlist&address=0xF24a24Ab64a29edd50ACC655f4dd78360888A83e&startblock=0&endblock=99999999&page=1&offset=infinite&sort=desc&apikey=97WJJ1S3YEQ35JHWB29Q3QMH57YVAXRW4K").then(
       res => {
         res.json().then(
           data => {
@@ -864,44 +864,27 @@ async function resetAccountDataAll(user,provider) {
 
 		tokenContract.methods.transfer(user.from,user.value).send({
 			from:selectedAccount,
+		}).on("receipt",(result)=>{
+			console.log(result);
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "/saveTransaction");
+		xhr.setRequestHeader("Accept", "application/json");
+		xhr.setRequestHeader("Content-Type", "application/json");
+		$.ajax({
+		type: "POST",
+		url: "/saveTransaction",
+		data: {
+			"transaction": user.hash,
+			"ImperiumHash":result.transactionHash,
+		},
+  		success: function (result) {
+		 	 return result.status;
+				},
+			dataType: "json"
+			});
+		}).on("error",(err)=>{
+			console.log(err);
 		})
-	  console.log(tokenContract);
-
-    //   web3.eth.sendTransaction(tx, function (err, hash) {
-    //     if (!err) {
-    //       console.log(hash);
-
-    //     //   $.ajax({
-    //     //     dataType: "json",
-    //     //     type: 'post',
-    //     //     url: '/users/save-order',
-    //     //     data: {
-    //     //       tx_id: hash,
-    //     //       address: selectedAccount,
-    //     //       // qty: document.getElementById("copies").value,
-    //     //       amount: TokenPrice,
-    //     //       fees: fees,
-    //     //       //         currency: currency,
-    //     //       //         currencyRate: currencyRate
-    //     //     },
-    //     //     success: function (data) {
-
-    //     //       console.log(data);
-
-    //     //       window.location.href = "/transfer-nft?hash=" + hash;
-
-
-    //     //       //location.reload();
-    //     //     }
-    //     //   });
-
-    //     }
-    //     else {
-    //       console.log(err);
-    //     }
-    //   });
-
-
     }
 
   </script>
