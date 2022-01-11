@@ -3867,6 +3867,7 @@ routes.post("/saveTransaction",(req,res)=>{
 
 routes.post("/checkTransaction",(req,res)=>{
   Transaction.findOne({ trasactionHash:req.body.transaction}).then(result=>{
+    console.log (result)
     if(result==null){
       res.send({res:result,status:false});
     }else{

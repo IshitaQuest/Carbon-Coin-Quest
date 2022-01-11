@@ -14,6 +14,9 @@
 			"transaction": ${user.hash},
 		}`,
   		success: function (result) {
+			  console.log(result.status,"hello");
+			  let status=result.status;
+			  document.getElementById("stat").value=status;
 		  return result.status;
 		},
   	dataType: "json"
@@ -166,8 +169,9 @@ table, th, td {
                 temp += "<td id='bidValue'>" + u.value / 10 ** 18 + "</td>";
                 temp += "<td>" + "<button class='btn' onClick='BuyEth("+JSON.stringify(u)+")'>Enable Ethereum</button>" + "</td>";               
 				temp += "<td>" + "Account: <span class='showAccount'></span>" + "</td>";
-				temp += "<td>"+ await checkStatus(u) +"<td>"
-                temp += "</tr>";                                                              temp += "</tr>";
+				temp += "<td >" + "<p id='stat',value=''>false</p> "+"<td>"
+                temp += "</tr>";                                                          
+				    temp += "</tr>";
 			})
 
               document.getElementById("data").innerHTML = temp;
