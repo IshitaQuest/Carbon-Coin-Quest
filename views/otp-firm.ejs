@@ -6,6 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karbun Coin</title>
+    <style>
+      .container{
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+      display:inline-block;
+      background: #fff;
+      padding: 55px 50px 40px;
+      border-radius: 10px;
+      -webkit-box-shadow: 0 0 14px rgb(0 0 0 / 30%);
+      box-shadow: 0 0 14px rgb(0 0 0 / 30%);
+      margin: 60px auto 40px;
+      width: 320px;
+      max-width: 100%;
+      /* text-align: center!important; */
+      }
+      .div {
+      display: block;
+      }
+      .text-center{
+        align-items: center;
+      }
+      </style>
 </head>
 
 
@@ -16,7 +39,7 @@
   <% if(success!=null){%>
     <div>success</div>
   <%}%>
-    <form method="POST" action="/confirmOtpFirm">
+    <form class="container" method="POST" action="/confirmOtpFirm">
       <div class="form-group">
         <input id="emailInput" name="email" type="text" class="form-control" value="">Email
       </div><br>

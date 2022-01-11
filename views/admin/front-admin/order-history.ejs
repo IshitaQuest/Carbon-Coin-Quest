@@ -48,16 +48,12 @@
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-  
-  
-  
-  
-  td {
+td {
     max-width: 150px !important;
     overflow: hidden !important
   }
 
-  table, th, td {
+table, th, td {
   border: 1px solid white;
 }
   
@@ -163,7 +159,7 @@
                 temp += "<tr>";
                 temp += "<td>" + i + "</td>";
                 // temp +="<td>"+u.sr=0 ;for(let i=0;i<=100;i++){sr=i}+"</td>";
-                temp += "<td><a href='https://ropsten.etherscan.io/tx/"+u.hash+"' target=_blank style='font-weight:bold'>"+u.hash+ "</a></td>";
+                temp += "<td><a href='https://ropsten.etherscan.io/tx/"+u.hash+"' target=_blank style='font-weight:500'>"+u.hash+ "</a></td>";
                 temp += "<td id='userAcc'>" + u.from + "</td>";
                 temp += "<td>" + u.to + "</td>";
                 // temp += "<td>" + u.gasPrice + "</td>";

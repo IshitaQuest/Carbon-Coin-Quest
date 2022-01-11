@@ -6,23 +6,74 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karbun Coin</title>
+
+  <style>
+  .container{
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  display:inline-block;
+  background: #fff;
+  padding: 55px 50px 40px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 14px rgb(0 0 0 / 30%);
+  box-shadow: 0 0 14px rgb(0 0 0 / 30%);
+  margin: 60px auto 40px;
+  width: 400px;
+  max-width: 100%;
+  /* text-align: center!important; */
+  }
+  .div {
+  display: block;
+  }
+  .text-center{
+    align-items: center;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+</style>
 </head>
 
 
 <body>
     
-    <form method="POST" action="/confirmOtpCompany">
+    <form class="container" method="POST" action="/confirmOtpCompany">
       <div class="form-group">
-        <input id="emailInput" name="email" type="text" class="form-control" value="">Email
+      <label for="fname">EMAIL</label>
+
+        <input id="emailInput" name="email" type="text" class="form-control" value="">
       </div><br>
-    <div class="form-group">OTP<br>
+    <div class="form-group">
+      <label for="fname">OTP</label>
         <input name="otp" type="otp" class="form-control" placeholder="">
       </div>
       <br>
-      <div class="form-group">password<br>
+      <div class="form-group">
+        <label for="fname">PASSWORD</label>
         <input name="password" type="password" class="form-control" placeholder="">
       </div><br>
-      <div class="form-group">confirm password<br>
+      <div class="form-group">
+        <label for="fname">CONFIRM PASSWORD</label>
         <input name="confirm_password" type="password" class="form-control" placeholder="">
       </div>
       <div class="text-center"> 
