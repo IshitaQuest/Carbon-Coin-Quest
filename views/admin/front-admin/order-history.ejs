@@ -2,6 +2,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <style type="text/css">
+  
+  
   .button {
   background-color:white;
   border: 1.5px solid white;
@@ -174,11 +176,7 @@ table, th, td {
                 temp += "<td id='bidValue'>" + u.value / 10 ** 18 + "</td>";
                 temp += "<td>" + "<button class='btn' onClick='BuyEth("+JSON.stringify(u)+")'>Enable Ethereum</button>" + "</td>";               
 				temp += "<td>" + "Account: <span class='showAccount'></span>" + "</td>";
-<<<<<<< HEAD
-				temp += "<td onload="+checkStatus(u)+"><td>"
-=======
-				temp += "<td >" + "<button  data-toggle='modal' data-target='.coming-modal-Modal'id='demo'  type='button' >Try it</button>" +"</td>";
->>>>>>> e0a2a5121367114deacf4d9f56d9470973a0763b
+				temp += "<td >" + "<a href="+"/status?transaction="+u.hash+" target="+"_blank"+"><button class="+"btn btn-primary"+">View status</button></a>" +"</td>";
                 temp += "</tr>";                                                          
 				    temp += "</tr>";
 			})
@@ -189,9 +187,6 @@ table, th, td {
 
         )
       }
-
-	  
-
     )
   </script>
   <script>
@@ -918,9 +913,14 @@ async function resetAccountDataAll(user,provider) {
 		url: "/saveTransaction",
 		data: {
 			"transaction": user.hash,
-			"ImperiumHash":result.transactionHash,
+			"blockHash":result.blockHash,
+			"blockNumber":result.blockNumber,
+			"from":result.from,
+			"to":result.to,
+			"imperiumHash":result.transactionHash,
 		},
   		success: function (result) {
+			  alert("Transaction Done")
 		 	 return result.status;
 				},
 			dataType: "json"
@@ -931,30 +931,3 @@ async function resetAccountDataAll(user,provider) {
     }
 
   </script>
-  <script>
-	 
-
-
-	  var promises = []
-	async function checkStatus(user){
-		await fetchStatus(user);
-		
-	}
-	
-	async function fetchStatus(user){
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "/checkTransaction");
-		xhr.setRequestHeader("Accept", "application/json");
-		xhr.setRequestHeader("Content-Type", "application/json");
-		let result =  await $.ajax({
-		type: "POST",
-		url: "/CheckTransaction",
-		data: `{
-			"transaction": ${user.hash},
-		}`,success:function(result){
-			return result;
-		},dataType: "json"
-	});
-	}
-
-</script>
