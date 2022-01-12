@@ -1,28 +1,6 @@
 <%- include('header') -%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
 
-	async function checkStatus(user){
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "/checkTransaction");
-		xhr.setRequestHeader("Accept", "application/json");
-		xhr.setRequestHeader("Content-Type", "application/json");
-		$.ajax({
-		type: "POST",
-		url: "/CheckTransaction",
-		data: `{
-			"transaction": ${user.hash},
-		}`,
-  		success: function (result) {
-			  console.log(result.status,"hello");
-			  let status=result.status;
-			  document.getElementById("stat").value=status;
-		  return result.status;
-		},
-  	dataType: "json"
-	});
-	}
-</script>
 <style type="text/css">
   
   
@@ -140,9 +118,38 @@ table, th, td {
                   
                   
                   </body> -->
+				 
+				  
+
       </div>
     </div>
   </div>
+</div>
+ <!-- Modal -->
+ <div
+ class="modal fade comming-soon-popup coming-modal-Modal"
+ tabindex="-1"
+ id="demo"
+ role="dialog"
+ aria-labelledby="exampleModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog" role="document">
+   <div class="modal-content">
+	 <div class="modal-body">
+	   <button
+		 type="button"
+		 class="close"
+		 data-dismiss="modal"
+		 aria-label="Close"
+	   >
+		 <span aria-hidden="true">&times;</span>
+	   </button>
+	   <div>
+		 <h2>Coming Soon....!!!</h2>
+	   </div>
+	 </div>
+   </div>
+ </div>
 </div>
 
 <script>
@@ -169,7 +176,7 @@ table, th, td {
                 temp += "<td id='bidValue'>" + u.value / 10 ** 18 + "</td>";
                 temp += "<td>" + "<button class='btn' onClick='BuyEth("+JSON.stringify(u)+")'>Enable Ethereum</button>" + "</td>";               
 				temp += "<td>" + "Account: <span class='showAccount'></span>" + "</td>";
-				temp += "<td >" + "<p id='stat',value=''>false</p> "+"<td>"
+				temp += "<td >" + "<button  data-toggle='modal' data-target='.coming-modal-Modal'id='demo'  type='button' >Try it</button>" +"</td>";
                 temp += "</tr>";                                                          
 				    temp += "</tr>";
 			})
@@ -181,6 +188,11 @@ table, th, td {
         )
       }
     )
+  </script>
+  <script>
+	  function myFunction() {
+  document.getElementById("demo").innerHTML = "Paragraph changed.";
+}
   </script>
 
 
@@ -202,6 +214,32 @@ table, th, td {
   <script src="user_assets/js/Chart.min.js"></script>
   <script src="user_assets/js/chart-config.js"></script>
   <script src="user_assets/js/custom.js"></script>
+
+  <script>
+
+	async function checkStatus(user){
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "/checkTransaction");
+		xhr.setRequestHeader("Accept", "application/json");
+		xhr.setRequestHeader("Content-Type", "application/json");
+		$.ajax({
+		type: "POST",
+		url: "/CheckTransaction",
+		data: `{
+			"transaction": ${user.hash},
+		}`,
+  		success: function (result) {
+			  console.log(result.status,"hello");
+			  let status=result.status;
+			//   document.getElementById("stat").value=status;
+		  return result;
+		},
+  	dataType: "json"
+	});
+	}
+	console.log(status,"this is status")
+
+</script>
 
   <script>
     function decimalToHexString(number) {
