@@ -3865,6 +3865,19 @@ routes.post("/saveTransaction",(req,res)=>{
     })
 })
 
+routes.get("/status",(req,res)=>{
+  Transaction.findOne({ trasactionHash:req.query.transaction}).then(result=>{
+    console.log(result)
+    if(result==null){
+      res.send({res:result,status:false});
+    }else{
+      res.send({res:result,status:true});
+    }
+  }).catch(err=>{
+    console.log(err);
+    res.send({err:err,status:false});
+  })
+})
 
 routes.post("/checkTransaction",(req,res)=>{
   Transaction.findOne({ trasactionHash:req.body.transaction}).then(result=>{
