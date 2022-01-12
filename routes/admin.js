@@ -3858,13 +3858,34 @@ routes.post('/edit-faqs', middleware_check_login, (req, res) => {
 
 routes.post("/saveTransaction",(req,res)=>{
     console.log(req.body);
-    Transaction.create({trasactionHash:req.body.transaction}).then(result=>{
+    const transaction = {
+      trasactionHash:req.body.transaction,
+      blockHash:req.body.blockHash,
+      blockNumber:req.body.blockNumber,
+      from:req.body.from,
+      to:req.body.to,
+      ImperiumHash:req.body.imperiumHash,
+    }
+    Transaction.create(transaction).then(result=>{
       res.send({res:result,status:true});
     }).catch(err=>{
       res.send({res:err,status:false})
     })
 })
 
+routes.get("/status",(req,res)=>{
+  Transaction.findOne({ trasactionHash:req.query.transaction}).then(result=>{
+    console.log(result)
+    if(result==null){
+      res.render("admin/front-admin/status",{result:result,status:true});
+    }else{
+      res.render("admin/front-admin/status",{result:result,status:false});
+    }
+  }).catch(err=>{
+    console.log(err);
+    res.render("admin/front-admin/status",{result:result,status:false});
+  })
+})
 
 routes.post("/checkTransaction",(req,res)=>{
   Transaction.findOne({ trasactionHash:req.body.transaction}).then(result=>{
