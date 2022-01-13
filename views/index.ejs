@@ -1248,6 +1248,9 @@
       <!-- /.thm-container -->
     </div>
     <!-- /.footer-bottom -->
+    
+
+    
 
     <section class="hidden-sidebar side-navigation">
       <a href="#" class="close-button side-navigation-close-btn fa fa-times"></a
@@ -1267,11 +1270,15 @@
       </div>
       <!-- /.sidebar-content -->
     </section>
+    
     <!-- /.hidden-sidebar -->
 
     <button class="open-button btn btn-outline-primary" onclick="openForm()">
       Donate to your favourite Green project
     </button>
+    <%if(error){%>
+      <div><%=error%></div>
+      <%}%>
     <div class="chat-popup" id="myForm">
       <div class="form-container">
         <div class="row">

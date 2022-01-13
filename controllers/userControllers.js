@@ -41,7 +41,8 @@ const landingPage = async (req, res) => {
     let rates = await userServices.getRates();
     if (rates) {
         res.render('index', {
-            token_values: rates
+            token_values: rates,
+            error:null,
         });
     }
     else {

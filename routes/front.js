@@ -925,8 +925,7 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
  router.post("/firmlogin",(req,res)=>{
   DecarbonFirmModel.findOne({email:req.body.email,password:req.body.password}).then(result=>{
     if(result==null){
-        
-        res.redirect("/#about");
+        res.render("index",{error:"No User Found"});
     }else{
       req.session.user = result;
       req.session.type="FIRM";
@@ -935,7 +934,7 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
       })
     }
   }).catch(err=>{
-    res.redirect("/#about");
+    res.render("index",{error:err.toString()});
     
   })
  });
@@ -943,8 +942,7 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
  router.post("/decarbinationCompanyLogin",(req,res)=>{
   DecarbonCompanyModel.findOne({email:req.body.email,password:req.body.password}).then(result=>{
     if(result==null){
-      
-      res.redirect("/#about");
+      res.render("index",{error:"No User Found"});
     }else{
       req.session.user = result;
       req.session.type = "COMPANY";
@@ -953,7 +951,7 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
       })
     }
   }).catch(err=>{
-    res.redirect("/#about")
+    res.render("index",{error:err.toString()});
   })
 
  })
@@ -1069,17 +1067,17 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
       if(result.otp == req.body.otp && result.otp!=null ){
           let response = await DecarbonFirmModel.updateOne({_id:result._id},{$set:{password:req.body.password,otp:null}});
           if(response != null){
-            res.redirect("/");
+            res.render("index",{error:null});
           }
       }else{
-        res.render("otp-firm",{error:"OTP NOT VERIFIED"});
+        res.render("forgot-pass-firm",{error:"Could Not Update Password , Contact Administrator",success:null});
       }
     }
   }catch(err){
-    res.send(err);
+    res.render("index",{error:err.toString()});
   }
 }else{
-  res.render("otp-firm",{error:"PASSWORD IS INCORRECT"});
+  res.render("forgot-pass-firm",{error:"Your Passwords doesn't Match!",success:null});
 }
  })
 
@@ -1092,17 +1090,17 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
           let response = await DecarbonCompanyModel.updateOne({_id:result._id},{$set:{password:req.body.password,otp:null}});
           console.log(response)
           if(response != null){
-            res.redirect("/");
+            res.render("index",{error:null});
           }
       }else{
-        res.render("otp-company",{error:"OTP NOT VERIFIED",succes:null});
+        res.render("forgot-pass-company",{error:"Could Not Update Password , Contact Administrator",success:null});
       }
     }
   }catch(err){
-    res.render("otp-company",{error:err,success:null});
+    res.render("forgot-pass-company",{error:err.toString(),success:null})
   }
 }else{
-  res.render("otp-company",{error:"PASSWORD IS INCORRECT",succes:null});
+  res.render("forgot-pass-company",{error:"Your Passwords Doesnot Match!",success:null})
 }
   })
 
@@ -1154,7 +1152,7 @@ router.post("/updateFirm",(req,res)=>{
     req.session.user = result1;
     res.redirect("/profile-user-firm")
   }).catch(err=>{
-    console.log(err);
+    res.render("profile_update_firm",{error:"Cannot Update , Some Error Occured!"})
   })
 })
 
@@ -1170,7 +1168,7 @@ router.post("/updateCompany",(req,res)=>{
     req.session.user = result1;
     res.redirect("/profile-user-company")
   }).catch(err=>{
-    console.log(err);
+    res.render("profile_update_company",{error:"Cannot Update , Some Error Occured!"})
   })
 })
 
