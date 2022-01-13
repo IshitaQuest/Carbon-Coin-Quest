@@ -34,7 +34,7 @@ const sessionHeader = async (req, res, next) => {
 
 const logout = async (req, res) => {
     req.session.destroy();
-    res.redirect('/admin-login');
+    res.redirect('/#about');
 }
 
 const landingPage = async (req, res) => {
