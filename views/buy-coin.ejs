@@ -255,7 +255,7 @@
               </style>
             </li>
             <li class="xs-hide metamask-outer">
-              <a class="metamask-link" href="javascript:void(0);" onclick="BuyEth()">
+              <a class="metamask-link" href="javascript:void(0);" onclick="enableMetaMask()">
                 <img
                   src="user_assets/img/meta-icon.png"
                   style="height: 35px; width: auto"
@@ -612,6 +612,30 @@
   <!-- For terms and condition -->
 
   <script>
+    async function enableMetaMask(){
+      const Web3Modal = window.Web3Modal.default;
+        const providerOptions = {
+          walletconnect: {
+              package: WalletConnectProvider,
+              options: {
+                rpc: {
+              3: 'https://ropsten.infura.io/v3/dc6e11412ff54869b4bb3ce77550d55a',
+            },
+            network: 'ropsten',
+            chainId: 3,
+            // infuraId: "bnb1a5cae5d9hp0we9cx9v02n9hvmt94nnuguv0fav",
+          },
+        },
+    };
+
+    const web3Modal = new Web3Modal({
+      network: "ropsten", // optional
+      cacheProvider: true, // optional
+      providerOptions // required
+    });
+
+    const provider = await web3Modal.connect();
+    }
     function enable() {
       var check = document.getElementById("check");
       var btn = document.getElementById("btn");
