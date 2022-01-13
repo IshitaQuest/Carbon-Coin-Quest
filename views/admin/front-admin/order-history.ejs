@@ -98,7 +98,7 @@ table, th, td {
                         <!-- <th width="10%">Gas Fee</th> -->
                         <th width="8%">Value</th>
                         <th width="7%">COINS</th>
-                        <th width="7%">Account</th>
+                        <!-- <th width="7%">Account</th> -->
 						<th width="7%">Status</th>
 						
 
@@ -175,7 +175,7 @@ table, th, td {
                 // temp += "<td>" + u.gasPrice + "</td>";
                 temp += "<td id='bidValue'>" + u.value / 10 ** 18 + "</td>";
                 temp += "<td>" + "<button class='btn' onClick='BuyEth("+JSON.stringify(u)+")'>Enable Ethereum</button>" + "</td>";               
-				temp += "<td>" + "Account: <span class='showAccount'></span>" + "</td>";
+				// temp += "<td>" + "Account: <span class='showAccount'></span>" + "</td>";
 				temp += "<td >" + "<a href="+"/status?transaction="+u.hash+" target="+"_blank"+"><button class="+"btn btn-primary"+">View status</button></a>" +"</td>";
                 temp += "</tr>";                                                          
 				    temp += "</tr>";
