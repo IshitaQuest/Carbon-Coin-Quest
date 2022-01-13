@@ -46,6 +46,8 @@ app.use(flash())
 app.use("/", indexroutes);
 console.log(process.env.ADMIN)
 
+app.use(express.json())
+
 app.use(cookieParser('keyboard cat'));
 app.use(session({ 
     secret: 'keyboard cat',

@@ -111,7 +111,7 @@
       .form-container input {
         background-color: transparent !important;
         border: 2px solid #000 !important;
-        padding: 8px 20px;
+        padding: 8px 10px;
         height: auto;
         color: #000 !important;
         font-size: 16px;
@@ -212,7 +212,17 @@
               <li><a href="#roadmap">Roadmap</a></li>
 
               <li><a href="#contact-us">Contact Karbun</a></li>
-              <li><a href="/terms">T&C</a></li>
+              <li><a href="/terms">T&C</a></li>              
+                           
+                            
+
+              <li><a
+                href="/emission-impact"
+               
+                style="font-size: 16px" >Emission_Impact</a>
+            </li>
+              <!-- <li><a href="/emission-impact">Emission Impact</a></li> -->
+
 
               <li class="text/css">
                 <button id="google_translate_element"></button>
@@ -689,25 +699,32 @@
             <div class="btn-row-link text-center">
               <a
                 data-toggle="modal"
-                
                 class="thm-btn yellow-bg-hvr green-btn-new"
                 href="/buy-coin"
                 >Buy KARBUNCoin (KBN)</a
               >
-              <a
+              <!-- <a
                 data-toggle="modal"
-                data-target=".coming-modal-Modal"
                 class="thm-btn yellow-bg-hvr green-btn-new"
-                href=""
-                >Buy Carbon Credits</a
-              >
-              <a
+                href="/register-tree-form"
+                >Register your Decarbisation Company</a> -->
+                <a
+                  href="#"
+                  data-toggle="modal"
+                class="thm-btn yellow-bg-hvr green-btn-new"
+                data-target="#registertreeModal" 
+                  style="font-size: 16px" >Are You Decarbisation Company</a>
+                  <a
+                  href="#"
+                  data-toggle="modal"
+                class="thm-btn yellow-bg-hvr green-btn-new"
+                data-target="#registerModal" 
+                  style="font-size: 16px" >Buy Carbon Credits</a>
+              <!-- <a
                 data-toggle="modal"
-                data-target=".coming-modal-Modal"
                 class="thm-btn yellow-bg-hvr green-btn-new"
-                href=""
-                >Register your Decarbisation Company</a
-              >
+                data-target="#registerModal" 
+                >Buy Carbon Credits</a> -->
               <a
                 data-toggle="modal"
                 data-target=".coming-modal-Modal"
@@ -1335,8 +1352,7 @@
       tabindex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
+      aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-body">
@@ -1372,8 +1388,7 @@
               type="button"
               class="close"
               data-dismiss="modal"
-              aria-label="Close"
-            >
+              aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
             <div class="whitepaper-form">
@@ -1406,7 +1421,188 @@
         </div>
       </div>
     </div>
-    <!-- href="user_assets/Karbun-Coin-Whitepaper.pdf" -->
+    <!-- Modal -->
+    <div
+      class="modal fade comming-soon-popup "
+      id="registertreeModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="">
+              <h2>
+                LOGIN
+              </h2>
+              <form method="POST" action="/decarbinationCompanyLogin">
+                <div class="form-group">
+                  <label style="color:white">Email address</label>
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter email"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label  style="color:white">Password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter password"
+                    required
+                  />
+                </div>
+                <a style="color:white" href="/forgot-pass-company">Forgot Password?</a>
+                <br>
+                <input
+                  type="submit"
+                  class="thm-btn yellow-bg-hvr">
+              </input>
+                <br>
+                <a
+                data-toggle="modal"
+                class="thm-btn yellow-bg-hvr green-btn-new"
+                href="/register-tree-form"
+                >Register your Decarbisation Company</a>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <!-- Modal -->
+     <div
+     class="modal fade comming-soon-popup "
+     id="registerModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true"
+   >
+     <div class="modal-dialog" role="document">
+       <div class="modal-content">
+         <div class="modal-body">
+           <button
+             type="button"
+             class="close"
+             data-dismiss="modal"
+             aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+           <div class="">
+             <h2>
+               LOGIN
+             </h2>
+             <form method="POST" action="/firmlogin">
+               <div class="form-group">
+                 <label style="color:white">Email address</label>
+                 <input
+                   type="email"
+                   name="email"
+                   class="form-control"
+                   id=""
+                   placeholder="Enter email"
+                   required
+                 />
+               </div>
+               <div class="form-group">
+                 <label  style="color:white">Password</label>
+                 <input
+                   type="password"
+                   name="password"
+                   class="form-control"
+                   id=""
+                   placeholder="Enter password"
+                   required
+                 />
+               </div>
+               <a style="color:white" href="/forgot-pass-firm">Forgot Password?</a>
+               <br>
+               <input
+                 type="submit"
+                 class="thm-btn yellow-bg-hvr">
+              </input>
+               <br>
+               <a
+               data-toggle="modal"
+               class="thm-btn yellow-bg-hvr green-btn-new"
+               href="/register-form" style="width:300px"
+               >Register your credits</a>
+
+             </form>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+<!--Modal-->
+   <div
+   class="modal fade comming-soon-popup"
+   id="whiteCarbonCalculator"
+   tabindex="-1"
+   role="dialog"
+   aria-labelledby="exampleModalLabel"
+   aria-hidden="true"
+ >
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-body">
+         <button
+           type="button"
+           class="close"
+           data-dismiss="modal"
+           aria-label="Close"
+         >
+           <span aria-hidden="true">&times;</span>
+         </button>
+         <div class="whitepaper-form">
+           <h2>
+             Please enter your Website URL to calculate Carbon Emission.
+           </h2>
+           <form method="POST" action="emission-pass">
+             <div class="form-group">
+               <label>Enter Website URL</label>
+               <input
+                 type="url"
+                 name="url"
+                 class="form-control"
+                 id=""
+                 placeholder="Enter URL"
+                 required
+               />
+             </div>
+
+             <button
+               
+               type="submit"
+               class="thm-btn yellow-bg-hvr"
+             >
+               Submit
+             </button>
+           </form>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+     <!-- href="user_assets/Karbun-Coin-Whitepaper.pdf" -->
     <div class="scroll-to-top scroll-to-target" data-target="html">
       <i class="fa fa-angle-up"></i>
     </div>
