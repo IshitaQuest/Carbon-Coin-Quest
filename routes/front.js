@@ -1,20 +1,27 @@
 var express = require('express');
 var router = express.Router();
+const session = require('express-session');
 const moment = require('moment');
 const auth = require('../config/auth');
 const fs = require('fs');
+const nodemailer = require('nodemailer');
 const web3 = require('web3');
 const crypto = require('crypto');
 const Tx = require('ethereumjs-tx');
 const userServices = require("../services/userServices");
+const whiteKarbun = require("website-carbon-calculator");
 const userControllers = require('../controllers/userControllers');
 const blockchainController = require('../controllers/blockchainController');
 const blockchainServices = require("../services/blockchainServices");
 const { calculateHours } = require('../helper/userHelper');
 const { mail } = require('../helper/mailer');
 const { BannerInfo, GetInTouch, PartnerInfo, MediaCoverage, KeyFeaturesInfo, milestone, problemInfo, blogInfo, whitepaperInfo, solutionInfo, tokenAllocation, termsAndConditionInfo, privacyPolicyInfo } = require('../models/home_content');
-
+const routes = require('express').Router();
 const { Registration, Userwallet,whitepaperregister, Importwallet, Tokensettings, Tokendetails, OrderDetails, RefCode, FAQ,ContactInfo } = require('../models/userModel');
+
+const DecarbonCompanyModel = require("../models/DecarbonCompanyModel")
+const DecarbonFirmModel = require("../models/DecarbonFirmModel");
+
 
 var isUser = auth.isUser;
 
@@ -132,6 +139,12 @@ router.get('/change-password', isUser, function (req, res) {
     res.render('change-password', { err_msg, success_msg, layout: false, session: req.session, })
   }
 });
+
+routes.use(session({
+  secret: 'admindetails',
+  resave: false,
+  saveUninitialized: true
+}));
 
 //***************** get profile **************//
 router.get('/profile', isUser, function (req, res) {
@@ -320,6 +333,47 @@ router.post("/whitepaper", async (req, res) => {
   }
 });
 
+router.post('/emission-pass', async(req,res)=> {
+  try {
+    let url = req.body.url;
+    const websiteCarbonCalculator = new whiteKarbun.WebsiteCarbonCalculator({pagespeedApiKey: 'AIzaSyDkHzzRj6A7XFjrOrk2qufDRSVw3bOAln4'});
+    const result = await websiteCarbonCalculator.calculateByURL(url);
+    console.log("This is result", result);
+    console.log("This is the url of the website u entered : ", result.url);
+    console.log("This is the amount of bytes transferred", result.bytesTransferred);
+    console.log("This is ", result.isGreenHost);
+    console.log("This is something else", result.co2PerPageview);
+    const byteTransferred = result.bytesTransferred;
+    const GreenHost = result.isGreenHost;
+    const co2perPage = result.co2PerPageview;
+
+
+    err_msg = req.flash('err_msg');
+    success_msg = req.flash('success_msg');
+    res.render('emission-impact', { err_msg, success_msg, byteTransferred, GreenHost, co2perPage});
+    res.redirect('/emission-impact');
+
+
+
+  
+    // {
+    //   url: 'http://www.facebook.com',
+    //   bytesTransferred: 123456,
+    //   isGreenHost: true,
+    //   co2PerPageview: 0.1234567,
+    // }
+  
+  } catch(error) {
+    console.log("error");
+    // if(error instanceof whiteKarbun.WebsiteCarbonCalculatorError){
+    //   console.warn(error.message);
+
+    // }
+    // Do something else...
+  }
+  
+});
+
 router.post("/subscribe", async (req, res) => {
   let email = req.body.email;
  
@@ -343,6 +397,8 @@ router.post("/subscribe", async (req, res) => {
   res.redirect("/");
 
 });
+
+
 
 // router.post('/signup', userControllers.submitUser);
 
@@ -549,9 +605,120 @@ router.get("/buy-coin", function (req, res) {
   
 });
 
+router.get("/register-form", function (req, res) {
+  // var error ="";
+  // var success = "";
+  error = req.flash("err_msg");
+  success = req.flash("success_msg");
+  // var user_id = req.session.re_us_id;
 
+                  // var wallet_address = result.wallet_address;
+                  res.render("register-form", {
+                    error,
+                    success,
+                    
+                  });
+  
+});
+router.get("/dashboardCompany", function (req, res) {
+  // var error ="";
+  // var success = "";
+  error = req.flash("err_msg");
+  success = req.flash("success_msg");
+  // var user_id = req.session.re_us_id;
 
+                  // var wallet_address = result.wallet_address;
+                  res.render("dashboardCompany", {
+                    error,
+                    success,
+                    
+                  });
+  
+});
+router.get("/dashboardfirm", function (req, res) {
+  // var error ="";
+  // var success = "";
+  error = req.flash("err_msg");
+  success = req.flash("success_msg");
+  // var user_id = req.session.re_us_id;
 
+                  // var wallet_address = result.wallet_address;
+                  res.render("dashboardfirm", {
+                    error,
+                    success,
+                    
+                  });
+  
+});
+router.get("/forgot-pass-firm", function (req, res) {
+  // var error ="";
+  // var success = "";
+  var error = req.flash("err_msg");
+  var success = req.flash("success_msg");
+  // var user_id = req.session.re_us_id;
+
+                  // var wallet_address = result.wallet_address;
+                  res.render("forgot-pass-firm", {
+                    error:null,
+                    success:null,
+                  });
+  
+});
+router.get("/forgot-pass-company", function (req, res) {
+  // var error ="";
+  // var success = "";
+  var error = req.flash("err_msg");
+  var success = req.flash("success_msg");
+  // var user_id = req.session.re_us_id;
+
+                  // var wallet_address = result.wallet_address;
+                  res.render("forgot-pass-company", {
+                    error:null,
+                    success:null,
+                  });
+  
+});
+
+router.get("/register-tree-form", function (req, res) {
+  // var error ="";
+  // var success = "";
+  error = req.flash("err_msg");
+  success = req.flash("success_msg");
+  // var user_id = req.session.re_us_id;
+
+                  // var wallet_address = result.wallet_address;
+                  res.render("register-tree-form", {
+                    error:null,
+                    success:null,
+                  });
+  
+});
+
+router.get("/otp-company", function (req, res) {
+  // var error ="";
+  // var success = "";
+  error = req.flash("err_msg");
+  success = req.flash("success_msg");
+  // var user_id = req.session.re_us_id;
+
+                  // var wallet_address = result.wallet_address;
+                  res.render("otp-company", {
+                    error,
+                    success,
+ });
+});
+router.get("/otp-firm", function (req, res) {
+  // var error ="";
+  // var success = "";
+  error = req.flash("err_msg");
+  success = req.flash("success_msg");
+  // var user_id = req.session.re_us_id;
+
+                  // var wallet_address = result.wallet_address;
+                  res.render("otp-firm", {
+                    error: null,success:null,
+});
+});
 router.get("/faq", function (req, res) {
   // var error ="";
   // var success = "";
@@ -664,5 +831,360 @@ router.post('/ETH', isUser, async function (req, res) {
   // })    
 })
 
+router.post("/saveDecarbinationCompany",(req,res)=>{
 
+  if(req.body.pwd == req.body.cnfpwd){
+    const Firm = {
+      firm_name:req.body.firmName,
+      email:req.body.email,
+      mobile:req.body.phone,
+      password:req.body.pwd,
+      companys_licenece:req.body.licence,
+      Country:req.body.country,
+    }
+    DecarbonFirmModel.create(Firm).then(result=>{
+      res.redirect("/");
+    }).catch(err=>{
+        console.log(err);
+        res.status(400).render("register-form.ejs",{err_msg:err.toString()});
+    })
+  }else{
+    res.status(200).render("register-form.ejs",{err_msg:"Password and Confirm Password is Not Same"});
+  }
+})
+
+router.post("/saveDecarbonCompany",(req,res)=>{
+  console.log(req.body)
+    const Company = {
+    company_name: req.body.companyName,
+    email:req.body.email,
+    mobile:req.body.phone,
+    quotation:req.body.quotation,
+    totalArea:req.body.totalArea,
+    ApproxCapacity:req.body.approxCap,
+    password:req.body.pwd,
+    companys_licence:req.body.licence,
+    phone:req.body.phone,
+    }
+    if(req.body.cnfpwd == req.body.pwd){
+      DecarbonCompanyModel.create(Company).then(result=>{
+        console.log(result)
+        res.redirect("/");
+      }).catch(err=>{
+        console.log(err);
+        res.render("register-tree-form",{err_msg:err.toString()});
+      })
+    }else{
+      console.log("not same")
+      res.render("register-tree-form",{err_msg:"Confirm Password and Password are Not Same"});
+    }
+})
+
+var isLoggedIn = function(req,res,next){
+  if((req.session.user==undefined || req.session.user==null)){
+    res.redirect("/");
+  }
+  next();
+}
+
+var isCompanyLoggedIn = function(req,res,next){
+  if((req.session.user==undefined || req.session.user==null)){
+    res.redirect("/");
+  }else{
+    if(req.session.type=="FIRM"){
+      next();
+    }else{
+      res.redirect("/");
+    }
+  
+  }
+}
+
+var isFirmLoggedIn = function(req,res,next){
+  if((req.session.user==undefined|| req.session.user==null)){
+    res.redirect("/");
+  }else{
+    if(req.session.type=="COMPANY"){
+      next();
+    }else{
+      res.redirect("/");
+    }
+  }
+ 
+}
+
+router.get("/firm-dashboard",isCompanyLoggedIn,(req,res)=>{
+  res.render("dashboardfirm",{error:null,success:null,user:req.session.user});
+})
+
+router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
+  res.render("dashboardCompany",{sucess:null,error:null,user:req.session.user});
+})
+
+
+ router.post("/firmlogin",(req,res)=>{
+  DecarbonFirmModel.findOne({email:req.body.email,password:req.body.password}).then(result=>{
+    if(result==null){
+        alert("Wrong Password or Email");
+        res.redirect("/#about");
+    }else{
+      req.session.user = result;
+      req.session.type="FIRM";
+      req.session.save(()=>{
+        res.redirect("/firm-dashboard");
+      })
+    }
+  }).catch(err=>{
+    res.render("register-form.ejs",{err_msg:err.message});
+  })
+ });
+
+ router.post("/decarbinationCompanyLogin",(req,res)=>{
+  DecarbonCompanyModel.findOne({email:req.body.email,password:req.body.password}).then(result=>{
+    if(result==null){
+      alert("Wrong Password or Email");
+      res.redirect("/#about");
+    }else{
+      req.session.user = result;
+      req.session.type = "COMPANY";
+      req.session.save(()=>{
+        res.redirect("/company-dashboard",);
+      })
+    }
+  }).catch(err=>{
+    res.render("register-tree-form",{err_msg:err.message});
+  })
+
+ })
+
+ router.post("/sendOtpFirm",(req,res)=>{
+  var four_digit_otp = Math.floor(1000 + Math.random() * 9000);
+  const password = four_digit_otp;
+  DecarbonFirmModel.findOne({email:req.body.email}).then(async function(result){
+    if(result!=null){
+       let response = await DecarbonFirmModel.updateOne({_id:result._id},{$set:{otp:password}});
+       if(response!=null){
+        var smtpTransport = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: 'prashantbarge@questglt.org',
+            pass: 'gopalthegame',
+          }
+        });
+        const mailOptions = {
+          to: req.body.email,
+          from: 'prashantbarge@questglt.org',
+          subject: 'Forgot Password',
+    
+          text: 'Dear Customer,' + '\n\n' + 'New Password form ebt.\n\n' +
+            'OTP: ' + password + '\n http://' + req.headers.host + '/' + '\n\n' +
+    
+            'We suggest you to please change your password after successfully logging in on the portal using the above password :\n\n' +
+    
+            'Here is the change password link: http://' + req.headers.host + '/Profile' + '\n\n' +
+            'Thanks and Regards,' + '\n' + '$EBT Team' + '\n\n',
+        };
+        smtpTransport.sendMail(mailOptions, function (err) {
+          if(err){
+            res.render("forgot-pass-firm", {
+              error:err,
+              success:null,
+            });
+          }else{
+            res.redirect("/otp-firm?email="+result.email)
+          }
+        });
+       }
+    }else{
+      res.render("forgot-pass-firm", {
+        error:err,
+        success:null,
+      });
+    }
+  }).catch(err=>{
+    res.render("forgot-pass-firm", {
+      error:err,
+      success:null,
+    });
+  })
+ })
+
+ router.post("/sendOtpCompany",(req,res)=>{
+  var four_digit_otp = Math.floor(1000 + Math.random() * 9000);
+  const password = four_digit_otp;
+  DecarbonCompanyModel.findOne({email:req.body.email}).then(async function(result){
+    if(result!=null){
+       let response = await DecarbonCompanyModel.updateOne({_id:result._id},{$set:{otp:password}});
+       if(response!=null){
+        var smtpTransport = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: 'prashantbarge@questglt.org',
+            pass: 'gopalthegame',
+          }
+        });
+        const mailOptions = {
+          to: req.body.email,
+          from: 'prashantbarge@questglt.org',
+          subject: 'Forgot Password',
+    
+          text: 'Dear Customer,' + '\n\n' + 'New Password form ebt.\n\n' +
+            'OTP: ' + password + '\n http://' + req.headers.host + '/' + '\n\n' +
+    
+            'We suggest you to please change your password after successfully logging in on the portal using the above password :\n\n' +
+    
+            'Here is the change password link: http://' + req.headers.host + '/Profile' + '\n\n' +
+            'Thanks and Regards,' + '\n' + '$EBT Team' + '\n\n',
+        };
+        smtpTransport.sendMail(mailOptions, function (err) {
+          if(err){
+            res.send(err);
+          }else{
+            res.redirect("/otp-company?email="+result.email)
+          }
+        });
+       }
+    }else{
+      res.render("forgot-pass-company", {
+        error:"User Not Found",
+        success:null,
+      });
+    }
+  }).catch(err=>{
+    res.render("forgot-pass-company", {
+      error:err,
+      success:null,
+    });
+  })
+ })
+
+
+ router.post("/confirmOtpFirm",async (req,res)=>{
+
+  if(req.body.password ==  req.body.confirm_password){
+  try{
+    let result = await DecarbonFirmModel.findOne({email:req.body.email});
+    if(result!=null){
+      if(result.otp == req.body.otp && result.otp!=null ){
+          let response = await DecarbonFirmModel.updateOne({_id:result._id},{$set:{password:req.body.password,otp:null}});
+          if(response != null){
+            res.redirect("/");
+          }
+      }else{
+        res.render("otp-firm",{error:"OTP NOT VERIFIED"});
+      }
+    }
+  }catch(err){
+    res.send(err);
+  }
+}else{
+  res.render("otp-firm",{error:"PASSWORD IS INCORRECT"});
+}
+ })
+
+ router.post("/confirmOtpCompany",async (req,res)=>{
+   if(req.body.password ==  req.body.confirm_password){
+  try{
+    let result = await DecarbonCompanyModel.findOne({email:req.body.email});
+    if(result!=null){
+      if(result.otp == req.body.otp && result.otp!=null ){
+          let response = await DecarbonCompanyModel.updateOne({_id:result._id},{$set:{password:req.body.password,otp:null}});
+          console.log(response)
+          if(response != null){
+            res.redirect("/");
+          }
+      }else{
+        res.render("otp-company",{error:"OTP NOT VERIFIED",succes:null});
+      }
+    }
+  }catch(err){
+    res.render("otp-company",{error:err,success:null});
+  }
+}else{
+  res.render("otp-company",{error:"PASSWORD IS INCORRECT",succes:null});
+}
+  })
+
+router.get("/logout",(req,res)=>{
+  req.session.user = null;
+  res.redirect("/");
+})
+
+router.get("/profile-user-firm",isCompanyLoggedIn,function (req, res) {
+  // var error ="";
+  // var success = "";
+  error = req.flash("err_msg");
+  success = req.flash("success_msg");
+  // var user_id = req.session.re_us_id;
+
+                  // var wallet_address = result.wallet_address;
+                  res.render("profile_update_firm", {
+                    user:req.session.user,
+                    error:null,
+                    success:null,
+                  });
+  
+});
+
+
+router.get("/profile-user-company",isFirmLoggedIn,function (req, res) {
+  // var error ="";
+  // var success = "";
+  error = req.flash("err_msg");
+  success = req.flash("success_msg");
+  // var user_id = req.session.re_us_id;
+
+                  // var wallet_address = result.wallet_address;
+                  res.render("profile_update_company", {
+                    user:req.session.user,
+                    error:null,
+                    success:null,
+                  });
+  
+});
+
+router.post("/updateFirm",(req,res)=>{
+  const update =  {
+    firm_name:req.body.name,
+    mobile:req.body.mob
+  }
+  DecarbonFirmModel.updateOne({email:req.body.email},{$set:update},{$upsert:true,$new:true}).then(async (result)=>{
+    let result1 = await DecarbonFirmModel.findOne({email:req.body.email});
+    req.session.user = result1;
+    res.redirect("/profile-user-firm")
+  }).catch(err=>{
+    console.log(err);
+  })
+})
+
+
+router.post("/updateCompany",(req,res)=>{
+  console.log("i am working")
+  const update =  {
+    company_name:req.body.name,
+    mobile:req.body.mob
+  }
+  DecarbonCompanyModel.updateOne({email:req.body.email},{$set:update},{$upsert:true,$new:true}).then(async (result)=>{
+    let result1 = await DecarbonCompanyModel.findOne({email:req.body.email});
+    req.session.user = result1;
+    res.redirect("/profile-user-company")
+  }).catch(err=>{
+    console.log(err);
+  })
+})
+
+//  Emission Impact :
+
+router.get('/emission-impact', function (req, res) {
+  res.render('emission-impact');
+});
+router.get('/microsoft', function (req, res) {
+  res.render('microsoft');
+});
+router.get('/google', function (req, res) {
+  res.render('google');
+});
+router.get('/calculator', function (req, res) {
+  res.render('calculator');
+});
 module.exports = router;

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Karbun Coin</title>
+    <!-- mobile responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="user_assets/img/favicon.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="user_assets/css/style.css" />
+    <link rel="stylesheet" href="user_assets/css/responsive.css" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      #google_translate_element {
+        color: #fcbf10;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+    <style>
+    a {
+    color: #0f3923;
+    text-decoration: none;
+   }
+   </style>
+    <style>
+      /* Button used to open the chat form - fixed at the bottom of the page */
+      .open-button {
+        background-color: #388855;
+        color: white !important;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        opacity: 1;
+        position: fixed;
+        bottom: 10px;
+        right: 85px;
+        max-width: 250px;
+        border-radius: 10px;
+        z-index: 9999999999999999999;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        font-size: 18px;
+        font-weight: 600;
+        border: none !important;
+        outline: none !important;
+        /*animation: bounce 3s infinite;*/
+        white-space: normal;
+      }
+      /*@keyframes bounce {
+			  0%, 20%, 50%, 80%, 100% {
+			    transform: translateY(0);
+			  }
+			  40% {
+			    transform: translateY(-40px);
+			  }
+			  60% {
+			    transform: translateY(-20px);
+			  }
+			}*/
+
+      /* The popup chat - hidden by default */
+      .chat-popup {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 15px;
+        /* 	border: 5px solid #000000; */
+        border-radius: 5%;
+        z-index: 9999999999999999999;
+        color: white;
+      }
+
+      /* Add styles to the form container */
+      
+      .open-button:hover {
+        opacity: 1;
+      }
+      .thm-btn.yellow-bg-hvr.submit-btn{
+    color:black;
+  }
+
+	  .jYxAGf{
+		  z-index:9999 !important;
+	  }
+    .btc-calculator:before {
+    background: #388855;
+}
+.yellow-bg-hvr.submit-btn{
+  min-width: 150px;
+}
+.btc-calc-form label {
+    color: #fff;
+    display: block;
+    margin-bottom: 0;
+    font-size: 20px;
+}
+.btc-calculator .thm-container .btc-calc-form input{
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+    </style>
+
+  </head>
+
+  <body class="active-preloader-ovh" style="top: 0 !important">
+    <div class="preloader">
+      <div class="spinner"></div>
+    </div>
+
+    <header class="header header-home-one">
+      <nav class="navbar navbar-default header-navigation stricky">
+        <div class="thm-container clearfix">
+          <div class="navbar-header">
+            <a
+              href="javascript:void(0);"
+              onclick="BuyEth()"
+              style="display: none"
+              class="for-mobile-show metamask-link">
+             <img
+                src="user_assets/img/meta-icon.png"
+                style="height: 35px; width: auto"/>
+               <small style="font-size: 12px; font-weight: 400"
+                >Connect wallet</small>
+            </a>
+            <button
+              type="button"
+              class="navbar-toggle collapsed bitmex-icon-menu"
+              data-toggle="collapse"
+              data-target=".main-navigation"
+              aria-expanded="false"></button>
+            <a class="navbar-brand" href="">
+              <img src="user_assets/img/logo.png" style="height: 80px" />
+            </a>
+          </div>
+
+          <div
+            class="collapse navbar-collapse main-navigation mainmenu"
+            id="main-nav-bar"  >
+            <ul class="nav navbar-nav navigation-box navbar-right">
+              <li><a href="/#about">About Karbun</a></li>
+              <!--  <li><a href="#news">Karbun Partners</a> </li> -->
+              <li>
+                <a
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#whitepaperModal"
+                  style="font-size: 16px"
+                >
+                  Whitepaper</a
+                >
+              </li>
+              <li><a href="/#login">Login </a></li>
+              <li><a href="/#our-experts">Team </a></li>
+              <li><a href="/#roadmap">Roadmap</a></li>
+
+              <li><a href="/#contact-us">Contact Karbun</a></li>
+
+              <li class="text/css">
+                <button id="google_translate_element"></button>
+
+                <div id="google_translate_element"></div>
+                <script>
+                  function googleTranslateElementInit() {
+                    new google.translate.TranslateElement(
+                      {
+                        pageLanguage: "en",
+                        autoDisplay: "true",
+                        layout:
+                          google.translate.TranslateElement.InlineLayout
+                            .HORIZONTAL,
+                      },
+                      "google_translate_element"
+                    );
+                  }
+                </script>
+                <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+                <style type="text/css">
+                  /*google translate Dropdown */
+
+                  #google_translate_element select {
+                    background: #1a874e !important;
+                    color: #fff;
+                    padding: 8px 10px;
+                    border: none;
+                    border-radius: 3px;
+                    height: auto !important;
+                  }
+
+                  /*google translate link | logo */
+                  .goog-logo-link {
+                    display: none !important;
+                  }
+                  .goog-te-gadget {
+                    color: transparent !important;
+                  }
+
+                  /* google translate banner-frame */
+
+                  .goog-te-banner-frame {
+                    display: none !important;
+                  }
+
+                  .skiptranslate.goog-te-gadget > div {
+                    display: block !important;
+                    width: 100% !important;
+                  }
+                  .goog-te-gadget {
+                    font-family: arial;
+                    font-size: 11px;
+                    color: #666;
+                    white-space: nowrap;
+                    max-height: 32px;
+                  }
+                </style>
+              </li>
+              <!-- <li class="xs-hide metamask-outer">
+                <a class="metamask-link" href="javascript:void(0);" onclick="BuyEth()">
+                  <img
+                    src="user_assets/img/meta-icon.png"
+                    style="height: 35px; width: auto"
+                  />
+                  <small style="font-size: 12px; font-weight: 400"
+                    >Connect wallet</small
+                  >
+                </a>
+              </li> -->
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+      </nav>
+    </header>
+    <!-- /.header -->
+
+
+    <section class="btc-calculator sec-pad page-section" id="Calculator">
+  <div class="thm-container">
+    <div class="sec-title text-center black">
+      <span>Please Fill the Form Given Below:</span>
+      <h3>Registration Form</h3>
+      
+    </div><!-- /.sec-title -->
+    <form method="POST" action="/saveDecarbonCompany" class="btc-calc-form row">
+      <div class="col-md-6">
+        <label>Company Name</label>
+        <input type="text" name="companyName" placeholder="Company Name" required />
+      </div><!-- /.col-md-3 -->
+       <div class="col-md-6">
+        <label>Company's License</label>
+        <input type="text" name="licence" placeholder="Company's License" required />
+      </div><!-- /.col-md-3 -->
+       <div class="col-md-6">
+        <label>Quotation Per/Thousand Trees</label>
+        <input type="text" name="quotation" placeholder="Enter Value" required/>
+      </div><!-- /.col-md-3 -->
+       <div class="col-md-6">
+        <label>Total Area of Land To Grow Trees</label>
+        <input type="text" name="totalArea" placeholder="Total Area" required />
+      </div><!-- /.col-md-3 -->
+       <div class="col-md-6">
+        <label>Approx Tree Plantation Capacity</label>
+        <input type="text" name="approxCap" placeholder="Approx Capacity" required />
+      </div><!-- /.col-md-3 -->
+      <div class="col-md-6">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Email Address" required />
+      </div><!-- /.col-md-3 -->
+      <div class="col-md-6">
+        <label>Password</label>
+        <input type="password" name="pwd" placeholder="Password" required />
+      </div><!-- /.col-md-3 -->
+      <div class="col-md-6">
+        <label>Confirm Password</label>
+        <input type="password" name="cnfpwd" placeholder="Confirm Password" required />
+      </div><!-- /.col-md-3 -->
+      <div class="col-md-12">
+        <label>Contact No.</label>
+        <input type="text" name="phone" placeholder="Number"  required/>
+      </div><!-- /.col-md-3 -->
+
+      
+      <div class="col-md-12 text-center">
+         <input type="submit" class="thm-btn yellow-bg-hvr submit-btn"></input>
+      </div>
+     
+    </form><!-- /.btc-calc-form -->
+  </div><!-- /.thm-container -->
+</section><!-- /.btc-calculator -->
+
+
+    <div class="footer-top page-section" id="contact-us">
+      <div class="thm-container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <div class="single-footer-top">
+              <p>
+                <i class="bitmex-icon-envelope"></i
+                ><span>Email: </span>sales@karbun.io
+              </p>
+            </div>
+            <!-- /.single-footer-top -->
+          </div>
+          <!-- /.col-md-4 -->
+          <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <div class="single-footer-top">
+              <p>
+                <i class="bitmex-icon-phone-call"></i
+                ><span>Call: </span> +61415898818
+              </p>
+            </div>
+            <!-- /.single-footer-top -->
+          </div>
+          <!-- /.col-md-4 -->
+          <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+            <div class="single-footer-top">
+              <p>
+                <i class="bitmex-icon-placeholder"></i
+                ><span>Web: </span>www.karbun.io
+              </p>
+            </div>
+            <!-- /.single-footer-top -->
+          </div>
+          <!-- /.col-md-4 -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.thm-container -->
+    </div>
+    <!-- /.footer-top -->
+
+    <div class="footer-bottom">
+      <div class="thm-container clearfix">
+        <div class="pull-left copy-text">
+          <p>&copy; 2021 Karbun.io All copy rights are reserved.</p>
+        </div>
+        <!-- /.pull-left copy-text -->
+        <div class="social pull-right">
+           <a href="#" class="fa fa-telegram"></a>
+
+          <a href="#" class="fa fa-twitter"></a>
+          <!--
+				--><a href="#" class="fa fa-facebook"></a>
+          <!--
+				--><a href="#" class="fa fa-linkedin"></a>
+       
+
+        <a href="#" class="fa fa-instagram"></a>
+        </div>
+        <!-- /.social -->
+      </div>
+      <!-- /.thm-container -->
+    </div>
+    <!-- /.footer-bottom -->
+
+    <section class="hidden-sidebar side-navigation">
+      <a href="#" class="close-button side-navigation-close-btn fa fa-times"></a
+      ><!-- /.close-button -->
+      <div class="sidebar-content">
+        <div class="social">
+          <a href="#" class="fa fa-telegram"></a>
+
+          <a href="#" class="fa fa-twitter"></a>
+          <!--
+				--><a href="#" class="fa fa-facebook"></a>
+         <a href="#" class="fa fa-linkedin"></a>
+         
+        <a href="#" class="fa fa-instagram"></a>
+        </div>
+        <!-- /.social -->
+      </div>
+      <!-- /.sidebar-content -->
+    </section>
+    <!-- /.hidden-sidebar -->
+
+   
+
+    <div class="scroll-to-top scroll-to-target" data-target="html">
+      <i class="fa fa-angle-up"></i>
+    </div>
+
+    <script src="user_assets/js/jquery.js"></script>
+
+    <script src="user_assets/js/bootstrap.min.js"></script>
+    <script src="user_assets/js/bootstrap-select.min.js"></script>
+    <script src="user_assets/js/jquery.validate.min.js"></script>
+    <script src="user_assets/js/owl.carousel.min.js"></script>
+    <script src="user_assets/js/isotope.js"></script>
+    <script src="user_assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="user_assets/js/waypoints.min.js"></script>
+    <script src="user_assets/js/jquery.counterup.min.js"></script>
+    <script src="user_assets/js/wow.min.js"></script>
+    <script src="user_assets/js/jquery.easing.min.js"></script>
+    <script src="user_assets/js/particles.min.js"></script>
+    <script src="user_assets/js/particles-config.js"></script>
+    <script src="user_assets/js/Chart.min.js"></script>
+    <script src="user_assets/js/chart-config.js"></script>
+    <script src="user_assets/js/custom.js"></script>
+    <script>
+      if(success_msg!=null){
+        alert(success_msg);
+      }
+    </script>
+    <script>
+      $(document).ready(function () {
+        $("ul.navigation-box li a").click(function () {
+          $("ul.navigation-box li a").removeClass("active");
+          $(this).addClass("active");
+        });
+      });
+      $(".navbar-collapse a").click(function () {
+        $(".navbar-collapse").collapse("hide");
+      });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/jquery.slick/1.4.1/slick.min.js"></script>
+
+    
+  </body>
+</html>
