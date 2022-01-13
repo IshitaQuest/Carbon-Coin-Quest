@@ -925,7 +925,8 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
  router.post("/firmlogin",(req,res)=>{
   DecarbonFirmModel.findOne({email:req.body.email,password:req.body.password}).then(result=>{
     if(result==null){
-        res.render("register-form.ejs",{err_msg:"Inncorrect Username or PassWord"});
+        alert("Wrong Password or Email");
+        res.redirect("/#about");
     }else{
       req.session.user = result;
       req.session.type="FIRM";
@@ -941,7 +942,8 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
  router.post("/decarbinationCompanyLogin",(req,res)=>{
   DecarbonCompanyModel.findOne({email:req.body.email,password:req.body.password}).then(result=>{
     if(result==null){
-        res.render("register-tree-form",{err_msg:"Inncorrect Username or PassWord"});
+      alert("Wrong Password or Email");
+      res.redirect("/#about");
     }else{
       req.session.user = result;
       req.session.type = "COMPANY";
