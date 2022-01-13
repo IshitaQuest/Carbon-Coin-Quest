@@ -161,14 +161,14 @@
   
                   <h4 style="color: #000;">Forgot Password</h4>
                   <form method="POST" action="/sendOtpFirm">
-                      <% if(err!=undefined){ %>
-                          <span class="error_validate flash_msg"><%= err%></span>
+                      <% if(error!=null){ %>
+                          <span class="error_validate flash_msg"><%= error%></span>
                       <% }%>
-                      <% if(succes!=undefined){ %>
-                          <span class="succ_flash_msg" style="color: green;"><%= succes %></span>
+                      <% if(success!=null){ %>
+                          <span class="succ_flash_msg" style="color: green;"><%= success %></span>
                       <% }%>
                   <div class="form-group">
-                      <input name="email" type="email" class="form-control" placeholder="yourmail@gmail.com">
+                      <input name="email" type="email" class="form-control" placeholder="yourmail@gmail.com" required>
                     </div>
                     <div class="text-center"> 
                       <button type="submit" id="submit_login" class="btn btn-sign">Submit</button>

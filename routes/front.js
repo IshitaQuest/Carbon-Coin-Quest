@@ -653,15 +653,14 @@ router.get("/dashboardfirm", function (req, res) {
 router.get("/forgot-pass-firm", function (req, res) {
   // var error ="";
   // var success = "";
-  var err = req.flash("err_msg");
-  var succes = req.flash("success_msg");
+  var error = req.flash("err_msg");
+  var success = req.flash("success_msg");
   // var user_id = req.session.re_us_id;
 
                   // var wallet_address = result.wallet_address;
                   res.render("forgot-pass-firm", {
-                    err,
-                    succes,
-                    
+                    error:null,
+                    success:null,
                   });
   
 });
@@ -674,9 +673,8 @@ router.get("/forgot-pass-company", function (req, res) {
 
                   // var wallet_address = result.wallet_address;
                   res.render("forgot-pass-company", {
-                    error,
-                    success,
-                    
+                    error:null,
+                    success:null,
                   });
   
 });
@@ -690,9 +688,8 @@ router.get("/register-tree-form", function (req, res) {
 
                   // var wallet_address = result.wallet_address;
                   res.render("register-tree-form", {
-                    error,
-                    success,
-                    
+                    error:null,
+                    success:null,
                   });
   
 });
@@ -987,17 +984,26 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
         };
         smtpTransport.sendMail(mailOptions, function (err) {
           if(err){
-            res.send(err);
+            res.render("forgot-pass-firm", {
+              error:err,
+              success:null,
+            });
           }else{
             res.redirect("/otp-firm?email="+result.email)
           }
         });
        }
     }else{
-      res.render("otp-firm",{error:"OTP NOT SENT",success:null});
+      res.render("forgot-pass-firm", {
+        error:err,
+        success:null,
+      });
     }
   }).catch(err=>{
-    res.send(err);
+    res.render("forgot-pass-firm", {
+      error:err,
+      success:null,
+    });
   })
  })
 
@@ -1037,10 +1043,16 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
         });
        }
     }else{
-      res.render("otp-firm",{error:"OTP NOT SENT",success:null});
+      res.render("forgot-pass-company", {
+        error:"User Not Found",
+        success:null,
+      });
     }
   }).catch(err=>{
-    res.send(err);
+    res.render("forgot-pass-company", {
+      error:err,
+      success:null,
+    });
   })
  })
 
@@ -1080,14 +1092,14 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
             res.redirect("/");
           }
       }else{
-        res.render("otp-company",{err:"OTP NOT VERIFIED",success:null});
+        res.render("otp-company",{error:"OTP NOT VERIFIED",succes:null});
       }
     }
   }catch(err){
-    res.render("otp-company",{err:err,success:null});
+    res.render("otp-company",{error:err,success:null});
   }
 }else{
-  res.render("otp-company",{err:"PASSWORD IS INCORRECT",success:null});
+  res.render("otp-company",{error:"PASSWORD IS INCORRECT",succes:null});
 }
   })
 

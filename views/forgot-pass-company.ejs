@@ -154,7 +154,6 @@
   </header>
   <!-- /.header -->
   <section class="client-login verify">
-    
     <div class="thm-container">
         
         <div class="row">
@@ -166,12 +165,12 @@
   
                   <h4 style="color: #000;">Forgot Password</h4>
                   <form method="POST" action="/sendOtpCompany">
-                      <% if(error!=undefined){ %>
-                          <span class="error_validate flash_msg"><%= error %></span>
-                      <% }%>
-                      <% if(success!=undefined){ %>
-                          <span class="succ_flash_msg" style="color: green;"><%= success %></span>
-                      <% }%>
+                    <% if(error!=null){ %>
+                      <span class="error_validate flash_msg"><%= error%></span>
+                  <% }%>
+                  <% if(success!=null){ %>
+                      <span class="succ_flash_msg" style="color: green;"><%= success %></span>
+                  <% }%>
                   <div class="form-group">
                       <input name="email" type="email" class="form-control" placeholder="yourmail@gmail.com" required>
                     </div>
@@ -191,6 +190,11 @@
       </div>
       </div>
   </section>
+  <script>
+    function showError(err){
+      alert(err);
+    }
+  </script>
 
 
   <script src="user_assets/js/jquery.js"></script>
