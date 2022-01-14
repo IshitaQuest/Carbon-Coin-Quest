@@ -43,6 +43,7 @@ const landingPage = async (req, res) => {
         res.render('index', {
             token_values: rates,
             error:null,
+            success:null,
         });
     }
     else {
