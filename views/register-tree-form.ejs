@@ -263,6 +263,9 @@
     <div class="sec-title text-center black">
       <span>Please Fill the Form Given Below:</span>
       <h3>Registration Form</h3>
+      <%if(error!=null){%>
+        <div><%=error%></div>
+        <%}%>
       
     </div><!-- /.sec-title -->
     <form method="POST" action="/saveDecarbonCompany" class="btc-calc-form row">

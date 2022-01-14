@@ -831,7 +831,7 @@ router.post('/ETH', isUser, async function (req, res) {
   // })    
 })
 
-router.post("/saveDecarbinationCompany",(req,res)=>{
+router.post("/saveDecarbinationfirm",(req,res)=>{
 
   if(req.body.pwd == req.body.cnfpwd){
     const Firm = {
@@ -846,10 +846,10 @@ router.post("/saveDecarbinationCompany",(req,res)=>{
       res.redirect("/");
     }).catch(err=>{
         console.log(err);
-        res.status(400).render("register-form.ejs",{err_msg:err.toString()});
+        res.status(400).render("register-form",{error:err.toString()});
     })
   }else{
-    res.status(200).render("register-form.ejs",{err_msg:"Password and Confirm Password is Not Same"});
+    res.status(200).render("register-form",{error:"Password and Confirm Password is Not Same"});
   }
 })
 
@@ -872,11 +872,11 @@ router.post("/saveDecarbonCompany",(req,res)=>{
         res.redirect("/");
       }).catch(err=>{
         console.log(err);
-        res.render("register-tree-form",{err_msg:err.toString()});
+        res.render("register-tree-form",{error:err.toString()});
       })
     }else{
       console.log("not same")
-      res.render("register-tree-form",{err_msg:"Confirm Password and Password are Not Same"});
+      res.render("register-tree-form",{error:"Confirm Password and Password are Not Same"});
     }
 })
 
