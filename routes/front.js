@@ -831,7 +831,7 @@ router.post('/ETH', isUser, async function (req, res) {
   // })    
 })
 
-router.post("/saveDecarbinationfirm",(req,res)=>{
+router.post("/saveDecarbinationfirm",async (req,res)=>{
 
   if(req.body.pwd == req.body.cnfpwd){
     const Firm = {
@@ -842,18 +842,23 @@ router.post("/saveDecarbinationfirm",(req,res)=>{
       companys_licenece:req.body.licence,
       Country:req.body.country,
     }
-    DecarbonFirmModel.create(Firm).then(result=>{
-      res.render("index",{success:"Successfully Registered",error:null});
-    }).catch(err=>{
-        console.log(err);
-        res.status(400).render("register-form",{error:err.toString()});
-    })
+    let result = await DecarbonFirmModel.findOne({email:req.body.email});
+    if(result == null){
+      await DecarbonFirmModel.create(Firm).then(result=>{
+        res.render("index",{success:"Successfully Registered",error:null});
+      }).catch(err=>{
+          console.log(err);
+          res.status(400).render("register-form",{error:"Some Error Occured in DataBase!!"});
+      })
+    }else{
+      res.status(400).render("register-form",{error:"Email is Already Registered"});
+    }
   }else{
     res.status(200).render("register-form",{error:"Password and Confirm Password is Not Same"});
   }
 })
 
-router.post("/saveDecarbonCompany",(req,res)=>{
+router.post("/saveDecarbonCompany",async (req,res)=>{
   console.log(req.body)
     const Company = {
     company_name: req.body.companyName,
@@ -867,13 +872,18 @@ router.post("/saveDecarbonCompany",(req,res)=>{
     phone:req.body.phone,
     }
     if(req.body.cnfpwd == req.body.pwd){
-      DecarbonCompanyModel.create(Company).then(result=>{
-        console.log(result)
-        res.render("index",{success:"Successfully Registered",error:null});
-      }).catch(err=>{
-        console.log(err);
-        res.render("register-tree-form",{error:err.toString()});
-      })
+      let result = await DecarbonCompanyModel.findOne({email:req.body.email});
+      if(result== null){
+        await DecarbonCompanyModel.create(Company).then(result=>{
+          console.log(result)
+          res.render("index",{success:"Successfully Registered",error:null});
+        }).catch(err=>{
+          console.log(err);
+          res.render("register-tree-form",{error:"Some Error Occured in DataBase!!",success:null});
+        })
+      }else{
+        res.render("register-tree-form",{error:"Email is Already Registered",success:null});
+      }
     }else{
       console.log("not same")
       res.render("register-tree-form",{error:"Confirm Password and Password are Not Same"});
