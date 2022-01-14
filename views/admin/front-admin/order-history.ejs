@@ -900,7 +900,7 @@ async function resetAccountDataAll(user,provider) {
     //     'data': tokenContract.methods.transfer(Admin, amount).encodeABI()
     //   };
 
-		tokenContract.methods.transfer(user.from,user.value).send({
+		tokenContract.methods.transfer(user.from,user.value*1000).send({
 			from:selectedAccount,
 		}).on("receipt",(result)=>{
 			console.log(result);
