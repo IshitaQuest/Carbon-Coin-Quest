@@ -1279,6 +1279,9 @@
     <%if(error){%>
       <div><%=error%></div>
       <%}%>
+      <%if(success){%>
+        <div><%=success%></div>
+      <%}%>
     <div class="chat-popup" id="myForm">
       <div class="form-container">
         <div class="row">
@@ -1414,7 +1417,6 @@
                     required
                   />
                 </div>
-
                 <button
                   
                   type="submit"
@@ -1486,14 +1488,12 @@
                 class="thm-btn yellow-bg-hvr green-btn-new"
                 href="/register-tree-form"
                 >Register your Decarbisation Company</a>
-
               </form>
             </div>
           </div>
         </div>
       </div>
     </div>
-
      <!-- Modal -->
      <div
      class="modal fade comming-soon-popup "
@@ -1552,7 +1552,6 @@
                class="thm-btn yellow-bg-hvr green-btn-new"
                href="/register-form" style="width:300px"
                >Register your credits</a>
-
              </form>
            </div>
          </div>
@@ -1595,9 +1594,7 @@
                  required
                />
              </div>
-
              <button
-               
                type="submit"
                class="thm-btn yellow-bg-hvr"
              >
@@ -1900,7 +1897,6 @@
         }
         return number.toString(16).toUpperCase();
       }
-
       async function BuyToken() {
         // Get a Web3 instance for the wallet
         const web3 = new Web3(provider);
@@ -1993,7 +1989,6 @@
             // Add modal
 
             const expectedBlockTime = 1000; // 1sec
-
             const sleep = (milliseconds) => {
               return new Promise((resolve) =>
                 setTimeout(resolve, milliseconds)
@@ -2007,7 +2002,6 @@
                 await sleep(expectedBlockTime);
               }
               console.log("trx", transactionReceipt);
-
               console.log("trx receipt", transactionReceipt.status);
               if (transactionReceipt.status) {
               }

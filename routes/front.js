@@ -843,7 +843,7 @@ router.post("/saveDecarbinationfirm",(req,res)=>{
       Country:req.body.country,
     }
     DecarbonFirmModel.create(Firm).then(result=>{
-      res.redirect("/");
+      res.render("index",{success:"Successfully Registered",error:null});
     }).catch(err=>{
         console.log(err);
         res.status(400).render("register-form",{error:err.toString()});
@@ -869,7 +869,7 @@ router.post("/saveDecarbonCompany",(req,res)=>{
     if(req.body.cnfpwd == req.body.pwd){
       DecarbonCompanyModel.create(Company).then(result=>{
         console.log(result)
-        res.redirect("/");
+        res.render("index",{success:"Successfully Registered",error:null});
       }).catch(err=>{
         console.log(err);
         res.render("register-tree-form",{error:err.toString()});
@@ -910,7 +910,6 @@ var isFirmLoggedIn = function(req,res,next){
       res.redirect("/");
     }
   }
- 
 }
 
 router.get("/firm-dashboard",isCompanyLoggedIn,(req,res)=>{
@@ -934,8 +933,7 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
       })
     }
   }).catch(err=>{
-    res.render("index",{error:err.toString()});
-    
+    res.render("index",{error:err.toString(),success:null});
   })
  });
 
@@ -951,7 +949,7 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
       })
     }
   }).catch(err=>{
-    res.render("index",{error:err.toString()});
+    res.render("index",{error:err.toString(),success:null});
   })
 
  })
@@ -1067,14 +1065,14 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
       if(result.otp == req.body.otp && result.otp!=null ){
           let response = await DecarbonFirmModel.updateOne({_id:result._id},{$set:{password:req.body.password,otp:null}});
           if(response != null){
-            res.render("index",{error:null});
+            res.render("index",{error:null,success:"Password Updated"});
           }
       }else{
-        res.render("forgot-pass-firm",{error:"Could Not Update Password , Contact Administrator",success:null});
+        res.render("forgot-pass-firm",{error:"Could Not Update Password ,Contact Administrator",success:null});
       }
     }
   }catch(err){
-    res.render("index",{error:err.toString()});
+    res.render("index",{error:err.toString(),success:null});
   }
 }else{
   res.render("forgot-pass-firm",{error:"Your Passwords doesn't Match!",success:null});
@@ -1090,10 +1088,10 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
           let response = await DecarbonCompanyModel.updateOne({_id:result._id},{$set:{password:req.body.password,otp:null}});
           console.log(response)
           if(response != null){
-            res.render("index",{error:null});
+            res.render("index",{error:null,success:"Password Updated"});
           }
       }else{
-        res.render("forgot-pass-company",{error:"Could Not Update Password , Contact Administrator",success:null});
+        res.render("forgot-pass-company",{error:"Could Not Update Password ,Contact Administrator",success:null});
       }
     }
   }catch(err){
@@ -1158,7 +1156,6 @@ router.post("/updateFirm",(req,res)=>{
 
 
 router.post("/updateCompany",(req,res)=>{
-  console.log("i am working")
   const update =  {
     company_name:req.body.name,
     mobile:req.body.mob
