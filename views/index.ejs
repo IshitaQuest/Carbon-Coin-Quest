@@ -182,12 +182,7 @@
                 >Connect wallet</small
               >
             </a>
-            <%if(error!=null){%>
-              <%=error%>
-              <%}%>
-              <%if(success!=null){%>
-                <%=success%>
-                <%}%>
+            
             <button
               type="button"
               class="navbar-toggle collapsed bitmex-icon-menu"
@@ -324,9 +319,26 @@
         <div class="item active slide-1">
           <div class="carousel-caption">
             <div class="thm-container">
+             
               <div class="box valign-middle">
                 <div class="content">
+                 
+                    <%if(error!=null){%>
+                      <success><div class="alert alert-warning alert-dismissible">
+                        <a href="/" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+                        <%=error%></success>
+                      </div>
+                   
+                    <%}%>
+                    <%if(success!=null){%>
+                      <strong><div class="alert alert-success alert-dismissible">
+                        <a href="/" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                      <%=success%></strong>
+                      </div>
+                      <%}%>
+                   
                   <div class="outer-glob-box">
+                   
                     <img
                       data-animation="animated fadeInUp"
                       class="logo-outer-img"
@@ -1318,7 +1330,7 @@
                 </div>
               </div>
             </div>
-    
+
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
@@ -1418,6 +1430,7 @@
                     required
                   />
                 </div>
+
                 <button
                   
                   type="submit"
@@ -1489,12 +1502,14 @@
                 class="thm-btn yellow-bg-hvr green-btn-new"
                 href="/register-tree-form"
                 >Register your Decarbisation Company</a>
+
               </form>
             </div>
           </div>
         </div>
       </div>
     </div>
+
      <!-- Modal -->
      <div
      class="modal fade comming-soon-popup "
@@ -1553,6 +1568,7 @@
                class="thm-btn yellow-bg-hvr green-btn-new"
                href="/register-form" style="width:300px"
                >Register your credits</a>
+
              </form>
            </div>
          </div>
@@ -1595,7 +1611,9 @@
                  required
                />
              </div>
+
              <button
+               
                type="submit"
                class="thm-btn yellow-bg-hvr"
              >
@@ -1898,6 +1916,7 @@
         }
         return number.toString(16).toUpperCase();
       }
+
       async function BuyToken() {
         // Get a Web3 instance for the wallet
         const web3 = new Web3(provider);
@@ -1990,6 +2009,7 @@
             // Add modal
 
             const expectedBlockTime = 1000; // 1sec
+
             const sleep = (milliseconds) => {
               return new Promise((resolve) =>
                 setTimeout(resolve, milliseconds)
@@ -2003,6 +2023,7 @@
                 await sleep(expectedBlockTime);
               }
               console.log("trx", transactionReceipt);
+
               console.log("trx receipt", transactionReceipt.status);
               if (transactionReceipt.status) {
               }
