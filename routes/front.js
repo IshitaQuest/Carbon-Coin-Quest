@@ -41,14 +41,22 @@ router.post("/subscribe", async (req, res) => {
   const user =  await whitepaperregister.findOne({
     email: req.body.email,
   })
-  
-  if (user){
-    res.redirect("/user_assets/Karbun-Coin-Whitepaper.pdf");
 
-  }else{
-  await subscriber.save();
-  res.redirect("/user_assets/Karbun-Coin-Whitepaper.pdf");
+  try{
+    fs.readFile('whitepaper.txt',async function(err, data) {
+      if (user){
+        res.redirect(`/admin_assets/uploads/whitepaper/${data}`);
+    
+      }else{
+      await subscriber.save();
+      res.redirect(`/admin_assets/uploads/whitepaper/${data}`);
+      }
+    });
+  }catch(err){
+    res.send({error:true,data:err});
   }
+  
+ 
 });
 
 // router.get('/login', userControllers.loginPage);

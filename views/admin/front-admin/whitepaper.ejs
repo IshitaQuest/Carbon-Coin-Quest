@@ -32,18 +32,21 @@
                                   </div>
                               </div>
                             </div>
+                            
                              <div class="row">
                               <div class="col-md-12">
                                  <div class="form-group">
                                   <label>Upload Whitepaper</label>
                                   <form method="post" action="upload-whitepaper" enctype="multipart/form-data">
                                     <input type="file" name="file" class="file-upload-default">
+                                    <div id="whitepaperText"></div>
                                   <div class="input-group col-xs-12">
                                     <input type="text" class="form-control file-upload-info" disabled="" placeholder="Select File">
+    
                                     <span class="input-group-append">
                                       <button class="file-upload-browse btn btn-gradient-primary" type="submit">Upload</button>
                                     </span>
-                                  
+
                                   </div>
                                 </div>
                               </div>
@@ -109,6 +112,15 @@
 
 
   <script type="text/javascript" > 
+
+fetch("/get-whitepaper").then(function(response) {
+    response.json().then(function(text) {
+      console.log(text.data)
+      element = document.getElementById("whitepaperText").innerHTML= text.data;
+      console.log(element);
+    });
+  });
+
 function readURL(input) {
 if (input.files && input.files[0]) {
 var reader = new FileReader();

@@ -181,7 +181,7 @@ var transporter = nodemailer.createTransport({
 routes.get('/admin-login',  (req, res) => {
   let fail = req.flash('fail');
   let success_logout = req.flash('success_logout');
-  res.render('admin/admin-login/admin_login.ejs', { fail, success_logout });
+  res.render('admin/admin-login/admin_login.ejs', { fail, success_logout,error:null });
 });
 
 // routes.post('/submit-details',middleware_check_login, async (req, res) => {
@@ -210,71 +210,21 @@ routes.get('/admin-login',  (req, res) => {
 
 
 routes.post('/submit-details', async (req, res) => {
-  err_msg = req.flash('err_msg');
-  success_msg = req.flash('success_msg');
+    email = req.body.email;
+    password = req.body.password;
 
-  // const email = req.body.username;
-  // const password = req.body.password;
-
-  const email = "ebticoglt@gmail.com";
-  const password = "Quest@ebtico";
-
-  let Admin = {
-    name: 'Abu Bakar',
-    email: req.body.email,
-    password: req.body.password,
-    user_type: 'admin'
-  };
-
-  AdminInfo.create(Admin, function (res, err) {
-    console.log(res)
-    console.log(err)
-  })
-  let isAdmin = await adminServices.findAdmin(email)
-  if (isAdmin == 'notAdmin') {
-    console.log('Admin not found')
-    req.flash('fail', 'You have entered wrong email try again.');
-    res.redirect('/admin-login');
-  } else {
     // const mystr = await userServices.createCipher(password);
     let checkPass = await adminServices.checkAdminPass(email, password)
-
     if (checkPass == 'wrongPassword') {
-      req.flash('fail', 'You have entered wrong password try again.');
-      res.redirect('/admin-login');
-    }
-    else {
-      let admin = isAdmin
-      //console.log(admin._id);
+      res.render('admin/admin-login/admin_login.ejs',{error:"Error! WrongPassword"});
+    }else {
+      let admin = checkPass;
       console.log(`${admin.name} logged in as a admin`);
-      const secret = speakeasy.generateSecret({
-        length: 10,
-        name: 'Abu_Bakar_Admin',
-        issuer: 'Abu_Bakar_Admin'
-      });
-      var url = speakeasy.otpauthURL({
-        secret: secret.base32,
-        label: 'Abu_Bakar_Admin',
-        issuer: 'Abu_Bakar_Admin',
-        encoding: 'base32'
-      });
-      QRCode.toDataURL(url, async (err, dataURL) => {
-        var secret_code = secret.base32;
-        var qrcode_data = dataURL
-        var user_details = { user_id: admin._id, name: admin.name };
-
-        /******Store in session*******/
-
-        let newSession = await adminServices.createSession(req, admin)
-        var err_msg = '';
-        var success_msg = '';
-
-        res.redirect('/main-dashboard');
-
-      })
-    }
-  }
-})
+      await adminServices.createSession(req, admin);
+      res.redirect('/main-dashboard');
+      }
+    
+  })
 
 
 routes.get('/main-dashboard', middleware_check_login, async (req, res) => {

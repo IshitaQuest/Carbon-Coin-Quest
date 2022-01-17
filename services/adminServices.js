@@ -27,7 +27,7 @@ const findAdmin = async (email) => {
 const adminAddress = process.env.ADMIN;
 
 const checkAdminPass = async (email, password) => {
-    let user = await AdminInfo.findOne({ 'email': email, 'password': password });
+    let user = await AdminInfo.findOne({ 'email': email, 'password': password },{password:0});
     if (user) {
         return user;
     }
