@@ -6,10 +6,11 @@ const bcrypt = require('bcryptjs');
 
 /**How access and token works only we are perfoming just restructuring****/
 
-var DecarbisationSchema = new moongoose.Schema({
+var SisterFirmSchema = new moongoose.Schema({
 
     parentId:{
         type:moongoose.Types.ObjectId,
+        required:true,
     },
     firm_name: {
         type: String,
@@ -26,15 +27,12 @@ var DecarbisationSchema = new moongoose.Schema({
             validator: validator.isEmail,
             message: '{VALUE} Entered Invalid Email'
         }
-
     },
     mobile: {
-
         type: String
     },
 
     profile_image: {
-
         type: String,
         default:null
 
@@ -56,13 +54,11 @@ var DecarbisationSchema = new moongoose.Schema({
     },
 
     updated_at: {
-
         type: String,
         default: null
     },
 
     updated_by: {
-
         type: String,
         default: 0
     },
@@ -80,14 +76,11 @@ var DecarbisationSchema = new moongoose.Schema({
         default:null,
     },
     status: {
-
         type: String,
-        default: 'NOT VERIFIED'
-
+        default: 'active'
     },
     tokens: [{
         access: {
-
             type: String,
             required: true
         },
@@ -97,6 +90,7 @@ var DecarbisationSchema = new moongoose.Schema({
         }
     }]
 });
-var Decarbisation = moongoose.model('DecarbisationFirm', DecarbisationSchema);
 
-module.exports =  Decarbisation ;
+var SisterFirm = moongoose.model('SisterFirm', SisterFirmSchema);
+
+module.exports =  SisterFirm;
