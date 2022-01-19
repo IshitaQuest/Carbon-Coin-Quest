@@ -109,7 +109,7 @@ var storage = multer.diskStorage({
     cb(null, Date.now() + '.jpg')
   }
 });
-var upload = multer({ storage: storage });
+
 
 
 /******For Admin Profile Picture***/
@@ -122,6 +122,7 @@ var storage_admin = multer.diskStorage({
     cb(null, Date.now() + '.jpg')
   }
 });
+
 var whitepaperStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'public/admin_assets/uploads/whitepaper')
@@ -133,7 +134,7 @@ var whitepaperStorage = multer.diskStorage({
 
 var whitePaperUpload = multer({storage:whitepaperStorage});
 
-// var upload_admin = multer({storage: storage_admin});
+var upload_admin = multer({storage: storage_admin});
 
 var upload_admin = multer({
   storage: storage_admin
@@ -3565,36 +3566,16 @@ routes.get('/add-new-member', middleware_check_login, (req, res) => {
 
 });
 
-routes.post('/add-new-member', middleware_check_login,  (req, res) => {
+routes.post('/add-new-member',whitePaperUpload.single("file") ,middleware_check_login,  (req, res) => {
+  console.log(req.file)
   console.log("add member")
-  // const form = formidable({ multiples: true });
-  // form.parse(req, (err, fields, files) => {
-    // if (files != null && files != undefined && files != '') {
-    //   var imageFile = typeof files.member_image !== "undefined" ? files.member_image.name : "";
-    // } else {
-    //   var imageFile = '';
-    // }
-
-    // if (imageFile != "") {
-    //   member_image = imageFile;
-
-    //   if (imageFile != "") {
-    //     var imgpath = 'public/home/team/' + imageFile;
-    //     let testFile = fs.readFileSync(files.member_image.path);
-    //     let testBuffer = new Buffer(testFile);
-    //     fs.writeFile(imgpath, testBuffer, function (err) {
-    //       if (err) return console.log(err);
-    //     });
-    //   }
-    // } else {
-    //   member_image = "";
-    // }
+ 
 
     var name = req.body.name;
     var designation = req.body.designation;
     var content = req.body.editor1;
     var linkedin_url = req.body.linkedin;
-    // var member_image = member_image;
+    var member_image = req.file.filename;
     var status = req.body.status;
     var created_at = Date.now();
 
@@ -3604,7 +3585,7 @@ routes.post('/add-new-member', middleware_check_login,  (req, res) => {
 
     var TeamData = new TeamMember({
       name: name, designation: designation, content: content, linkedin_url: linkedin_url, status: status, created_at: created_at
-    });
+    ,member_image:member_image});
 
     TeamData.save().then(result => {
       console.log(result)
@@ -3636,23 +3617,19 @@ routes.post('/add-new-member', middleware_check_login,  (req, res) => {
 //   });
 // });
 
-routes.get('/edit-member', middleware_check_login, async (req, res) => {
+routes.get('/edit-member',middleware_check_login, async (req, res) => {
   let id = req.query._id;
   console.log("id......",id)
   try {
     let TeamData = await TeamMember.findOne({_id:id})
     
-    console.log("helloooooo",TeamData)
+  
     res.render('admin/front-admin/edit-member',{
       TeamData
-
     })
-
   }catch(err){
     throw err
   }
-  
-
 })
 
 // routes.post('/update_member',middleware_check_login, (req, res) => {
@@ -3900,6 +3877,8 @@ routes.post("/checkTransaction",(req,res)=>{
     res.send({err:err,status:false});
   })
 })
+
+
 
 
 module.exports = routes;

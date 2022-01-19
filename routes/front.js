@@ -22,6 +22,9 @@ const { Registration, Userwallet,whitepaperregister, Importwallet, Tokensettings
 const DecarbonCompanyModel = require("../models/DecarbonCompanyModel")
 const DecarbonFirmModel = require("../models/DecarbonFirmModel");
 
+const SisterFirm = require("../models/SisterFirm");
+const SisterCompany = require("../models/SisterCompany");
+
 
 var isUser = auth.isUser;
 
@@ -835,6 +838,7 @@ router.post("/saveDecarbinationfirm",async (req,res)=>{
 
   if(req.body.pwd == req.body.cnfpwd){
     const Firm = {
+      parentId:req.body.parentId,
       firm_name:req.body.firmName,
       email:req.body.email,
       mobile:req.body.phone,
@@ -861,6 +865,7 @@ router.post("/saveDecarbinationfirm",async (req,res)=>{
 router.post("/saveDecarbonCompany",async (req,res)=>{
   console.log(req.body)
     const Company = {
+    parentId:req.body.parentId,
     company_name: req.body.companyName,
     email:req.body.email,
     mobile:req.body.phone,
@@ -875,7 +880,6 @@ router.post("/saveDecarbonCompany",async (req,res)=>{
       let result = await DecarbonCompanyModel.findOne({email:req.body.email});
       if(result== null){
         await DecarbonCompanyModel.create(Company).then(result=>{
-          console.log(result)
           res.render("index",{success:"Successfully Registered",error:null});
         }).catch(err=>{
           console.log(err);
@@ -1179,6 +1183,22 @@ router.post("/updateCompany",(req,res)=>{
   })
 })
 
+router.get("/fetchallfirm",(req,res)=>{
+  DecarbonFirmModel.find({},{password:0,otp:0}).then(result=>{
+    res.send({error:false,res:result});
+  }).catch(err=>{
+    res.send({error:true,res:err.toString()});
+  })
+})
+
+router.get("/fetchfirm",(req,res)=>{
+  DecarbonFirmModel.find({ "firm_name" : { $regex: `^${req.query.name}`, $options: 'i' }},{password:0,otp:0}).then(result=>{
+    res.send({error:false,res:result});
+  }).catch(err=>{
+    res.send({error:true,res:err.toString()});
+  })
+})
+
 //  Emission Impact :
 
 router.get('/emission-impact', function (req, res) {
@@ -1193,4 +1213,69 @@ router.get('/google', function (req, res) {
 router.get('/calculator', function (req, res) {
   res.render('calculator');
 });
+
+// SISTER FIRMS 
+
+router.post("/sisterFirm",async (req,res)=>{
+  console.log(req.body)
+  try{
+  const sisterFirm = {
+    parentId:req.body.parentId,
+    firm_name:req.body.firmName,
+    email:req.body.email,
+    mobile:req.body.phone,
+    password:req.body.password,
+    companys_licenece:req.body.licence,
+    Country:req.body.country,
+  }
+  if(req.body.password == req.body.cnfpwd){
+     let result  = await SisterFirm.create(sisterFirm);
+     if(result!=null || result!=undefined){
+       res.send({error:null,success:"Sister Firm Created ! Login"});
+     }else{
+      res.send({error:"Sister Firm Creation Failed! Try Again",success:null});
+     }
+
+  }else{
+    res.send({error:"Password didn't Match",success:null});
+  }
+}catch(err){
+  console.log(err);
+  res.send({error:"Error! DataBase Issue",success:null});
+}
+})
+
+
+// SISTER COMPANY;
+
+router.post("/sisterCompany",async (req,res)=>{
+  console.log(req.body)
+  try{
+    const sisterCompany = {
+    parentId:req.body.parentId,
+    company_name: req.body.companyName,
+    email:req.body.email,
+    mobile:req.body.phone,
+    quotation:req.body.quotation,
+    totalArea:req.body.totalArea,
+    ApproxCapacity:req.body.approxCap,
+    password:req.body.pwd,
+    companys_licence:req.body.licence,
+    }
+    if(req.body.pwd==req.body.cnfpwd){
+      let result  = await SisterCompany.create(sisterCompany);
+     if(result!=null || result!=undefined){
+       res.send({error:null,success:"Sister Company Created ! Login"});
+     }else{
+      res.send({error:"Sister Company Creation Failed! Try Again",success:null});
+     }
+
+    }else{
+      res.send({error:"Password didn't Match",success:null});
+    }
+  }catch(err){
+    console.log(err);
+  res.send({error:"Error! DataBase Issue",success:null});
+  }
+})
 module.exports = router;

@@ -6,12 +6,13 @@ const bcrypt = require('bcryptjs');
 
 /**How access and token works only we are perfoming just restructuring****/
 
-var DecarbisationSchema = new moongoose.Schema({
+var SisterCompanySchema = new moongoose.Schema({
 
     parentId:{
         type:moongoose.Types.ObjectId,
+        required:true,
     },
-    firm_name: {
+    company_name: {
         type: String,
         required: true
     },
@@ -39,6 +40,23 @@ var DecarbisationSchema = new moongoose.Schema({
         default:null
 
     },
+
+    quotation:{
+        type:Number,
+        default:0,
+    },
+
+    totalArea:{
+        type:Number,
+        default:0,
+    },
+    phone:{
+        type:String,
+    },
+    ApproxCapacity:{
+        type:Number,
+        default:0,
+    },
     password: {
         type: String,
         required: true
@@ -50,41 +68,33 @@ var DecarbisationSchema = new moongoose.Schema({
     },
 
     created_by: {
-
         type: Number,
         default: 0
     },
 
     updated_at: {
-
         type: String,
         default: null
-    },
-
-    updated_by: {
-
-        type: String,
-        default: 0
-    },
-
-    companys_licenece:{
-        type:String,
-        required:true,
-    },
-    country:{
-        type:String,
-        requied:true,
     },
     otp:{
         type:String,
         default:null,
     },
-    status: {
-
+    updated_by: {
         type: String,
-        default: 'NOT VERIFIED'
-
+        default: 0
     },
+
+    companys_licence:{
+        type:String,
+        required:true,
+    },
+
+    status:{
+        type: String,
+        default: 'active'
+    },
+
     tokens: [{
         access: {
 
@@ -97,6 +107,7 @@ var DecarbisationSchema = new moongoose.Schema({
         }
     }]
 });
-var Decarbisation = moongoose.model('DecarbisationFirm', DecarbisationSchema);
 
-module.exports =  Decarbisation ;
+var SisterCompany = moongoose.model('SisterCompany',SisterCompanySchema);
+
+module.exports =  SisterCompany ;
