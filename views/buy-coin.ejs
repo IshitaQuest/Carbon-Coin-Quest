@@ -591,7 +591,17 @@
 
   <!-- For terms and condition -->
 
-  <script>
+  <script> 
+
+$(window).on("load", async function() {
+
+  if(!await ethereum._metamask.isUnlocked()){
+    alert("MetaMask is Not Connected");
+    window.location ="/"
+  }else{
+    
+  }
+});
     async function enableMetaMask(){
       const Web3Modal = window.Web3Modal.default;
         const providerOptions = {
@@ -940,40 +950,13 @@
             'data': tokenContract.methods.transfer(Admin, amount).encodeABI()
           };
         }
-        web3.eth.sendTransaction(tx, function (err, hash) {
-          if (!err) {
-            console.log(hash);
-
-            $.ajax({
-              dataType: "json",
-              type: 'post',
-              url: '/users/save-order',
-              data: {
-                tx_id: hash,
-                address: selectedAccount,
-                // qty: document.getElementById("copies").value,
-                amount: TokenPrice,
-                fees: fees,
-                //         currency: currency,
-                //         currencyRate: currencyRate
-              },
-              success: function (data) {
-
-                console.log(data);
-
-                window.location.href = "/transfer-nft?hash=" + hash;
-
-
-                //location.reload();
-              }
-            });
-
-          }
-          else {
-            console.log(err);
-          }
-        });
-
+        web3.eth.sendTransaction(tx)
+                    .once('transactionHash', function(hash){console.log(hash)})
+                    .once('receipt', function(receipt){ window.alert("Transaction Completed") ; console.log(receipt) })
+                    .once('error', function(error){window.alert("Transaction Rejected"); console.log(error) })
+                    .then(function(receipt){
+                        
+                    });
       }
       else {
         alert("Please Select Ropsten chain");
