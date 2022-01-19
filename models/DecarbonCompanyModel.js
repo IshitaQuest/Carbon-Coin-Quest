@@ -7,7 +7,9 @@ const bcrypt = require('bcryptjs');
 /**How access and token works only we are perfoming just restructuring****/
 
 var DecarbisationSchema = new moongoose.Schema({
-
+    parentId:{
+        type:moongoose.Types.ObjectId,
+    },
     company_name: {
         type: String,
         required: true

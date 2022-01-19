@@ -72,8 +72,6 @@ var TeamSchema =  new moongoose.Schema({
 });
 
 
-
-
 var Teaminfo =  moongoose.model('tbl_teammember',TeamSchema); 
 
 /*** Vision ****/
@@ -127,8 +125,6 @@ var VisionSchema =  new moongoose.Schema({
          default:'0'
     },
 });
-
-
 
 
 var Visioninfo =  moongoose.model('tbl_vision',VisionSchema); 

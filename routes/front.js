@@ -22,6 +22,9 @@ const { Registration, Userwallet,whitepaperregister, Importwallet, Tokensettings
 const DecarbonCompanyModel = require("../models/DecarbonCompanyModel")
 const DecarbonFirmModel = require("../models/DecarbonFirmModel");
 
+const SisterFirm = require("../models/SisterFirm");
+const SisterCompany = require("../models/SisterCompany");
+
 
 var isUser = auth.isUser;
 
@@ -831,10 +834,11 @@ router.post('/ETH', isUser, async function (req, res) {
   // })    
 })
 
-router.post("/saveDecarbinationCompany",(req,res)=>{
+router.post("/saveDecarbinationfirm",async (req,res)=>{
 
   if(req.body.pwd == req.body.cnfpwd){
     const Firm = {
+      parentId:req.body.parentId,
       firm_name:req.body.firmName,
       email:req.body.email,
       mobile:req.body.phone,
@@ -842,20 +846,26 @@ router.post("/saveDecarbinationCompany",(req,res)=>{
       companys_licenece:req.body.licence,
       Country:req.body.country,
     }
-    DecarbonFirmModel.create(Firm).then(result=>{
-      res.redirect("/");
-    }).catch(err=>{
-        console.log(err);
-        res.status(400).render("register-form.ejs",{err_msg:err.toString()});
-    })
+    let result = await DecarbonFirmModel.findOne({email:req.body.email});
+    if(result == null){
+      await DecarbonFirmModel.create(Firm).then(result=>{
+        res.render("index",{success:"Successfully Registered",error:null});
+      }).catch(err=>{
+          console.log(err);
+          res.status(400).render("register-form",{error:"Some Error Occured in DataBase!!"});
+      })
+    }else{
+      res.status(400).render("register-form",{error:"Email is Already Registered"});
+    }
   }else{
-    res.status(200).render("register-form.ejs",{err_msg:"Password and Confirm Password is Not Same"});
+    res.status(200).render("register-form",{error:"Password and Confirm Password is Not Same"});
   }
 })
 
-router.post("/saveDecarbonCompany",(req,res)=>{
+router.post("/saveDecarbonCompany",async (req,res)=>{
   console.log(req.body)
     const Company = {
+    parentId:req.body.parentId,
     company_name: req.body.companyName,
     email:req.body.email,
     mobile:req.body.phone,
@@ -867,16 +877,20 @@ router.post("/saveDecarbonCompany",(req,res)=>{
     phone:req.body.phone,
     }
     if(req.body.cnfpwd == req.body.pwd){
-      DecarbonCompanyModel.create(Company).then(result=>{
-        console.log(result)
-        res.redirect("/");
-      }).catch(err=>{
-        console.log(err);
-        res.render("register-tree-form",{err_msg:err.toString()});
-      })
+      let result = await DecarbonCompanyModel.findOne({email:req.body.email});
+      if(result== null){
+        await DecarbonCompanyModel.create(Company).then(result=>{
+          res.render("index",{success:"Successfully Registered",error:null});
+        }).catch(err=>{
+          console.log(err);
+          res.render("register-tree-form",{error:"Some Error Occured in DataBase!!",success:null});
+        })
+      }else{
+        res.render("register-tree-form",{error:"Email is Already Registered",success:null});
+      }
     }else{
       console.log("not same")
-      res.render("register-tree-form",{err_msg:"Confirm Password and Password are Not Same"});
+      res.render("register-tree-form",{error:"Confirm Password and Password are Not Same"});
     }
 })
 
@@ -910,7 +924,6 @@ var isFirmLoggedIn = function(req,res,next){
       res.redirect("/");
     }
   }
- 
 }
 
 router.get("/firm-dashboard",isCompanyLoggedIn,(req,res)=>{
@@ -925,8 +938,7 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
  router.post("/firmlogin",(req,res)=>{
   DecarbonFirmModel.findOne({email:req.body.email,password:req.body.password}).then(result=>{
     if(result==null){
-        alert("Wrong Password or Email");
-        res.redirect("/#about");
+        res.render("index",{error:"No User Found",success:null});
     }else{
       req.session.user = result;
       req.session.type="FIRM";
@@ -935,15 +947,14 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
       })
     }
   }).catch(err=>{
-    res.render("register-form.ejs",{err_msg:err.message});
+    res.render("index",{error:err.toString(),success:null});
   })
  });
 
  router.post("/decarbinationCompanyLogin",(req,res)=>{
   DecarbonCompanyModel.findOne({email:req.body.email,password:req.body.password}).then(result=>{
     if(result==null){
-      alert("Wrong Password or Email");
-      res.redirect("/#about");
+      res.render("index",{error:"No User Found",success:null});
     }else{
       req.session.user = result;
       req.session.type = "COMPANY";
@@ -952,7 +963,7 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
       })
     }
   }).catch(err=>{
-    res.render("register-tree-form",{err_msg:err.message});
+    res.render("index",{error:err.toString(),success:null});
   })
 
  })
@@ -1068,17 +1079,17 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
       if(result.otp == req.body.otp && result.otp!=null ){
           let response = await DecarbonFirmModel.updateOne({_id:result._id},{$set:{password:req.body.password,otp:null}});
           if(response != null){
-            res.redirect("/");
+            res.render("index",{error:null,success:"Password Updated"});
           }
       }else{
-        res.render("otp-firm",{error:"OTP NOT VERIFIED"});
+        res.render("forgot-pass-firm",{error:"Could Not Update Password ,Contact Administrator",success:null});
       }
     }
   }catch(err){
-    res.send(err);
+    res.render("index",{error:err.toString(),success:null});
   }
 }else{
-  res.render("otp-firm",{error:"PASSWORD IS INCORRECT"});
+  res.render("forgot-pass-firm",{error:"Your Passwords doesn't Match!",success:null});
 }
  })
 
@@ -1091,17 +1102,17 @@ router.get("/company-dashboard",isFirmLoggedIn,(req,res)=>{
           let response = await DecarbonCompanyModel.updateOne({_id:result._id},{$set:{password:req.body.password,otp:null}});
           console.log(response)
           if(response != null){
-            res.redirect("/");
+            res.render("index",{error:null,success:"Password Updated"});
           }
       }else{
-        res.render("otp-company",{error:"OTP NOT VERIFIED",succes:null});
+        res.render("forgot-pass-company",{error:"Could Not Update Password ,Contact Administrator",success:null});
       }
     }
   }catch(err){
-    res.render("otp-company",{error:err,success:null});
+    res.render("forgot-pass-company",{error:err.toString(),success:null})
   }
 }else{
-  res.render("otp-company",{error:"PASSWORD IS INCORRECT",succes:null});
+  res.render("forgot-pass-company",{error:"Your Passwords Doesnot Match!",success:null})
 }
   })
 
@@ -1153,13 +1164,12 @@ router.post("/updateFirm",(req,res)=>{
     req.session.user = result1;
     res.redirect("/profile-user-firm")
   }).catch(err=>{
-    console.log(err);
+    res.render("profile_update_firm",{error:"Cannot Update , Some Error Occured!"})
   })
 })
 
 
 router.post("/updateCompany",(req,res)=>{
-  console.log("i am working")
   const update =  {
     company_name:req.body.name,
     mobile:req.body.mob
@@ -1169,7 +1179,23 @@ router.post("/updateCompany",(req,res)=>{
     req.session.user = result1;
     res.redirect("/profile-user-company")
   }).catch(err=>{
-    console.log(err);
+    res.render("profile_update_company",{error:"Cannot Update , Some Error Occured!"})
+  })
+})
+
+router.get("/fetchallfirm",(req,res)=>{
+  DecarbonFirmModel.find({},{password:0,otp:0}).then(result=>{
+    res.send({error:false,res:result});
+  }).catch(err=>{
+    res.send({error:true,res:err.toString()});
+  })
+})
+
+router.get("/fetchfirm",(req,res)=>{
+  DecarbonFirmModel.find({ "firm_name" : { $regex: `^${req.query.name}`, $options: 'i' }},{password:0,otp:0}).then(result=>{
+    res.send({error:false,res:result});
+  }).catch(err=>{
+    res.send({error:true,res:err.toString()});
   })
 })
 
@@ -1187,4 +1213,69 @@ router.get('/google', function (req, res) {
 router.get('/calculator', function (req, res) {
   res.render('calculator');
 });
+
+// SISTER FIRMS 
+
+router.post("/sisterFirm",async (req,res)=>{
+  console.log(req.body)
+  try{
+  const sisterFirm = {
+    parentId:req.body.parentId,
+    firm_name:req.body.firmName,
+    email:req.body.email,
+    mobile:req.body.phone,
+    password:req.body.password,
+    companys_licenece:req.body.licence,
+    Country:req.body.country,
+  }
+  if(req.body.password == req.body.cnfpwd){
+     let result  = await SisterFirm.create(sisterFirm);
+     if(result!=null || result!=undefined){
+       res.send({error:null,success:"Sister Firm Created ! Login"});
+     }else{
+      res.send({error:"Sister Firm Creation Failed! Try Again",success:null});
+     }
+
+  }else{
+    res.send({error:"Password didn't Match",success:null});
+  }
+}catch(err){
+  console.log(err);
+  res.send({error:"Error! DataBase Issue",success:null});
+}
+})
+
+
+// SISTER COMPANY;
+
+router.post("/sisterCompany",async (req,res)=>{
+  console.log(req.body)
+  try{
+    const sisterCompany = {
+    parentId:req.body.parentId,
+    company_name: req.body.companyName,
+    email:req.body.email,
+    mobile:req.body.phone,
+    quotation:req.body.quotation,
+    totalArea:req.body.totalArea,
+    ApproxCapacity:req.body.approxCap,
+    password:req.body.pwd,
+    companys_licence:req.body.licence,
+    }
+    if(req.body.pwd==req.body.cnfpwd){
+      let result  = await SisterCompany.create(sisterCompany);
+     if(result!=null || result!=undefined){
+       res.send({error:null,success:"Sister Company Created ! Login"});
+     }else{
+      res.send({error:"Sister Company Creation Failed! Try Again",success:null});
+     }
+
+    }else{
+      res.send({error:"Password didn't Match",success:null});
+    }
+  }catch(err){
+    console.log(err);
+  res.send({error:"Error! DataBase Issue",success:null});
+  }
+})
 module.exports = router;

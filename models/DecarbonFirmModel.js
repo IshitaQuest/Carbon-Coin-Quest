@@ -8,6 +8,9 @@ const bcrypt = require('bcryptjs');
 
 var DecarbisationSchema = new moongoose.Schema({
 
+    parentId:{
+        type:moongoose.Types.ObjectId,
+    },
     firm_name: {
         type: String,
         required: true
@@ -79,7 +82,7 @@ var DecarbisationSchema = new moongoose.Schema({
     status: {
 
         type: String,
-        default: 'active'
+        default: 'NOT VERIFIED'
 
     },
     tokens: [{
@@ -94,7 +97,6 @@ var DecarbisationSchema = new moongoose.Schema({
         }
     }]
 });
-
 var Decarbisation = moongoose.model('DecarbisationFirm', DecarbisationSchema);
 
 module.exports =  Decarbisation ;

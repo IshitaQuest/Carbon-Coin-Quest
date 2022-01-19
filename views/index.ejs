@@ -182,6 +182,7 @@
                 >Connect wallet</small
               >
             </a>
+            
             <button
               type="button"
               class="navbar-toggle collapsed bitmex-icon-menu"
@@ -318,9 +319,26 @@
         <div class="item active slide-1">
           <div class="carousel-caption">
             <div class="thm-container">
+             
               <div class="box valign-middle">
                 <div class="content">
+                 
+                    <%if(error!=null){%>
+                      <success><div class="alert alert-warning alert-dismissible">
+                        <a href="/" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+                        <%=error%></success>
+                      </div>
+                   
+                    <%}%>
+                    <%if(success!=null){%>
+                      <strong><div class="alert alert-success alert-dismissible">
+                        <a href="/" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                      <%=success%></strong>
+                      </div>
+                      <%}%>
+                   
                   <div class="outer-glob-box">
+                   
                     <img
                       data-animation="animated fadeInUp"
                       class="logo-outer-img"
@@ -1248,6 +1266,9 @@
       <!-- /.thm-container -->
     </div>
     <!-- /.footer-bottom -->
+    
+
+    
 
     <section class="hidden-sidebar side-navigation">
       <a href="#" class="close-button side-navigation-close-btn fa fa-times"></a
@@ -1267,11 +1288,13 @@
       </div>
       <!-- /.sidebar-content -->
     </section>
+    
     <!-- /.hidden-sidebar -->
 
     <button class="open-button btn btn-outline-primary" onclick="openForm()">
       Donate to your favourite Green project
     </button>
+   
     <div class="chat-popup" id="myForm">
       <div class="form-container">
         <div class="row">
